@@ -1,6 +1,12 @@
 # Configuration files
 
-The tools I use:
+## Installation
+
+1. backup your current configuration files, they will be overwrite
+2. `cd` in this repo
+3. run `make`
+
+## Tools I use
 
 * [vim](https://github.com/vim/vim): terminal text editor
 * [zsh](https://www.zsh.org/): interactive shell
