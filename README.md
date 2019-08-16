@@ -15,3 +15,7 @@
 * [redshift](https://github.com/jonls/redshift): change screen color temperature
 
 The tmux theme can be found [here](https://github.com/jimeh/tmux-themepack).
+
+## School 19 Config
+
+Configuration for school 19 can be found on the [s19](https://github.com/HappyTramp/dotfiles/tree/s19) branch.
