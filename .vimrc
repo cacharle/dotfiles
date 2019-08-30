@@ -11,13 +11,12 @@ let mapleader = ' '
 syntax enable
 set hidden
 set noswapfile
-filetype plugin on " add specific rules for certain file type
-filetype plugin indent on
+set nocompatible
+filetype plugin indent on  " add specific rules for certain file type
 set number relativenumber
 " browse list with tab
 set wildmode=longest,list,full
 set wildmenu
-set nocompatible
 set path+=**  " for recursive :find
 " more intuitif split opening
 set splitbelow
@@ -52,6 +51,9 @@ set scrolloff=2 " 2 line above scroll
 set showcmd
 set cursorline  " highlight current line
 set noshowmode " unnecessary with status bar"
+
+set autoread  " reload files when changes happen outside vim
+
 " where to place the .swp files
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
@@ -119,3 +121,11 @@ imap jj <ESC>
 
 " remove visual mode keybinding
 map Q <ESC>
+
+" c source and header files comment formats for vim-commentary
+" autocmd Filetype c setlocal commentstring=// %s
+" autocmd Filetype h setlocal commentstring=// %s
+
+set encoding=utf-8
+
+set textwidth=89  " when line wrap occurs

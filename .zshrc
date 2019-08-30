@@ -27,6 +27,7 @@ bindkey -M isearch " " magic-space
 alias -g G='| grep'
 alias -g L='| less'
 alias -g LO='192.168.0.'
+alias -g HUB="https://github.com/HappyTramp/"
 alias rr='rm -r'
 alias ll="ls -lFh"
 alias la="ls -a"
