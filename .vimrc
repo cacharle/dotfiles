@@ -129,3 +129,8 @@ map Q <ESC>
 set encoding=utf-8
 
 set textwidth=89  " when line wrap occurs
+
+" incsearch mapping
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)

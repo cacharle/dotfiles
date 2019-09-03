@@ -18,6 +18,7 @@ call plug#begin()
     Plug 'vim-scripts/awk.vim'
     Plug 'sheerun/vim-polyglot'  " better syntax highlighting
     Plug 'neovimhaskell/haskell-vim'  " vim haskell highlighting
+    Plug 'haya14busa/incsearch.vim'  " better incsearch
 
 
     " themes

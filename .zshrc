@@ -14,6 +14,7 @@ bindkey -v
 setopt auto_cd
 setopt pushd_ignore_dups
 setopt list_rows_first
+set extendedglob
 
 # alias expansion
 bindkey "^ " _expand_alias # ctrl+space to expand
