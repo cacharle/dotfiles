@@ -5,8 +5,10 @@ TMUXCONF = .tmux.conf
 BASHRC = .bashrc
 BASHALIAS = .bash_aliases
 PROFILE = .profile
+GHCI = .ghci
+GDB = .gdbinit
 CONFFILES = $(HOME)/$(ZSHRC) $(HOME)/$(VIMRC) $(HOME)/$(TMUXCONF) $(HOME)/$(BASHRC) \
-			$(HOME)/$(BASHALIAS) $(HOME)/$(PROFILE)
+			$(HOME)/$(BASHALIAS) $(HOME)/$(PROFILE) $(HOME)/$(GHCI) $(HOME)/$(GDB)
 
 .PHONY: all
 all: $(CONFFILES)
@@ -34,6 +36,14 @@ $(HOME)/$(BASHALIAS): $(DOTDIR)/$(BASHALIAS)
 $(HOME)/$(PROFILE): $(DOTDIR)/$(PROFILE)
 	touch $@
 	echo "source $<" > $@
+
+$(HOME)/$(GHCI): $(DOTDIR)/$(GHCI)
+	touch $@
+	cat $< > $@
+
+$(HOME)/$(GDB): $(DOTDIR)/$(GDB)
+	touch $@
+	cat $< > $@
 
 .PHONY: clean
 clean:
