@@ -51,3 +51,16 @@ clean:
 
 .PHONY: re
 re: clean all
+
+.PHONY: dependencies
+dependencies:
+	@echo "Installing vim-plug (plugin manager)"
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	@echo "Installing vim plugins"
+	vim -c "PlugInstall" -c "qa"
+	@echo "Installing oh-my-zsh"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	@echo "Installing zsh-syntax-highlighting"
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+		${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
