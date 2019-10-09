@@ -7,8 +7,10 @@ BASHALIAS = .bash_aliases
 PROFILE = .profile
 GHCI = .ghci
 GDB = .gdbinit
+GITCONFIG = .gitconfig
 CONFFILES = $(HOME)/$(ZSHRC) $(HOME)/$(VIMRC) $(HOME)/$(TMUXCONF) $(HOME)/$(BASHRC) \
-			$(HOME)/$(BASHALIAS) $(HOME)/$(PROFILE) $(HOME)/$(GHCI) $(HOME)/$(GDB)
+			$(HOME)/$(BASHALIAS) $(HOME)/$(PROFILE) $(HOME)/$(GHCI) $(HOME)/$(GDB) \
+			$(HOME)/$(GITCONFIG)
 
 .PHONY: all
 all: $(CONFFILES)
@@ -45,6 +47,10 @@ $(HOME)/$(GDB): $(DOTDIR)/$(GDB)
 	touch $@
 	cat $< > $@
 
+$(HOME)/$(GITCONFIG): $(DOTDIR)/$(GITCONFIG)
+	touch $@
+	cat $< >> $@
+
 .PHONY: clean
 clean:
 	rm -f $(CONFFILES)
@@ -52,15 +58,15 @@ clean:
 .PHONY: re
 re: clean all
 
-.PHONY: dependencies
-dependencies:
-	@echo "Installing vim-plug (plugin manager)"
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	@echo "Installing vim plugins"
-	vim -c "PlugInstall" -c "qa"
-	@echo "Installing oh-my-zsh"
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	@echo "Installing zsh-syntax-highlighting"
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-		${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# .PHONY: dependencies
+# dependencies:
+# 	@echo "Installing vim-plug (plugin manager)"
+# 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+# 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# 	@echo "Installing vim plugins"
+# 	vim -c "PlugInstall" -c "qa"
+# 	@echo "Installing oh-my-zsh"
+	# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	# @echo "Installing zsh-syntax-highlighting"
+	# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+	# 	${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
