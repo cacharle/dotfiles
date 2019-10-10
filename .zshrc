@@ -5,15 +5,16 @@ HYPHEN_INSENSITIVE="true"
 DISABLE_MAGIC_FUNCTIONS=true
 HIST_STAMPS="dd/mm/yyyy"
 
-plugins=(colorize command-not-found git)
+plugins=(colorize command-not-found git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-export KEYTIMEOUT=1
 bindkey -v
+export KEYTIMEOUT=1
 
 setopt auto_cd
 setopt pushd_ignore_dups
 setopt list_rows_first
+setopt extendedglob
 
 # alias expansion
 bindkey "^ " _expand_alias # ctrl+space to expand
@@ -27,6 +28,7 @@ bindkey -M isearch " " magic-space
 alias -g G='| grep'
 alias -g L='| less'
 alias -g LO='192.168.0.'
+alias -g HUB="https://github.com/HappyTramp/"
 alias rr='rm -r'
 alias ll="ls -lFh"
 alias la="ls -a"
@@ -47,6 +49,7 @@ alias info="info --vi-keys"
 alias moula="gcc -Wall -Wextra -Werror"
 alias list-c-includes-paths="echo | gcc -E -Wp,-v -"
 alias yoump3='youtube-dl --extract-audio --audio-format mp3'
+alias adg="sudo apt update && sudo apt upgrade"
 
 function chpwd() {
     file_count=$(ls | wc -w)
@@ -62,6 +65,13 @@ alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
 alias vimrc="vim $DOTFILES/.vimrc"
 alias vimplugrc="vim $DOTFILES/.vimrc -c 'vsp $DOTFILES/.pluggins.vim'"
 alias tmuxrc="vim $DOTFILES/.tmux.conf && tmux source-file $DOTFILES/.tmux.conf"
+
+# vim keys in tab completion menu (https://www.youtube.com/watch?v=eLEo4OQ-cuQ)
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 
 # add command-not-found package suggestion
 source /etc/zsh_command_not_found

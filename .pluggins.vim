@@ -18,6 +18,7 @@ call plug#begin()
     Plug 'vim-scripts/awk.vim'
     Plug 'sheerun/vim-polyglot'  " better syntax highlighting
     Plug 'neovimhaskell/haskell-vim'  " vim haskell highlighting
+    Plug 'haya14busa/incsearch.vim'  " better incsearch
 
 
     " themes
@@ -32,7 +33,8 @@ call plug#begin()
     Plug 'connorholyday/vim-snazzy'
     Plug 'chriskempson/base16-vim'
 
-    Plug 'tpope/vim-commentary' " minimalistic commenter
+    Plug 'tomtom/tcomment_vim'  " other min commenter
+    " Plug 'tpope/vim-commentary' " minimalistic commenter
     Plug 'tpope/vim-surround' " surround stuff
     Plug 'tpope/vim-eunuch'  " command in vim
 
