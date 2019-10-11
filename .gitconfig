@@ -1,8 +1,0 @@
-[user]
-	name = Charles
-	email = sircharlesaze@gmail.com
-[credential]
-	helper = cache
-	username = HappyTramp
-[log]
-	decorate = full
