@@ -34,9 +34,10 @@ alias ll="ls -lFh"
 alias la="ls -a"
 alias lA="ls -al"
 alias lss="ls -Ssh"
+alias l1="ls -1"
 alias less="less -N"
 alias mkdir="mkdir -p"
-alias tree="tree -I '__pycache__'"
+alias treeI="tree -I '__pycache__' -I '*.o'"
 alias v="vim"
 alias :q="exit"
 alias :sp="tmux split-window"
@@ -80,6 +81,9 @@ source /etc/zsh_command_not_found
 export PATH="/sbin:/usr/local/sbin:/usr/sbin:$PATH"
 # add my bin
 export PATH="$HOME/bin:$PATH"
+# add go bins
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # man with color
 export LESS_TERMCAP_mb=$'\e[1;32m'
