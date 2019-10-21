@@ -33,12 +33,12 @@ nnoremap zl <C-W><
 nnoremap zj <C-W>-
 nnoremap zk <C-W>+
 " tab to space
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set autoindent
-set smartindent
+" set expandtab
+" set tabstop=4
+" set shiftwidth=4
+" set smarttab
+" set autoindent
+" set smartindent
 " search
 set ignorecase
 set smartcase
@@ -51,12 +51,13 @@ set scrolloff=2 " 2 line above scroll
 set showcmd
 set cursorline  " highlight current line
 set noshowmode " unnecessary with status bar"
+set noshowmatch
 
 set autoread  " reload files when changes happen outside vim
 
 " where to place the .swp files
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
+" set backupdir=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
+" set directory=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
 " directory to ignore when searching in file tree (works with ctrlp)
 set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*
 " ctrlp ignore all stuff in the .gitignore

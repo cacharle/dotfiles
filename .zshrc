@@ -1,12 +1,21 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="pure"
+ZSH_THEME=""
+# ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 DISABLE_MAGIC_FUNCTIONS=true
 HIST_STAMPS="dd/mm/yyyy"
 
-plugins=(colorize command-not-found git zsh-syntax-highlighting)
+#school stuff
+ZSH_DISABLE_COMPFIX=true
+
+export FPATH="$FPATH:$HOME/.zsh/pure"
+
+plugins=(colorize git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
+
+autoload -U promptinit; promptinit
+prompt pure
 
 bindkey -v
 export KEYTIMEOUT=1
@@ -48,6 +57,8 @@ alias node="nodejs"
 alias python="python3.7"
 alias info="info --vi-keys"
 alias moula="gcc -Wall -Wextra -Werror"
+alias norm="norminette"
+alias normch="norm *.c *.h"
 alias list-c-includes-paths="echo | gcc -E -Wp,-v -"
 alias yoump3='youtube-dl --extract-audio --audio-format mp3'
 alias adg="sudo apt update && sudo apt upgrade"
@@ -60,6 +71,16 @@ function chpwd() {
         echo "$(pwd) contains $file_count files"
     fi
 }
+
+# behavior on enter
+# function precmd() {
+# 	echo $0;
+# 	if ["${0}" -eq ""]; then
+# 		ls
+# 	else
+# 		$1
+# 	fi;
+# }
 
 export DOTFILES=$HOME/dotfiles
 alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
@@ -75,7 +96,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # add command-not-found package suggestion
-source /etc/zsh_command_not_found
+#source /etc/zsh_command_not_found
 
 # add /sbin to $PATH
 export PATH="/sbin:/usr/local/sbin:/usr/sbin:$PATH"
