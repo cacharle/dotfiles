@@ -33,12 +33,12 @@ nnoremap zl <C-W><
 nnoremap zj <C-W>-
 nnoremap zk <C-W>+
 " tab to space
-" set expandtab
-" set tabstop=4
-" set shiftwidth=4
-" set smarttab
-" set autoindent
-" set smartindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set autoindent
+set smartindent
 " search
 set ignorecase
 set smartcase
