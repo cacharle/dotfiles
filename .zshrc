@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME=""
+ZSH_THEME="pure"
 # ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 DISABLE_MAGIC_FUNCTIONS=true
@@ -14,8 +14,8 @@ export FPATH="$FPATH:$HOME/.zsh/pure"
 plugins=(colorize git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
-autoload -U promptinit; promptinit
-prompt pure
+# autoload -U promptinit; promptinit
+# prompt pure
 
 bindkey -v
 export KEYTIMEOUT=1

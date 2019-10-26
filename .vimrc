@@ -33,7 +33,7 @@ nnoremap zl <C-W><
 nnoremap zj <C-W>-
 nnoremap zk <C-W>+
 " tab to space
-set expandtab
+" set expandtab
 set tabstop=4
 set shiftwidth=4
 set smarttab
