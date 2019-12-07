@@ -120,3 +120,6 @@ export XDG_CONFIG_HOME="/home/charles/.config/"
 export XDG_DATA_HOME="/home/charles/.data/"
 
 export EDITOR="vim"
+
+# set tab to 4 spaces
+tabs 4
