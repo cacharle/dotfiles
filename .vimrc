@@ -1,9 +1,3 @@
-if &term =~# '^screen'
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    set termguicolors  " overwrite terminal theme
-endif
-
 so $HOME/dotfiles/.pluggins.vim  " source pluggins
 
 let mapleader = ' '
@@ -33,7 +27,7 @@ nnoremap zl <C-W><
 nnoremap zj <C-W>-
 nnoremap zk <C-W>+
 " tab to space
-" set expandtab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -64,54 +58,42 @@ set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " ALE
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {
-    \ 'python': ['flake8']
-    \ }
-let g:ale_fixers = {
-    \ 'python': ['autopep8']
-    \ }
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
+" let g:ale_sign_error = '>'
+" let g:ale_sign_warning = '-'
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_enter = 0
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_linters = {
+"     \ 'python': ['flake8']
+"     \ }
+" let g:ale_fixers = {
+"     \ 'python': ['autopep8']
+"     \ }
 
 " let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark="hard"
-colorscheme gruvbox
-set background=dark
+" let g:gruvbox_contrast_dark="hard"
+let g:onedark_terminal_italics=1
+colorscheme onedark
+" set background=dark
 let g:lightline = {}
-let g:lightline.colorscheme = 'jellybeans'
-" let g:lightline.component_expand = {
-"       \  'linter_checking': 'lightline#ale#checking',
-"       \  'linter_warnings': 'lightline#ale#warnings',
-"       \  'linter_errors': 'lightline#ale#errors',
-"       \  'linter_ok': 'lightline#ale#ok',
-"       \ }
-" let g:lightline.component_type = {
-"       \     'linter_checking': 'left',
-"       \     'linter_warnings': 'warning',
-"       \     'linter_errors': 'error',
-"       \     'linter_ok': 'left',
-"       \ }
-" let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+let g:lightline.colorscheme = 'one'
 
 let base16colorspace=256
 
 " NERDTree shortcut
-map <Leader>d :NERDTreeToggle<CR>
-map <Leader>f :NERDTreeFocus<CR>
+" map <Leader>d :NERDTreeToggle<CR>
+" map <Leader>f :NERDTreeFocus<CR>
 
 " Global copy and paste
 vnoremap <C-l> "+y
 noremap <C-m> "+P
 
 " 'Y' yank to the end of the line
-:noremap Y y$
+noremap Y y$
 
 " remove trailing white space on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -119,6 +101,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " solves annoying delay went exiting insert mode
 imap <ESC> <C-C>
 imap jj <ESC>
+imap kk <ESC>
 
 " remove visual mode keybinding
 map Q <ESC>
@@ -126,6 +109,8 @@ map Q <ESC>
 " c source and header files comment formats for vim-commentary
 " autocmd Filetype c setlocal commentstring=// %s
 " autocmd Filetype h setlocal commentstring=// %s
+
+autocmd Filetype c setlocal noexpandtab
 
 set encoding=utf-8
 

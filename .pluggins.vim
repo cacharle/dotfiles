@@ -11,20 +11,20 @@ call plug#begin()
     " better highlight syntax
     Plug 'justinmk/vim-syntax-extra'
     "Plug 'junegunn/goyo.vim'  " focus mode
-    Plug 'w0rp/ale'  " lint
+    " Plug 'w0rp/ale'  " lint
     Plug 'maximbaz/lightline-ale'
     Plug 'romainl/vim-cool' " disable highlight after search
     "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }  " markdown preview with math typeset
     Plug 'vim-scripts/awk.vim'
     Plug 'sheerun/vim-polyglot'  " better syntax highlighting
-    Plug 'neovimhaskell/haskell-vim'  " vim haskell highlighting
+    " Plug 'neovimhaskell/haskell-vim'  " vim haskell highlighting
     Plug 'haya14busa/incsearch.vim'  " better incsearch
 
 
     " themes
     "Plug 'mhartington/oceanic-next'
-    "Plug 'joshdick/onedark.vim'
-    Plug 'morhetz/gruvbox'
+    Plug 'joshdick/onedark.vim'
+    " Plug 'morhetz/gruvbox'
     Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     "Plug 'jdkanani/vim-material-theme'

@@ -1,4 +1,6 @@
-export ZSH="$HOME/.oh-my-zsh"
+#!/usr/bin/zsh
+
+#export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="pure"
 # ZSH_THEME="robbyrussell"
@@ -7,15 +9,15 @@ DISABLE_MAGIC_FUNCTIONS=true
 HIST_STAMPS="dd/mm/yyyy"
 
 #school stuff
-ZSH_DISABLE_COMPFIX=true
+#ZSH_DISABLE_COMPFIX=true
 
 export FPATH="$FPATH:$HOME/.zsh/pure"
 
-plugins=(colorize git zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
+#plugins=() #colorize git zsh-syntax-highlighting)
+#source $ZSH/oh-my-zsh.sh
 
-# autoload -U promptinit; promptinit
-# prompt pure
+autoload -U promptinit; promptinit
+prompt pure
 
 bindkey -v
 export KEYTIMEOUT=1
@@ -26,19 +28,17 @@ setopt list_rows_first
 setopt extendedglob
 
 # alias expansion
-bindkey "^ " _expand_alias # ctrl+space to expand
-bindkey " " magic-space # space to avoid expansion
-bindkey -M isearch " " magic-space
+#bindkey "^ " _expand_alias # ctrl+space to expand
+#bindkey " " magic-space # space to avoid expansion
+#bindkey -M isearch " " magic-space
 
-# alt-arrow to go forward/backward a word
-# bindkey "^[[C" forward-word
-# bindkey "^[[D" backward-word
-
-alias -g G='| grep'
-alias -g L='| less'
-alias -g LO='192.168.0.'
-alias -g HUB="https://github.com/HappyTramp/"
+#alias -g G='| grep'
+#alias -g L='| less'
+#alias -g LO='192.168.0.'
+#alias -g HUB="https://github.com/HappyTramp/"
+alias grep="grep --color=auto"
 alias rr='rm -r'
+alias ls="ls --color"
 alias ll="ls -lFh"
 alias la="ls -a"
 alias lA="ls -al"
@@ -46,8 +46,9 @@ alias lss="ls -Ssh"
 alias l1="ls -1"
 alias less="less -N"
 alias mkdir="mkdir -p"
+alias tree="tree -C"
 alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
-alias v="vim -c 'nunmap <buffer> al' -c 'nunmap <buffer> aj'"
+alias v="vim"
 
 alias :q="exit"
 alias :sp="tmux split-window"
@@ -64,10 +65,25 @@ alias list-c-includes-paths="echo | gcc -E -Wp,-v -"
 alias yoump3='youtube-dl --extract-audio --audio-format mp3'
 alias adg="sudo apt update && sudo apt upgrade"
 
+alias ga="git add"
+alias gaa="git add --all"
+alias gc="git commit"
+alias gc!="git commit --amend"
+alias gcmsg="git commit --message"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gl="git pull"
+alias glg="git log --stat"
+alias glgg="git log --graph"
+alias gp="git push"
+alias gcl="git clone --recurse-submodules"
+alias gst="git status"
+alias gco="git checkout"
+
 function chpwd() {
     file_count=$(ls | wc -w)
     if [ $file_count -lt 30 ]; then
-        ls
+		tree -L 1
     else
         echo "$(pwd) contains $file_count files"
     fi
@@ -90,22 +106,22 @@ alias vimplugrc="vim $DOTFILES/.vimrc -c 'vsp $DOTFILES/.pluggins.vim'"
 alias tmuxrc="vim $DOTFILES/.tmux.conf && tmux source-file $DOTFILES/.tmux.conf"
 
 # vim keys in tab completion menu (https://www.youtube.com/watch?v=eLEo4OQ-cuQ)
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
+#bindkey -v '^?' backward-delete-char
 
 # add command-not-found package suggestion
 #source /etc/zsh_command_not_found
 
 # add /sbin to $PATH
-export PATH="/sbin:/usr/local/sbin:/usr/sbin:$PATH"
+# export PATH="$PATH:/sbin:/usr/local/sbin:/usr/sbin"
 # add my bin
-export PATH="$HOME/bin:$PATH"
+# export PATH="$HOME/bin:$PATH"
 # add go bins
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$(go env GOPATH)/bin"
+# export PATH="$PATH:/usr/local/go/bin"
+#export PATH="$PATH:$(go env GOPATH)/bin"
 
 # man with color
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -123,4 +139,12 @@ export XDG_DATA_HOME="/home/charles/.data/"
 export EDITOR="vim"
 
 # set tab to 4 spaces
-tabs 4
+# tabs 4
+
+dual () {
+    xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto
+}
+
+single () {
+    xrandr --output VGA1 --off
+}
