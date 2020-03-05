@@ -1,122 +1,98 @@
-so $HOME/dotfiles/.pluggins.vim  " source pluggins
+""""""""""
+" vimrc  "
+""""""""""
 
-let mapleader = ' '
+" source pluggins
+source $HOME/dotfiles/.pluggins.vim
 
-syntax enable
-set hidden
-set noswapfile
-set nocompatible
-filetype plugin indent on  " add specific rules for certain file type
-set number relativenumber
+
+" common
+let mapleader = ' '         " set leader key to space
+syntax enable               " enable syntax
+set hidden                  " keep change in buffer when quitting window
+set noswapfile              " disable swap files
+set nocompatible            " not compatible with vi
+filetype plugin indent on   " allow to add specific rules for certain type of file
+set number relativenumber   " line number relative to cursor
+set cursorline              " highlight current line
+set noshowmatch             " dont jump to pair bracket
+set autoread                " reload files when changes happen outside vim
+set scrolloff=2             " line padding when scrolling
+set encoding=utf-8          " utf-8 encoding
+set textwidth=89            " when line wrap occurs
+
 " browse list with tab
 set wildmode=longest,list,full
-set wildmenu
-set path+=**  " for recursive :find
-" more intuitif split opening
+set wildmenu                " tab to cycle through completion options
+set path+=**                " recursive :find
+
+" intuitif split opening
 set splitbelow
 set splitright
-set fcs+=vert:\   " split separator
-" easier split navigation
+set fcs+=vert:\             " no split separator
+
+" split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 " spit resizing
 nnoremap zh <C-W>>
 nnoremap zl <C-W><
 nnoremap zj <C-W>-
 nnoremap zk <C-W>+
-" tab to space
-set expandtab
-set tabstop=4
+
+" tab
+set expandtab               " tab to space
+set tabstop=4               " tab size
 set shiftwidth=4
 set smarttab
 set autoindent
 set smartindent
-" search
-set ignorecase
+
+" file search
+set ignorecase              " case insensitive
 set smartcase
-set hlsearch
+set hlsearch                " match highlight
 set incsearch
-" other
-set ruler
-set laststatus=2  " always a statusline
-set scrolloff=2 " 2 line above scroll
-set showcmd
-set cursorline  " highlight current line
-set noshowmode " unnecessary with status bar"
-set noshowmatch
 
-set autoread  " reload files when changes happen outside vim
+" status
+set laststatus=2            " always a statusline (all window)
+set showcmd                 " show current partial command in the bottom right
+set noshowmode              " dont show current mode (i.e --INSERT--)
 
-" where to place the .swp files
-" set backupdir=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
-" set directory=~/.vim-tmp,~/.tmp,~/tmp,~/var/tmp
-" directory to ignore when searching in file tree (works with ctrlp)
+
+" ctrlp pluggin
+" directory to ignore when searching in file tree
 set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*
 " ctrlp ignore all stuff in the .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" ALE
-" highlight clear ALEErrorSign
-" highlight clear ALEWarningSign
-" let g:ale_sign_error = '>'
-" let g:ale_sign_warning = '-'
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_enter = 0
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_linters = {
-"     \ 'python': ['flake8']
-"     \ }
-" let g:ale_fixers = {
-"     \ 'python': ['autopep8']
-"     \ }
-
-" let g:gruvbox_italic=1
-" let g:gruvbox_contrast_dark="hard"
+" colorscheme
 let g:onedark_terminal_italics=1
 colorscheme onedark
-" set background=dark
 let g:lightline = {}
-let g:lightline.colorscheme = 'one'
+let g:lightline.colorscheme = 'one'  " lightline theme to onedark
 
-let base16colorspace=256
-
-" NERDTree shortcut
-" map <Leader>d :NERDTreeToggle<CR>
-" map <Leader>f :NERDTreeFocus<CR>
-
-" Global copy and paste
-vnoremap <C-l> "+y
-noremap <C-m> "+P
-
+" mappings
 " 'Y' yank to the end of the line
 noremap Y y$
+
+" solves annoying delay went exiting insert mode
+imap <ESC> <C-C>
+" jj or kk to exit insert mode
+imap jj <ESC>
+imap kk <ESC>
+" remove visual mode keybinding
+map Q <ESC>
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " remove trailing white space on save
 autocmd BufWritePre * %s/\s\+$//e
 
-" solves annoying delay went exiting insert mode
-imap <ESC> <C-C>
-imap jj <ESC>
-imap kk <ESC>
-
-" remove visual mode keybinding
-map Q <ESC>
-
-" c source and header files comment formats for vim-commentary
-" autocmd Filetype c setlocal commentstring=// %s
-" autocmd Filetype h setlocal commentstring=// %s
-
+" real tab in c file for school projects
 autocmd Filetype c setlocal noexpandtab
-
-set encoding=utf-8
-
-set textwidth=89  " when line wrap occurs
-
-" incsearch mapping
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)

@@ -1,16 +1,13 @@
-DOTDIR = $(HOME)/dotfiles
-ZSHRC = .zshrc
-VIMRC = .vimrc
-TMUXCONF = .tmux.conf
-BASHRC = .bashrc
+DOTDIR    = $(HOME)/dotfiles
+ZSHRC     = .zshrc
+VIMRC     = .vimrc
+BASHRC    = .bashrc
 BASHALIAS = .bash_aliases
-PROFILE = .profile
-GHCI = .ghci
-GDB = .gdbinit
+GHCI      = .ghci
+GDB       = .gdbinit
 GITCONFIG = .gitconfig
-CONFFILES = $(HOME)/$(ZSHRC) $(HOME)/$(VIMRC) $(HOME)/$(TMUXCONF) $(HOME)/$(BASHRC) \
-			$(HOME)/$(BASHALIAS) $(HOME)/$(PROFILE) $(HOME)/$(GHCI) $(HOME)/$(GDB) \
-			$(HOME)/$(GITCONFIG)
+XMONADCONFIG = .xmonad/xmonad.hs
+CONFFILES = $(addprefix $(HOME), $(ZSHRC) $(VIMRC) $(BASHRC) $(BASHALIAS) $(GHCI) $(GDB) $(GITCONFIG)) $(XMONADCONFIG)
 
 .PHONY: all
 all: $(CONFFILES)
@@ -23,19 +20,11 @@ $(HOME)/$(VIMRC): $(DOTDIR)/$(VIMRC)
 	touch $@
 	echo "so $<" > $@
 
-$(HOME)/$(TMUXCONF): $(DOTDIR)/$(TMUXCONF)
-	touch $@
-	echo "source-file $<" > $@
-
 $(HOME)/$(BASHRC): $(DOTDIR)/$(BASHRC)
 	touch $@
 	echo "source $<" > $@
 
 $(HOME)/$(BASHALIAS): $(DOTDIR)/$(BASHALIAS)
-	touch $@
-	echo "source $<" > $@
-
-$(HOME)/$(PROFILE): $(DOTDIR)/$(PROFILE)
 	touch $@
 	echo "source $<" > $@
 
@@ -50,6 +39,9 @@ $(HOME)/$(GDB): $(DOTDIR)/$(GDB)
 $(HOME)/$(GITCONFIG): $(DOTDIR)/$(GITCONFIG)
 	touch $@
 	cat $< >> $@
+
+$(HOME)/$(XMONADCONFIG): $(DOTDIR)/xmonad.hs
+	cp $< $@
 
 .PHONY: clean
 clean:

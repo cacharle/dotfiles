@@ -1,0 +1,57 @@
+###############
+# zsh aliases #
+###############
+
+# color
+alias ls="ls --color"
+alias grep="grep --color=auto"
+alias tree="tree -C"
+
+# common commands
+alias less="less -N"
+alias v="vim"
+alias mkdir="mkdir -p"
+alias gdb="gdb -q"
+
+# ls
+alias ll="ls -lFh"
+alias la="ls -a"
+alias lla="ls -al"
+alias lss="ls -Ssh"
+
+# tree
+alias t="tree"
+alias t1="tree -L 1"
+alias t2="tree -L 2"
+alias t3="tree -L 3"
+alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
+
+# man
+alias m="man"
+alias m2="man 2"
+alias m3="man 3"
+
+# git
+alias ga="git add"
+alias gaa="git add --all"
+alias gc="git commit"
+alias gc!="git commit --amend"
+alias gcmsg="git commit --message"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gl="git pull"
+alias glg="git log --stat"
+alias glgg="git log --graph"
+alias gp="git push"
+alias gcl="git clone --recurse-submodules"
+alias gst="git status"
+alias gco="git checkout"
+
+# edit config files
+alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
+alias vimrc="vim $DOTFILES/.vimrc"
+alias vimplugrc="vim $DOTFILES/.pluggins.vim"
+
+# helper to switch between dual and single monitor setup
+alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
+alias single='xrandr --output VGA1 --off'
