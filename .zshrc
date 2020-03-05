@@ -2,6 +2,9 @@
 # zshrc       #
 ###############
 
+# load aliases
+source $DOTFILES/.zsh_aliases
+
 # pure prompt
 export FPATH="$FPATH:$HOME/.zsh/pure"
 ZSH_THEME="pure"
@@ -65,8 +68,6 @@ export EDITOR="vim"
 
 # set tab to 4 spaces
 tabs 4
-
-source $DOTFILES/.zsh_aliases
 
 # prompt syntax highlight
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -6,12 +6,14 @@
 alias ls="ls --color"
 alias grep="grep --color=auto"
 alias tree="tree -C"
+alias pacman="pacman --color=auto"
 
 # common commands
-alias less="less -N"
+alias less="less -N"   # enable line number
 alias v="vim"
 alias mkdir="mkdir -p"
-alias gdb="gdb -q"
+alias gdb="gdb -q"     # disable long intro message
+alias sudo="sudo "     # enable color (the search for aliases continues)
 
 # ls
 alias ll="ls -lFh"
@@ -49,8 +51,10 @@ alias gco="git checkout"
 
 # edit config files
 alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
+alias zshaliasrc="vim $DOTFILES/.zsh_aliases && source $DOTFILES/.zshrc"
 alias vimrc="vim $DOTFILES/.vimrc"
 alias vimplugrc="vim $DOTFILES/.pluggins.vim"
+alias xmonadrc="vim $DOTFILES/xmonad.hs && cp $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs"
 
 # helper to switch between dual and single monitor setup
 alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
