@@ -6,10 +6,8 @@ call plug#begin()
     Plug 'tomtom/tcomment_vim'        " mininal commenter
     Plug 'itchyny/lightline.vim'      " minimal status bar
 
-
     " bloat??
     Plug 'romainl/vim-cool'           " disable highlight after search
-    Plug 'haya14busa/incsearch.vim'   " better incsearch
     Plug 'justinmk/vim-syntax-extra'  " better syntax highlight
     Plug 'sheerun/vim-polyglot'       " better syntax highlight
 call plug#end()

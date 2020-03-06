@@ -71,6 +71,9 @@ export TERM="xterm-256color"
 # set tab to 4 spaces
 tabs 4
 
+# ignore filetypes in autocomplete
+fignore=(o hi)
+
 # pluggins
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # prompt syntax highlight
 

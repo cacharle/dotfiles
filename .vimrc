@@ -86,10 +86,9 @@ inoremap kj <ESC>
 noremap Q <nop>
 " remove command line window keybinding
 noremap q: <nop>
-" incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+" search with very magic
+nnoremap / /\v
+nnoremap ? ?\v
 " move line up and down
 nnoremap _ ddkP
 nnoremap + ddp
@@ -115,6 +114,12 @@ nnoremap <leader>src :source $MYVIMRC<cr>
 
 " file toggle
 nnoremap <leader>z zi
+
+" create c function body from prototype
+nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>
+
+" put semicolon at the end of line
+nnoremap <leader>; mqA;<ESC>`q
 
 " remove trailing white space on save
 autocmd BufWritePre * %s/\s\+$//e

@@ -44,10 +44,14 @@ alias gds="git diff --staged"
 alias gl="git pull"
 alias glg="git log --stat"
 alias glgg="git log --graph"
+alias glgo="git log --oneline --no-decorate"
 alias gp="git push"
 alias gcl="git clone --recurse-submodules"
 alias gst="git status"
+alias gss="git status --short"
 alias gco="git checkout"
+alias gsta="git stash push"
+alias gstp="git stash pop"
 
 # lpass (lastpass-cli)
 alias lpassp="lpass show --password --clip"  # put password in clipboard
