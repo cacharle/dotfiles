@@ -49,13 +49,16 @@ alias gcl="git clone --recurse-submodules"
 alias gst="git status"
 alias gco="git checkout"
 
+# lpass (lastpass-cli)
+alias lpassp="lpass show --password --clip"  # put password in clipboard
+
+# helper to switch between dual and single monitor setup
+alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
+alias single='xrandr --output VGA1 --off'
+
 # edit config files
 alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
 alias zshaliasrc="vim $DOTFILES/.zsh_aliases && source $DOTFILES/.zshrc"
 alias vimrc="vim $DOTFILES/.vimrc"
 alias vimplugrc="vim $DOTFILES/.pluggins.vim"
 alias xmonadrc="vim $DOTFILES/xmonad.hs && cp $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs"
-
-# helper to switch between dual and single monitor setup
-alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
-alias single='xrandr --output VGA1 --off'

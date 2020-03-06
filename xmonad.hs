@@ -3,7 +3,7 @@ import XMonad.Config.Desktop
 
 -- Utilities
 import XMonad.Util.SpawnOnce
-import XMonad.Util.EZConfig(additionalKeys, additionalKeysP)
+import XMonad.Util.EZConfig(additionalKeysP)
 
 myModMask     = mod4Mask
 myTerminal    = "konsole"

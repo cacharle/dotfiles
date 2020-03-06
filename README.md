@@ -1,20 +1,17 @@
-# Configuration files
+# Dotfiles
 
 ## Installation
 
-1. backup your current configuration files, they will be overwrite
+1. Backup your current configuration files, they will be overwrite
 2. `cd` in this repo
-3. run `make`
+3. Run the `install.sh` script
 
 ## Tools I use
 
-* [vim](https://github.com/vim/vim): terminal text editor
-* [zsh](https://www.zsh.org/): interactive shell
-* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh): plugins and themes for zsh
-* [tmux](https://github.com/tmux/tmux): multiple terminal/panel
-* [redshift](https://github.com/jonls/redshift): change screen color temperature
-
-The tmux theme can be found [here](https://github.com/jimeh/tmux-themepack).
+* [vim](https://github.com/vim/vim) - terminal text editor
+* [zsh](https://www.zsh.org/) - interactive shell
+* [xmonad](https://xmonad.org) - window manager
+* [redshift](https://github.com/jonls/redshift) - change screen color temperature
 
 ## School 19 Config
 

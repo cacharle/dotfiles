@@ -2,6 +2,8 @@
 # zshrc       #
 ###############
 
+export DOTFILES=$HOME/dotfiles
+
 # load aliases
 source $DOTFILES/.zsh_aliases
 
@@ -14,6 +16,7 @@ prompt pure
 
 # auto complete
 autoload -U compinit
+zstyle ':completion:*' menu select                          # menu like
 zstyle ':completion:*' matcher-list '' \
     'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=*' 'r:|=* l:|=* r:|=*'  # case insensitive
 zmodload zsh/complist
@@ -46,8 +49,6 @@ function chpwd() {
     fi
 }
 
-export DOTFILES=$HOME/dotfiles
-
 # add command-not-found package suggestion
 #source /etc/zsh_command_not_found
 
@@ -69,5 +70,9 @@ export EDITOR="vim"
 # set tab to 4 spaces
 tabs 4
 
-# prompt syntax highlight
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# pluggins
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # prompt syntax highlight
+
+export YSU_MESSAGE_POSITION="after"                                    # you-should-use message after command output
+source $HOME/.zsh/zsh-you-should-use/you-should-use.plugin.zsh         # alias reminder
+
