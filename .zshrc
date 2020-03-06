@@ -21,7 +21,7 @@ zstyle ':completion:*' matcher-list '' \
     'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=*' 'r:|=* l:|=* r:|=*'  # case insensitive
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)
+# _comp_options+=(globdots)
 
 # vim keybindings in tab completion menu (https://www.youtube.com/watch?v=eLEo4OQ-cuQ)
 bindkey -M menuselect 'h' vi-backward-char
@@ -66,6 +66,7 @@ export XDG_CONFIG_HOME="/home/charles/.config/"
 export XDG_DATA_HOME="/home/charles/.data/"
 
 export EDITOR="vim"
+export TERM="xterm-256color"
 
 # set tab to 4 spaces
 tabs 4
