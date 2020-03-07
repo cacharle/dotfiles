@@ -27,9 +27,6 @@ myStartupHook = do
 myKeys =  [  ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
            , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
            , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
+           , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")
+           , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
            ]
-           -- , ("<XF86AudioPlay>",         spawn "playerctl play-pause")
-           -- , ("<XF86AudioPrev>",         spawn "playerctl previous")
-           -- , ("<XF86AudioNext>",         spawn "playerctl next")
-           -- , ("<XF86MonBrightnessUp>",   spawn "lux -a 5%")
-           -- , ("<XF86MonBrightnessDown>", spawn "lux -s 5%")

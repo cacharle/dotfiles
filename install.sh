@@ -10,6 +10,8 @@
 # Creating links
 ln -sf $DOTDIR/.zshrc $HOME/.zshrc
 ln -sf $DOTDIR/.vimrc $HOME/.vimrc
+[ ! -d $HOME/.vim/plugin ] && mkdir -p $HOME/.vim/plugin
+ln -sf $DOTDIR/grep.vim $HOME/.vim/plugin/grep.vim
 
 [ ! -d $HOME/.xmonad ] && mkdir $HOME/.xmonad
 ln -sf $DOTDIR/xmonad.hs $HOME/.xmonad/xmonad.hs
@@ -26,8 +28,11 @@ ln -sf $DOTDIR/redshift.conf $HOME/.config/redshift.conf
 ################
 
 # vim Plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+PLUGFILE=$HOME/.vim/autoload/plug.vim
+if [ ! -f $PLUGFILE ]; then
+curl -fLo $PLUGFILE --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 vim -c "PlugInstall" -c "qa"
 
 # zsh pluggins

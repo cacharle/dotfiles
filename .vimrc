@@ -106,26 +106,27 @@ nnoremap <leader>l :ls<CR>
 " file manipulation with leader
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
-
 " open vimrc in split
 nnoremap <leader>rc :vsplit $MYVIMRC<cr>
 " source vimrc
 nnoremap <leader>src :source $MYVIMRC<cr>
-
 " file toggle
 nnoremap <leader>z zi
-
 " create c function body from prototype
 nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>
-
 " put semicolon at the end of line
 nnoremap <leader>; mqA;<ESC>`q
 
+" grep
+" nnoremap <leader>gw :silent grep -R <cword> .<CR>:copen<CR>
+" nnoremap <leader>gW :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
+" nnoremap <leader>gn :cnext<CR>
+" nnoremap <leader>gp :cprevious<CR>
+
+
 " remove trailing white space on save
 autocmd BufWritePre * %s/\s\+$//e
-
 " initialise buf for fold toggle
 autocmd BufReadPre * :normal zMzi
-
 " real tab in c file for school projects
 autocmd Filetype c setlocal noexpandtab
