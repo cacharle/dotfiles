@@ -1,6 +1,6 @@
 " plugins
 call plug#begin()
-    Plug 'joshdick/onedark.vim'       " theme
+    Plug 'dracula/vim'                " theme
     Plug 'ctrlpvim/ctrlp.vim'         " Ctrl-P similar to vsc
     Plug 'tpope/vim-eunuch'           " basic unix command in vim
     Plug 'tomtom/tcomment_vim'        " mininal commenter

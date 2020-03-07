@@ -21,6 +21,9 @@ ln -sf $DOTDIR/.gitconfig $HOME/.gitconfig
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 ln -sf $DOTDIR/redshift.conf $HOME/.config/redshift.conf
 
+ln -sf $DOTDIR/.xinitrc $HOME/.xinitrc
+ln -sf $DOTDIR/.zprofile $HOME/.zprofile
+
 ################
 # dependencies #
 ################
