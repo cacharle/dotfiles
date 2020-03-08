@@ -34,9 +34,9 @@ bindkey -v '^?' backward-delete-char
 bindkey -v
 export KEYTIMEOUT=1
 
-setopt auto_cd  # cd without `cd` command
+setopt auto_cd          # cd without `cd` command
 # setopt pushd_ignore_dups
-# setopt list_rows_first
+setopt list_rows_first  # iterate in completion menu by row
 # setopt extendedglob
 
 # executed when changind directory
