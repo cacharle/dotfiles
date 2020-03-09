@@ -13,6 +13,15 @@ function! s:GrepOp(type)
     endif
 
     silent execute "grep! -R " . shellescape(@@) . " ."
+    silent redraw!
+    let g:quickfix_is_open = 1
     copen
     let @@ = saved
 endfunction
+
+
+" nnoremap <leader>gw :silent grep -R <cword> .<CR>:copen<CR>
+" nnoremap <leader>gW :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
+
+nnoremap <leader>gn :cnext<CR>
+nnoremap <leader>gp :cprevious<CR>
