@@ -94,6 +94,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <leader>s= <C-W>=
 " }}}
 
 " common {{{
@@ -166,6 +167,7 @@ autocmd BufReadPre * :normal zMzi
 
 " filetype {{{
 " real tab in c file for school projects
+autocmd BufReadPre,BufNewFile *.h,*.c set filetype=c
 autocmd Filetype c setlocal noexpandtab
 " vim fold method to marker
 autocmd Filetype vim setlocal foldmethod=marker

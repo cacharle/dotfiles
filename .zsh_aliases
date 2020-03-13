@@ -18,7 +18,7 @@ alias sudo="sudo "     # enable color (the search for aliases continues)
 # ls
 alias ll="ls -lFh"
 alias la="ls -a"
-alias lla="ls -al"
+alias lla="ls -alh"
 alias lss="ls -Ssh"
 
 # tree
@@ -65,4 +65,9 @@ alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
 alias zshaliasrc="vim $DOTFILES/.zsh_aliases && source $DOTFILES/.zshrc"
 alias vimrc="vim $DOTFILES/.vimrc"
 alias vimplugrc="vim $DOTFILES/.pluggins.vim"
-alias xmonadrc="vim $DOTFILES/xmonad.hs && cp $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs"
+alias xmonadrc="vim $DOTFILES/xmonad.hs"
+
+# parent directory jump
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'

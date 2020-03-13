@@ -19,9 +19,5 @@ function! s:GrepOp(type)
     let @@ = saved
 endfunction
 
-
-" nnoremap <leader>gw :silent grep -R <cword> .<CR>:copen<CR>
-" nnoremap <leader>gW :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
-
 nnoremap <leader>gn :cnext<CR>
 nnoremap <leader>gp :cprevious<CR>
