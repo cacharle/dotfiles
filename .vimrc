@@ -63,7 +63,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " colorscheme
 colorscheme dracula
 let g:lightline = {}
-let g:lightline.colorscheme = 'one'  " lightline theme to onedark
+let g:lightline.colorscheme = 'dracula'  " lightline theme to onedark
 
 """"""""""""
 " mappings "

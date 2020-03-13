@@ -66,3 +66,6 @@ alias zshaliasrc="vim $DOTFILES/.zsh_aliases && source $DOTFILES/.zshrc"
 alias vimrc="vim $DOTFILES/.vimrc"
 alias vimplugrc="vim $DOTFILES/.pluggins.vim"
 alias xmonadrc="vim $DOTFILES/xmonad.hs"
+
+# other
+alias date="date -R"
