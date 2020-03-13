@@ -61,6 +61,7 @@ set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " colorscheme
+let g:dracula_colorterm = 0              " actually dark background
 colorscheme dracula
 let g:lightline = {}
 let g:lightline.colorscheme = 'dracula'  " lightline theme to onedark
