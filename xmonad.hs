@@ -5,23 +5,27 @@ import XMonad.Config.Desktop
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig(additionalKeysP)
 
-myModMask     = mod4Mask
-myTerminal    = "st"
-myTextEditor  = "vim"
-myBorderWidth = 2
+-- Layouts
+import XMonad.Layout.NoBorders
+
 
 main = do
     xmonad $ desktopConfig
-        { modMask            = myModMask
-        , terminal           = myTerminal
-        , borderWidth        = myBorderWidth
+        { modMask            = mod4Mask       -- mod key to super
+        , terminal           = "st"
+        , borderWidth        = 1
+        , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , normalBorderColor  = "#292d3e"
         , focusedBorderColor = "#bbc5ff"
+        , layoutHook         = myLayouts
         } `additionalKeysP` myKeys
 
-myKeys =  [  ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
-           , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
-           , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
-           , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")
-           , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
-           ]
+myLayouts = tiled ||| Mirror tiled ||| noBorders Full
+    where tiled = Tall 1 (3 / 100) (1 / 2)
+
+myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
+         , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
+         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
+         , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")
+         , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
+         ]
