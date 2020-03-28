@@ -66,13 +66,6 @@ set noshowmode              " dont show current mode (i.e --INSERT--)
 set foldmethod=indent       " create fold based on the text indent
 " }}}
 
-" ctrlp pluggin {{{
-" directory to ignore when searching in file tree
-set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*
-" ctrlp ignore all stuff in the .gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-" }}}
-
 """""""""""""""
 " colorscheme "
 """""""""""""""
@@ -171,4 +164,19 @@ autocmd BufReadPre,BufNewFile *.h,*.c set filetype=c
 autocmd Filetype c setlocal noexpandtab
 " vim fold method to marker
 autocmd Filetype vim setlocal foldmethod=marker
+" }}}
+
+""""""""""""
+" pluggins "
+""""""""""""
+
+" ctrlp {{{
+" directory to ignore when searching in file tree
+set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*
+" ctrlp ignore all stuff in the .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" }}}
+
+" quick-scope {{{
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " }}}

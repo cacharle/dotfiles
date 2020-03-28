@@ -21,8 +21,10 @@ main = do
         , startupHook        = myStartupHook
         } `additionalKeysP` myKeys
 
-myLayouts = tiled ||| Mirror tiled ||| noBorders Full
-    where tiled = Tall 1 (3 / 100) (3 / 5)
+myLayouts = tiledBigMaster ||| Mirror tiledEven ||| noBorders Full
+    where tiledBigMaster = Tall 1 (3 / 100) (3 / 5)
+          tiledEven      = Tall 1 (3 / 100) (1 / 2)
+
 
 myStartupHook = do
     spawnOnce "redshift -c /home/charles/.config/redshift.conf &"

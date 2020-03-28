@@ -5,6 +5,7 @@ call plug#begin()
     Plug 'tpope/vim-eunuch'           " basic unix command in vim
     Plug 'tomtom/tcomment_vim'        " mininal commenter
     Plug 'itchyny/lightline.vim'      " minimal status bar
+    Plug 'unblevable/quick-scope'     " highlight first char to jump to word
 
     " bloat??
     Plug 'romainl/vim-cool'           " disable highlight after search
