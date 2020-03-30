@@ -132,7 +132,9 @@ nnoremap <leader>src :source $MYVIMRC<cr>
 nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>
 " put semicolon at the end of line
 nnoremap <leader>; mqA;<ESC>`q
-" quickfix window toggle
+" doxygen format comments
+autocmd Filetype c setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
+autocmd Filetype h setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
 " }}}
 
 " quickfix window toggle {{{
