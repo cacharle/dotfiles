@@ -74,7 +74,7 @@ set foldmethod=indent       " create fold based on the text indent
 let g:onedark_terminal_italics=1
 colorscheme onedark
 let g:lightline = {}
-let g:lightline.colorscheme = 'one'  " lightline theme to onedark
+let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
 " }}}
 
 
@@ -134,7 +134,7 @@ nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>
 nnoremap <leader>; mqA;<ESC>`q
 " doxygen format comments
 autocmd Filetype c setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
-autocmd Filetype h setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
+autocmd Filetype cpp setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
 " }}}
 
 " quickfix window toggle {{{
