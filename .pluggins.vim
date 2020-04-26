@@ -5,6 +5,7 @@ call plug#begin()
     Plug 'tomtom/tcomment_vim'        " mininal commenter
     Plug 'itchyny/lightline.vim'      " minimal status bar
     Plug 'sheerun/vim-polyglot'       " better syntax highlight
+    Plug 'romainl/vim-cool'           " disable highlight after search
 
     " s19 at home
     Plug 'pbondoer/vim-42header'      " 42 header
@@ -16,6 +17,5 @@ call plug#begin()
 
     " intresting but not used
     " Plug 'unblevable/quick-scope'     " highlight first char to jump to word
-    " Plug 'romainl/vim-cool'           " disable highlight after search
     " Plug 'justinmk/vim-syntax-extra'  " better syntax highlight
 call plug#end()

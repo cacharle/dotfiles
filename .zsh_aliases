@@ -14,6 +14,7 @@ alias v="vim"
 alias mkdir="mkdir -p"
 alias gdb="gdb -q"     # disable long intro message
 alias sudo="sudo "     # enable color (the search for aliases continues)
+alias m="make"
 
 # ls
 alias ll="ls -lFh"
@@ -29,7 +30,7 @@ alias t3="tree -L 3"
 alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
 
 # man
-alias m="man"
+alias m1="man 1"
 alias m2="man 2"
 alias m3="man 3"
 alias manv="man -P 'vim -M +MANPAGER -'"  # vim has man pager
