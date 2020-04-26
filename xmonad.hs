@@ -12,7 +12,7 @@ import XMonad.Layout.NoBorders
 main = do
     xmonad $ desktopConfig
         { modMask            = mod4Mask       -- mod key to super
-        , terminal           = "konsole"
+        , terminal           = "st"
         , borderWidth        = 1
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , normalBorderColor  = "#292d3e"

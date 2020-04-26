@@ -15,7 +15,7 @@ let mapleader = ' '         " set leader key to space
 let maplocalleader = '-'    " set file local leader key to backslash
 set nocompatible            " not compatible with vi
 set number                  " line number
-set relativenumber          " line number relative to cursor
+" set relativenumber          " line number relative to cursor
 set numberwidth=1           " line numbers gutter autowidth
 set cursorline              " highlight current line
 set noshowmatch             " dont jump to pair bracket
@@ -74,18 +74,26 @@ set nofoldenable            " not folded by default
 """""""""""""""
 
 " one {{{
-let g:onedark_terminal_italics=1
-colorscheme onedark
+" let g:onedark_terminal_italics=1
+" colorscheme onedark
 " }}}
 " dracula {{{
-let g:dracula_bold = 1
-let g:dracula_italic = 1
-let g:dracula_colorterm = 0
+" let g:dracula_bold = 1
+" let g:dracula_italic = 1
+" let g:dracula_colorterm = 0
 " colorscheme dracula
+" }}}
+" solarized {{{
+set t_Co=16
+let g:solarized_termcolors=16
+let g:solarized_visibility='low'  " visibility of invisible chars with set list
+set background=dark
+colorscheme solarized
 " }}}
 " lightline {{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
+let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
+" let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
 " }}}
 
 
@@ -144,7 +152,7 @@ nnoremap <leader>src :source $MYVIMRC<cr>
 
 " c {{{
 " create c function body from prototype
-nnoremap gcf A<BS><CR>{<CR><CR>}<CR><ESC>j
+nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>j
 
 " initialise a school header file
 function PutHeaderBoilerPlate()
@@ -156,22 +164,27 @@ function PutHeaderBoilerPlate()
 endfunction
 nnoremap gch :Stdheader<CR>:call PutHeaderBoilerPlate()<CR>
 
-function PutCoplienForm(name)
-    let l:default_constructor = a:name . "();\n"
-    let l:copy_constructor = a:name . "(" . a:name . " const& other);\n"
-    let l:copy_operator = "void operator=(" . a:name . " const& other);\n"
-    let l:destructor = "~" . a:name . "();\n"
-
-    execute "normal iclass " . a:name . "\n{\npublic:\n" . l:default_constructor . l:copy_constructor . l:copy_operator . l:destructor . "\nprivate:\n};\n"
-    execute "normal <2{"
-endfunction
-command! PutCoplienFormFile call PutCoplienForm(split(expand('%:t'), '\.')[0])
-
 " put semicolon at the end of line
 nnoremap <leader>; mqA;<ESC>`q
 " doxygen format comments
 autocmd Filetype c setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
 autocmd Filetype cpp setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
+" }}}
+
+" cpp {{{
+" Put Coplien Form boilerplate class
+function PutCoplienFormFunc(name)
+    let l:default_constructor = a:name . "();\n"
+    let l:copy_constructor = a:name . "(const " . a:name . "& other);\n"
+    let l:copy_operator = a:name . "& operator=(const " . a:name . "& other);\n"
+    let l:destructor = "~" . a:name . "();\n"
+
+    execute "normal iclass " . a:name . "\n{\npublic:\n" . l:default_constructor . l:copy_constructor . l:copy_operator . l:destructor . "\nprivate:\n};\n"
+    execute "normal <2{"
+endfunction
+" Put Coplien Form boilerplate according to filename
+command! PutCoplienFormFile call PutCoplienFormFunc(split(expand('%:t'), '\.')[0])
+command! -nargs=1 PutCoplienForm call PutCoplienFormFunc("<args>")
 " }}}
 
 " quickfix window toggle {{{
@@ -205,6 +218,8 @@ autocmd BufWritePre * %s/\s\+$//e
 " real tab in c file for school projects
 autocmd BufReadPre,BufNewFile *.h,*.c set filetype=c
 autocmd Filetype c setlocal noexpandtab
+" std::cout << ... << std::endl; shortcut
+autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<hi
 " vim fold method to marker
 autocmd Filetype vim setlocal foldmethod=marker
 " }}}
