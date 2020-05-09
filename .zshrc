@@ -72,7 +72,8 @@ export XDG_CONFIG_HOME="/home/charles/.config/"
 export XDG_DATA_HOME="/home/charles/.data/"
 
 export EDITOR="vim"
-export TERM="xterm-256color"
+export TERM="st-256color"
+# export TERM="xterm-256color"
 
 # mail
 export MAIL='charles.cabergs@gmail.com'

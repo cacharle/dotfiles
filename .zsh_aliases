@@ -14,7 +14,6 @@ alias v="vim"
 alias mkdir="mkdir -p"
 alias gdb="gdb -q"     # disable long intro message
 alias sudo="sudo "     # enable color (the search for aliases continues)
-alias m="make"
 
 # ls
 alias ll="ls -lFh"
@@ -30,13 +29,17 @@ alias t3="tree -L 3"
 alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
 
 # man
-alias m1="man 1"
-alias m2="man 2"
-alias m3="man 3"
+alias ma="man"
+alias ma1="man 1"
+alias ma2="man 2"
+alias ma3="man 3"
 alias manv="man -P 'vim -M +MANPAGER -'"  # vim has man pager
 alias manv2="man 2 -P 'vim -M +MANPAGER -'"
 alias manv3="man 3 -P 'vim -M +MANPAGER -'"
 alias manv5="man 5 -P 'vim -M +MANPAGER -'"
+
+# make
+alias m="make"
 
 # git
 alias ga="git add"
@@ -83,3 +86,7 @@ alias norm='ruby -I/home/charles/norminette/vendor/bundle/ruby/2.7.0/gems/parsec
 getrfc() {
     curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
 }
+
+# bluetooth
+alias bton='echo power on | bluetoothctl'
+alias btoff='echo power off | bluetoothctl'
