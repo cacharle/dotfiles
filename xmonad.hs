@@ -8,6 +8,9 @@ import XMonad.Util.EZConfig(additionalKeysP)
 -- Layouts
 import XMonad.Layout.NoBorders
 
+-- Hooks
+import XMonad.Hooks.InsertPosition
+
 
 main = do
     xmonad $ desktopConfig
@@ -18,14 +21,25 @@ main = do
         , normalBorderColor  = "#292d3e"
         , focusedBorderColor = "#bbc5ff"
         , layoutHook         = myLayouts
+        , startupHook        = myStartupHook
+        , manageHook         = myManageHook
         } `additionalKeysP` myKeys
 
-myLayouts = tiled ||| Mirror tiled ||| noBorders Full
-    where tiled = Tall 1 (3 / 100) (1 / 2)
+myLayouts = tiledBigMaster        -- bigger master for code and smaller slave for compiling
+            ||| Mirror tiledEven  -- 50/50 horizontal split
+            ||| noBorders Full    -- disable borders for fullscreen layout
+    where tiledBigMaster = Tall 1 (3 / 100) (3 / 5)
+          tiledEven      = Tall 1 (3 / 100) (1 / 2)
 
-myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
-         , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
-         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
-         , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")
-         , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
+myStartupHook = do
+    spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
+    spawnOnce "xinput disable 'ETPS/2 Elantech Touchpad' &"        -- disable touchpad
+
+myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
+
+myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume up
+         , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")  -- volume down
+         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")  -- volume mute
+         , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")    -- backlight up
+         , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")    -- backlight down
          ]

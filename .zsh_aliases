@@ -18,7 +18,7 @@ alias sudo="sudo "     # enable color (the search for aliases continues)
 # ls
 alias ll="ls -lFh"
 alias la="ls -a"
-alias lla="ls -al"
+alias lla="ls -alh"
 alias lss="ls -Ssh"
 
 # tree
@@ -29,9 +29,17 @@ alias t3="tree -L 3"
 alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
 
 # man
-alias m="man"
-alias m2="man 2"
-alias m3="man 3"
+alias ma="man"
+alias ma1="man 1"
+alias ma2="man 2"
+alias ma3="man 3"
+alias manv="man -P 'vim -M +MANPAGER -'"  # vim has man pager
+alias manv2="man 2 -P 'vim -M +MANPAGER -'"
+alias manv3="man 3 -P 'vim -M +MANPAGER -'"
+alias manv5="man 5 -P 'vim -M +MANPAGER -'"
+
+# make
+alias m="make"
 
 # git
 alias ga="git add"
@@ -48,6 +56,7 @@ alias glgo="git log --oneline --no-decorate"
 alias gp="git push"
 alias gcl="git clone --recurse-submodules"
 alias gst="git status"
+alias gs="git status"
 alias gss="git status --short"
 alias gco="git checkout"
 alias gsta="git stash push"
@@ -57,7 +66,7 @@ alias gstp="git stash pop"
 alias lpassp="lpass show --password --clip"  # put password in clipboard
 
 # helper to switch between dual and single monitor setup
-alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
+alias dual='xrandr --output LVDS1 --primary --below VGA1 --output VGA1 --auto'
 alias single='xrandr --output VGA1 --off'
 
 # edit config files
@@ -67,5 +76,21 @@ alias vimrc="vim $DOTFILES/.vimrc"
 alias vimplugrc="vim $DOTFILES/.pluggins.vim"
 alias xmonadrc="vim $DOTFILES/xmonad.hs"
 
+
 # other
 alias date="date -R"
+
+# parent directory jump
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias norm='ruby -I/home/charles/norminette/vendor/bundle/ruby/2.7.0/gems/parseconfig-1.0.8/lib/ ~/norminette/norminette.rb'
+
+getrfc() {
+    curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
+}
+
+# bluetooth
+alias bton='echo power on | bluetoothctl'
+alias btoff='echo power off | bluetoothctl'

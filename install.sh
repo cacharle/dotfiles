@@ -1,5 +1,16 @@
 #!/bin/sh
 
+create_dotfile_link()
+{
+    ln -sf $DOTDIR/$1 $HOME/$2
+    echo "Created link for $1 to $HOME/$2"
+}
+
+create_dotfile_link_same()
+{
+    create_dotfile_link $1 $1
+}
+
 ###########################
 # dotfiles install script #
 ###########################
@@ -8,18 +19,21 @@
 [ -z $DOTDIR ] && DOTDIR=`pwd`
 
 # Creating links
-ln -sf $DOTDIR/.zshrc $HOME/.zshrc
-ln -sf $DOTDIR/.vimrc $HOME/.vimrc
+create_dotfile_link_same .zshrc
+create_dotfile_link_same .bashrc
+create_dotfile_link_same .vimrc
+[ ! -d $HOME/.vim/plugin ] && mkdir -p $HOME/.vim/plugin
+create_dotfile_link grep.vim .vim/plugin/grep.vim
 
 [ ! -d $HOME/.xmonad ] && mkdir $HOME/.xmonad
-ln -sf $DOTDIR/xmonad.hs $HOME/.xmonad/xmonad.hs
+create_dotfile_link xmonad.hs .xmonad/xmonad.hs
 
-ln -sf $DOTDIR/.gdbinit $HOME/.gdbinit
-ln -sf $DOTDIR/.ghci $HOME/.ghci
-ln -sf $DOTDIR/.gitconfig $HOME/.gitconfig
+create_dotfile_link_same .gdbinit
+create_dotfile_link_same .ghci
+create_dotfile_link_same .gitconfig
 
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
-ln -sf $DOTDIR/redshift.conf $HOME/.config/redshift.conf
+create_dotfile_link redshift.conf .config/redshift.conf
 
 ln -sf $DOTDIR/.xinitrc $HOME/.xinitrc
 ln -sf $DOTDIR/.zprofile $HOME/.zprofile
@@ -28,22 +42,28 @@ ln -sf $DOTDIR/.zprofile $HOME/.zprofile
 # dependencies #
 ################
 
+[ $# -ge 1 ] || [ "$1" = "--ln" ] && exit 0
+echo "Installing Dependencies"
+
 # vim Plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+PLUGFILE=$HOME/.vim/autoload/plug.vim
+PLUGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+[ ! -f $PLUGFILE ] && echo "Downloading plug.vim" && \
+    curl -fLo $PLUGFILE --create-dirs $PLUGURL
+echo "Installing plug.vim Pluggins"
 vim -c "PlugInstall" -c "qa"
 
 # zsh pluggins
 [ ! -d $HOME/.zsh ] && make $HOME/.zsh
 # pure theme
-[ ! -d $HOME/.zsh/pure ] && \
+[ ! -d $HOME/.zsh/pure ] && echo "Installing zsh pure theme" && \
     git clone https://github.com/sindresorhus/pure \
     $HOME/.zsh/pure
 # syntax hightlighting
-[ ! -d $HOME/.zsh/zsh-syntax-highlighting ] && \
+[ ! -d $HOME/.zsh/zsh-syntax-highlighting ] && echo "Installing zsh syntax highlighting plugin" && \
     git clone https://github.com/zsh-users/zsh-syntax-highlighting \
     $HOME/.zsh/zsh-syntax-highlighting
 # you should use
-[ ! -d $HOME/.zsh/zsh-you-should-use ] && \
+[ ! -d $HOME/.zsh/zsh-you-should-use ] && echo "Installing zsh you should use plugin" && \
     git clone https://github.com/MichaelAquilina/zsh-you-should-use \
     $HOME/.zsh/zsh-you-should-use
