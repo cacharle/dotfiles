@@ -32,8 +32,8 @@ myLayouts = tiledBigMaster        -- bigger master for code and smaller slave fo
           tiledEven      = Tall 1 (3 / 100) (1 / 2)
 
 myStartupHook = do
-    spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
     spawnOnce "xinput disable 'ETPS/2 Elantech Touchpad' &"        -- disable touchpad
+    -- spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
 
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
 
@@ -42,4 +42,5 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume u
          , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")  -- volume mute
          , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")    -- backlight up
          , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")    -- backlight down
+         , ("<XF86ScreenSaver>",       spawn "slock")                -- lock screen
          ]

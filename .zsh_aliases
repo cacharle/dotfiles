@@ -7,6 +7,7 @@ alias ls="ls --color"
 alias grep="grep --color=auto"
 alias tree="tree -C"
 alias pacman="pacman --color=auto"
+alias valgrind="colour-valgrind"
 
 # common commands
 alias less="less -N"   # enable line number
