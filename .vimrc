@@ -96,7 +96,6 @@ let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
 " let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
 " }}}
 
-
 """"""""""""
 " mappings "
 """"""""""""

@@ -1,2 +1,3 @@
 set disassembly-flavor intel
-set listsize 25
+set print pretty on
+set prompt \ngdb>
