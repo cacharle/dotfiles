@@ -34,19 +34,16 @@ bindkey -v '^?' backward-delete-char
 bindkey -v
 export KEYTIMEOUT=1
 
-setopt auto_cd  # cd without `cd` command
+setopt auto_cd          # cd without `cd` command
 # setopt pushd_ignore_dups
-# setopt list_rows_first
+setopt list_rows_first  # cycle through row first in menu
 # setopt extendedglob
 
 # executed when changind directory
 function chpwd() {
-    file_count=$(ls | wc -w)
-    if [ $file_count -lt 30 ]; then
-		tree -L 1
-    else
-        echo "$(pwd) contains $file_count files"
-    fi
+    content=`ls | wc -l`
+    ([ $content -lt 30 ] && tree -L 1) ||
+        echo "$(pwd) contains $content entries"
 }
 
 # add command-not-found package suggestion

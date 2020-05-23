@@ -136,6 +136,10 @@ nnoremap ) 10j
 " tag nagigation
 nnoremap <leader>] <C-]>
 nnoremap <leader>t <C-t>
+" common change until
+nnoremap cu ct_
+nnoremap cp ct)
+nnoremap c, ct,
 " }}}
 
 " buffer navigation {{{

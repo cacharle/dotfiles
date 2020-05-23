@@ -12,7 +12,7 @@ call plug#begin()
     Plug 'tikhomirov/vim-glsl'                " glsl hightlight
 
     " s19 at home
-    Plug 'pbondoer/vim-42header'              " 42 header
+    Plug 'HappyTramp/vim-42header'              " 42 header
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark

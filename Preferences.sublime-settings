@@ -1,0 +1,11 @@
+{
+	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",
+	"font_face": "Fira Code",
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"line_padding_top": 5,
+	"theme": "Adaptive.sublime-theme"
+}

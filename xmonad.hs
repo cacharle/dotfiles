@@ -11,18 +11,18 @@ import XMonad.Layout.NoBorders
 -- Hooks
 import XMonad.Hooks.InsertPosition
 
-
-main = do
-    xmonad $ desktopConfig
-        { modMask            = mod4Mask       -- mod key to super
-        , terminal           = "st"
-        , borderWidth        = 1
-        , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
-        , normalBorderColor  = "#292d3e"
+-- xmonad :: XConfig -> IO ()
+-- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
+main = xmonad $ desktopConfig
+        { normalBorderColor  = "#292d3e"
         , focusedBorderColor = "#bbc5ff"
+        , terminal           = "st"
         , layoutHook         = myLayouts
-        , startupHook        = myStartupHook
         , manageHook         = myManageHook
+        , modMask            = mod4Mask       -- mod key to super
+        , borderWidth        = 1
+        , startupHook        = myStartupHook
+        , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         } `additionalKeysP` myKeys
 
 myLayouts = tiledBigMaster        -- bigger master for code and smaller slave for compiling
