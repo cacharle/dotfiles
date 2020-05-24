@@ -7,12 +7,24 @@ export DOTFILES=$HOME/dotfiles
 # load aliases
 source $DOTFILES/.zsh_aliases
 
-# pure prompt
-export FPATH="$FPATH:$HOME/.zsh/pure"
-ZSH_THEME="pure"
-autoload -U promptinit
-promptinit
-prompt pure
+# prompt
+case `tty` in
+    /dev/tty[1-9])
+        # %~ path ('~' if $HOME)
+        # %B/%b start/stop bold
+        # %B/%b start/stop color
+        NEWLINE=$'\n'
+        export PROMPT="${NEWLINE}%B%F{blue}%~%f${NEWLINE}%F{red}> %f%b"
+        ;;
+    *)
+        # pure prompt
+        export FPATH="$FPATH:$HOME/.zsh/pure"
+        ZSH_THEME="pure"
+        autoload -U promptinit
+        promptinit
+        prompt pure
+        ;;
+esac
 
 # auto complete
 autoload -U compinit
@@ -86,3 +98,5 @@ source $HOME/.zsh/zsh-you-should-use/you-should-use.plugin.zsh         # alias r
 
 # set tab to 4 spaces
 tabs 4
+
+export LFS=/mnt

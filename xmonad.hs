@@ -23,6 +23,7 @@ main = xmonad $ desktopConfig
         , borderWidth        = 1
         , startupHook        = myStartupHook
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
+        , workspaces         = ["code", "compile", "web"] ++ map show [4..9]
         } `additionalKeysP` myKeys
 
 myLayouts = tiledBigMaster        -- bigger master for code and smaller slave for compiling
