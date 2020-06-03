@@ -1,15 +1,15 @@
-import XMonad
-import XMonad.Config.Desktop
+import           XMonad
+import           XMonad.Config.Desktop
 
 -- Utilities
-import XMonad.Util.SpawnOnce
-import XMonad.Util.EZConfig(additionalKeysP)
+import           XMonad.Util.EZConfig        (additionalKeysP)
+import           XMonad.Util.SpawnOnce
 
 -- Layouts
-import XMonad.Layout.NoBorders
+import           XMonad.Layout.NoBorders
 
 -- Hooks
-import XMonad.Hooks.InsertPosition
+import           XMonad.Hooks.InsertPosition
 
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
@@ -34,7 +34,7 @@ myLayouts = tiledBigMaster        -- bigger master for code and smaller slave fo
 
 myStartupHook = do
     spawnOnce "xinput disable 'ETPS/2 Elantech Touchpad' &"        -- disable touchpad
-    -- spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
+    spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
 
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
 

@@ -9,10 +9,11 @@ call plug#begin()
     Plug 'itchyny/lightline.vim'              " minimal status bar
     Plug 'HappyTramp/vim-syntax-extra'        " syntax highlight of C operators
     Plug 'romainl/vim-cool'                   " disable highlight after search
-    Plug 'tikhomirov/vim-glsl'                " glsl hightlight
+    Plug 'tikhomirov/vim-glsl'                " glsl highlight
+    Plug 'cespare/vim-toml'                   " toml highlight
 
     " s19 at home
-    Plug 'HappyTramp/vim-42header'              " 42 header
+    Plug 'HappyTramp/vim-42header'            " 42 header
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark

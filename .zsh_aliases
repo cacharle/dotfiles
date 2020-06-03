@@ -14,9 +14,11 @@ alias v="vim"
 alias mkdir="mkdir -p"
 alias gdb="gdb -q"     # disable long intro message
 alias sudo="sudo "     # enable color (the search for aliases continues)
+alias doas="doas "     # same for doas
+alias info="info --vi-keys"
 
 # ls
-alias ls='ls --color -F'
+alias ls='ls --color=auto -F'
 alias ll="ls -lh"
 alias la="ls -a"
 alias lla="ls -alh"
@@ -67,8 +69,8 @@ alias gstp="git stash pop"
 alias lpassp="lpass show --password --clip"  # put password in clipboard
 
 # helper to switch between dual and single monitor setup
-alias dual='xrandr --output LVDS-1 --primary --below VGA-1 --output VGA-1 --auto'
-alias single='xrandr --output VGA-1 --off'
+alias dual='xrandr --output LVDS1 --primary --below VGA1 --output VGA1 --auto'
+alias single='xrandr --output VGA1 --off'
 
 # edit config files
 alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
@@ -93,6 +95,7 @@ getrfc() {
 }
 
 # bluetooth
+alias bt='bluetoothctl'
 alias bton='echo power on | bluetoothctl'
 alias btoff='echo power off | bluetoothctl'
 

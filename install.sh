@@ -2,8 +2,7 @@
 
 create_dotfile_link()
 {
-    ln -sf $DOTDIR/$1 $HOME/$2
-    echo "Created link for $1 to $HOME/$2"
+    ln -svf $DOTDIR/$1 $HOME/$2
 }
 
 create_dotfile_link_same()

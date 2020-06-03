@@ -24,7 +24,8 @@ set autowrite               " auto write buf on certain events
 set hidden                  " keep change in buffer when quitting window
 set noswapfile              " disable swap files
 set scrolloff=2             " line padding when scrolling
-set textwidth=89            " when line wrap occurs
+set textwidth=0             " when line wrap occurs
+set wrapmargin=0            " disable auto line wrapping
 set encoding=utf-8          " utf-8 encoding
 set formatoptions-=t        " do not auto break line > 89 character
 filetype plugin indent on   " allow to add specific rules for certain type of file
@@ -225,6 +226,8 @@ autocmd Filetype c setlocal noexpandtab
 autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<hi
 " vim fold method to marker
 autocmd Filetype vim setlocal foldmethod=marker
+
+autocmd FileType haskell set formatprg=stylish-haskell
 " }}}
 
 """"""""""""
