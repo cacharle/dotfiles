@@ -6,3 +6,7 @@
 	username = HappyTramp
 [log]
 	decorate = full
+[pull]
+	rebase = false
+[merge]
+	tool = vimdiff

@@ -3,19 +3,19 @@
 ###############
 
 # color
-alias grep="grep --color=auto"
-alias tree="tree -C"
-alias pacman="pacman --color=auto"
-alias valgrind="colour-valgrind"
+alias grep='grep --color=auto'
+alias tree='tree -C'
+alias pacman='pacman --color=auto'
+alias valgrindc='colour-valgrind'
 
 # common commands
-alias less="less -N"   # enable line number
-alias v="vim"
-alias mkdir="mkdir -p"
-alias gdb="gdb -q"     # disable long intro message
-alias sudo="sudo "     # enable color (the search for aliases continues)
-alias doas="doas "     # same for doas
-alias info="info --vi-keys"
+alias less='less -N'   # enable line number
+alias v='vim'
+alias mkdir='mkdir -p'
+alias gdb='gdb -q'     # disable long intro message
+alias sudo='sudo '     # enable color (the search for aliases continues)
+alias doas='doas '     # same for doas
+alias info='info --vi-keys'
 
 # ls
 alias ls='ls --color=auto -F'
@@ -25,10 +25,12 @@ alias lla="ls -alh"
 alias lss="ls -Ssh"
 
 # tree
-alias t="tree"
-alias t1="tree -L 1"
-alias t2="tree -L 2"
-alias t3="tree -L 3"
+alias tree='tree -FC'
+alias t='tree'
+alias ta='tree -a'
+alias t1='tree -L 1'
+alias t2='tree -L 2'
+alias t3='tree -L 3'
 alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
 
 # man
@@ -42,31 +44,35 @@ alias manv3="man 3 -P 'vim -M +MANPAGER -'"
 alias manv5="man 5 -P 'vim -M +MANPAGER -'"
 
 # make
-alias m="make"
+alias m='make'
+alias mre='make re'
+alias mclean='make clean'
 
 # git
-alias ga="git add"
-alias gaa="git add --all"
-alias gc="git commit"
-alias gc!="git commit --amend"
-alias gcmsg="git commit --message"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gl="git pull"
-alias glg="git log --stat"
-alias glgg="git log --graph"
-alias glgo="git log --oneline --no-decorate"
-alias gp="git push"
-alias gcl="git clone --recurse-submodules"
-alias gst="git status"
-alias gs="git status"
-alias gss="git status --short"
-alias gco="git checkout"
-alias gsta="git stash push"
-alias gstp="git stash pop"
+alias ga='git add'
+alias gaa='git add --all'
+alias gau='git add --update'
+alias gc='git commit'
+alias gc!='git commit --amend'
+alias gcmsg='git commit --message'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gdt='git diff --stat'
+alias gl='git pull'
+alias glg='git log --stat'
+alias glgg='git log --graph'
+alias glgo='git log --oneline --no-decorate'
+alias gp='git push'
+alias gcl='git clone --recurse-submodules'
+alias gst='git status'
+alias gs='git status'
+alias gss='git status --short'
+alias gco='git checkout'
+alias gsta='git stash push'
+alias gstp='git stash pop'
 
 # lpass (lastpass-cli)
-alias lpassp="lpass show --password --clip"  # put password in clipboard
+alias lpassp='lpass show --password --clip'  # put password in clipboard
 
 # helper to switch between dual and single monitor setup
 alias dual='xrandr --output LVDS1 --primary --below VGA1 --output VGA1 --auto'
@@ -101,3 +107,6 @@ alias btoff='echo power off | bluetoothctl'
 
 # pdf selector
 alias openpdf='zathura `ls -1 *.pdf | dmenu` &'
+
+alias cagob='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build'
+alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'

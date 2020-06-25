@@ -15,6 +15,8 @@ call plug#begin()
     " s19 at home
     Plug 'HappyTramp/vim-42header'            " 42 header
 
+    Plug 'HappyTramp/vim-htheader'            " my header
+
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
     " Plug 'dracula/vim', {'as': 'vim'}       " dracula

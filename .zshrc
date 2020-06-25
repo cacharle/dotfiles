@@ -100,3 +100,5 @@ source $HOME/.zsh/zsh-you-should-use/you-should-use.plugin.zsh         # alias r
 tabs 4
 
 export LFS=/mnt
+
+export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin'
