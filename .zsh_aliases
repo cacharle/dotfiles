@@ -110,3 +110,8 @@ alias openpdf='zathura `ls -1 *.pdf | dmenu` &'
 
 alias cagob='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build'
 alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
+
+# wifi
+wificonnect() {
+    nmcli device wifi connect $1 password $2
+}

@@ -18,7 +18,7 @@ main = xmonad $ desktopConfig
         , focusedBorderColor = "#bbc5ff"
         , terminal           = "st"
         , layoutHook         = myLayouts
-        , manageHook         = myManageHook
+       , manageHook         = myManageHook
         , modMask            = mod4Mask       -- mod key to super
         , borderWidth        = 1
         , startupHook        = myStartupHook
@@ -33,7 +33,6 @@ myLayouts = tiledBigMaster        -- bigger master for code and smaller slave fo
           tiledEven      = Tall 1 (3 / 100) (1 / 2)
 
 myStartupHook = do
-    spawnOnce "xinput disable 'ETPS/2 Elantech Touchpad' &"        -- disable touchpad
     spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
 
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout

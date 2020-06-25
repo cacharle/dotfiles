@@ -34,6 +34,8 @@ create_dotfile_link_same .gitconfig
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 create_dotfile_link redshift.conf .config/redshift.conf
 
+create_dotfile_link_same slock/config.def.h
+
 ln -sf $DOTDIR/.xinitrc $HOME/.xinitrc
 ln -sf $DOTDIR/.zprofile $HOME/.zprofile
 
