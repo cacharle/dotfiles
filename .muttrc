@@ -1,0 +1,12 @@
+set from      = 'me@cacharle.xyz'
+set realname  = 'Charles Cabergs'
+
+set smtp_url  = 'smtp://me@cacharle.xyz@mail.cacharle.xyz:587'
+set folder    = 'imaps://me@cacharle.xyz@mail.cacharle.xyz:993'
+set spoolfile = '+INBOX'
+
+set header_cache     = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+
+set ssl_force_tls = yes

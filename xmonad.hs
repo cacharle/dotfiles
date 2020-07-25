@@ -41,7 +41,7 @@ myManageHook = insertPosition End Newer  -- insert new window at the end of the 
 myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume up
          , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")  -- volume down
          , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")  -- volume mute
-         , ("<XF86MonBrightnessUp>",   spawn "xbacklight -inc 5")    -- backlight up
-         , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")    -- backlight down
+         , ("<XF86MonBrightnessUp>",   spawn "light -A 5")    -- backlight up
+         , ("<XF86MonBrightnessDown>", spawn "light -U 5")    -- backlight down
          , ("<XF86ScreenSaver>",       spawn "slock")                -- lock screen
          ]

@@ -15,12 +15,13 @@ create_dotfile_link_same()
 ###########################
 
 # dotfiles directory
-[ -z $DOTDIR ] && DOTDIR=`pwd`
+[ -z $DOTDIR ] && export DOTDIR=`pwd`
 
 # Creating links
 create_dotfile_link_same .zshrc
 create_dotfile_link_same .bashrc
 create_dotfile_link_same .vimrc
+create_dotfile_link_same .pluggins.vim
 [ ! -d $HOME/.vim/plugin ] && mkdir -p $HOME/.vim/plugin
 create_dotfile_link grep.vim .vim/plugin/grep.vim
 
@@ -30,6 +31,7 @@ create_dotfile_link xmonad.hs .xmonad/xmonad.hs
 create_dotfile_link_same .gdbinit
 create_dotfile_link_same .ghci
 create_dotfile_link_same .gitconfig
+create_dotfile_link_same muttrc
 
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 create_dotfile_link redshift.conf .config/redshift.conf

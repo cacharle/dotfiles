@@ -2,10 +2,11 @@
 # zshrc       #
 ###############
 
-export DOTFILES=$HOME/dotfiles
+
+[ -z $DOTDIR ] && export DOTDIR=$HOME/git/dotfiles # FIXME have to change path manually if install elsewhere
 
 # load aliases
-source $DOTFILES/.zsh_aliases
+source $DOTDIR/.zsh_aliases
 
 # prompt
 case `tty` in
@@ -101,4 +102,4 @@ tabs 4
 
 export LFS=/mnt
 
-export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin'
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/bin"

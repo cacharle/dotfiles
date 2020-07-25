@@ -3,7 +3,7 @@
 """"""""""
 
 " load pluggins {{{
-source $HOME/dotfiles/.pluggins.vim
+source $DOTDIR/.pluggins.vim
 " }}}
 
 """""""""""
