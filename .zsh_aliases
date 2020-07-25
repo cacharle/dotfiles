@@ -71,6 +71,7 @@ alias gco='git checkout'
 alias gsta='git stash push'
 alias gstp='git stash pop'
 alias gpa="git remote | xargs -L1 git push --all"
+alias grv="git remote -v"
 
 # lpass (lastpass-cli)
 alias lpassp='lpass show --password --clip'  # put password in clipboard
