@@ -1,12 +1,35 @@
+###############################################################################
+# muttrc
+###############################################################################
+
 set from      = 'me@cacharle.xyz'
 set realname  = 'Charles Cabergs'
 
-set smtp_url  = 'smtp://me@cacharle.xyz@mail.cacharle.xyz:587'
-set folder    = 'imaps://me@cacharle.xyz@mail.cacharle.xyz:993'
+set smtp_url  = 'smtp://me@mail.cacharle.xyz:587'
+set folder    = 'imaps://me@mail.cacharle.xyz:993'
+# set folder = "~/Mail/cacharle"
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
 set spoolfile = '+INBOX'
+set record    = "+Send"
+set trash     = "+Trash"
+set postponed = "+Drafts"
+
+mailboxes =INBOX =Sent =Trash =Drafts
+
+set editor = 'vim'
+set sort = 'reverse-date'
+
+set date_format = "%d/%m %I:%M"
+set index_format = "%2C %Z %d %-15.15F %s (%-4.4c)"
 
 set header_cache     = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
 
 set ssl_force_tls = yes
+
+# color scheme
+source "$DOTDIR/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"

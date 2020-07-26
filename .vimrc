@@ -216,6 +216,8 @@ nnoremap <leader>m :make all <CR>
 " hook {{{
 " remove trailing white space on save
 autocmd BufWritePre * %s/\s\+$//e
+" dirty hack to disable this feature on markdown (autocmd! wouldn't work)
+autocmd BufReadPre *.md autocmd! BufWritePre
 " }}}
 
 " filetype {{{

@@ -83,10 +83,9 @@ export XDG_DATA_HOME="/home/charles/.data/"
 
 export EDITOR="vim"
 export TERM="st-256color"
-# export TERM="xterm-256color"
-
-# mail
-export MAIL='charles.cabergs@gmail.com'
+export MAIL='me@cacharle.xyz'
+export BROWSER='chromium'
+export BROWSERCLI='w3m'
 
 # ignore filetypes in autocomplete
 fignore=(o hi)

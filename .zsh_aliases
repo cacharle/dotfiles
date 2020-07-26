@@ -86,6 +86,7 @@ alias zshaliasrc="vim $DOTDIR/.zsh_aliases && source $DOTDIR/.zshrc"
 alias vimrc="vim $DOTDIR/.vimrc"
 alias vimplugrc="vim $DOTDIR/.pluggins.vim"
 alias xmonadrc="vim $DOTDIR/xmonad.hs"
+alias muttrc="vim $DOTDIR/.muttrc"
 
 # other
 alias date="date -R"
@@ -111,3 +112,5 @@ alias openpdf='zathura `ls -1 *.pdf | dmenu` &'
 
 alias cagob='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build'
 alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
+
+# alias mutt='neomutt'

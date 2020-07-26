@@ -31,13 +31,13 @@ create_dotfile_link xmonad.hs .xmonad/xmonad.hs
 create_dotfile_link_same .gdbinit
 create_dotfile_link_same .ghci
 create_dotfile_link_same .gitconfig
-create_dotfile_link_same muttrc
+create_dotfile_link_same .muttrc
+create_dotfile_link_same .mailcap
+create_dotfile_link_same .xinitrc
+create_dotfile_link_same .zprofile
 
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 create_dotfile_link redshift.conf .config/redshift.conf
-
-ln -sf $DOTDIR/.xinitrc $HOME/.xinitrc
-ln -sf $DOTDIR/.zprofile $HOME/.zprofile
 
 ################
 # dependencies #

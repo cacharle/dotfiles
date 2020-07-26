@@ -1,0 +1,2 @@
+text/html; "$BROWSER" %s &: test=test -n "$DISPLAY"; needsterminal;
+text/html; "$BROWSERCLI" -I %{charse} -T text/html; copiousoutput;
