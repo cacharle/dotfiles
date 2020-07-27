@@ -1,9 +1,12 @@
 [user]
-	name = Charles
-	email = sircharlesaze@gmail.com
+	name = Charles Cabergs
+	email = me@cacharle.xyz
+	signingkey = me@cacharle.xyz
 [log]
 	decorate = full
 [pull]
 	rebase = false
 [merge]
 	tool = vimdiff
+[commit]
+	gpgsign = true

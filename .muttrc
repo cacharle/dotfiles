@@ -2,13 +2,14 @@
 # muttrc
 ###############################################################################
 
-set from      = 'me@cacharle.xyz'
-set realname  = 'Charles Cabergs'
+set from      = 'me@cacharle.xyz'  # address in new mail
+set realname  = 'Charles Cabergs'  # name in new mail
 
-set smtp_url  = 'smtp://me@mail.cacharle.xyz:587'
-set folder    = 'imaps://me@mail.cacharle.xyz:993'
+set smtp_url  = 'smtp://me@mail.cacharle.xyz:587'   # where to send
+set folder    = 'imaps://me@mail.cacharle.xyz:993'  # mails folder
 # set folder = "~/Mail/cacharle"
 
+# view html with terminal browser in .mailcap
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
@@ -20,10 +21,28 @@ set postponed = "+Drafts"
 mailboxes =INBOX =Sent =Trash =Drafts
 
 set editor = 'vim'
-set sort = 'reverse-date'
+set sort = 'reverse-date'   # newest at the top
 
 set date_format = "%d/%m %I:%M"
-set index_format = "%2C %Z %d %-15.15F %s (%-4.4c)"
+set index_format = "%2C %Z %d %-15.15F %s (%-4.4c)"  # one line format in home
+
+# from https://github.com/LukeSmithxyz/mutt-wizard/blob/master/share/mutt-wizard.muttrc
+set rfc2047_parameters = yes # decode non standard stuff
+set sleep_time = 0  # don't pause
+set markers = no    # no '+' on line wrap
+set mark_old = no   # don't mark mail as read if not seen
+set mime_forward = yes  # attachements forwarded
+set wait_key = no   # no press to continue...
+set forward_format = "Fwd: %s"  # forward subject
+set forward_quote   # include previous message in forward
+
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+
 
 set header_cache     = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
@@ -31,5 +50,8 @@ set certificate_file = "~/.mutt/certificates"
 
 set ssl_force_tls = yes
 
-# color scheme
+# solarized color scheme
 source "$DOTDIR/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
+
+# password
+source "gpg -d $HOME/.config/mutt/passwd.muttrc.gpg 2> /dev/null |"
