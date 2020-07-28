@@ -52,11 +52,12 @@ setopt auto_cd          # cd without `cd` command
 setopt list_rows_first  # cycle through row first in menu
 # setopt extendedglob
 
-# executed when changind directory
+# executed when changing directory
 function chpwd() {
-    content=`ls | wc -l`
-    ([ $content -lt 30 ] && tree -L 1) ||
+    content=$(ls | wc -l)
+    ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
+    touch .  # to sort by last cd
 }
 
 # add command-not-found package suggestion

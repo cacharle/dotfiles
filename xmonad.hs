@@ -2,7 +2,7 @@ import           XMonad
 import           XMonad.Config.Desktop
 
 -- Utilities
-import           XMonad.Util.EZConfig        (additionalKeysP)
+import           XMonad.Util.EZConfig        (additionalKeysP, additionalKeys)
 import           XMonad.Util.SpawnOnce
 
 -- Layouts
@@ -41,7 +41,12 @@ myManageHook = insertPosition End Newer  -- insert new window at the end of the 
 myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume up
          , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")  -- volume down
          , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")  -- volume mute
-         , ("<XF86MonBrightnessUp>",   spawn "light -A 5")    -- backlight up
-         , ("<XF86MonBrightnessDown>", spawn "light -U 5")    -- backlight down
+         , ("<XF86MonBrightnessUp>",   spawn "light -A 5")           -- backlight up
+         , ("<XF86MonBrightnessDown>", spawn "light -U 5")           -- backlight down
          , ("<XF86ScreenSaver>",       spawn "slock")                -- lock screen
+
+         , ("M-o",                     spawn "/home/charles/bin/project-open")
+         , ("M-S-o",                   spawn "cd ~/test && st")
+         , ("M-d",                     spawn "cd ~/Downloads && st")
+         , ("M-t",                     spawn "st -e htop")
          ]
