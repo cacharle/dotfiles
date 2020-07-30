@@ -57,7 +57,7 @@ function chpwd() {
     content=$(ls | wc -l)
     ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
-    touch .  # to sort by last cd
+    [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
 # add command-not-found package suggestion
@@ -103,3 +103,4 @@ tabs 4
 export LFS=/mnt
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/bin"
+export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"

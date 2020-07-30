@@ -50,6 +50,8 @@ set certificate_file = "~/.mutt/certificates"
 
 set ssl_force_tls = yes
 
+set send_charset = 'utf-8'
+
 # solarized color scheme
 source "$DOTDIR/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
 

@@ -21,7 +21,6 @@ main = xmonad $ desktopConfig
         , manageHook         = myManageHook
         , modMask            = mod4Mask       -- mod key to super
         , borderWidth        = 1
-        , startupHook        = myStartupHook
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , workspaces         = ["code", "compile", "web"] ++ map show [4..9]
         } `additionalKeysP` myKeys
@@ -32,10 +31,6 @@ myLayouts = tiledBigMaster        -- bigger master for code and smaller slave fo
     where tiledBigMaster = Tall 1 (3 / 100) (3 / 5)
           tiledEven      = Tall 1 (3 / 100) (1 / 2)
 
-myStartupHook = do
-    spawnOnce "xinput disable 'ETPS/2 Elantech Touchpad' &"        -- disable touchpad
-    spawnOnce "redshift -c /home/charles/.config/redshift.conf &"  -- start redshift
-
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
 
 myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume up
@@ -45,8 +40,7 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume u
          , ("<XF86MonBrightnessDown>", spawn "light -U 5")           -- backlight down
          , ("<XF86ScreenSaver>",       spawn "slock")                -- lock screen
 
-         , ("M-o",                     spawn "/home/charles/bin/project-open")
+         , ("M-o",                     spawn "/home/charles/bin/project-open") -- TODO could could be generalized
          , ("M-S-o",                   spawn "cd ~/test && st")
          , ("M-d",                     spawn "cd ~/Downloads && st")
-         , ("M-t",                     spawn "st -e htop")
          ]

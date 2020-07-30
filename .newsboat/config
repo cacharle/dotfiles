@@ -1,0 +1,17 @@
+auto-reload yes   # reload feeds at startup
+
+bind-key j down
+bind-key k up
+bind-key g home
+bind-key G end
+
+pager vim
+
+# solarized color-scheme
+color background         default   default
+color listnormal         default   default
+color listnormal_unread  default   default
+color listfocus          black     cyan
+color listfocus_unread   black     cyan
+color info               default   black
+color article            default   default

@@ -19,8 +19,6 @@ call plug#begin()
     " s19 at home
     Plug 'HappyTramp/vim-42header'            " 42 header
 
-    " Plug 'HappyTramp/vim-htheader'            " my header
-
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
     " Plug 'dracula/vim', {'as': 'vim'}       " dracula
@@ -29,4 +27,7 @@ call plug#begin()
     " intresting but not used
     " Plug 'sheerun/vim-polyglot'             " better syntax highlight
     " Plug 'unblevable/quick-scope'           " highlight first char to jump to word
+    " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
+    " Plug 'vim-scripts/rfc-syntax'             " rfc
+    " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
 call plug#end()
