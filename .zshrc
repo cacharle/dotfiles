@@ -2,10 +2,11 @@
 # zshrc       #
 ###############
 
-export DOTFILES=$HOME/dotfiles
+
+[ -z $DOTDIR ] && export DOTDIR=$HOME/git/dotfiles # FIXME have to change path manually if install elsewhere
 
 # load aliases
-source $DOTFILES/.zsh_aliases
+source $DOTDIR/.zsh_aliases
 
 # prompt
 case `tty` in
@@ -51,11 +52,12 @@ setopt auto_cd          # cd without `cd` command
 setopt list_rows_first  # cycle through row first in menu
 # setopt extendedglob
 
-# executed when changind directory
+# executed when changing directory
 function chpwd() {
-    content=`ls | wc -l`
-    ([ $content -lt 30 ] && tree -L 1) ||
+    content=$(ls | wc -l)
+    ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
+    [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
 # add command-not-found package suggestion
@@ -82,10 +84,9 @@ export XDG_DATA_HOME="/home/charles/.data/"
 
 export EDITOR="vim"
 export TERM="st-256color"
-# export TERM="xterm-256color"
-
-# mail
-export MAIL='charles.cabergs@gmail.com'
+export MAIL='me@cacharle.xyz'
+export BROWSER='chromium'
+export BROWSERCLI='w3m'
 
 # ignore filetypes in autocomplete
 fignore=(o hi)
@@ -101,4 +102,7 @@ tabs 4
 
 export LFS=/mnt
 
-export PATH='/usr/local/sbin:/usr/local/bin:/usr/bin'
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/bin"
+export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
+
+export GPG_TTY="$(tty)"

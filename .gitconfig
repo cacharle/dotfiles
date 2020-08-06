@@ -1,12 +1,12 @@
 [user]
-	name = Charles
-	email = sircharlesaze@gmail.com
-[credential]
-	helper = store
-	username = HappyTramp
+	name = Charles Cabergs
+	email = me@cacharle.xyz
+	signingkey = me@cacharle.xyz
 [log]
 	decorate = full
 [pull]
 	rebase = false
 [merge]
 	tool = vimdiff
+[commit]
+	gpgsign = true

@@ -9,13 +9,15 @@ call plug#begin()
     Plug 'itchyny/lightline.vim'              " minimal status bar
     Plug 'HappyTramp/vim-syntax-extra'        " syntax highlight of C operators
     Plug 'romainl/vim-cool'                   " disable highlight after search
-    Plug 'tikhomirov/vim-glsl'                " glsl highlight
-    Plug 'cespare/vim-toml'                   " toml highlight
+    Plug 'iamcco/markdown-preview.vim'        " markdown preview in browser
+
+    " syntax highlight for languages that aren't supported by default
+    Plug 'tikhomirov/vim-glsl'                " glsl
+    Plug 'cespare/vim-toml'                   " toml
+    Plug 'ziglang/zig.vim'                    " zig
 
     " s19 at home
     Plug 'HappyTramp/vim-42header'            " 42 header
-
-    Plug 'HappyTramp/vim-htheader'            " my header
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
@@ -25,4 +27,7 @@ call plug#begin()
     " intresting but not used
     " Plug 'sheerun/vim-polyglot'             " better syntax highlight
     " Plug 'unblevable/quick-scope'           " highlight first char to jump to word
+    " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
+    " Plug 'vim-scripts/rfc-syntax'             " rfc
+    " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
 call plug#end()

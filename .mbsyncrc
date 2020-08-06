@@ -1,0 +1,19 @@
+IMAPStore cacharle-remote
+Host mail.cacharle.xyz
+Port 993
+User me
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore cacharle-local
+Path ~/Mail/cacharle/
+Inbox ~/Mail/cacharle/INBOX
+Subfolders Verbatim
+
+Channel cacharle
+Master :cacharle-remote:
+Slave :cacharle-local:
+Create Both
+Expunge Both
+Patterns *
+SyncState *

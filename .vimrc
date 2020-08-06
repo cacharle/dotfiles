@@ -3,7 +3,7 @@
 """"""""""
 
 " load pluggins {{{
-source $HOME/dotfiles/.pluggins.vim
+source $DOTDIR/.pluggins.vim
 " }}}
 
 """""""""""
@@ -150,7 +150,7 @@ nnoremap <leader>l :ls<CR>
 " }}}
 
 " vimrc {{{
-nnoremap <leader>rc :vsplit $MYVIMRC<cr>
+nnoremap <leader>rc :vsplit $DOTDIR/.vimrc<cr>
 nnoremap <leader>src :source $MYVIMRC<cr>
 " }}}
 
@@ -216,6 +216,8 @@ nnoremap <leader>m :make all <CR>
 " hook {{{
 " remove trailing white space on save
 autocmd BufWritePre * %s/\s\+$//e
+" dirty hack to disable this feature on markdown (autocmd! wouldn't work)
+autocmd BufReadPre *.md autocmd! BufWritePre
 " }}}
 
 " filetype {{{
@@ -243,12 +245,17 @@ let g:ctrlp_working_path_mode = 'rw'
 " }}}
 
 " quick-scope {{{
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " }}}
 
 " man-plugin {{{
-runtime! ftplugin/man.vim
-let g:ft_man_open_mode = 'vert'    " open in a vertical split
-let g:ft_man_no_sect_fallback = 2  " if page specified fallback to page 2 (syscall pages)
+" runtime! ftplugin/man.vim
+" let g:ft_man_open_mode = 'vert'    " open in a vertical split
+" let g:ft_man_no_sect_fallback = 2  " if page specified fallback to page 2 (syscall pages)
 " autocmd Filetype man unmap <buffer> q:  hmmmm??
+" }}}
+
+" ctrlp-funky {{{
+" let g:ctrlp_funky_syntax_highlight = 1
+" nnoremap <C-f> :CtrlPFunky<CR>
 " }}}

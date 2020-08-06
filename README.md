@@ -2,9 +2,9 @@
 
 ## Installation
 
-1. Backup your current configuration files, they will be overwrite
+1. Backup your current configuration files, they will be overwritten
 2. `cd` in this repo
-3. Run the `install.sh` script
+3. Run the `install` script
 
 ## Tools I use
 
@@ -12,6 +12,7 @@
 * [zsh](https://www.zsh.org/) - interactive shell
 * [xmonad](https://xmonad.org) - window manager
 * [redshift](https://github.com/jonls/redshift) - change screen color temperature
+* [mutt](http://www.mutt.org/) - email client
 
 ## School 19 Config
 

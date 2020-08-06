@@ -10,7 +10,8 @@ alias valgrindc='colour-valgrind'
 
 # common commands
 alias less='less -N'   # enable line number
-alias v='vim'
+alias v='nvim'
+alias vim='nvim'
 alias mkdir='mkdir -p'
 alias gdb='gdb -q'     # disable long intro message
 alias sudo='sudo '     # enable color (the search for aliases continues)
@@ -38,10 +39,6 @@ alias ma="man"
 alias ma1="man 1"
 alias ma2="man 2"
 alias ma3="man 3"
-alias manv="man -P 'vim -M +MANPAGER -'"  # vim has man pager
-alias manv2="man 2 -P 'vim -M +MANPAGER -'"
-alias manv3="man 3 -P 'vim -M +MANPAGER -'"
-alias manv5="man 5 -P 'vim -M +MANPAGER -'"
 
 # make
 alias m='make'
@@ -70,21 +67,24 @@ alias gss='git status --short'
 alias gco='git checkout'
 alias gsta='git stash push'
 alias gstp='git stash pop'
+alias gpa="git remote | xargs -L1 git push --all"
+alias grv="git remote -v"
+alias gra="git remote add"
 
 # lpass (lastpass-cli)
 alias lpassp='lpass show --password --clip'  # put password in clipboard
 
 # helper to switch between dual and single monitor setup
-alias dual='xrandr --output LVDS1 --primary --below VGA1 --output VGA1 --auto'
+alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
 alias single='xrandr --output VGA1 --off'
 
 # edit config files
-alias zshrc="vim $DOTFILES/.zshrc && source $DOTFILES/.zshrc"
-alias zshaliasrc="vim $DOTFILES/.zsh_aliases && source $DOTFILES/.zshrc"
-alias vimrc="vim $DOTFILES/.vimrc"
-alias vimplugrc="vim $DOTFILES/.pluggins.vim"
-alias xmonadrc="vim $DOTFILES/xmonad.hs"
-
+alias zshrc="vim $DOTDIR/.zshrc && source $DOTDIR/.zshrc"
+alias zshaliasrc="vim $DOTDIR/.zsh_aliases && source $DOTDIR/.zshrc"
+alias vimrc="vim $DOTDIR/.vimrc"
+alias vimplugrc="vim $DOTDIR/.pluggins.vim"
+alias xmonadrc="vim $DOTDIR/xmonad.hs"
+alias muttrc="vim $DOTDIR/.muttrc"
 
 # other
 alias date="date -R"
@@ -115,3 +115,5 @@ alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
 wificonnect() {
     nmcli device wifi connect $1 password $2
 }
+
+# alias mutt='neomutt'
