@@ -11,8 +11,10 @@
 * [vim](https://github.com/vim/vim) - terminal text editor
 * [zsh](https://www.zsh.org/) - interactive shell
 * [xmonad](https://xmonad.org) - window manager
-* [redshift](https://github.com/jonls/redshift) - change screen color temperature
+* [redshift](http://jonls.dk/redshift/) - change screen color temperature
 * [mutt](http://www.mutt.org/) - email client
+* [newsboat](https://newsboat.org/) - RSS feed reader
+* [moc](https://moc.daper.net/) - music player
 
 ## School 19 Config
 

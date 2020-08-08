@@ -12,7 +12,7 @@ alias valgrindc='colour-valgrind'
 alias less='less -N'   # enable line number
 alias v='nvim'
 alias vim='nvim'
-alias mkdir='mkdir -p'
+# alias mkdir='mkdir -p'
 alias gdb='gdb -q'     # disable long intro message
 alias sudo='sudo '     # enable color (the search for aliases continues)
 alias doas='doas '     # same for doas
@@ -87,14 +87,14 @@ alias xmonadrc="vim $DOTDIR/xmonad.hs"
 alias muttrc="vim $DOTDIR/.muttrc"
 
 # other
-alias date="date -R"
+#alias date="date -R"
 
 # parent directory jump
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias norm='ruby -I/home/charles/norminette/vendor/bundle/ruby/2.7.0/gems/parseconfig-1.0.8/lib/ ~/norminette/norminette.rb'
+alias norm='ruby -I/home/charles/git/norminette/vendor/bundle/ruby/2.7.0/gems/parseconfig-1.0.8/lib/ ~/git/norminette/norminette.rb'
 
 getrfc() {
     curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
@@ -117,3 +117,8 @@ wificonnect() {
 }
 
 # alias mutt='neomutt'
+
+alias ytdl='youtube-dl'
+alias ytdla='youtube-dl -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+
+alias qmvdest='qmv --format=do'

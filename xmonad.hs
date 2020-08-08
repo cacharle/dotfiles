@@ -40,7 +40,9 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume u
          , ("<XF86MonBrightnessDown>", spawn "light -U 5")           -- backlight down
          , ("<XF86ScreenSaver>",       spawn "slock")                -- lock screen
 
-         , ("M-o",                     spawn "/home/charles/bin/project-open") -- TODO could could be generalized
+         , ("M-o",                     spawn "~/git/dotfiles/bin/project-open") -- TODO could could be generalized
          , ("M-S-o",                   spawn "cd ~/test && st")
          , ("M-d",                     spawn "cd ~/Downloads && st")
+         , ("M-m",                     spawn "st -e mocp")
+         , ("M-S-d",                   spawn "notify-send \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
          ]

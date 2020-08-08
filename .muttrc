@@ -36,21 +36,19 @@ set wait_key = no   # no press to continue...
 set forward_format = "Fwd: %s"  # forward subject
 set forward_quote   # include previous message in forward
 
-set sidebar_visible = yes
-set sidebar_width = 20
-set sidebar_short_path = yes
+set sidebar_visible       = yes
+set sidebar_width         = 20
+set sidebar_short_path    = yes
 set sidebar_next_new_wrap = yes
-set mail_check_stats
-set sidebar_format = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
 
+set mail_check_stats
+set sidebar_format   = '%B%?F? [%F]?%* %?N?%N/? %?S?%S?'
+set ssl_force_tls    = yes
+set send_charset     = 'utf-8'
 
 set header_cache     = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
-
-set ssl_force_tls = yes
-
-set send_charset = 'utf-8'
 
 # solarized color scheme
 source "$DOTDIR/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
