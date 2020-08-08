@@ -5,7 +5,7 @@ bind-key k up
 bind-key g home
 bind-key G end
 
-pager vim
+# pager less
 
 # solarized color-scheme
 color background         default   default

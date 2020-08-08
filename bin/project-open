@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# shellcheck disable=SC2088
+dest=$(
+    find ~/git -mindepth 1 -maxdepth 1 -printf '%A@\t%f\n' |
+    sort -r |
+    cut -f 2 |
+    dmenu -l 10 -p '~/git/'
+)
+
+[ -z "$dest" ] && exit 1
+
+if cd "$HOME/git/$dest" 2> /dev/null
+then
+    touch "$HOME/git/$dest"
+    st
+else
+    while [ -z "$choice" ]
+    do
+        choice=$(printf 'yes\nno\n' | dmenu -p "Create a repository at ~/git/$dest?")
+    done
+
+    case "$choice" in
+        "no")   exit ;;
+        "yes")  mkdir -p "$HOME/git/$dest" ;;
+        *)      exit 1 ;;
+    esac
+    cd "$HOME/git/$dest" || exit 1
+    git init
+    st
+fi

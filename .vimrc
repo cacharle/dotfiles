@@ -29,6 +29,7 @@ set wrapmargin=0            " disable auto line wrapping
 set encoding=utf-8          " utf-8 encoding
 set formatoptions-=t        " do not auto break line > 89 character
 filetype plugin indent on   " allow to add specific rules for certain type of file
+set mouse=a                 " mouse scrolling (heretic)
 " }}}
 
 " browse list with tab {{{
@@ -93,8 +94,18 @@ colorscheme solarized
 " }}}
 " lightline {{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
+" let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
 " let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 " }}}
 
 """"""""""""
@@ -143,10 +154,10 @@ nnoremap c, ct,
 " }}}
 
 " buffer navigation {{{
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 nnoremap <leader><TAB> :b#<CR>
-nnoremap <leader>l :ls<CR>
+nnoremap <leader>bl :ls<CR>
 " }}}
 
 " vimrc {{{
@@ -192,9 +203,9 @@ command! -nargs=1 PutCoplienForm call PutCoplienFormFunc("<args>")
 " }}}
 
 " quickfix window toggle {{{
-nnoremap <leader>qt :call QuickfixToggle()<CR>
-nnoremap <leader>qn :cnext <CR>
-nnoremap <leader>qp :cprevious <CR>
+nnoremap <leader>t :call QuickfixToggle()<CR>
+nnoremap <leader>n :cnext <CR>
+nnoremap <leader>p :cprevious <CR>
 let g:quickfix_is_open = 0
 if !exists('*QuickfixToggle')
     function QuickfixToggle()
