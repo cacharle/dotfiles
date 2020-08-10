@@ -11,6 +11,7 @@ call plug#begin()
     Plug 'romainl/vim-cool'                   " disable highlight after search
     Plug 'tpope/vim-fugitive'                 " git wrapper
     Plug 'junegunn/vim-easy-align'            " align
+    " Plug 'easymotion/vim-easymotion' " TODO very intresting
 
     " markdown preview in browser
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
