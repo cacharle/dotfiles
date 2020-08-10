@@ -10,6 +10,7 @@ call plug#begin()
     Plug 'HappyTramp/vim-syntax-extra'        " syntax highlight of C operators
     Plug 'romainl/vim-cool'                   " disable highlight after search
     Plug 'tpope/vim-fugitive'                 " git wrapper
+    Plug 'junegunn/vim-easy-align'            " align
 
     " markdown preview in browser
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}

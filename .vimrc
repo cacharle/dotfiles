@@ -241,6 +241,8 @@ autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<h
 autocmd Filetype vim setlocal foldmethod=marker
 
 autocmd FileType haskell set formatprg=stylish-haskell
+
+autocmd FileType lisp set shiftwidth=2
 " }}}
 
 """"""""""""
@@ -269,4 +271,9 @@ let g:ctrlp_working_path_mode = 'rw'
 " ctrlp-funky {{{
 " let g:ctrlp_funky_syntax_highlight = 1
 " nnoremap <C-f> :CtrlPFunky<CR>
+" }}}
+
+" eazy-align {{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 " }}}
