@@ -1,0 +1,12 @@
+#!/bin/sh
+
+[ "$#" -ne 1 ] && exit 1;
+
+case "$1" in
+    "up")   pulseaudio-ctl up ;;
+    "down") pulseaudio-ctl down ;;
+    "mute") pulseaudio-ctl mute ;;
+    *)      exit 1 ;;
+esac
+
+notify-send "volume $(pulseaudio-ctl full-status | cut -d ' ' -f 1)"

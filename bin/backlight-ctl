@@ -1,0 +1,11 @@
+#!/bin/sh
+
+[ "$#" -ne 1 ] && exit 1;
+
+case "$1" in
+    "up")   xbacklight -inc 5 ;;
+    "down") xbacklight -dec 5 ;;
+    *)      exit 1 ;;
+esac
+
+notify-send "backlight $(xbacklight | cut -d '.' -f 1)"

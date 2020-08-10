@@ -47,6 +47,7 @@ create_dotfile_link_same .newsboat/config
 
 # create_dotfile_link_same slock/config.def.h
 
+ln -sv "$DOTDIR/bin" "$HOME/bin"
 
 ###############################################################################
 # dependencies
