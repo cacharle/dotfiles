@@ -10,22 +10,33 @@ dest=$(
 
 [ -z "$dest" ] && exit 1
 
-if cd "$HOME/git/$dest" 2> /dev/null
+dest_path="$HOME/git/$dest"
+
+if cd "$dest_path" 2> /dev/null
 then
-    touch "$HOME/git/$dest"
+    touch "$dest_path"
     st
 else
     while [ -z "$choice" ]
     do
-        choice=$(printf 'yes\nno\n' | dmenu -p "Create a repository at ~/git/$dest?")
+        choice=$(printf 'create\nclone\ncancel' | dmenu -p "New repository at ~/git/$dest?")
     done
 
     case "$choice" in
-        "no")   exit ;;
-        "yes")  mkdir -p "$HOME/git/$dest" ;;
-        *)      exit 1 ;;
+        "create")
+            mkdir -p "$dest_path"
+            cd "$dest_path" || exit 1
+            git init
+            ;;
+        "clone")
+            url="$(echo '' | dmenu -p "Entry repository url: ")"
+            notify-send "Cloning $url to $dest_path"
+            git clone --recursive "$url" "$dest_path" ||
+                (notify-send -u critical "Clone failed"; exit 1)
+            cd "$dest_path" || exit 1
+            ;;
+        "cancel") exit ;;
+        *) exit 1 ;;
     esac
-    cd "$HOME/git/$dest" || exit 1
-    git init
     st
 fi

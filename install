@@ -2,30 +2,30 @@
 
 create_dotfile_link()
 {
-    ln -svf $DOTDIR/$1 $HOME/$2
+    ln -svf "$DOTDIR/$1" "$HOME/$2"
 }
 
 create_dotfile_link_same()
 {
-    create_dotfile_link $1 $1
+    create_dotfile_link "$1" "$1"
 }
 
-###########################
-# dotfiles install script #
-###########################
+###############################################################################
+# link dotfiles
+###############################################################################
 
 # dotfiles directory
-[ -z $DOTDIR ] && export DOTDIR=`pwd`
+[ -z "$DOTDIR" ] && DOTDIR=$(pwd) && export DOTDIR
 
 # Creating links
 create_dotfile_link_same .zshrc
 create_dotfile_link_same .bashrc
 create_dotfile_link_same .vimrc
 create_dotfile_link_same .pluggins.vim
-[ ! -d $HOME/.vim/plugin ] && mkdir -p $HOME/.vim/plugin
+mkdir -p "$HOME/.vim/plugin"
 create_dotfile_link grep.vim .vim/plugin/grep.vim
 
-[ ! -d $HOME/.xmonad ] && mkdir $HOME/.xmonad
+mkdir -p "$HOME/.xmonad"
 create_dotfile_link xmonad.hs .xmonad/xmonad.hs
 
 create_dotfile_link_same .gdbinit
@@ -36,35 +36,53 @@ create_dotfile_link_same .mailcap
 create_dotfile_link_same .xinitrc
 create_dotfile_link_same .zprofile
 
-[ ! -d $HOME/.config ] && mkdir $HOME/.config
+mkdir -p "$HOME/.config"
 create_dotfile_link redshift.conf .config/redshift.conf
 
-################
-# dependencies #
-################
+mkdir -p "$HOME/.config/dunst"
+create_dotfile_link dunst/dunstrc .config/dunst/dunstrc
 
-[ $# -ge 1 ] || [ "$1" = "--ln" ] && exit 0
+mkdir -p "$HOME/.newsboat"
+create_dotfile_link_same .newsboat/config
+
+# create_dotfile_link_same slock/config.def.h
+
+ln -sv "$DOTDIR/bin" "$HOME/bin"
+
+###############################################################################
+# dependencies
+###############################################################################
+
+[ "$#" -ne 1 ] || [ ! "$1" = "-a" ] && exit 0
 echo "Installing Dependencies"
 
+###############################################################################
 # vim Plug
-PLUGFILE=$HOME/.vim/autoload/plug.vim
+PLUGFILE="$HOME/.vim/autoload/plug.vim"
 PLUGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-[ ! -f $PLUGFILE ] && echo "Downloading plug.vim" && \
-    curl -fLo $PLUGFILE --create-dirs $PLUGURL
+[ ! -f "$PLUGFILE" ] && echo "Downloading plug.vim" && \
+    curl -fLo "$PLUGFILE" --create-dirs "$PLUGURL"
 echo "Installing plug.vim Pluggins"
 vim -c "PlugInstall" -c "qa"
 
+###############################################################################
 # zsh pluggins
-[ ! -d $HOME/.zsh ] && make $HOME/.zsh
-# pure theme
-[ ! -d $HOME/.zsh/pure ] && echo "Installing zsh pure theme" && \
-    git clone https://github.com/sindresorhus/pure \
-    $HOME/.zsh/pure
-# syntax hightlighting
-[ ! -d $HOME/.zsh/zsh-syntax-highlighting ] && echo "Installing zsh syntax highlighting plugin" && \
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting \
-    $HOME/.zsh/zsh-syntax-highlighting
-# you should use
-[ ! -d $HOME/.zsh/zsh-you-should-use ] && echo "Installing zsh you should use plugin" && \
-    git clone https://github.com/MichaelAquilina/zsh-you-should-use \
-    $HOME/.zsh/zsh-you-should-use
+
+update_plugin()
+{
+    url="$1"
+    dest_path="$2"
+    if [ ! -d "$dest_path" ]
+    then
+        echo "Installing $dest_path"
+        git clone "$url" "$dest_path"
+    else
+        echo "Updating $dest_path"
+        git -C "$dest_path" pull
+    fi
+}
+
+mkdir -p "$HOME/.zsh"
+update_plugin 'https://github.com/sindresorhus/pure' "$HOME/.zsh/pure"
+update_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting' "$HOME/.zsh/zsh-syntax-highlighting"
+update_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use' "$HOME/.zsh/zsh-you-should-use"

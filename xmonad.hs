@@ -18,7 +18,7 @@ main = xmonad $ desktopConfig
         , focusedBorderColor = "#bbc5ff"
         , terminal           = "st"
         , layoutHook         = myLayouts
-        , manageHook         = myManageHook
+       , manageHook         = myManageHook
         , modMask            = mod4Mask       -- mod key to super
         , borderWidth        = 1
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
@@ -33,14 +33,14 @@ myLayouts = tiledBigMaster        -- bigger master for code and smaller slave fo
 
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
 
-myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")    -- volume up
-         , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")  -- volume down
-         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")  -- volume mute
-         , ("<XF86MonBrightnessUp>",   spawn "light -A 5")           -- backlight up
-         , ("<XF86MonBrightnessDown>", spawn "light -U 5")           -- backlight down
-         , ("<XF86ScreenSaver>",       spawn "slock")                -- lock screen
+myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "~/bin/volume-ctl up")
+         , ("<XF86AudioLowerVolume>",  spawn "~/bin/volume-ctl down")
+         , ("<XF86AudioMute>",         spawn "~/bin/volume-ctl mute")
+         , ("<XF86MonBrightnessUp>",   spawn "~/bin/backlight-ctl up")
+         , ("<XF86MonBrightnessDown>", spawn "~/bin/backlight-ctl down")
+         , ("<XF86ScreenSaver>",       spawn "slock")
 
-         , ("M-o",                     spawn "~/git/dotfiles/bin/project-open") -- TODO could could be generalized
+         , ("M-o",                     spawn "~/bin/project-open")
          , ("M-S-o",                   spawn "cd ~/test && st")
          , ("M-d",                     spawn "cd ~/Downloads && st")
          , ("M-m",                     spawn "st -e mocp")
