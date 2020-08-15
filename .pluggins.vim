@@ -14,7 +14,7 @@ call plug#begin()
     " Plug 'easymotion/vim-easymotion' " TODO very intresting
 
     " markdown preview in browser
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " syntax highlight for languages that aren't supported by default
     Plug 'tikhomirov/vim-glsl'                " glsl

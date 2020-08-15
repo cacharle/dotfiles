@@ -203,7 +203,7 @@ command! -nargs=1 PutCoplienForm call PutCoplienFormFunc("<args>")
 " }}}
 
 " quickfix window toggle {{{
-nnoremap <leader>t :call QuickfixToggle()<CR>
+nnoremap <leader>q :call QuickfixToggle()<CR>
 nnoremap <leader>n :cnext <CR>
 nnoremap <leader>p :cprevious <CR>
 let g:quickfix_is_open = 0
@@ -255,6 +255,7 @@ set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/
 " ctrlp ignore all stuff in the .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_mruf_case_sensitive = 0
 " }}}
 
 " quick-scope {{{

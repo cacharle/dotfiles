@@ -41,8 +41,6 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "~/bin/volume-ctl up")
          , ("<XF86ScreenSaver>",       spawn "slock")
 
          , ("M-o",                     spawn "~/bin/project-open")
-         , ("M-S-o",                   spawn "cd ~/test && st")
-         , ("M-d",                     spawn "cd ~/Downloads && st")
          , ("M-m",                     spawn "st -e mocp")
          , ("M-S-d",                   spawn "notify-send \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
          ]

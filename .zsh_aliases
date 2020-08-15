@@ -122,3 +122,5 @@ alias ytdl='youtube-dl'
 alias ytdla='youtube-dl -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
 
 alias qmvdest='qmv --format=do'
+
+alias xclip='xclip -selection clipboard'
