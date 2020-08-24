@@ -106,7 +106,7 @@ alias bton='echo power on | bluetoothctl'
 alias btoff='echo power off | bluetoothctl'
 
 # pdf selector
-alias openpdf='zathura `ls -1 *.pdf | dmenu` &'
+# alias pdf-open="zathura \$(echo $HOME/Documents/*.pdf | tr ' ' '\\n' | dmenu)"
 
 alias cagob='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build'
 alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
