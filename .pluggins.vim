@@ -10,9 +10,11 @@ call plug#begin()
     Plug 'HappyTramp/vim-syntax-extra'        " syntax highlight of C operators
     Plug 'romainl/vim-cool'                   " disable highlight after search
     Plug 'tpope/vim-fugitive'                 " git wrapper
+    Plug 'junegunn/vim-easy-align'            " align
+    " Plug 'easymotion/vim-easymotion' " TODO very intresting
 
     " markdown preview in browser
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " syntax highlight for languages that aren't supported by default
     Plug 'tikhomirov/vim-glsl'                " glsl

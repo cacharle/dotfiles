@@ -2,10 +2,22 @@
 
 [ "$#" -ne 1 ] && exit 1;
 
+
+if [ "$(hostname)" = manjaro ]
+then
+    cmd=light
+    up_opt=-A
+    down_opt=-U
+else
+    cmd=xbacklight
+    up_opt=-inc
+    down_opt=-dec
+fi
+
 case "$1" in
-    "up")   xbacklight -inc 5 ;;
-    "down") xbacklight -dec 5 ;;
+    "up")   "$cmd" "$up_opt" 5 ;;
+    "down") "$cmd" "$down_opt" 5 ;;
     *)      exit 1 ;;
 esac
 
-notify-send "backlight $(xbacklight | cut -d '.' -f 1)"
+notify-send "backlight $("$cmd" | cut -d '.' -f 1)"
