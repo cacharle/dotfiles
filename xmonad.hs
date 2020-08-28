@@ -39,6 +39,7 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "~/bin/volume-ctl up")
          , ("<XF86MonBrightnessUp>",   spawn "~/bin/backlight-ctl up")
          , ("<XF86MonBrightnessDown>", spawn "~/bin/backlight-ctl down")
          , ("<XF86ScreenSaver>",       spawn "slock")
+         , ("<XF86TouchpadToggle>",    spawn "~/bin/touchpad-toggle")
 
          , ("M-o",                     spawn "~/bin/project-open")
          , ("M-m",                     spawn "st -e mocp")

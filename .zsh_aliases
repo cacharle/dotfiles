@@ -10,8 +10,8 @@ alias valgrindc='colour-valgrind'
 
 # common commands
 alias less='less -N'   # enable line number
-alias v='nvim'
-alias vim='nvim'
+alias v='vim'
+# alias vim='nvim'
 # alias mkdir='mkdir -p'
 alias gdb='gdb -q'     # disable long intro message
 alias sudo='sudo '     # enable color (the search for aliases continues)

@@ -29,7 +29,7 @@ set wrapmargin=0            " disable auto line wrapping
 set encoding=utf-8          " utf-8 encoding
 set formatoptions-=t        " do not auto break line > 89 character
 filetype plugin indent on   " allow to add specific rules for certain type of file
-set mouse=a                 " mouse scrolling (heretic)
+" set mouse=a                 " mouse scrolling (heretic)
 " }}}
 
 " browse list with tab {{{
