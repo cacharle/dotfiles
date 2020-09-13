@@ -32,7 +32,7 @@ alias ta='tree -a'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
-alias treeI="tree -I '__pycache__' -I '*.o' -I vendor"
+# alias ti="tree | grep -v -E '*.pyc'"
 
 # man
 alias ma="man"
@@ -56,8 +56,8 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gdt='git diff --stat'
 alias gl='git pull'
-alias glg='git log --stat'
-alias glgg='git log --graph'
+alias glg='git log --abbrev-commit --stat'
+alias glgg='git log --abbrev-commit --graph'
 alias glgo='git log --oneline --no-decorate'
 alias gp='git push'
 alias gcl='git clone --recurse-submodules'
@@ -67,9 +67,13 @@ alias gss='git status --short'
 alias gco='git checkout'
 alias gsta='git stash push'
 alias gstp='git stash pop'
-alias gpa="git remote | xargs -L1 git push --all"
 alias grv="git remote -v"
 alias gra="git remote add"
+gpa() {
+    branch="$1"
+    [ -z "$1" ] && branch=master
+    git remote | xargs -I{} git push {} "$branch"
+}
 
 # lpass (lastpass-cli)
 alias lpassp='lpass show --password --clip'  # put password in clipboard
@@ -118,9 +122,14 @@ wificonnect() {
 
 # alias mutt='neomutt'
 
-alias ytdl='youtube-dl'
+alias ytdl='youtube-dl --output "%(title)s.%(ext)s"'
+alias ytdlp='youtube-dl -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
 alias ytdla='youtube-dl -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
 
 alias qmvdest='qmv --format=do'
 
 alias xclip='xclip -selection clipboard'
+
+pacman-url() {
+    pacman -Si "$1" | grep URL | tr -s ' ' | cut -d ' ' -f 3
+}
