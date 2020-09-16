@@ -133,3 +133,7 @@ alias xclip='xclip -selection clipboard'
 pacman-url() {
     pacman -Si "$1" | grep URL | tr -s ' ' | cut -d ' ' -f 3
 }
+
+grep-kill() {
+    ps aux | grep "$1" | tr -s ' ' | cut -d ' ' -f 2 | xargs kill
+}

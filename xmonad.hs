@@ -1,9 +1,15 @@
+import           Control.Monad
+import           Data.List
+import           System.Exit
+
+
 import           XMonad
 import           XMonad.Config.Desktop
 
 -- Utilities
 import           XMonad.Util.EZConfig        (additionalKeysP, additionalKeys)
 import           XMonad.Util.SpawnOnce
+import           XMonad.Util.Dmenu
 
 -- Layouts
 import           XMonad.Layout.NoBorders
@@ -44,4 +50,18 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "~/bin/volume-ctl up")
          , ("M-o",                     spawn "~/bin/project-open")
          , ("M-m",                     spawn "st -e mocp")
          , ("M-S-d",                   spawn "notify-send \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
+         , ("M-q",                     spawn "notify-send Restart" >> spawn restartCmd)
+         , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io (exitWith ExitSuccess))
          ]
+
+confirm :: String -> X () -> X ()
+confirm prompt f = do
+    result <- menuArgs "dmenu" ["-p", prompt] ["yes", "no"]
+    when (result == "yes") f
+
+restartCmd :: String
+restartCmd = intercalate "; " [ "if type xmonad"
+                              , "then xmonad --recompile && xmonad --restart"
+                              , "else xmessage xmonad not in \\$PATH: \"$PATH\""
+                              , "fi"
+                              ]
