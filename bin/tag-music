@@ -1,0 +1,48 @@
+#!/bin/sh
+
+music_dir="$HOME/Music"
+
+for artist_dir in "$music_dir"/*
+do
+    [ ! -d "$artist_dir" ] && continue
+    artist="$(basename "$artist_dir")"
+    [ "$artist" = backup ] && continue
+
+    for album_dir in "$artist_dir"/*
+    do
+        album="$(basename "$album_dir")"
+        [ ! -d "$album_dir" ] && continue
+
+        for song_file in "$album_dir"/*
+        do
+            [ ! -f "$song_file" ] && continue
+            song="$(basename "$song_file" | cut -d '.' -f 1)"
+            # echo "$artist"
+            # echo "$album"
+            # echo "$song"
+            case "$song_file" in
+                *.ogg)
+                    ;;
+                *.opus)
+                    echo "OPUS: $song_file"
+                    echo "Title=$song
+Artist=$artist
+Album=$album
+Track=
+Total=
+Date=
+Genre=
+Comment=" | opustags -i -S "$song_file"
+                    ;;
+                *.mp3)
+                    id3tag --artist "$artist" --album "$album" --song "$song" "$songfile"
+                    ;;
+                *.m4a)
+                    id3tag --artist "$artist" --album "$album" --song "$song" "$songfile"
+                    ;;
+                *)
+                    ;;
+            esac
+        done
+    done
+done

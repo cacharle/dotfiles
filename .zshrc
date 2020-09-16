@@ -106,3 +106,6 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$DOTDIR/bin"
 # export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
+
+export MINISHELL_TEST_BONUS=yes
+export MINISHELL_TEST_PAGER=vim

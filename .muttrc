@@ -18,7 +18,7 @@ set record    = "+Send"
 set trash     = "+Trash"
 set postponed = "+Drafts"
 
-mailboxes =INBOX =Sent =Trash =Drafts
+mailboxes =INBOX =Sent =Send =Trash =Drafts
 
 set editor = 'vim'
 set sort = 'reverse-date'   # newest at the top
@@ -27,14 +27,14 @@ set date_format = "%d/%m %I:%M"
 set index_format = "%2C %Z %d %-15.15F %s (%-4.4c)"  # one line format in home
 
 # from https://github.com/LukeSmithxyz/mutt-wizard/blob/master/share/mutt-wizard.muttrc
-set rfc2047_parameters = yes # decode non standard stuff
-set sleep_time = 0  # don't pause
-set markers = no    # no '+' on line wrap
-set mark_old = no   # don't mark mail as read if not seen
-set mime_forward = yes  # attachements forwarded
-set wait_key = no   # no press to continue...
-set forward_format = "Fwd: %s"  # forward subject
-set forward_quote   # include previous message in forward
+set rfc2047_parameters = yes   # decode non standard stuff
+set sleep_time = 0             # don't pause
+set markers = no               # no '+' on line wrap
+set mark_old = no              # don't mark mail as read if not seen
+set mime_forward = yes         # attachements forwarded
+set wait_key = no              # no press to continue...
+set forward_format = "Fwd: %s" # forward subject
+set forward_quote              # include previous message in forward
 
 set sidebar_visible       = yes
 set sidebar_width         = 20
