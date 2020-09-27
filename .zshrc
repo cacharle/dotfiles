@@ -109,3 +109,4 @@ export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 
 export MINISHELL_TEST_BONUS=yes
 export MINISHELL_TEST_PAGER=vim
+export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
