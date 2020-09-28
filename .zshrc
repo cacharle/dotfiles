@@ -57,7 +57,7 @@ function chpwd() {
     content=$(ls | wc -l)
     ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
-    [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
+    #[ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
 # add command-not-found package suggestion
@@ -83,7 +83,7 @@ export XDG_CONFIG_HOME="/home/charles/.config/"
 export XDG_DATA_HOME="/home/charles/.data/"
 
 export EDITOR="vim"
-export TERM="st-256color"
+export TERM="xterm-256color"
 export MAIL='me@cacharle.xyz'
 export BROWSER='chromium'
 export BROWSERCLI='w3m'
@@ -98,15 +98,16 @@ export YSU_MESSAGE_POSITION="after"                                    # you-sho
 source $HOME/.zsh/zsh-you-should-use/you-should-use.plugin.zsh         # alias reminder
 
 # set tab to 4 spaces
-tabs 4
+#tabs 4
 
 export LFS=/mnt
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$DOTDIR/bin"
-# export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:$HOME/.brew/bin:$DOTDIR/bin:$HOME/bin"
 
 export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 
 export MINISHELL_TEST_BONUS=yes
 export MINISHELL_TEST_PAGER=vim
 export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
+
+19fetch

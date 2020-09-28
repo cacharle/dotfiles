@@ -19,7 +19,7 @@ alias doas='doas '     # same for doas
 alias info='info --vi-keys'
 
 # ls
-alias ls='ls --color=auto -F'
+alias ls='ls -G -F'
 alias ll="ls -lh"
 alias la="ls -a"
 alias lla="ls -alh"
@@ -32,7 +32,7 @@ alias ta='tree -a'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
-# alias ti="tree | grep -v -E '*.pyc'"
+alias ti="tree -I '*.pyc' -I '*.o'"
 
 # man
 alias ma="man"
