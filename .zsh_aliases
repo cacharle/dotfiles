@@ -75,6 +75,10 @@ gpa() {
     git remote | xargs -I{} git push {} "$branch"
 }
 
+gcl-xyz() {
+   git clone --recurse-submodules "git@cacharle.xyz:/srv/git/$1.git"
+}
+
 # lpass (lastpass-cli)
 alias lpassp='lpass show --password --clip'  # put password in clipboard
 
@@ -136,6 +140,10 @@ pacman-url() {
 
 grep-kill() {
     ps aux | grep "$1" | tr -s ' ' | cut -d ' ' -f 2 | xargs kill
+}
+
+python-help() {
+    python3 -c "import $1; help($1)"
 }
 
 alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"
