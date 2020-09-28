@@ -7,11 +7,10 @@ call plug#begin()
     Plug 'tpope/vim-eunuch'                   " basic unix command in vim
     Plug 'tomtom/tcomment_vim'                " mininal commenter
     Plug 'itchyny/lightline.vim'              " minimal status bar
-    Plug 'HappyTramp/vim-syntax-extra'        " syntax highlight of C operators
+    Plug 'cacharle/vim-syntax-extra'          " syntax highlight of C operators
     Plug 'romainl/vim-cool'                   " disable highlight after search
     Plug 'tpope/vim-fugitive'                 " git wrapper
     Plug 'junegunn/vim-easy-align'            " align
-    " Plug 'easymotion/vim-easymotion' " TODO very intresting
 
     " markdown preview in browser
     " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -22,7 +21,7 @@ call plug#begin()
     Plug 'ziglang/zig.vim'                    " zig
 
     " s19 at home
-    Plug 'HappyTramp/vim-42header'            " 42 header
+    Plug 'cacharle/vim-42header'              " 42 header
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
@@ -35,4 +34,5 @@ call plug#begin()
     " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
     " Plug 'vim-scripts/rfc-syntax'             " rfc
     " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
+    " Plug 'easymotion/vim-easymotion' " TODO very intresting
 call plug#end()
