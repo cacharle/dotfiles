@@ -207,17 +207,15 @@ nnoremap <leader>q :call QuickfixToggle()<CR>
 nnoremap <leader>n :cnext <CR>
 nnoremap <leader>p :cprevious <CR>
 let g:quickfix_is_open = 0
-if !exists('*QuickfixToggle')
-    function QuickfixToggle()
-        if g:quickfix_is_open
-            cclose
-            let g:quickfix_is_open = 0
-        else
-            copen
-            let g:quickfix_is_open = 1
-        endif
-    endfunction
-endif
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+    else
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
 " }}}
 
 " make {{{
