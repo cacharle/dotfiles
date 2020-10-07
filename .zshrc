@@ -93,7 +93,7 @@ export BROWSER='chromium'
 export BROWSERCLI='w3m'
 
 # ignore filetypes in autocomplete
-fignore=(o hi)
+fignore=(o hi dSYM)
 
 # pluggins
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # prompt syntax highlight
@@ -114,4 +114,7 @@ export MINISHELL_TEST_BONUS=yes
 export MINISHELL_TEST_PAGER=vim
 export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
 
-19fetch
+# 19fetch
+
+# Added by c_formatter_42
+export PATH="$PATH:/Users/cacharle/git/c_formatter_42"

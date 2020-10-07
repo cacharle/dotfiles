@@ -19,13 +19,14 @@ call plug#begin()
     Plug 'tikhomirov/vim-glsl'                " glsl
     Plug 'cespare/vim-toml'                   " toml
     Plug 'ziglang/zig.vim'                    " zig
+    Plug 'vim-scripts/applescript.vim'        " applescript
 
     " s19 at home
     Plug 'cacharle/vim-42header'              " 42 header
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
-    " Plug 'dracula/vim', {'as': 'vim'}       " dracula
+    Plug 'dracula/vim', {'as': 'vim'}       " dracula
     Plug 'altercation/vim-colors-solarized'   " solarized
 
     " intresting but not used
@@ -35,4 +36,7 @@ call plug#begin()
     " Plug 'vim-scripts/rfc-syntax'             " rfc
     " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
     " Plug 'easymotion/vim-easymotion' " TODO very intresting
+
+    Plug '~/git/c_formatter_42.vim'
+    Plug '~/git/doxy42.vim'
 call plug#end()

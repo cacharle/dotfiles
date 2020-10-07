@@ -32,7 +32,7 @@ alias ta='tree -a'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
-alias ti="tree -I '*.pyc' -I '*.o'"
+alias ti="tree --matchdirs -I '__pycache__' -I '*.o' -I '*.dSYM'"
 
 # man
 alias ma="man"
@@ -102,7 +102,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias norm='ruby -I/home/charles/git/norminette/vendor/bundle/ruby/2.7.0/gems/parseconfig-1.0.8/lib/ ~/git/norminette/norminette.rb'
+# alias norm='ruby -I/home/charles/git/norminette/vendor/bundle/ruby/2.7.0/gems/parseconfig-1.0.8/lib/ ~/git/norminette/norminette.rb'
+alias norm="norminette"
 
 getrfc() {
     curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
@@ -139,11 +140,12 @@ pacman-url() {
 }
 
 grep-kill() {
-    ps aux | grep "$1" | tr -s ' ' | cut -d ' ' -f 2 | xargs kill
+    ps aux | grep "$1" | grep -v grep | tr -s ' ' | cut -d ' ' -f 2 | xargs kill -9
 }
 
-python-help() {
-    python3 -c "import $1; help($1)"
-}
+alias python='python3'
+alias pydoc='pydoc3'
 
 alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"
+
+alias ssh-add-me="ssh-add -K $HOME/.ssh/id_rsa"

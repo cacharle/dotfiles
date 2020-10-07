@@ -6,6 +6,7 @@
 source $DOTDIR/.pluggins.vim
 " }}}
 
+
 """""""""""
 " options "
 """""""""""
@@ -80,24 +81,24 @@ set nofoldenable            " not folded by default
 " colorscheme onedark
 " }}}
 " dracula {{{
-" let g:dracula_bold = 1
-" let g:dracula_italic = 1
-" let g:dracula_colorterm = 0
-" colorscheme dracula
+let g:dracula_bold = 0
+let g:dracula_italic = 0
+let g:dracula_colorterm = 0
+colorscheme dracula
 " }}}
 " solarized {{{
-set t_Co=16
-let g:solarized_termcolors=16
-let g:solarized_visibility='low'  " visibility of invisible chars with set list
-set background=dark
-colorscheme solarized
+" set t_Co=16
+" let g:solarized_termcolors=16
+" let g:solarized_visibility='low'  " visibility of invisible chars with set list
+" set background=dark
+" colorscheme solarized
 " }}}
 " lightline {{{
 let g:lightline = {}
 " let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
 " let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -151,6 +152,9 @@ nnoremap <leader>t <C-t>
 nnoremap cu ct_
 nnoremap cp ct)
 nnoremap c, ct,
+" write shortcut that doesn't involve <CR>
+" (macos paste clipboard on enter for some reason)
+nnoremap ZZ :w<ESC>
 " }}}
 
 " buffer navigation {{{
@@ -162,7 +166,7 @@ nnoremap <leader>bl :ls<CR>
 
 " vimrc {{{
 nnoremap <leader>rc :vsplit $DOTDIR/.vimrc<cr>
-nnoremap <leader>src :source $MYVIMRC<cr>
+nnoremap <leader>sc :source $MYVIMRC<cr>
 " }}}
 
 " c {{{
@@ -170,7 +174,7 @@ nnoremap <leader>src :source $MYVIMRC<cr>
 nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>j
 
 " initialise a school header file
-function PutHeaderBoilerPlate()
+function! PutHeaderBoilerPlate()
     let l:filename = join(split(toupper(expand('%:t')), '\.'), "_")
     " echom l:filename
     call append(12, "#ifndef " . l:filename)
@@ -188,7 +192,7 @@ autocmd Filetype cpp setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
 
 " cpp {{{
 " Put Coplien Form boilerplate class
-function PutCoplienFormFunc(name)
+function! PutCoplienFormFunc(name)
     let l:default_constructor = a:name . "();\n"
     let l:copy_constructor = a:name . "(const " . a:name . "& other);\n"
     let l:copy_operator = a:name . "& operator=(const " . a:name . "& other);\n"
@@ -243,6 +247,8 @@ autocmd Filetype vim setlocal foldmethod=marker
 autocmd FileType haskell set formatprg=stylish-haskell
 
 autocmd FileType lisp set shiftwidth=2
+
+autocmd FileType python set keywordprg=pydoc3
 " }}}
 
 """"""""""""
@@ -277,4 +283,35 @@ let g:ctrlp_mruf_case_sensitive = 0
 " eazy-align {{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+" }}}
+
+" c_formatter_42 {{{
+let g:c_formatter_42_set_equalprg=1
+let g:c_formatter_42_format_on_save=0
+" }}}
+
+function! s:CountScopeLines()
+    normal! mq
+    execute '/^}'
+    let l:end_brace = line('.')
+    execute '?^{'
+    let l:start_brace = line('.')
+    normal! k
+    let l:scope_len = l:end_brace - l:start_brace - 1
+    let l:scope_name = substitute(getline('.'), '\t', ' ', 'g')
+    echom l:scope_len . ' lines in |' . l:scope_name . '|'
+    normal! `q
+endfunction
+
+command! CountScopeLines call s:CountScopeLines()
+
+command! Norm execute '!norminette ' . expand("%")
+
+" disable paste on enter
+" (need to be at the end or overwritted by something)
+nnoremap <CR> j
+
+" copy/paste with system {{{
+vnoremap <C-S-c> y:call system("pbcopy", getreg("\""))<CR>
+nnoremap <C-S-m> :call setreg("\"",system("pbpaste"))<CR>p
 " }}}

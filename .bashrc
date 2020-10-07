@@ -28,3 +28,6 @@ export XDG_DATA_HOME="$HOME/.data/"
 
 # vim key bindings
 set -o vi
+
+# Added by c_formatter_42
+export PATH="$PATH:/Users/cacharle/git/c_formatter_42"
