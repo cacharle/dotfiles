@@ -246,7 +246,7 @@ autocmd Filetype vim setlocal foldmethod=marker
 
 autocmd FileType haskell set formatprg=stylish-haskell
 
-autocmd FileType lisp set shiftwidth=2
+autocmd FileType lisp,yaml,json set shiftwidth=2
 
 autocmd FileType python set keywordprg=pydoc3
 " }}}
@@ -286,7 +286,7 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " c_formatter_42 {{{
-let g:c_formatter_42_set_equalprg=1
+let g:c_formatter_42_set_equalprg=0
 let g:c_formatter_42_format_on_save=0
 " }}}
 
@@ -305,13 +305,15 @@ endfunction
 
 command! CountScopeLines call s:CountScopeLines()
 
-command! Norm execute '!norminette ' . expand("%")
-
 " disable paste on enter
 " (need to be at the end or overwritted by something)
-nnoremap <CR> j
+" nnoremap <CR> j
 
 " copy/paste with system {{{
-vnoremap <C-S-c> y:call system("pbcopy", getreg("\""))<CR>
-nnoremap <C-S-m> :call setreg("\"",system("pbpaste"))<CR>p
+vnoremap <leader>c y:call system("pbcopy", getreg("\""))<CR>
+nnoremap <leader>v :call setreg("\"",system("pbpaste"))<CR>p
 " }}}
+
+inoremap <C-a> <C-n>
+
+command! TagsUpdate :call system('ctags $(find . -type f -name "*.c" -o -name "*.h")')

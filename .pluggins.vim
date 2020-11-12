@@ -20,6 +20,7 @@ call plug#begin()
     Plug 'cespare/vim-toml'                   " toml
     Plug 'ziglang/zig.vim'                    " zig
     Plug 'vim-scripts/applescript.vim'        " applescript
+    Plug 'vim-scripts/rfc-syntax'             " rfc
 
     " s19 at home
     Plug 'cacharle/vim-42header'              " 42 header
@@ -33,7 +34,6 @@ call plug#begin()
     " Plug 'sheerun/vim-polyglot'             " better syntax highlight
     " Plug 'unblevable/quick-scope'           " highlight first char to jump to word
     " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
-    " Plug 'vim-scripts/rfc-syntax'             " rfc
     " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
     " Plug 'easymotion/vim-easymotion' " TODO very intresting
 

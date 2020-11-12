@@ -2,14 +2,14 @@
 # .bashrc #
 ###########
 
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias grep='grep --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias v='vim'
 
 # adding superuser bin to PATH
-export PATH="/sbin:$PATH"
+export PATH="/sbin:$PATH:/bin:/usr/bin"
 
 # man with color
 export LESS_TERMCAP_mb=$'\e[1;32m'

@@ -106,15 +106,24 @@ source $HOME/.zsh/zsh-you-should-use/you-should-use.plugin.zsh         # alias r
 
 export LFS=/mnt
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:$HOME/.brew/bin:$DOTDIR/bin:$HOME/bin"
+export PATH="/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:$HOME/.brew/bin:$DOTDIR/bin:$HOME/bin"
 
 export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 
-export MINISHELL_TEST_BONUS=yes
-export MINISHELL_TEST_PAGER=vim
-export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
+# export MINISHELL_TEST_BONUS=yes
+# export MINISHELL_TEST_PAGER=vim
+# export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
 
 # 19fetch
 
 # Added by c_formatter_42
-export PATH="$PATH:/Users/cacharle/git/c_formatter_42"
+# export PATH="$PATH:/Users/cacharle/git/c_formatter_42"
+
+# export DOCKER_TLS_VERIFY=1
+# export MACHINE_STORAGE_PATH=/Users/$(whoami)/goinfre
+# export DOCKER_CERT_PATH=/Users/$(whoami)/goinfre/certs
+# export DOCKER_HOST=tcp://$(docker-machine ip default):2376
+# eval $(docker-machine env default)
+
+# export MINIKUBE_IN_STYLE=false
+# export MINIKUBE_HOME=/Users/cacharle/goinfre/test_minikube

@@ -74,6 +74,11 @@ gpa() {
     [ -z "$1" ] && branch=master
     git remote | xargs -I{} git push {} "$branch"
 }
+gpaf() {
+    branch="$1"
+    [ -z "$1" ] && branch=master
+    git remote | xargs -I{} git push -f {} "$branch"
+}
 
 gcl-xyz() {
    git clone --recurse-submodules "git@cacharle.xyz:/srv/git/$1.git"
@@ -149,3 +154,9 @@ alias pydoc='pydoc3'
 alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"
 
 alias ssh-add-me="ssh-add -K $HOME/.ssh/id_rsa"
+
+alias valgrind-shell='valgrind --trace-children=no --leak-check=yes --child-silent-after-fork=yes --show-leak-kinds=definite'
+
+alias gcc-include-paths='echo | gcc -E -Wp,-v -'
+
+alias g++=clang++
