@@ -243,6 +243,8 @@ autocmd Filetype vim setlocal foldmethod=marker
 autocmd FileType haskell set formatprg=stylish-haskell
 
 autocmd FileType lisp,html,css set shiftwidth=2
+
+autocmd FileType js set shiftwidth=4
 " }}}
 
 """"""""""""

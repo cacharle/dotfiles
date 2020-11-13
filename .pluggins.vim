@@ -12,6 +12,7 @@ call plug#begin()
     Plug 'tpope/vim-fugitive'                 " git wrapper
     Plug 'junegunn/vim-easy-align'            " align
     " Plug 'easymotion/vim-easymotion' " TODO very intresting
+    Plug 'skammer/vim-css-color'
 
     " markdown preview in browser
     " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
