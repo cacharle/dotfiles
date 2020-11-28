@@ -15,3 +15,5 @@ color listfocus          black     cyan
 color listfocus_unread   black     cyan
 color info               default   black
 color article            default   default
+
+max-items 100

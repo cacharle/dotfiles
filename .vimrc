@@ -190,9 +190,9 @@ autocmd Filetype cpp setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
 " Put Coplien Form boilerplate class
 function PutCoplienFormFunc(name)
     let l:default_constructor = a:name . "();\n"
-    let l:copy_constructor = a:name . "(const " . a:name . "& other);\n"
-    let l:copy_operator = a:name . "& operator=(const " . a:name . "& other);\n"
-    let l:destructor = "~" . a:name . "();\n"
+    let l:copy_constructor    = a:name . "(const " . a:name . "& other);\n"
+    let l:copy_operator       = a:name . "& operator=(const " . a:name . "& other);\n"
+    let l:destructor          = "~" . a:name . "();\n"
 
     execute "normal iclass " . a:name . "\n{\npublic:\n" . l:default_constructor . l:copy_constructor . l:copy_operator . l:destructor . "\nprivate:\n};\n"
     execute "normal <2{"
@@ -249,7 +249,7 @@ autocmd FileType lisp set shiftwidth=2
 
 " ctrlp {{{
 " directory to ignore when searching in file tree
-set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*
+set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*,*.pyc
 " ctrlp ignore all stuff in the .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'rw'
@@ -276,3 +276,5 @@ let g:ctrlp_mruf_case_sensitive = 0
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
+
+let g:c_formatter_42_format_on_save=0

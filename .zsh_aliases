@@ -26,7 +26,7 @@ alias lla="ls -alh"
 alias lss="ls -Ssh"
 
 # tree
-alias tree='tree -FC'
+alias tree='tree -FCA'
 alias t='tree'
 alias ta='tree -a'
 alias t1='tree -L 1'
@@ -73,6 +73,11 @@ gpa() {
     branch="$1"
     [ -z "$1" ] && branch=master
     git remote | xargs -I{} git push {} "$branch"
+}
+gpaf() {
+    branch="$1"
+    [ -z "$1" ] && branch=master
+    git remote | xargs -I{} git push -f {} "$branch"
 }
 
 # lpass (lastpass-cli)
@@ -123,8 +128,8 @@ wificonnect() {
 # alias mutt='neomutt'
 
 alias ytdl='youtube-dl --output "%(title)s.%(ext)s"'
-alias ytdlp='youtube-dl -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
-alias ytdla='youtube-dl -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+alias ytdlp='youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
+alias ytdla='youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
 
 alias qmvdest='qmv --format=do'
 

@@ -110,3 +110,8 @@ export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 export MINISHELL_TEST_BONUS=yes
 export MINISHELL_TEST_PAGER=vim
 export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
+
+# Added by c_formatter_42
+export PATH="$PATH:/home/charles/git/c_formatter_42"
+
+export MINIKUBE_IN_STYLE=false

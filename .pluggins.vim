@@ -20,6 +20,7 @@ call plug#begin()
     Plug 'tikhomirov/vim-glsl'                " glsl
     Plug 'cespare/vim-toml'                   " toml
     Plug 'ziglang/zig.vim'                    " zig
+    Plug 'nikvdp/ejs-syntax'                  " ejs
 
     " s19 at home
     Plug 'HappyTramp/vim-42header'            " 42 header
@@ -35,4 +36,6 @@ call plug#begin()
     " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
     " Plug 'vim-scripts/rfc-syntax'             " rfc
     " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
+    Plug '/home/charles/git/c_formatter_42.vim'
+    Plug 'cacharle/doxy42.vim'
 call plug#end()
