@@ -38,6 +38,12 @@ create_dotfile_link_same .zprofile
 
 mkdir -p "$HOME/.config"
 create_dotfile_link redshift.conf .config/redshift.conf
+create_dotfile_link mimeapps.list .config/mimeapps.list
+mkdir -p "$HOME/.local/share/applications"
+create_dotfile_link applications/sxiv.desktop     .data/applications/sxiv.desktop
+create_dotfile_link applications/mutt.desktop     .data/applications/mutt.desktop
+create_dotfile_link applications/zathura.desktop  .data/applications/zathura.desktop
+create_dotfile_link applications/newsboat.desktop .data/applications/newsboat.desktop
 
 mkdir -p "$HOME/.config/dunst"
 create_dotfile_link dunst/dunstrc .config/dunst/dunstrc

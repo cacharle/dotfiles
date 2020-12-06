@@ -17,4 +17,8 @@ color listfocus_unread   black     cyan
 color info               default   black
 color article            default   default
 
-macro v set browser "youtube-dl -o - %u | mpv -"; open-in-browser; set browser chromium
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
+
+macro v set browser "youtube-dl --cookies /home/charles/youtube.com_cookies.txt -o - %u | mpv -"; open-in-browser; set browser chromium
