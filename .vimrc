@@ -277,4 +277,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 
+vnoremap <leader>c y:call system("xclip -selection clipboard", getreg("\""))<CR>
+nnoremap <leader>v :call setreg("\"", system("xclip -selection clipboard -o"))<CR>p
+
 let g:c_formatter_42_format_on_save=0
