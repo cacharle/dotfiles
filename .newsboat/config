@@ -1,11 +1,12 @@
-auto-reload yes   # reload feeds at startup
+# auto-reload yes   # reload feeds at startup
+reload-threads 8
+max-items 100
+# pager less
 
 bind-key j down
 bind-key k up
 bind-key g home
 bind-key G end
-
-# pager less
 
 # solarized color-scheme
 color background         default   default
@@ -16,4 +17,4 @@ color listfocus_unread   black     cyan
 color info               default   black
 color article            default   default
 
-max-items 100
+macro v set browser "youtube-dl -o - %u | mpv -"; open-in-browser; set browser chromium
