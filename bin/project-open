@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # shellcheck disable=SC2088
+# (tile does not expand in single quote)
 dest=$(
     find ~/git -mindepth 1 -maxdepth 1 -printf '%A@\t%f\n' |
     sort -r |
@@ -15,7 +16,7 @@ dest_path="$HOME/git/$dest"
 if cd "$dest_path" 2> /dev/null
 then
     touch "$dest_path"
-    st
+    exec st
 else
     while [ -z "$choice" ]
     do
@@ -27,16 +28,25 @@ else
             mkdir -p "$dest_path"
             cd "$dest_path" || exit 1
             git init
+            exec st
             ;;
+
         "clone")
-            url="$(echo '' | dmenu -p "Entry repository url: ")"
-            notify-send "Cloning $url to $dest_path"
-            git clone --recursive "$url" "$dest_path" ||
-                (notify-send -u critical "Clone failed"; exit 1)
-            cd "$dest_path" || exit 1
+            while [ -z "$remote_choice" ]
+            do
+                remote_choice=$(printf 'github.com\ncacharle.xyz\nother' | dmenu -p "Remote location")
+            done
+            case "$remote_choice" in
+                "github.com")   prefix='git@github.com:cacharle/'   ;;
+                "cacharle.xyz") prefix='git@cacharle.xyz:/srv/git/' ;;
+                "other") ;;
+            esac
+            url="$prefix$(echo "$dest" | dmenu -p "Enter repository url: $prefix")"
+            st -e /bin/sh -c "git clone --recursive '$url' '$dest_path' && cd '$dest_path' && exec $SHELL" ||
+                notify-send -u critical "Could not clone $url in $dest_path" && exit 1
             ;;
+
         "cancel") exit ;;
         *) exit 1 ;;
     esac
-    st
 fi
