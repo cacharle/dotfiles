@@ -8,4 +8,4 @@ dunst &
 xset r rate 300 40
 
 echo 'Starting XMonad'
-exec xmonad 2>&1 > /dev/null
+exec xmonad

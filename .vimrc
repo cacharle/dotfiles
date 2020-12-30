@@ -218,6 +218,20 @@ function! QuickfixToggle()
 endfunction
 " }}}
 
+function! CountScopeLines()
+    normal! mq
+    execute '/^}'
+    let l:end_brace = line('.')
+    execute '?^{'
+    let l:start_brace = line('.')
+    normal! k
+    let l:scope_len = l:end_brace - l:start_brace - 1
+    let l:scope_name = substitute(getline('.'), '\t', ' ', 'g')
+    echom l:scope_len . ' lines in |' . l:scope_name . '|'
+    normal! `q
+endfunction
+command! CountScopeLines call CountScopeLines()
+
 " make {{{
 nnoremap <leader>m :make all <CR>
 " }}}
