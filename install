@@ -2,7 +2,9 @@
 
 create_dotfile_link()
 {
-    ln -svf "$DOTDIR/$1" "$HOME/$2"
+    target="$HOME/$2"
+    mkdir -vp "$(dirname "$target")"
+    ln -svf "$DOTDIR/$1" "$target"
 }
 
 create_dotfile_link_same()
@@ -22,10 +24,8 @@ create_dotfile_link_same .zshrc
 create_dotfile_link_same .bashrc
 create_dotfile_link_same .vimrc
 create_dotfile_link_same .pluggins.vim
-mkdir -p "$HOME/.vim/plugin"
 create_dotfile_link grep.vim .vim/plugin/grep.vim
 
-mkdir -p "$HOME/.xmonad"
 create_dotfile_link xmonad.hs .xmonad/xmonad.hs
 
 create_dotfile_link_same .gdbinit
@@ -36,23 +36,21 @@ create_dotfile_link_same .mailcap
 create_dotfile_link_same .xinitrc
 create_dotfile_link_same .zprofile
 
-mkdir -p "$HOME/.config"
 create_dotfile_link redshift.conf .config/redshift.conf
 create_dotfile_link mimeapps.list .config/mimeapps.list
-mkdir -p "$HOME/.local/share/applications"
 create_dotfile_link applications/sxiv.desktop     .data/applications/sxiv.desktop
 create_dotfile_link applications/mutt.desktop     .data/applications/mutt.desktop
 create_dotfile_link applications/zathura.desktop  .data/applications/zathura.desktop
 create_dotfile_link applications/newsboat.desktop .data/applications/newsboat.desktop
 
-mkdir -p "$HOME/.config/dunst"
 create_dotfile_link dunst/dunstrc .config/dunst/dunstrc
 
-mkdir -p "$HOME/.newsboat"
 create_dotfile_link_same .newsboat/config
 #create_dotfile_link_same .newsboat/urls
 
 # create_dotfile_link_same slock/config.def.h
+
+create_dotfile_link qutebrowser/config.py .config/qutebrowser/config.py
 
 ln -sv "$DOTDIR/bin" "$HOME/bin"
 
