@@ -3,7 +3,11 @@
 """"""""""
 
 " load pluggins {{{
-source $DOTDIR/.pluggins.vim
+if exists("$DOTDIR")
+    source $DOTDIR/.pluggins.vim
+else
+    source .pluggins.vim
+endif
 " }}}
 
 """""""""""
