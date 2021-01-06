@@ -263,11 +263,13 @@ autocmd FileType lisp,html,css setlocal shiftwidth=2
 
 " ctrlp {{{
 " directory to ignore when searching in file tree
-set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*,*.pyc
+set wildignore=*/doc/*,*/tmp/*,*.o,*.so,*.a,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*,*.pyc
 " ctrlp ignore all stuff in the .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_mruf_case_sensitive = 0
+
+nnoremap <leader>p :CtrlPTag<CR>
 " }}}
 
 " quick-scope {{{
@@ -294,4 +296,7 @@ nmap ga <Plug>(EasyAlign)
 vnoremap <leader>c y:call system("xclip -selection clipboard", getreg("\""))<CR>
 nnoremap <leader>v :call setreg("\"", system("xclip -selection clipboard -o"))<CR>p
 
-let g:c_formatter_42_format_on_save=0
+let g:c_formatter_42_format_on_save = 0
+
+let g:gutentags_ctags_exclude = ['doc/*', 'Makefile']
+" let g:gutentags_ctags_exclude_wildignore = 1
