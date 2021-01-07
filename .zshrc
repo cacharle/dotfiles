@@ -85,7 +85,7 @@ export XDG_DATA_HOME="/home/charles/.data/"
 export EDITOR="vim"
 export TERM="st-256color"
 export MAIL='me@cacharle.xyz'
-export BROWSER='chromium'
+export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
 
 # ignore filetypes in autocomplete

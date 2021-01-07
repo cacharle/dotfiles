@@ -3,16 +3,19 @@
 """"""""""""""""
 
 call plug#begin()
-    Plug 'ctrlpvim/ctrlp.vim'                 " Ctrl-P similar to vsc
-    Plug 'tpope/vim-eunuch'                   " basic unix command in vim
-    Plug 'tomtom/tcomment_vim'                " mininal commenter
-    Plug 'itchyny/lightline.vim'              " minimal status bar
-    Plug 'HappyTramp/vim-syntax-extra'        " syntax highlight of C operators
-    Plug 'romainl/vim-cool'                   " disable highlight after search
-    Plug 'tpope/vim-fugitive'                 " git wrapper
-    Plug 'junegunn/vim-easy-align'            " align
+    Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
+    Plug 'tpope/vim-eunuch'             " basic unix command in vim
+    Plug 'tomtom/tcomment_vim'          " mininal commenter
+    Plug 'itchyny/lightline.vim'        " minimal status bar
+    Plug 'HappyTramp/vim-syntax-extra'  " syntax highlight of C operators
+    Plug 'romainl/vim-cool'             " disable highlight after search
+    Plug 'tpope/vim-fugitive'           " git wrapper
+    Plug 'junegunn/vim-easy-align'      " align
+    Plug 'ludovicchabant/vim-gutentags' " generate tags in project root
+    Plug 'junegunn/goyo.vim'            " generate tags in project root
+    "
     " Plug 'easymotion/vim-easymotion' " TODO very intresting
-    Plug 'ludovicchabant/vim-gutentags'       " generate tags in project root
+
 
     " markdown preview in browser
     " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}

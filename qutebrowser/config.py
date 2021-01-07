@@ -30,7 +30,7 @@ c.fonts.hints = 'bold 11pt default_family'
 
 c.hints.chars = 'asdfghjkl;'
 
-c.statusbar.show = 'in-mode'
+# c.statusbar.show = 'in-mode'
 
 c.editor.command = [
     '/usr/local/bin/st', '-e',
@@ -39,8 +39,13 @@ c.editor.command = [
 
 c.messages.timeout = 4000
 
-config.bind('v', 'hint links spawn /usr/bin/mpv {hint-url}')
+config.bind(';v', 'hint links spawn /usr/bin/mpv {hint-url} ;;'
+                  'message-info "opening in video player"')
 
+config.bind('<Ctrl-J>', 'completion-item-focus next', 'command')
+config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
+
+# c.content.proxy = 'socks://localhost:9050/'
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova

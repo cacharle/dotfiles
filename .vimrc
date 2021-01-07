@@ -166,7 +166,7 @@ nnoremap <leader>bl :ls<CR>
 
 " vimrc {{{
 nnoremap <leader>rc :vsplit $DOTDIR/.vimrc<cr>
-nnoremap <leader>src :source $MYVIMRC<cr>
+nnoremap <leader>sc :source $MYVIMRC<cr>
 " }}}
 
 " c {{{
