@@ -85,7 +85,7 @@ export XDG_DATA_HOME="/home/charles/.data/"
 export EDITOR="vim"
 export TERM="st-256color"
 export MAIL='me@cacharle.xyz'
-export BROWSER='chromium'
+export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
 
 # ignore filetypes in autocomplete
@@ -109,3 +109,9 @@ export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 
 export MINISHELL_TEST_BONUS=yes
 export MINISHELL_TEST_PAGER=vim
+export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
+
+# Added by c_formatter_42
+export PATH="$PATH:/home/charles/git/c_formatter_42"
+
+export MINIKUBE_IN_STYLE=false

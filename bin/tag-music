@@ -16,33 +16,17 @@ do
         for song_file in "$album_dir"/*
         do
             [ ! -f "$song_file" ] && continue
-            song="$(basename "$song_file" | cut -d '.' -f 1)"
-            # echo "$artist"
-            # echo "$album"
-            # echo "$song"
-            case "$song_file" in
-                *.ogg)
-                    ;;
-                *.opus)
-                    echo "OPUS: $song_file"
-                    echo "Title=$song
-Artist=$artist
-Album=$album
-Track=
-Total=
-Date=
-Genre=
-Comment=" | opustags -i -S "$song_file"
-                    ;;
-                *.mp3)
-                    id3tag --artist "$artist" --album "$album" --song "$song" "$songfile"
-                    ;;
-                *.m4a)
-                    id3tag --artist "$artist" --album "$album" --song "$song" "$songfile"
-                    ;;
-                *)
-                    ;;
-            esac
+            song="$(basename "$song_file" | rev | cut -d '.' -f 2- | rev)"
+            # echo $song_file
+            track=0
+            if expr "$song" : "[0-9][0-9]*\-.*" > /dev/null
+            then
+                track="$(echo "$song" | cut -d '-' -f 1)"
+                song="$(echo "$song" | cut -d '-' -f 2-)"
+            fi
+            # echo $track $song
+            echo $song_file
+            taffy --artist "$artist" --album "$album" --title "$song" --track "$track" "$song_file"
         done
     done
 done

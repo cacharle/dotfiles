@@ -26,13 +26,13 @@ alias lla="ls -alh"
 alias lss="ls -Ssh"
 
 # tree
-alias tree='tree -FC'
+alias tree='tree -FCA'
 alias t='tree'
 alias ta='tree -a'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
-# alias ti="tree | grep -v -E '*.pyc'"
+alias ti="tree --matchdirs -I __pycache__ -I node_modules -I '*.o'"
 
 # man
 alias ma="man"
@@ -74,12 +74,17 @@ gpa() {
     [ -z "$1" ] && branch=master
     git remote | xargs -I{} git push {} "$branch"
 }
+gpaf() {
+    branch="$1"
+    [ -z "$1" ] && branch=master
+    git remote | xargs -I{} git push -f {} "$branch"
+}
 
 # lpass (lastpass-cli)
 alias lpassp='lpass show --password --clip'  # put password in clipboard
 
 # helper to switch between dual and single monitor setup
-alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --auto'
+alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --mode 1280x1024'
 alias single='xrandr --output VGA1 --off'
 
 # edit config files
@@ -123,8 +128,8 @@ wificonnect() {
 # alias mutt='neomutt'
 
 alias ytdl='youtube-dl --output "%(title)s.%(ext)s"'
-alias ytdlp='youtube-dl -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
-alias ytdla='youtube-dl -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+alias ytdlp='youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
+alias ytdla='youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
 
 alias qmvdest='qmv --format=do'
 
@@ -137,3 +142,5 @@ pacman-url() {
 grep-kill() {
     ps aux | grep "$1" | tr -s ' ' | cut -d ' ' -f 2 | xargs kill
 }
+
+alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"

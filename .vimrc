@@ -3,7 +3,11 @@
 """"""""""
 
 " load pluggins {{{
-source $DOTDIR/.pluggins.vim
+if exists("$DOTDIR")
+    source $DOTDIR/.pluggins.vim
+else
+    source .pluggins.vim
+endif
 " }}}
 
 """""""""""
@@ -162,7 +166,7 @@ nnoremap <leader>bl :ls<CR>
 
 " vimrc {{{
 nnoremap <leader>rc :vsplit $DOTDIR/.vimrc<cr>
-nnoremap <leader>src :source $MYVIMRC<cr>
+nnoremap <leader>sc :source $MYVIMRC<cr>
 " }}}
 
 " c {{{
@@ -190,9 +194,9 @@ autocmd Filetype cpp setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
 " Put Coplien Form boilerplate class
 function PutCoplienFormFunc(name)
     let l:default_constructor = a:name . "();\n"
-    let l:copy_constructor = a:name . "(const " . a:name . "& other);\n"
-    let l:copy_operator = a:name . "& operator=(const " . a:name . "& other);\n"
-    let l:destructor = "~" . a:name . "();\n"
+    let l:copy_constructor    = a:name . "(const " . a:name . "& other);\n"
+    let l:copy_operator       = a:name . "& operator=(const " . a:name . "& other);\n"
+    let l:destructor          = "~" . a:name . "();\n"
 
     execute "normal iclass " . a:name . "\n{\npublic:\n" . l:default_constructor . l:copy_constructor . l:copy_operator . l:destructor . "\nprivate:\n};\n"
     execute "normal <2{"
@@ -207,18 +211,30 @@ nnoremap <leader>q :call QuickfixToggle()<CR>
 nnoremap <leader>n :cnext <CR>
 nnoremap <leader>p :cprevious <CR>
 let g:quickfix_is_open = 0
-if !exists('*QuickfixToggle')
-    function QuickfixToggle()
-        if g:quickfix_is_open
-            cclose
-            let g:quickfix_is_open = 0
-        else
-            copen
-            let g:quickfix_is_open = 1
-        endif
-    endfunction
-endif
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+    else
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
 " }}}
+
+function! CountScopeLines()
+    normal! mq
+    execute '/^}'
+    let l:end_brace = line('.')
+    execute '?^{'
+    let l:start_brace = line('.')
+    normal! k
+    let l:scope_len = l:end_brace - l:start_brace - 1
+    let l:scope_name = substitute(getline('.'), '\t', ' ', 'g')
+    echom l:scope_len . ' lines in |' . l:scope_name . '|'
+    normal! `q
+endfunction
+command! CountScopeLines call CountScopeLines()
 
 " make {{{
 nnoremap <leader>m :make all <CR>
@@ -242,9 +258,7 @@ autocmd Filetype vim setlocal foldmethod=marker
 
 autocmd FileType haskell set formatprg=stylish-haskell
 
-autocmd FileType lisp,html,css set shiftwidth=2
-
-autocmd FileType js set shiftwidth=4
+autocmd FileType lisp,html,css setlocal shiftwidth=2
 " }}}
 
 """"""""""""
@@ -253,11 +267,13 @@ autocmd FileType js set shiftwidth=4
 
 " ctrlp {{{
 " directory to ignore when searching in file tree
-set wildignore=*/tmp/*,*.o,*.so,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*
+set wildignore=*/doc/*,*/tmp/*,*.o,*.so,*.a,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*,*.pyc
 " ctrlp ignore all stuff in the .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_mruf_case_sensitive = 0
+
+nnoremap <leader>p :CtrlPTag<CR>
 " }}}
 
 " quick-scope {{{
@@ -280,3 +296,11 @@ let g:ctrlp_mruf_case_sensitive = 0
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
+
+vnoremap <leader>c y:call system("xclip -selection clipboard", getreg("\""))<CR>
+nnoremap <leader>v :call setreg("\"", system("xclip -selection clipboard -o"))<CR>p
+
+let g:c_formatter_42_format_on_save = 0
+
+let g:gutentags_ctags_exclude = ['doc/*', 'Makefile']
+" let g:gutentags_ctags_exclude_wildignore = 1
