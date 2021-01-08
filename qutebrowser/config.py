@@ -1,6 +1,6 @@
 from qutebrowser.api import interceptor
 
-# Youtueb ad blocking
+# Youtube ad blocking
 def filter_yt(info: interceptor.Request):
     url = info.request_url
     if (
@@ -11,6 +11,7 @@ def filter_yt(info: interceptor.Request):
         info.block()
 
 interceptor.register(filter_yt)
+
 
 c.aliases = {
     'q': 'close',
@@ -28,7 +29,7 @@ c.url.searchengines = {
 c.fonts.default_family = 'Fira Mono'
 c.fonts.hints = 'bold 11pt default_family'
 
-c.hints.chars = 'asdfghjkl;'
+c.hints.chars = 'asdfghjkl;'  # use key in the main row for hints
 
 # c.statusbar.show = 'in-mode'
 
@@ -45,7 +46,10 @@ config.bind(';v', 'hint links spawn /usr/bin/mpv {hint-url} ;;'
 config.bind('<Ctrl-J>', 'completion-item-focus next', 'command')
 config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
 
-# c.content.proxy = 'socks://localhost:9050/'
+c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme (very nice result)
+c.colors.webpage.bg = 'black'             # Disabling white flash before page loading
+
+# c.content.proxy = 'socks://localhost:9050/'  # tor
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
