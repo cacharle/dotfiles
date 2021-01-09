@@ -3,6 +3,9 @@ reload-threads 8
 max-items 100
 # pager less
 
+datetime-format "%d %b %Y"
+# articlelist-format "%4i %f
+
 bind-key j down
 bind-key k up
 bind-key g home
