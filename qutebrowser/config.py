@@ -23,7 +23,9 @@ c.url.searchengines = {
     'DEFAULT': 'https://searx.cacharle.xyz?q={}',
     'd': 'https://duckduckgo.com/?q={}',
     'g': 'https://google.com/?q={}',
-    'y': 'https://www.youtube.com/results?search_query={}'
+    'y': 'https://www.youtube.com/results?search_query={}',
+    'gh': 'https://github.com/search?q={}',
+    'h': 'https://hoogle.haskell.org/?hoogle={}',
 }
 
 c.fonts.default_family = 'Fira Mono'

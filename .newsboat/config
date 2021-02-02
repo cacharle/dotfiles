@@ -27,4 +27,4 @@ highlight article "\\[image\\ [0-9]+\\]" green default
 
 # browser vimb
 
-macro v set browser "mpv %u"; open-in-browser; set browser chromium
+macro v set browser "mpv --ytdl-format=best %u"; open-in-browser; set browser chromium

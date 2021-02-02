@@ -103,7 +103,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias norm='ruby -I/home/charles/git/norminette/vendor/bundle/ruby/2.7.0/gems/parseconfig-1.0.8/lib/ ~/git/norminette/norminette.rb'
+alias norm='ruby ~/git/norminette/norminette.rb'
 
 getrfc() {
     curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
