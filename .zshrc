@@ -102,7 +102,7 @@ tabs 4
 
 export LFS=/mnt
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$DOTDIR/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$DOTDIR/bin:$HOME/.local/bin"
 # export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
