@@ -3,6 +3,9 @@ reload-threads 8
 max-items 100
 # pager less
 
+datetime-format "%d %b %Y"
+# articlelist-format "%4i %f
+
 bind-key j down
 bind-key k up
 bind-key g home
@@ -24,4 +27,4 @@ highlight article "\\[image\\ [0-9]+\\]" green default
 
 # browser vimb
 
-macro v set browser "mpv %u"; open-in-browser; set browser chromium
+macro v set browser "mpv --ytdl-format=best %u"; open-in-browser; set browser chromium
