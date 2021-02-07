@@ -1,5 +1,7 @@
 from qutebrowser.api import interceptor
 
+config.load_autoconfig(True)
+
 # Youtube ad blocking
 def filter_yt(info: interceptor.Request):
     url = info.request_url
@@ -42,16 +44,20 @@ c.editor.command = [
 
 c.messages.timeout = 4000
 
-config.bind(';v', 'hint links spawn /usr/bin/mpv {hint-url} ;;'
+config.bind(';v', 'hint links spawn /usr/bin/mpv --ytdl-format=best {hint-url} ;;'
                   'message-info "opening in video player"')
 
 config.bind('<Ctrl-J>', 'completion-item-focus next', 'command')
 config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
 
+config.bind('J', 'tab-prev', 'normal')
+config.bind('K', 'tab-next', 'normal')
+
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme (very nice result)
 c.colors.webpage.bg = 'black'             # Disabling white flash before page loading
 
 # c.content.proxy = 'socks://localhost:9050/'  # tor
+c.content.autoplay = False
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
