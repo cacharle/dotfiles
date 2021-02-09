@@ -52,6 +52,8 @@ create_dotfile_link_same .newsboat/config
 
 create_dotfile_link qutebrowser/config.py .config/qutebrowser/config.py
 
+create_dotfile_link zathura/zathurarc .config/zathura/zathurarc
+
 ln -sv "$DOTDIR/bin" "$HOME/bin"
 
 ###############################################################################

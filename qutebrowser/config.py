@@ -59,6 +59,9 @@ c.colors.webpage.bg = 'black'             # Disabling white flash before page lo
 # c.content.proxy = 'socks://localhost:9050/'  # tor
 c.content.autoplay = False
 
+c.auto_save.session = True
+c.session.lazy_restore = True
+
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
 # Solarized Dark scheme by Ethan Schoonover (modified by aramisgithub)
