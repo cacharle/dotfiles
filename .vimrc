@@ -304,3 +304,5 @@ let g:c_formatter_42_format_on_save = 0
 
 let g:gutentags_ctags_exclude = ['doc/*', 'Makefile']
 " let g:gutentags_ctags_exclude_wildignore = 1
+
+let g:goyo_height = 90
