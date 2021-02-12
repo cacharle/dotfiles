@@ -28,6 +28,7 @@ c.url.searchengines = {
     'y': 'https://www.youtube.com/results?search_query={}',
     'gh': 'https://github.com/search?q={}',
     'h': 'https://hoogle.haskell.org/?hoogle={}',
+    'cpp': 'http://cplusplus.com/search.do?q={}',
 }
 
 c.fonts.default_family = 'Fira Mono'
@@ -52,6 +53,8 @@ config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
 
 config.bind('J', 'tab-prev', 'normal')
 config.bind('K', 'tab-next', 'normal')
+
+config.bind('<F12>', 'devtools', 'normal')
 
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme (very nice result)
 c.colors.webpage.bg = 'black'             # Disabling white flash before page loading
