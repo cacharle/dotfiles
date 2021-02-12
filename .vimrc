@@ -84,24 +84,24 @@ set nofoldenable            " not folded by default
 " colorscheme onedark
 " }}}
 " dracula {{{
-" let g:dracula_bold = 1
-" let g:dracula_italic = 1
-" let g:dracula_colorterm = 0
-" colorscheme dracula
+let g:dracula_bold = 1
+let g:dracula_italic = 1
+let g:dracula_colorterm = 0
+colorscheme dracula
 " }}}
 " solarized {{{
-set t_Co=16
-let g:solarized_termcolors=16
-let g:solarized_visibility='low'  " visibility of invisible chars with set list
-set background=dark
-colorscheme solarized
+" set t_Co=16
+" let g:solarized_termcolors=16
+" let g:solarized_visibility='low'  " visibility of invisible chars with set list
+" set background=dark
+" colorscheme solarized
 " }}}
 " lightline {{{
 let g:lightline = {}
 " let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
 " let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]

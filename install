@@ -23,6 +23,7 @@ create_dotfile_link_same()
 create_dotfile_link_same .zshrc
 create_dotfile_link_same .bashrc
 create_dotfile_link_same .vimrc
+create_dotfile_link_same .nanorc
 create_dotfile_link_same .pluggins.vim
 create_dotfile_link grep.vim .vim/plugin/grep.vim
 

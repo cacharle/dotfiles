@@ -115,3 +115,5 @@ export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
 export PATH="$PATH:/home/charles/git/c_formatter_42"
 
 export MINIKUBE_IN_STYLE=false
+
+export WEBSERV_FLAGS=-DWEBSERV_CACHARLE

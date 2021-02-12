@@ -32,7 +32,7 @@ call plug#begin()
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
-    " Plug 'dracula/vim', {'as': 'vim'}       " dracula
+    Plug 'dracula/vim', {'as': 'vim'}       " dracula
     Plug 'altercation/vim-colors-solarized'   " solarized
 
     " intresting but not used

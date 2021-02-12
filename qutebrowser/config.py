@@ -58,6 +58,7 @@ c.colors.webpage.bg = 'black'             # Disabling white flash before page lo
 
 # c.content.proxy = 'socks://localhost:9050/'  # tor
 c.content.autoplay = False
+c.content.notifications = False
 
 c.auto_save.session = True
 c.session.lazy_restore = True
