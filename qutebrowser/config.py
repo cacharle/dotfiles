@@ -29,6 +29,7 @@ c.url.searchengines = {
     'gh': 'https://github.com/search?q={}',
     'h': 'https://hoogle.haskell.org/?hoogle={}',
     'cpp': 'http://cplusplus.com/search.do?q={}',
+    'lar': 'https://www.larousse.fr/dictionnaires/francais/{}'
 }
 
 c.fonts.default_family = 'Fira Mono'
@@ -62,9 +63,11 @@ c.colors.webpage.bg = 'black'             # Disabling white flash before page lo
 # c.content.proxy = 'socks://localhost:9050/'  # tor
 c.content.autoplay = False
 c.content.notifications = False
+c.content.cookies.accept = 'no-3rdparty'
 
 c.auto_save.session = True
 c.session.lazy_restore = True
+
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova

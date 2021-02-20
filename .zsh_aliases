@@ -6,6 +6,7 @@
 alias grep='grep --color=auto'
 alias tree='tree -C'
 alias pacman='pacman --color=auto'
+alias yay='yay --color=auto'
 alias valgrindc='colour-valgrind'
 
 # common commands
