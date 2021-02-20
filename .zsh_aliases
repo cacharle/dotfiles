@@ -72,7 +72,7 @@ alias grv="git remote -v"
 alias gra="git remote add"
 gpa() {
     branch="$1"
-    [ -z "$1" ] && branch=master
+    [ -z "$branch" ] && branch=$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)
     git remote | xargs -I{} git push {} "$branch"
 }
 gpaf() {
