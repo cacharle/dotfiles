@@ -6,8 +6,5 @@ echo 'Starting redshift'
 redshift -c $HOME/.config/redshift.conf &
 echo 'Starting dunst'
 dunst &
-
-xset r rate 300 40
-
-echo 'Starting XMonad'
+xset r rate 200 50
 exec xmonad

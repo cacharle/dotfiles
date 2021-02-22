@@ -34,12 +34,13 @@ else
         "clone")
             while [ -z "$remote_choice" ]
             do
-                remote_choice=$(printf 'github.com\ncacharle.xyz\nother' | dmenu -p "Remote location")
+                remote_choice=$(printf 'github.com\ncacharle.xyz\nclipboard\nother' | dmenu -p "Remote location")
             done
             case "$remote_choice" in
-                "github.com")   prefix='git@github.com:cacharle/'   ;;
-                "cacharle.xyz") prefix='git@cacharle.xyz:/srv/git/' ;;
-                "other") ;;
+                github.com)   prefix='git@github.com:cacharle/'       ;;
+                cacharle.xyz) prefix='git@cacharle.xyz:/srv/git/'     ;;
+                clipboard)    dest="$(xclip -selection clipboard -o)" ;;
+                other) ;;
             esac
             url="$prefix$(echo "$dest" | dmenu -p "Enter repository url: $prefix")"
             st -e /bin/sh -c "git clone --recursive '$url' '$dest_path' && cd '$dest_path' && exec $SHELL" ||

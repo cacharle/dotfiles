@@ -102,7 +102,7 @@ tabs 4
 
 export LFS=/mnt
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$DOTDIR/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$DOTDIR/bin:$HOME/.local/bin"
 # export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
@@ -115,3 +115,5 @@ export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
 export PATH="$PATH:/home/charles/git/c_formatter_42"
 
 export MINIKUBE_IN_STYLE=false
+
+export WEBSERV_FLAGS=-DWEBSERV_CACHARLE

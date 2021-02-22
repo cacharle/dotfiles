@@ -4,6 +4,9 @@ touchpad_name='ETPS/2 Elantech Touchpad'
 
 active="$(xinput list-props "$touchpad_name" | grep 'Device Enabled' | cut -f 3)"
 
-[ "$active" -eq 1 ] &&
-    xinput disable "$touchpad_name" ||
+if [ "$active" -eq 1 ]
+then
+    xinput disable "$touchpad_name"
+else
     xinput enable "$touchpad_name"
+fi

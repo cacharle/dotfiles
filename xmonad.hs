@@ -24,7 +24,7 @@ main = xmonad $ desktopConfig
         , focusedBorderColor = "#bbc5ff"
         , terminal           = "st"
         , layoutHook         = myLayouts
-       , manageHook         = myManageHook
+        , manageHook         = myManageHook
         , modMask            = mod4Mask       -- mod key to super
         , borderWidth        = 1
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
@@ -50,6 +50,7 @@ myKeys = [ ("<XF86AudioRaiseVolume>",  spawn "~/bin/volume-ctl up")
          , ("M-o",                     spawn "~/bin/project-open")
          , ("M-m",                     spawn "st -e mocp")
          , ("M-S-d",                   spawn "notify-send \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
+         , ("M-S-b",                   spawn "notify-send \"battery: $(cat /sys/class/power_supply/BAT0/capacity)\"")
          , ("M-q",                     spawn "notify-send Restart" >> spawn restartCmd)
          , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io (exitWith ExitSuccess))
          ]

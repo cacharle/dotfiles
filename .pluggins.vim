@@ -13,8 +13,10 @@ call plug#begin()
     Plug 'junegunn/vim-easy-align'      " align
     Plug 'ludovicchabant/vim-gutentags' " generate tags in project root
     Plug 'junegunn/goyo.vim'            " generate tags in project root
-    "
+
     " Plug 'easymotion/vim-easymotion' " TODO very intresting
+    " Plug 'mhinz/vim-rfc'                " RFC download/syntax/tags
+    Plug 'skammer/vim-css-color'
 
 
     " markdown preview in browser
@@ -31,14 +33,14 @@ call plug#begin()
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
-    " Plug 'dracula/vim', {'as': 'vim'}       " dracula
+    Plug 'dracula/vim', {'as': 'vim'}       " dracula
     Plug 'altercation/vim-colors-solarized'   " solarized
 
     " intresting but not used
     " Plug 'sheerun/vim-polyglot'             " better syntax highlight
     " Plug 'unblevable/quick-scope'           " highlight first char to jump to word
     " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
-    " Plug 'vim-scripts/rfc-syntax'             " rfc
+    Plug 'vim-scripts/rfc-syntax'             " rfc
     " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
     Plug '/home/charles/git/c_formatter_42.vim'
     Plug 'cacharle/doxy42.vim'

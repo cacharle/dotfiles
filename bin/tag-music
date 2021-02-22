@@ -25,7 +25,7 @@ do
                 song="$(echo "$song" | cut -d '-' -f 2-)"
             fi
             # echo $track $song
-            echo $song_file
+            # echo $song_file
             taffy --artist "$artist" --album "$album" --title "$song" --track "$track" "$song_file"
         done
     done
