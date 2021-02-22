@@ -1,7 +1,7 @@
 # xinput disable 'ETPS/2 Elantech Touchpad' &
 
 echo 'Starting redshift'
-redshift -c /home/charles/.config/redshift.conf &
+redshift -c $HOME/.config/redshift.conf &
 echo 'Starting dunst'
 dunst &
 
