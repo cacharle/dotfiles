@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+domain="$(echo | dmenu -p 'Enter domain name: ')"
+
+echo | dmenu -P -p 'Enter your master password: ' |
+    (bw get password "$domain" ||
+        { notify-send -u critical 'Bad password'; exit 1; }) |
+    xclip -selection clipboard

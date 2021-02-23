@@ -52,6 +52,9 @@ create_dotfile_link_same .newsboat/config
 
 create_dotfile_link qutebrowser/config.py .config/qutebrowser/config.py
 
+create_dotfile_link_same .moc/config
+create_dotfile_link_same .moc/themes/solarized
+
 ln -sv "$DOTDIR/bin" "$HOME/bin"
 
 ###############################################################################
