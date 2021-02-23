@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+usage() {
+    echo "Usage: $0 push/pull [rsync args]"
+}
+
+[ -z "$1" ] || [ $# -gt 2 ] && usage && exit 1
+
+RSYNC_CMD="rsync -avh --progress --compress $2"
+
+REMOTE_USER=charles
+REMOTE_HOST=cacharle.xyz
+
+SYNC_DIR="cacharle-sync/"
+SYNC_PATH="$HOME/$SYNC_DIR"
+
+case "$1" in
+    push)
+        $RSYNC_CMD "$SYNC_PATH" "$REMOTE_USER@$REMOTE_HOST:$SYNC_DIR"
+        ;;
+    pull)
+        $RSYNC_CMD "$REMOTE_USER@$REMOTE_HOST:$SYNC_DIR" "$SYNC_PATH"
+        ;;
+    *)
+        usage && exit 1
+        ;;
+esac

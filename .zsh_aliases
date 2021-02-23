@@ -86,7 +86,9 @@ alias lpassp='lpass show --password --clip'  # put password in clipboard
 
 # helper to switch between dual and single monitor setup
 alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --mode 1280x1024'
+alias triple='xrandr --output DVI-0 --mode 1024x768 --left-of DVI-1 --output DVI-1 --mode 1920x1080 --primary --left-of HDMI-0 --output HDMI-0 --mode 1920x1080'
 alias single='xrandr --output VGA1 --off'
+
 
 # edit config files
 alias zshrc="vim $DOTDIR/.zshrc && source $DOTDIR/.zshrc"
