@@ -62,6 +62,16 @@ create_dotfile_link zathura/zathurarc .config/zathura/zathurarc
 ln -svT "$DOTDIR/bin" "$HOME/bin"
 
 ###############################################################################
+# cacharle-sync install
+###############################################################################
+
+CACHARLE_SYNC_PATH="$HOME/cacharle-sync"
+if [ -d "$CACHARLE_SYNC_PATH" ]
+then
+    ln -svf "$CACHARLE_SYNC_PATH/newsboat-urls" "$HOME/.newsboat/urls"
+fi
+
+###############################################################################
 # dependencies
 ###############################################################################
 

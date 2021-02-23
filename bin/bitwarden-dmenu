@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 domain="$(echo | dmenu -p 'Enter domain name: ')"
 

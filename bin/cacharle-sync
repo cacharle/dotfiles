@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 usage() {
     echo "Usage: $0 push/pull [rsync args...]"
