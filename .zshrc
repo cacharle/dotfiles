@@ -79,8 +79,9 @@ export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 
 #XDG
-export XDG_CONFIG_HOME="$HOME/.config/"
-export XDG_DATA_HOME="$HOME/.data/"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 export EDITOR="vim"
 export TERM="st-256color"

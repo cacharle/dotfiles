@@ -52,9 +52,9 @@ myKeys = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
 
          , ("M-o",                     spawn "~/bin/project-open")
          , ("M-m",                     spawn "st -e mocp")
-         , ("M-S-d",                   spawn "notify-send \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
+         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
          , ("M-S-b",                   spawn "notify-send \"battery: $(cat /sys/class/power_supply/BAT0/capacity)\"")
-         , ("M-q",                     spawn "notify-send Restart" >> spawn restartCmd)
+         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
          , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io (exitWith ExitSuccess))
          ]
 

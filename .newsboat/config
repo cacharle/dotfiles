@@ -1,5 +1,5 @@
 # auto-reload yes   # reload feeds at startup
-reload-threads 8
+reload-threads 64
 max-items 100
 # pager less
 
@@ -20,11 +20,14 @@ color listfocus_unread   black     cyan
 color info               default   black
 color article            default   default
 
-
 highlight article "^(Title):.*$" blue default
 highlight article "https?://[^ ]+" red default
 highlight article "\\[image\\ [0-9]+\\]" green default
+highlight all "---.*" yellow default
+highlight all "===.*" yellow default
+highlight feedlist ".*(0/0))" black default
 
-# browser vimb
+macro v set browser "mpv --ytdl-format=best %u"; open-in-browser; set browser qutebrowser
 
-macro v set browser "mpv --ytdl-format=best %u"; open-in-browser; set browser chromium
+notify-always yes
+notify-program /usr/bin/notify-send
