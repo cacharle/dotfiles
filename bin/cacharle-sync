@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
 
 usage() {
-    echo "Usage: $0 push/pull [rsync args]"
+    echo "Usage: $0 push/pull [rsync args...]"
 }
 
-[ -z "$1" ] || [ $# -gt 2 ] && usage && exit 1
+[ -z "$1" ] && usage && exit 1
 
-RSYNC_CMD="rsync -avh --progress --compress $2"
+RSYNC_ARGS="$(echo "$*" | cut -d ' ' -f 2-)"
+RSYNC_CMD="rsync -avh --progress --compress $RSYNC_ARGS"
 
 REMOTE_USER=charles
 REMOTE_HOST=cacharle.xyz
