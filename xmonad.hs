@@ -39,14 +39,11 @@ myLayouts = tiledBigMaster        -- bigger master for code and smaller slave fo
 
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
 
-volumeUpCmd   = "pulseaudio-ctl up"
-volumeDownCmd = "pulseaudio-ctl down"
-
-myKeys = [ ("<XF86AudioLowerVolume>",  spawn volumeDownCmd)
-         , ("<XF86AudioRaiseVolume>",  spawn volumeUpCmd)
+myKeys = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
+         , ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
          , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
-         , ("M-<F11>",                 spawn volumeDownCmd)
-         , ("M-<F12>",                 spawn volumeUpCmd)
+         , ("M-<F11>",                 spawn "pulseaudio-ctl down")
+         , ("M-<F12>",                 spawn "pulseaudio-ctl up")
 
          , ("<XF86MonBrightnessUp>",   spawn "~/bin/backlight-ctl up")
          , ("<XF86MonBrightnessDown>", spawn "~/bin/backlight-ctl down")

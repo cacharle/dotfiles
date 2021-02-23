@@ -45,6 +45,7 @@ create_dotfile_link applications/zathura.desktop  .data/applications/zathura.des
 create_dotfile_link applications/newsboat.desktop .data/applications/newsboat.desktop
 
 create_dotfile_link dunst/dunstrc .config/dunst/dunstrc
+create_dotfile_link pulseaudio-ctl/config .config/pulseaudio-ctl/config
 
 create_dotfile_link_same .newsboat/config
 #create_dotfile_link_same .newsboat/urls
