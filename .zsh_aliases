@@ -6,6 +6,7 @@
 alias grep='grep --color=auto'
 alias tree='tree -C'
 alias pacman='pacman --color=auto'
+alias yay='yay --color=auto'
 alias valgrindc='colour-valgrind'
 
 # common commands
@@ -71,7 +72,7 @@ alias grv="git remote -v"
 alias gra="git remote add"
 gpa() {
     branch="$1"
-    [ -z "$1" ] && branch=master
+    [ -z "$branch" ] && branch=$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)
     git remote | xargs -I{} git push {} "$branch"
 }
 gpaf() {
@@ -103,7 +104,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias norm='ruby ~/git/norminette/norminette.rb'
+alias norminette='ruby ~/git/norminette/norminette.rb'
+alias norm='norminette'
 
 getrfc() {
     curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
@@ -115,7 +117,7 @@ alias bton='echo power on | bluetoothctl'
 alias btoff='echo power off | bluetoothctl'
 
 # pdf selector
-alias openpdf='zathura `ls -1 *.pdf | dmenu` &'
+# alias pdf-open="zathura \$(echo $HOME/Documents/*.pdf | tr ' ' '\\n' | dmenu)"
 
 alias cagob='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build'
 alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'

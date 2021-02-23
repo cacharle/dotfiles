@@ -249,7 +249,7 @@ autocmd BufReadPre *.md autocmd! BufWritePre
 
 " filetype {{{
 " real tab in c file for school projects
-autocmd BufReadPre,BufNewFile *.h,*.c set filetype=c
+let g:c_syntax_for_h = 1   " filetype=c in header files instead of filetype=cpp
 autocmd Filetype c setlocal noexpandtab
 " std::cout << ... << std::endl; shortcut
 autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<hi
@@ -304,3 +304,5 @@ let g:c_formatter_42_format_on_save = 0
 
 let g:gutentags_ctags_exclude = ['doc/*', 'Makefile']
 " let g:gutentags_ctags_exclude_wildignore = 1
+
+let g:goyo_height = 90

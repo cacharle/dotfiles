@@ -23,6 +23,7 @@ create_dotfile_link_same()
 create_dotfile_link_same .zshrc
 create_dotfile_link_same .bashrc
 create_dotfile_link_same .vimrc
+create_dotfile_link_same .nanorc
 create_dotfile_link_same .pluggins.vim
 create_dotfile_link grep.vim .vim/plugin/grep.vim
 
@@ -54,6 +55,8 @@ create_dotfile_link qutebrowser/config.py .config/qutebrowser/config.py
 
 create_dotfile_link_same .moc/config
 create_dotfile_link_same .moc/themes/solarized
+
+create_dotfile_link zathura/zathurarc .config/zathura/zathurarc
 
 ln -sv "$DOTDIR/bin" "$HOME/bin"
 
