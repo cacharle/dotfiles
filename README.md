@@ -2,19 +2,29 @@
 
 ## Installation
 
-1. Backup your current configuration files, they will be overwritten
-2. `cd` in this repo
-3. Run the `install` script
+Make sure to backup your current configuration files, they will be overwritten.
+
+```
+$ git clone --recursive git://git.cacharle.xyz/dotfiles
+$ cd dotfiles
+$ ./install
+```
 
 ## Tools I use
 
-* [vim](https://github.com/vim/vim) - terminal text editor
-* [zsh](https://www.zsh.org/) - interactive shell
-* [xmonad](https://xmonad.org) - window manager
-* [redshift](http://jonls.dk/redshift/) - change screen color temperature
-* [mutt](http://www.mutt.org/) - email client
-* [newsboat](https://newsboat.org/) - RSS feed reader
-* [moc](https://moc.daper.net/) - music player
+| Name        | Link                               | Description                     |
+|-------------|------------------------------------|---------------------------------|
+| vim         | https://github.com/vim/vim         | Terminal text editor            |
+| zsh         | https://www.zsh.org/               | Interactive shell               |
+| xmonad      | https://xmonad.org                 | Window manager                  |
+| qutebrowser | https://www.qutebrowser.org        | Vim like browser                |
+| mutt        | http://www.mutt.org/               | Email client                    |
+| newsboat    | https://newsboat.org/              | RSS feed reader                 |
+| zathura     | https://pwmt.org/projects/zathura/ | PDF viewer with vim keybindings |
+| sxiv        | https://github.com/muennich/sxiv   | Simple image viewer             |
+| mpv         | https://mpv.io/                    | Simple video player             |
+| moc         | https://moc.daper.net/             | Music player                    |
+| redshift    | http://jonls.dk/redshift/          | Change screen color temperature |
 
 ## School 19 Config
 

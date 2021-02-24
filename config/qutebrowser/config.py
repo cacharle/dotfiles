@@ -72,7 +72,7 @@ c.session.lazy_restore = True
 
 home_path = os.environ.get('HOME')
 if home_path is not None:
-    download_path = os.path.join(home_path, "downloads")
+    download_path = os.path.join(home_path, "dl")
     if not os.path.exists(download_path):
         os.mkdir(download_path)
     c.downloads.location.directory = download_path

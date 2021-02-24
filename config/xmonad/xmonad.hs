@@ -56,7 +56,7 @@ myKeys = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
          , ("<XF86TouchpadToggle>",    spawn "touchpad-toggle")
 
          , ("M-o",                     spawn "project-open")
-         , ("M-m",                     spawn "st -e mocp")
+         , ("M-m",                     spawn "st -e mocp -C /home/cacharle/.config/moc/config")
          , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
          , ("M-S-b",                   spawn "notify-send \"battery: $(cat /sys/class/power_supply/BAT0/capacity)\"")
          , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)

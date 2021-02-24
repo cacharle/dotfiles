@@ -216,10 +216,7 @@ HideFileExtension = yes
 # Theme file to use.  This can be absolute path or relative to
 # /usr/share/moc/themes/ (depends on installation prefix) or
 # ~/.moc/themes/ .
-#
-# Example:    Theme = laras_theme
-#
-Theme = solarized
+Theme = /home/cacharle/.config/moc/themes/solarized
 
 # The theme used when running on an xterm.
 #
@@ -234,7 +231,7 @@ Theme = solarized
 
 # MOC directory (where pid file, socket and state files are stored).
 # You can use ~ at the beginning.
-#MOCDir = ~/.moc
+MOCDir = ~/.local/share/moc
 
 # Use mmap() to read files.  mmap() is much slower on NFS.
 #UseMMap = no
@@ -278,10 +275,7 @@ Theme = solarized
 
 # Choose a keymap file (relative to '~/.moc/' or using an absolute path).
 # An annotated example keymap file is included ('keymap.example').
-#
-# Example:    Keymap = my_keymap
-#
-Keymap = keymap
+Keymap = /home/cacharle/.config/moc/keymap
 
 # Use ASCII rather than graphic characters for drawing lines.  This
 # helps on some terminals.
