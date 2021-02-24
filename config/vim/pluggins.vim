@@ -2,7 +2,7 @@
 " vim pluggins "
 """"""""""""""""
 
-call plug#begin()
+call plug#begin("$XDG_DATA_HOME/vim/plugged")
     Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
     Plug 'tpope/vim-eunuch'             " basic unix command in vim
     Plug 'tomtom/tcomment_vim'          " mininal commenter

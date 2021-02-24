@@ -51,7 +51,7 @@ set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
 
 # solarized color scheme
-source "$DOTDIR/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
+source "$XDG_DATA_HOME/mutt/solarized/mutt-colors-solarized-dark-16.muttrc"
 
 # password
 source "gpg -d $HOME/.config/mutt/passwd.muttrc.gpg 2> /dev/null |"

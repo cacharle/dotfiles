@@ -19,7 +19,7 @@ set directory=$XDG_CACHE_HOME/vim/swap   | call mkdir(&directory, 'p')
 set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')
 " }}}
 
-source pluggins.vim  " load pluggins
+source $XDG_CONFIG_HOME/vim/pluggins.vim  " load pluggins
 
 " common {{{
 let mapleader = ' '         " set leader key to space
@@ -94,14 +94,14 @@ set nofoldenable            " not folded by default
 " let g:dracula_bold = 1
 " let g:dracula_italic = 1
 " let g:dracula_colorterm = 0
-" colorscheme dracula
+" silent! colorscheme dracula
 " }}}
 " solarized {{{
 set t_Co=16
 let g:solarized_termcolors=16
 let g:solarized_visibility='low'  " visibility of invisible chars with set list
 set background=dark
-colorscheme solarized
+silent! colorscheme solarized
 " }}}
 " lightline {{{
 let g:lightline = {}
@@ -171,10 +171,7 @@ nnoremap <leader><TAB> :b#<CR>
 nnoremap <leader>bl :ls<CR>
 " }}}
 
-" vimrc {{{
-nnoremap <leader>rc :vsplit $DOTDIR/.vimrc<cr>
-nnoremap <leader>sc :source $MYVIMRC<cr>
-" }}}
+nnoremap <leader>sc :source $MYVIMRC<cr>  " source vimrc
 
 " c {{{
 " create c function body from prototype
@@ -313,3 +310,5 @@ let g:gutentags_ctags_exclude = ['doc/*', 'Makefile']
 " let g:gutentags_ctags_exclude_wildignore = 1
 
 let g:goyo_height = 90
+
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo

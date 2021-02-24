@@ -3,10 +3,11 @@
 # xinput disable 'ETPS/2 Elantech Touchpad' &
 
 echo 'Starting redshift'
-redshift -c $HOME/.config/redshift.conf &
+redshift -c $XDG_CONFIG_HOME/redshift/redshift.conf &
 echo 'Starting dunst'
 dunst &
 xset r rate 200 50
+pulseaudio --daemonize
 
 case "$(cat /etc/hostname)" in
     cacharle-main)

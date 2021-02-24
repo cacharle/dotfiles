@@ -3,10 +3,8 @@
 ###############
 
 
-[ -z $DOTDIR ] && export DOTDIR=$HOME/git/dotfiles # FIXME have to change path manually if install elsewhere
-
 # load aliases
-source $DOTDIR/.zsh_aliases
+source $XDG_CONFIG_HOME/zsh/aliases.zsh
 
 # prompt
 case `tty` in
@@ -19,7 +17,7 @@ case `tty` in
         ;;
     *)
         # pure prompt
-        export FPATH="$FPATH:$HOME/.zsh/pure"
+        export FPATH="$FPATH:$XDG_DATA_HOME/zsh/pure"
         ZSH_THEME="pure"
         autoload -U promptinit
         promptinit
@@ -64,8 +62,7 @@ function chpwd() {
 #source /etc/zsh_command_not_found
 
 
-# ignore filetypes in autocomplete
-fignore=(o hi)
+fignore=(o hi) # ignore extensions in autocomplete
 
 # pluggins
 source $XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # prompt syntax highlight
@@ -75,6 +72,5 @@ source $XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh  # alias 
 
 # set tab to 4 spaces
 tabs 4
-
 
 export GPG_TTY=$(tty)  # fixing gpg fatal error about tty

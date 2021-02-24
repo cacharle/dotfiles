@@ -20,10 +20,10 @@ alias doas='doas '     # same for doas
 alias info='info --vi-keys'
 
 # ls
-alias ls='ls --color=auto -F'
-alias ll="ls -lh"
-alias la="ls -a"
-alias lla="ls -alh"
+alias ls='ls --color=auto -Fh'
+alias ll="ls -l"
+alias la="ls -A"
+alias lla="ls -Al"
 alias lss="ls -Ssh"
 
 # tree
@@ -87,18 +87,6 @@ alias lpassp='lpass show --password --clip'  # put password in clipboard
 # helper to switch between dual and single monitor setup
 alias dual='xrandr --output LVDS1 --primary --left-of VGA1 --output VGA1 --mode 1280x1024'
 alias single='xrandr --output VGA1 --off'
-
-
-# edit config files
-alias zshrc="vim $DOTDIR/.zshrc && source $DOTDIR/.zshrc"
-alias zshaliasrc="vim $DOTDIR/.zsh_aliases && source $DOTDIR/.zshrc"
-alias vimrc="vim $DOTDIR/.vimrc"
-alias vimplugrc="vim $DOTDIR/.pluggins.vim"
-alias xmonadrc="vim $DOTDIR/xmonad.hs"
-alias muttrc="vim $DOTDIR/.muttrc"
-
-# other
-#alias date="date -R"
 
 # parent directory jump
 alias ..='cd ..'

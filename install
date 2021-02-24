@@ -1,111 +1,64 @@
 #!/bin/sh
 
-create_dotfile_link()
-{
-    target="$HOME/$2"
-    mkdir -vp "$(dirname "$target")"
-    ln -svf "$DOTDIR/$1" "$target"
+mkdir -pv "$XDG_CONFIG_HOME"
+mkdir -pv "$XDG_DATA_HOME"
+mkdir -pv "$XDG_CACHE_HOME"
+
+echo '---------------------------- CONFIG FILE LINKS ---------------------------'
+
+link_home_files() {
+    rice_dir="$1"
+    dest_dir="$2"
+    paths=$(mktemp)
+    # generate a file with the file path in this repo and the link for the real path
+    # each line is in the format: TARGET LINKNAME
+    find "$rice_dir" -type f |
+        sed -e 'p' -e 's:^'"$rice_dir"':'"$dest_dir"':' |
+        awk '{ if (NR % 2 == 1) { print "'"$(pwd)"'" "/" $0 } else print }' |
+        xargs -L 2 > "$paths"
+    cat $paths | cut -d ' ' -f 2 | xargs -L 1 dirname | xargs -L 1 mkdir -pv
+    cat $paths | xargs -L 1 ln -svf
 }
 
-create_dotfile_link_same()
-{
-    create_dotfile_link "$1" "$1"
-}
+link_home_files 'config' "$XDG_CONFIG_HOME"
+link_home_files 'local'  "$HOME/.local"
 
-###############################################################################
-# link dotfiles
-###############################################################################
+ln -svf "$(pwd)/config/x11/xinitrc"  "$HOME/.xinitrc"
+ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
 
-# dotfiles directory
-[ -z "$DOTDIR" ] && DOTDIR=$(pwd) && export DOTDIR
-
-# Creating links
-create_dotfile_link_same .zshrc
-create_dotfile_link_same .bashrc
-create_dotfile_link_same .vimrc
-create_dotfile_link_same .nanorc
-create_dotfile_link_same .pluggins.vim
-create_dotfile_link grep.vim .vim/plugin/grep.vim
-
-create_dotfile_link xmonad.hs .xmonad/xmonad.hs
-
-create_dotfile_link_same .gdbinit
-create_dotfile_link_same .ghci
-create_dotfile_link_same .gitconfig
-create_dotfile_link_same .muttrc
-create_dotfile_link_same .mailcap
-create_dotfile_link_same .xinitrc
-create_dotfile_link_same .zprofile
-
-create_dotfile_link redshift.conf .config/redshift.conf
-create_dotfile_link mimeapps.list .config/mimeapps.list
-create_dotfile_link applications/sxiv.desktop     .data/applications/sxiv.desktop
-create_dotfile_link applications/mutt.desktop     .data/applications/mutt.desktop
-create_dotfile_link applications/zathura.desktop  .data/applications/zathura.desktop
-create_dotfile_link applications/newsboat.desktop .data/applications/newsboat.desktop
-
-create_dotfile_link dunst/dunstrc .config/dunst/dunstrc
-create_dotfile_link pulseaudio-ctl/config .config/pulseaudio-ctl/config
-
-create_dotfile_link_same .newsboat/config
-#create_dotfile_link_same .newsboat/urls
-
-# create_dotfile_link_same slock/config.def.h
-
-create_dotfile_link qutebrowser/config.py .config/qutebrowser/config.py
-
-create_dotfile_link_same .moc/config
-create_dotfile_link_same .moc/keymap
-create_dotfile_link_same .moc/themes/solarized
-
-create_dotfile_link zathura/zathurarc .config/zathura/zathurarc
-
-ln -svT "$DOTDIR/bin" "$HOME/bin"
-
-###############################################################################
+################################################################################
 # cacharle-sync install
-###############################################################################
+################################################################################
 
 CACHARLE_SYNC_PATH="$HOME/cacharle-sync"
-if [ -d "$CACHARLE_SYNC_PATH" ]
-then
-    ln -svf "$CACHARLE_SYNC_PATH/newsboat-urls" "$HOME/.newsboat/urls"
-fi
+[ -d "$CACHARLE_SYNC_PATH" ] &&
+    ln -svf "$CACHARLE_SYNC_PATH/newsboat-urls" "$XDG_CONFIG_HOME/newsboat/urls"
 
-###############################################################################
-# dependencies
+################################################################################
+# vim plug
 ###############################################################################
 
-[ "$#" -ne 1 ] || [ ! "$1" = "-a" ] && exit 0
-echo "Installing Dependencies"
-
-###############################################################################
-# vim Plug
-PLUGFILE="$HOME/.vim/autoload/plug.vim"
+echo '---------------------------- INSTALL VIM PLUG ----------------------------'
+PLUGFILE="$XDG_DATA_HOME/vim/autoload/plug.vim"
 PLUGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-[ ! -f "$PLUGFILE" ] && echo "Downloading plug.vim" && \
-    curl -fLo "$PLUGFILE" --create-dirs "$PLUGURL"
-echo "Installing plug.vim Pluggins"
+[ ! -f "$PLUGFILE" ] && curl -fLo "$PLUGFILE" --create-dirs "$PLUGURL"
 vim -c "PlugInstall" -c "qa"
 
 ###############################################################################
 # zsh pluggins
+###############################################################################
 
-update_plugin()
+echo '---------------------------- INSTALL ZSH PLUGGINS ------------------------'
+update_zsh_plugin()
 {
     url="$1"
-    dest_path="$2"
-    if [ ! -d "$dest_path" ]
-    then
-        echo "Installing $dest_path"
-        git clone "$url" "$dest_path"
-    else
-        echo "Updating $dest_path"
-        git -C "$dest_path" pull
-    fi
+    path="$XDG_DATA_HOME/zsh/$(basename "$url")"
+    ([ ! -d "$path" ] || [ -z "$(ls -A "$path")" ]) &&
+        git clone "$url" "$path" ||
+        git -C "$path" pull
 }
 
-mkdir -p "$HOME/.zsh"
-update_plugin 'https://github.com/sindresorhus/pure' "$HOME/.zsh/pure"
-update_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting' "$HOME/.zsh/zsh-syntax-highlighting"
-update_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use' "$HOME/.zsh/zsh-you-should-use"
+mkdir -p "$XDG_DATA_HOME/zsh"
+update_zsh_plugin 'https://github.com/sindresorhus/pure'
+update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting'
+update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
