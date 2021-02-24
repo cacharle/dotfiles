@@ -1,3 +1,3 @@
-[submodule "mutt-colors-solarized"]
-	path = mutt-colors-solarized
+[submodule "local/share/mutt/solarized"]
+	path = local/share/mutt/solarized
 	url = https://github.com/altercation/mutt-colors-solarized

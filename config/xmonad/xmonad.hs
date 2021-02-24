@@ -14,6 +14,7 @@ import           XMonad.Util.Dmenu
 -- Layouts
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Spacing
+import           XMonad.Layout.Grid
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition
@@ -36,6 +37,7 @@ main = xmonad $ desktopConfig
 myLayouts = mySpacing 4 $ tiledVerticalBigMaster          -- bigger master for code and smaller slave for compiling
                           ||| Mirror tiledHorizontalEven  -- 50/50 horizontal split
                           ||| noBorders Full              -- disable borders for fullscreen layout
+                          ||| Grid
     where tiledVerticalBigMaster =  Tall 1 (3 / 100) (3 / 5)
           tiledHorizontalEven    =  Tall 1 (3 / 100) (1 / 2)
           mySpacing x            = spacingRaw True (Border x x x x) False (Border x x x x) True

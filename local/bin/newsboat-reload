@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# adapted from: https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/cron/newsup
+
+ping -q -c 1 cacharle.xyz > /dev/null || exit  # no internet
+pgrep -f 'newsboat$' > /dev/null && exit       # newsboat already running
+
+newsboat -x reload

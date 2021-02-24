@@ -1,0 +1,34 @@
+#!/bin/sh
+
+conf_filename=music-dl.conf
+
+error() {
+    echo "Error: $1"
+    return 1
+}
+
+fatal() {
+    error "$1"
+    exit 1
+}
+
+[ ! -f "$conf_filename" ] && fatal "'$conf_filename' not found in current directory"
+
+conf_get() {
+    key="$1"
+    matches="$(sed -n 's/^'"$key"'=\(.*\)$/\1/ p' $conf_filename)"
+    if [ -z "$matches" ]
+    then
+        error "'$key' not found in '$conf_filename'"
+        return 1
+    fi
+    echo "$matches" | tail -n 1
+}
+
+conf_get bonjour || echo pas bien
+conf_get aurevoir
+
+
+# ytdl='youtube-dl --output "%(title)s.%(ext)s"'
+# ytdlp='youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
+# ytdla='youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
