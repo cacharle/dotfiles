@@ -13,6 +13,7 @@ import           XMonad.Util.Dmenu
 
 -- Layouts
 import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Spacing
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition
@@ -20,22 +21,24 @@ import           XMonad.Hooks.InsertPosition
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
 main = xmonad $ desktopConfig
-        { normalBorderColor  = "#292d3e"
-        , focusedBorderColor = "#bbc5ff"
+        { normalBorderColor  = "#1c1c1c"
+        , focusedBorderColor = "#8a8a8a"
         , terminal           = "st"
         , layoutHook         = myLayouts
         , manageHook         = myManageHook
         , modMask            = mod4Mask       -- mod key to super
-        , borderWidth        = 1
+        , borderWidth        = 2
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , workspaces         = ["code", "compile", "web"] ++ map show [4..9]
         } `additionalKeysP` myKeys
 
-myLayouts = tiledBigMaster        -- bigger master for code and smaller slave for compiling
-            ||| Mirror tiledEven  -- 50/50 horizontal split
-            ||| noBorders Full    -- disable borders for fullscreen layout
-    where tiledBigMaster = Tall 1 (3 / 100) (3 / 5)
-          tiledEven      = Tall 1 (3 / 100) (1 / 2)
+
+myLayouts = mySpacing 4 $ tiledVerticalBigMaster          -- bigger master for code and smaller slave for compiling
+                          ||| Mirror tiledHorizontalEven  -- 50/50 horizontal split
+                          ||| noBorders Full              -- disable borders for fullscreen layout
+    where tiledVerticalBigMaster =  Tall 1 (3 / 100) (3 / 5)
+          tiledHorizontalEven    =  Tall 1 (3 / 100) (1 / 2)
+          mySpacing x            = spacingRaw True (Border x x x x) False (Border x x x x) True
 
 myManageHook = insertPosition End Newer  -- insert new window at the end of the current layout
 
