@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin"
 
@@ -20,6 +20,7 @@ export XMONAD_DATA_HOME="$XDG_DATA_HOME"
 export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
+# shellcheck disable=SC2016
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
@@ -33,21 +34,21 @@ export LESSHISTFILE='-'  # no ~/.lesshst
 # runtime
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
+# shellcheck disable=SC2155
 # color in man (less pager)
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+export LESS_TERMCAP_mb=$(printf '%b' '\e[1;32m')
+export LESS_TERMCAP_md=$(printf '%b' '\e[1;32m')
+export LESS_TERMCAP_me=$(printf '%b' '\e[0m')
+export LESS_TERMCAP_se=$(printf '%b' '\e[0m')
+export LESS_TERMCAP_so=$(printf '%b' '\e[01;33m')
+export LESS_TERMCAP_ue=$(printf '%b' '\e[0m')
+export LESS_TERMCAP_us=$(printf '%b' '\e[1;4;31m')
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export LESS_TERMCAP_ZN=$(tput ssubm)
 export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
-
 
 export MINIKUBE_IN_STYLE=false  # disable cringe minikube emojies
 
@@ -57,4 +58,4 @@ export MINISHELL_TEST_PAGER=vim
 export MINISHELL_TEST_FLAGS=-DMINISHELL_TEST
 export WEBSERV_FLAGS=-DWEBSERV_CACHARLE
 
-[ "$(tty)" = '/dev/tty1' ] && exec startx
+[ "$(tty)" = '/dev/tty1' ] && HOME="$XDG_CONFIG_HOME/x11" exec startx

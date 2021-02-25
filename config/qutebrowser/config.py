@@ -2,20 +2,22 @@ import os
 
 from qutebrowser.api import interceptor
 
+
 config.load_autoconfig(True)
+
 
 # Youtube ad blocking
 def filter_yt(info: interceptor.Request):
     url = info.request_url
     if (
-        url.host() == 'www.youtube.com'
-        and url.path() == '/get_video_info'
-        and '&adformat=' in url.query()
+        url.host() == 'www.youtube.com' and
+        url.path() == '/get_video_info' and
+        '&adformat=' in url.query()
     ):
         info.block()
 
-interceptor.register(filter_yt)
 
+interceptor.register(filter_yt)
 
 c.aliases = {
     'q': 'close',
@@ -60,13 +62,12 @@ config.bind('K', 'tab-next', 'normal')
 
 config.bind('<F12>', 'devtools', 'normal')
 
-c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme (very nice result)
-c.colors.webpage.bg = 'black'             # Disabling white flash before page loading
+c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
 
 # c.content.proxy = 'socks://localhost:9050/'  # tor
 c.content.autoplay = False
 c.content.notifications = False
-#c.content.cookies.accept = 'no-3rdparty'
+# c.content.cookies.accept = 'no-3rdparty'
 
 c.auto_save.session = True
 c.session.lazy_restore = True
@@ -137,10 +138,10 @@ c.colors.contextmenu.disabled.fg = base04
 # Background color of the context menu. If set to null, the Qt default is used.
 c.colors.contextmenu.menu.bg = base00
 # Foreground color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.fg =  base05
+c.colors.contextmenu.menu.fg = base05
 # Background color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.bg = base02
-#Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
+# Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.fg = base05
 # Background color for the download bar.
 c.colors.downloads.bar.bg = base00
@@ -281,6 +282,5 @@ c.colors.tabs.selected.odd.bg = base02
 c.colors.tabs.selected.even.fg = base05
 # Background color of selected even tabs.
 c.colors.tabs.selected.even.bg = base02
-# Background color for webpages if unset (or empty to use the theme's
-# color).
-# c.colors.webpage.bg = base00
+# Background color for webpages if unset (or empty to use the theme's color).
+c.colors.webpage.bg = base00

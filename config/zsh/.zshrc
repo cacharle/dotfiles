@@ -1,24 +1,22 @@
-###############
-# zshrc       #
-###############
-
+#!/bin/zsh
 
 # load aliases
-source $XDG_CONFIG_HOME/zsh/aliases.zsh
+# shellcheck source=/dev/null
+. "$XDG_CONFIG_HOME/zsh/aliases.zsh"
 
 # prompt
-case `tty` in
+case $(tty) in
     /dev/tty[1-9])
         # %~ path ('~' if $HOME)
         # %B/%b start/stop bold
         # %B/%b start/stop color
-        NEWLINE=$'\n'
+        NEWLINE=$(printf '\n')
         export PROMPT="${NEWLINE}%B%F{blue}%~%f${NEWLINE}%F{red}> %f%b"
         ;;
     *)
         # pure prompt
         export FPATH="$FPATH:$XDG_DATA_HOME/zsh/pure"
-        ZSH_THEME="pure"
+        export ZSH_THEME='pure'
         autoload -U promptinit
         promptinit
         prompt pure
@@ -53,26 +51,25 @@ setopt list_rows_first  # cycle through row first in menu
 # setopt extendedglob
 
 # executed when changing directory
-function chpwd() {
-    content=$(ls | wc -l)
+chpwd() {
+    content="$(find . -maxdepth 1 | wc -l)"
     ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
     [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
-# add command-not-found package suggestion
-#source /etc/zsh_command_not_found
-
-
+# shellcheck disable=SC2034,SC2039
 fignore=(o hi) # ignore extensions in autocomplete
 
 # pluggins
-source $XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # prompt syntax highlight
+# shellcheck source=/dev/null
+. "$XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"  # prompt syntax highlight
 
 export YSU_MESSAGE_POSITION="after"                                     # you-should-use message after command output
-source $XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh  # alias reminder
+. "$XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh"  # alias reminder
 
 # set tab to 4 spaces
 tabs 4
 
-export GPG_TTY=$(tty)  # fixing gpg fatal error about tty
+GPG_TTY=$(tty)  # fixing gpg fatal error about tty
+export GPG_TTY

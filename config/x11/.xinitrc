@@ -3,7 +3,7 @@
 # xinput disable 'ETPS/2 Elantech Touchpad' &
 
 echo 'Starting redshift'
-redshift -c $XDG_CONFIG_HOME/redshift/redshift.conf &
+redshift &
 echo 'Starting dunst'
 dunst &
 xset r rate 200 50

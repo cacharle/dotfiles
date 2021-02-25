@@ -1,6 +1,4 @@
-###############
-# zsh aliases #
-###############
+#!/bin/zsh
 
 # color
 alias grep='grep --color=auto'
@@ -113,7 +111,7 @@ alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
 
 # wifi
 wificonnect() {
-    nmcli device wifi connect $1 password $2
+    nmcli device wifi connect "$1" password "$2"
 }
 
 # alias mutt='neomutt'
@@ -126,12 +124,8 @@ alias qmvdest='qmv --format=do'
 
 alias xclip='xclip -selection clipboard'
 
-pacman-url() {
+pacman_url() {
     pacman -Si "$1" | grep URL | tr -s ' ' | cut -d ' ' -f 3
-}
-
-grep-kill() {
-    ps aux | grep "$1" | tr -s ' ' | cut -d ' ' -f 2 | xargs kill
 }
 
 alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"

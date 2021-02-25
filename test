@@ -1,5 +1,20 @@
 #!/bin/sh
 
-shellcheck install
-shellcheck test
-shellcheck local/bin/*
+ret=0
+
+echo '-------------------- SHELLCHECK'
+shellcheck install                                               || ret=$?
+shellcheck test                                                  || ret=$?
+shellcheck local/bin/*                                           || ret=$?
+shellcheck -s sh config/zsh/.zshrc                               || ret=$?
+shellcheck -s sh config/zsh/aliases.zsh                          || ret=$?
+shellcheck -s sh -e SC2155 config/zsh/zprofile                   || ret=$?
+shellcheck -s sh config/x11/.xinitrc                             || ret=$?
+
+echo '-------------------- VINT'
+vint -s config/vim/vimrc config/vim/pluggins.vim                 || ret=$?
+
+echo '-------------------- FLAKE8'
+flake8 --ignore F821,E501,W504,N816 config/qutebrowser/config.py || ret=$?
+
+exit $ret
