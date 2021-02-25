@@ -1,3 +1,4 @@
 #!/bin/sh
 
-ssh git@cacharle.xyz repo $*
+# shellcheck disable=SC2029
+ssh git@cacharle.xyz repo "$@"

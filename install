@@ -16,8 +16,8 @@ link_home_files() {
         sed -e 'p' -e 's:^'"$rice_dir"':'"$dest_dir"':' |
         awk '{ if (NR % 2 == 1) { print "'"$(pwd)"'" "/" $0 } else print }' |
         xargs -L 2 > "$paths"
-    cat $paths | cut -d ' ' -f 2 | xargs -L 1 dirname | xargs -L 1 mkdir -pv
-    cat $paths | xargs -L 1 ln -svf
+    < "$paths" cut -d ' ' -f 2 | xargs -L 1 dirname | xargs -L 1 mkdir -pv
+    < "$paths" xargs -L 1 ln -svf
 }
 
 link_home_files 'config' "$XDG_CONFIG_HOME"
@@ -53,9 +53,10 @@ update_zsh_plugin()
 {
     url="$1"
     path="$XDG_DATA_HOME/zsh/$(basename "$url")"
-    ([ ! -d "$path" ] || [ -z "$(ls -A "$path")" ]) &&
-        git clone "$url" "$path" ||
-        git -C "$path" pull
+    if [ ! -d "$path" ] || [ -z "$(ls -A "$path")" ]
+    then git clone "$url" "$path"
+    else git -C "$path" pull
+    fi
 }
 
 mkdir -p "$XDG_DATA_HOME/zsh"

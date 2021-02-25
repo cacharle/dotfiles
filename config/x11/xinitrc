@@ -7,7 +7,7 @@ redshift -c $XDG_CONFIG_HOME/redshift/redshift.conf &
 echo 'Starting dunst'
 dunst &
 xset r rate 200 50
-pulseaudio --daemonize
+pulseaudio -D
 
 case "$(cat /etc/hostname)" in
     cacharle-main)

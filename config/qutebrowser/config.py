@@ -31,7 +31,8 @@ c.url.searchengines = {
     'gh': 'https://github.com/search?q={}',
     'h': 'https://hoogle.haskell.org/?hoogle={}',
     'cpp': 'http://cplusplus.com/search.do?q={}',
-    'lar': 'https://www.larousse.fr/dictionnaires/francais/{}'
+    'lar': 'https://www.larousse.fr/dictionnaires/francais/{}',
+    'pypi': 'https://pypi.org/search/?q={}',
 }
 
 c.fonts.default_family = 'Fira Mono'

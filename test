@@ -1,0 +1,5 @@
+#!/bin/sh
+
+shellcheck install
+shellcheck test
+shellcheck local/bin/*
