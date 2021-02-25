@@ -31,7 +31,9 @@ zstyle ':completion:*' menu select                          # menu like
 zstyle ':completion:*' matcher-list '' \
     'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=*' 'r:|=* l:|=* r:|=*'  # case insensitive
 zmodload zsh/complist
-compinit
+COMPFILE="$XDG_CACHE_HOME/zsh/zcompdup-$ZSH_VERSION"
+mkdir -p "$(dirname "$COMPFILE")"
+compinit -d "$COMPFILE"
 # _comp_options+=(globdots)
 
 # vim keybindings in tab completion menu (https://www.youtube.com/watch?v=eLEo4OQ-cuQ)
