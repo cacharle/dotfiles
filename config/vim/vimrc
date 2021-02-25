@@ -142,8 +142,10 @@ inoremap <ESC> <C-C>
 inoremap kj <ESC>
 " remove visual mode keybinding
 noremap Q <nop>
-" remove command line window keybinding
-noremap q: <nop>
+" command line in history mode
+noremap : q:i
+noremap / q/i
+noremap ? q?i
 " search with very magic
 nnoremap / /\v
 nnoremap ? ?\v
