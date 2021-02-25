@@ -9,7 +9,7 @@ shellcheck local/bin/*                                           || ret=$?
 shellcheck -s sh config/zsh/.zshrc                               || ret=$?
 shellcheck -s sh config/zsh/aliases.zsh                          || ret=$?
 shellcheck -s sh -e SC2155 config/zsh/zprofile                   || ret=$?
-shellcheck -s sh config/x11/.xinitrc                             || ret=$?
+shellcheck -s sh config/x11/xinitrc                              || ret=$?
 
 echo '-------------------- VINT'
 vint -s config/vim/vimrc config/vim/pluggins.vim                 || ret=$?

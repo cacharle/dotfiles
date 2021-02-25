@@ -41,6 +41,6 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
     Plug 'vim-scripts/rfc-syntax'             " rfc
     " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
-    Plug '/home/charles/git/c_formatter_42.vim'
+    Plug 'cacharle/c_formatter_42.vim'
     Plug 'cacharle/doxy42.vim'
 call plug#end()

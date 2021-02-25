@@ -10,7 +10,8 @@ case $(tty) in
         # %~ path ('~' if $HOME)
         # %B/%b start/stop bold
         # %B/%b start/stop color
-        NEWLINE=$(printf '\n')
+        # shellcheck disable=SC2039
+        NEWLINE=$'\n'
         export PROMPT="${NEWLINE}%B%F{blue}%~%f${NEWLINE}%F{red}> %f%b"
         ;;
     *)
