@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin sh
 
 # xinput disable 'ETPS/2 Elantech Touchpad' &
 
@@ -7,7 +7,7 @@ redshift &
 echo 'Starting dunst'
 dunst &
 xset r rate 200 50
-pulseaudio -D
+# pulseaudio -D
 
 case "$(cat /etc/hostname)" in
     cacharle-main)
