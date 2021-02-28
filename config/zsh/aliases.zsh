@@ -75,7 +75,7 @@ gpa() {
 }
 gpaf() {
     branch="$1"
-    [ -z "$1" ] && branch=master
+    [ -z "$branch" ] && branch=$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)
     git remote | xargs -I{} git push -f {} "$branch"
 }
 
@@ -94,27 +94,16 @@ alias ....='cd ../../..'
 alias norminette='ruby ~/git/norminette/norminette.rb'
 alias norm='norminette'
 
-getrfc() {
-    curl "https://ietf.org/rfc/rfc$1.txt" > "$HOME/rfc/rfc$1.txt"
-}
-
 # bluetooth
 alias bt='bluetoothctl'
 alias bton='echo power on | bluetoothctl'
 alias btoff='echo power off | bluetoothctl'
 
-# pdf selector
-# alias pdf-open="zathura \$(echo $HOME/Documents/*.pdf | tr ' ' '\\n' | dmenu)"
-
 alias cagob='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo build'
 alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
 
 # wifi
-wificonnect() {
-    nmcli device wifi connect "$1" password "$2"
-}
-
-# alias mutt='neomutt'
+wificonnect() { nmcli device wifi connect "$1" password "$2" ; }
 
 alias ytdl='youtube-dl --output "%(title)s.%(ext)s"'
 alias ytdlp='youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
@@ -124,8 +113,18 @@ alias qmvdest='qmv --format=do'
 
 alias xclip='xclip -selection clipboard'
 
-pacman_url() {
-    pacman -Si "$1" | grep URL | tr -s ' ' | cut -d ' ' -f 3
-}
+pacman_url() { pacman -Si "$1" | grep URL | tr -s ' ' | cut -d ' ' -f 3 ; }
 
 alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"
+
+rc() {
+    filepath="$(find "$HOME/git/dotfiles" -type f -not -path '*.git/*' | fzf)" &&
+        "$EDITOR" "$filepath"
+    filename="$(basename "$filepath")"
+    [ "$filename" = .zshrc ] ||
+        [ "$filename" = aliases.zshrc ] ||
+        [ "$filename" = zprofile ] &&
+        . "$ZDOTDIR/.zshrc"
+}
+
+vf() { f="$(fzf || exit 1)" && "$EDITOR" "$f" ; }

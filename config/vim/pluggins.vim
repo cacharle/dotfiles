@@ -3,7 +3,7 @@
 """"""""""""""""
 
 call plug#begin($XDG_DATA_HOME . '/vim/plugged')
-    Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
+    Plug 'junegunn/fzf.vim'             " file name/tags fuzzy finder (depends on fzf)
     Plug 'tpope/vim-eunuch'             " basic unix command in vim
     Plug 'tomtom/tcomment_vim'          " mininal commenter
     Plug 'itchyny/lightline.vim'        " minimal status bar
@@ -14,8 +14,6 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     Plug 'ludovicchabant/vim-gutentags' " generate tags in project root
     Plug 'junegunn/goyo.vim'            " generate tags in project root
 
-    " Plug 'easymotion/vim-easymotion' " TODO very intresting
-    " Plug 'mhinz/vim-rfc'                " RFC download/syntax/tags
     Plug 'skammer/vim-css-color'
 
     " markdown preview in browser
@@ -27,20 +25,20 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     Plug 'ziglang/zig.vim'                    " zig
     Plug 'nikvdp/ejs-syntax'                  " ejs
 
-    " s19 at home
-    Plug 'cacharle/vim-42header'            " 42 header
-
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
     Plug 'dracula/vim', {'as': 'vim'}       " dracula
     Plug 'altercation/vim-colors-solarized'   " solarized
 
     " intresting but not used
-    " Plug 'sheerun/vim-polyglot'             " better syntax highlight
-    " Plug 'unblevable/quick-scope'           " highlight first char to jump to word
-    " Plug 'jez/vim-superman'                 " man pages in vim (too slow)
     Plug 'vim-scripts/rfc-syntax'             " rfc
-    " Plug 'tacahiroy/ctrlp-funky'              " extension to search function
+
+    " my plugins
     Plug 'cacharle/c_formatter_42.vim'
     Plug 'cacharle/doxy42.vim'
+
+    " s19 at home
+    Plug 'cacharle/vim-42header'            " 42 header
+
+    " Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
 call plug#end()

@@ -142,10 +142,6 @@ inoremap <ESC> <C-C>
 inoremap kj <ESC>
 " remove visual mode keybinding
 noremap Q <nop>
-" command line in history mode
-noremap : q:i
-noremap / q/i
-noremap ? q?i
 " search with very magic
 nnoremap / /\v
 nnoremap ? ?\v
@@ -273,15 +269,21 @@ augroup END
 " pluggins "
 """"""""""""
 
-" ctrlp {{{
 " directory to ignore when searching in file tree
 set wildignore=*/doc/*,*/tmp/*,*.o,*.so,*.a,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*,*.pyc
+
+" ctrlp {{{
 " ctrlp ignore all stuff in the .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_mruf_case_sensitive = 0
 
 nnoremap <leader>p :CtrlPTag<CR>
+" }}}
+
+" fzf.vim {{{
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>p :Tags<CR>
 " }}}
 
 " quick-scope {{{
@@ -293,11 +295,6 @@ nnoremap <leader>p :CtrlPTag<CR>
 " let g:ft_man_open_mode = 'vert'    " open in a vertical split
 " let g:ft_man_no_sect_fallback = 2  " if page specified fallback to page 2 (syscall pages)
 " autocmd Filetype man unmap <buffer> q:  hmmmm??
-" }}}
-
-" ctrlp-funky {{{
-" let g:ctrlp_funky_syntax_highlight = 1
-" nnoremap <C-f> :CtrlPFunky<CR>
 " }}}
 
 " eazy-align {{{
