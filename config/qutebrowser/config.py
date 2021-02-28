@@ -71,6 +71,7 @@ c.content.autoplay = False
 c.content.notifications = False
 # c.content.cookies.accept = 'no-3rdparty'
 
+c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version}"
 c.auto_save.session = True
 c.session.lazy_restore = True
 
