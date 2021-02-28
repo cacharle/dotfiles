@@ -121,6 +121,7 @@ rc() {
     filepath="$(find "$HOME/git/dotfiles" -type f -not -path '*.git/*' | fzf)" &&
         "$EDITOR" "$filepath"
     filename="$(basename "$filepath")"
+    # shellcheck source=/dev/null
     [ "$filename" = .zshrc ] ||
         [ "$filename" = aliases.zshrc ] ||
         [ "$filename" = zprofile ] &&
