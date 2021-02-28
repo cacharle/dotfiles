@@ -35,9 +35,11 @@ c.url.searchengines = {
     'cpp': 'http://cplusplus.com/search.do?q={}',
     'lar': 'https://www.larousse.fr/dictionnaires/francais/{}',
     'pypi': 'https://pypi.org/search/?q={}',
+    'intra': 'https://profile.intra.42.fr/searches/search?query={}',
 }
 
-c.fonts.default_family = 'Fira Mono'
+
+c.fonts.default_family = ['Fira Mono', 'Baekmuk']
 c.fonts.hints = 'bold 11pt default_family'
 
 c.hints.chars = 'asdfghjkl;'  # use key in the main row for hints
