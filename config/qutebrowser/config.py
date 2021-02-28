@@ -39,7 +39,7 @@ c.url.searchengines = {
 }
 
 
-c.fonts.default_family = ['Fira Mono', 'Baekmuk']
+c.fonts.default_family = ['Fira Mono', 'Baekmuk', 'Symbola']
 c.fonts.hints = 'bold 11pt default_family'
 
 c.hints.chars = 'asdfghjkl;'  # use key in the main row for hints

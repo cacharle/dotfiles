@@ -16,5 +16,6 @@ vint -s config/vim/vimrc config/vim/pluggins.vim                 || ret=$?
 
 echo '-------------------- FLAKE8'
 flake8 --ignore F821,E501,W504,N816 config/qutebrowser/config.py || ret=$?
+flake8 --ignore W504 config/python/startup.py || ret=$?
 
 exit $ret
