@@ -4,8 +4,12 @@
 alias grep='grep --color=auto'
 alias tree='tree -C'
 alias pacman='pacman --color=auto'
-alias yay='yay --color=auto'
 alias valgrindc='colour-valgrind'
+
+alias yay='yay --color=auto'
+
+# --sudo $(which doas) --sudoloop --sudoflags'
+
 
 # common commands
 alias less='less -N'   # enable line number
@@ -121,11 +125,26 @@ rc() {
     filepath="$(find "$HOME/git/dotfiles" -type f -not -path '*.git/*' | fzf)" &&
         "$EDITOR" "$filepath"
     filename="$(basename "$filepath")"
-    # shellcheck source=/dev/null
-    [ "$filename" = .zshrc ] ||
-        [ "$filename" = aliases.zshrc ] ||
-        [ "$filename" = zprofile ] &&
-        . "$ZDOTDIR/.zshrc"
+    case "$filename" in
+        .zshrc|aliases.zsh)
+            echo 'Reloading zshrc'
+            # shellcheck source=/dev/null
+            . "$ZDOTDIR/.zshrc"
+            ;;
+        zprofile)
+            echo 'Reloading zprofile'
+            # shellcheck source=/dev/null
+            . "$HOME/.zprofile"
+            ;;
+        xmonad.hs)
+            echo 'Reloading xmonad'
+            xmonad --recompile && xmonad --restart
+            ;;
+        config.py)
+            echo 'Reloading qutebrowser config'
+            qutebrowser :config-source
+            ;;
+    esac
 }
 
 vf() { f="$(fzf || exit 1)" && "$EDITOR" "$f" ; }
