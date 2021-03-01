@@ -1,0 +1,15 @@
+base
+base-devel
+
+xorg-server
+xmonad
+xmonad-utils
+xmonad-contrib
+unclutter
+
+clang
+gdb
+
+pandoc
+qutebrowser
+curl

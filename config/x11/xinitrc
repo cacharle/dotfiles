@@ -2,12 +2,11 @@
 
 # xinput disable 'ETPS/2 Elantech Touchpad' &
 
-echo 'Starting redshift'
-redshift &
-echo 'Starting dunst'
-dunst &
-xset r rate 200 50
-# pulseaudio -D
+redshift &                    # filter blue light
+dunst &                       # notification daemon
+xset r rate 200 50            # delay before keyrepeat and keyrepeat rate
+unclutter --timeout 2 --fork  # hide mouse after 2s
+
 
 case "$(cat /etc/hostname)" in
     cacharle-main)
