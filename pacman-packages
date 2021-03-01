@@ -13,3 +13,5 @@ gdb
 pandoc
 qutebrowser
 curl
+
+stylish-haskell
