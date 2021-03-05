@@ -10,3 +10,5 @@
 	tool = vimdiff
 [commit]
 	gpgsign = true
+[init]
+	defaultBranch = master
