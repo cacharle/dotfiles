@@ -49,8 +49,8 @@ manageHook' = insertPosition End Newer  -- insert new window at the end of the c
 keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
-        , ("M-<F11>",                 spawn "pulseaudio-ctl down")
-        , ("M-<F12>",                 spawn "pulseaudio-ctl up")
+        , ("M--",                     spawn "pulseaudio-ctl down")
+        , ("M-=",                     spawn "pulseaudio-ctl up")
 
         , ("<XF86MonBrightnessUp>",   spawn "backlight-ctl up")
         , ("<XF86MonBrightnessDown>", spawn "backlight-ctl down")

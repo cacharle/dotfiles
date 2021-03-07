@@ -26,18 +26,19 @@ c.aliases = {
 
 c.url.start_pages = ['https://searx.cacharle.xyz']
 c.url.searchengines = {
-    'DEFAULT': 'https://searx.cacharle.xyz?q={}',
-    'd': 'https://duckduckgo.com/?q={}',
-    'g': 'https://google.com/?q={}',
-    'y': 'https://www.youtube.com/results?search_query={}',
-    'gh': 'https://github.com/search?q={}',
-    'h': 'https://hoogle.haskell.org/?hoogle={}',
-    'cpp': 'http://cplusplus.com/search.do?q={}',
-    'lar': 'https://www.larousse.fr/dictionnaires/francais/{}',
-    'pypi': 'https://pypi.org/search/?q={}',
-    'intra': 'https://profile.intra.42.fr/searches/search?query={}',
+    # 'DEFAULT': 'https://searx.cacharle.xyz?q={}',
+    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'd':       'https://duckduckgo.com/?q={}',
+    'g':       'https://google.com/?q={}',
+    'y':       'https://www.youtube.com/results?search_query={}',
+    'gh':      'https://github.com/search?q={}',
+    'h':       'https://hoogle.haskell.org/?hoogle={}',
+    'cpp':     'http://cplusplus.com/search.do?q={}',
+    'lar':     'https://www.larousse.fr/dictionnaires/francais/{}',
+    'pypi':    'https://pypi.org/search/?q={}',
+    'intra':   'https://profile.intra.42.fr/searches/search?query={}',
+    'aw':      'https://wiki.archlinux.org/index.php?search={}'
 }
-
 
 c.fonts.default_family = ['Fira Mono', 'Baekmuk', 'Symbola']
 c.fonts.hints = 'bold 11pt default_family'
@@ -82,6 +83,8 @@ if home_path is not None:
         os.mkdir(download_path)
     c.downloads.location.directory = download_path
 c.downloads.remove_finished = 5000
+
+c.tabs.last_close = 'startpage'
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova

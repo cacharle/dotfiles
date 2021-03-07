@@ -1,0 +1,10 @@
+directory.default.set = ~/data/torrent/dl
+
+session.path.set = ~/data/torrent/session
+
+schedule2 = watch_directory,5,5,load.start=~/data/torrent/watch/*.torrent
+
+dht.mode.set = auto
+dht.port.set = 6881
+
+# vim:ft=cfg

@@ -5,20 +5,20 @@ set -o xtrace
 ret=0
 
 # SHELLCHECK
-shellcheck install                                               || ret=$?
-shellcheck test                                                  || ret=$?
-shellcheck local/bin/*                                           || ret=$?
-shellcheck -s sh config/zsh/.zshrc                               || ret=$?
-shellcheck -s sh config/zsh/aliases.zsh                          || ret=$?
-shellcheck -s sh -e SC2155 config/zsh/zprofile                   || ret=$?
-shellcheck -s sh config/x11/xinitrc                              || ret=$?
+shellcheck install                                                    || ret=$?
+shellcheck test                                                       || ret=$?
+shellcheck local/bin/*                                                || ret=$?
+shellcheck -s sh config/zsh/.zshrc                                    || ret=$?
+shellcheck -s sh config/zsh/aliases.zsh                               || ret=$?
+shellcheck -s sh -e SC2155 config/zsh/zprofile                        || ret=$?
+shellcheck -s sh config/x11/xinitrc                                   || ret=$?
 
 # VINT
-vint -s config/vim/vimrc                                         || ret=$?
-vint -s config/vim/pluggins.vim                                  || ret=$?
+vint -s config/vim/vimrc                                              || ret=$?
+vint -s config/vim/pluggins.vim                                       || ret=$?
 
 # FLAKE8
-flake8 --ignore F821,E501,W504,N816 config/qutebrowser/config.py || ret=$?
-flake8 --ignore W504 config/python/startup.py                    || ret=$?
+flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py || ret=$?
+flake8 --ignore W504 config/python/startup.py                         || ret=$?
 
 exit $ret
