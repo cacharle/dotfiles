@@ -24,6 +24,7 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/aspell.conf; personal $XDG_CONFIG_HOME/aspell/en.pws; repl $XDG_CONFIG_HOME/aspell/en.prepl"
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # shellcheck disable=SC2016
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"

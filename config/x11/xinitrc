@@ -1,12 +1,9 @@
 #!/bin sh
 
-# xinput disable 'ETPS/2 Elantech Touchpad' &
-
-redshift &                    # filter blue light
-dunst &                       # notification daemon
-xset r rate 200 50            # delay before keyrepeat and keyrepeat rate
-unclutter --timeout 2 --fork  # hide mouse after 2s
-
+redshift &                     # filter blue light
+dunst &                        # notification daemon
+xset r rate 200 50             # delay before keyrepeat and keyrepeat rate
+unclutter --timeout 10 --fork  # hide mouse after 2s
 
 case "$(cat /etc/hostname)" in
     cacharle-main)
@@ -23,3 +20,5 @@ case "$(cat /etc/hostname)" in
 esac
 
 exec xmonad
+
+# vim:ft=sh

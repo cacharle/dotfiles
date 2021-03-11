@@ -15,3 +15,5 @@ qutebrowser
 curl
 
 stylish-haskell
+
+renameutils  # qmv
