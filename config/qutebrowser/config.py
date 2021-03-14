@@ -39,7 +39,7 @@ c.url.searchengines = {
     'intra':   'https://profile.intra.42.fr/searches/search?query={}',
     'aw':      'https://wiki.archlinux.org/index.php?search={}',
     'pd':      'https://pandas.pydata.org/pandas-docs/stable/search.html?q={}',
-    'sklearn': 'https://scikit-learn.org/stable/search.html?q={}',
+    'sk':      'https://scikit-learn.org/stable/search.html?q={}',
 }
 
 c.fonts.default_family = ['Fira Mono', 'Baekmuk', 'Symbola']
