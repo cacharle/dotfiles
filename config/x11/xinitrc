@@ -7,9 +7,15 @@ unclutter --timeout 10 --fork  # hide mouse after 2s
 
 case "$(cat /etc/hostname)" in
     cacharle-main)
-        xrandr --output DVI-0  --auto                     --left-of DVI-1  \
-               --output DVI-1  --mode 1920x1080 --primary --left-of HDMI-0 \
-               --output HDMI-0 --mode 1920x1080
+        if xrandr | grep 'HDMI-0 connected'
+        then
+            xrandr --output DVI-0  --auto                     --left-of DVI-1  \
+                   --output DVI-1  --mode 1920x1080 --primary --left-of HDMI-0 \
+                   --output HDMI-0 --mode 1920x1080
+        else
+            xrandr --output DVI-0  --auto                     --left-of DVI-1  \
+                   --output DVI-1  --mode 1920x1080 --primary
+        fi
         ;;
 
     charles-laptop)
