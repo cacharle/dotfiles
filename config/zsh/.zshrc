@@ -10,7 +10,7 @@ case $(tty) in
         # %~ path ('~' if $HOME)
         # %B/%b start/stop bold
         # %B/%b start/stop color
-        # shellcheck disable=SC2039
+        # shellcheck disable=SC2039,SC3003
         NEWLINE=$'\n'
         export PROMPT="${NEWLINE}%B%F{blue}%~%f${NEWLINE}%F{red}> %f%b"
         ;;
@@ -59,7 +59,7 @@ chpwd() {
     [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
-# shellcheck disable=SC2034,SC2039
+# shellcheck disable=SC2034,SC2039,SC3030
 fignore=(o hi) # ignore extensions in autocomplete
 
 # pluggins

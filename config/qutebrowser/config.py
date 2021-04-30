@@ -20,8 +20,9 @@ def filter_yt(info: interceptor.Request):
 interceptor.register(filter_yt)
 
 c.aliases = {
-    'q': 'close',
-    'sc': 'config-source'
+    'q':  'close',
+    'sc': 'config-source',
+    'bw': """spawn --userscript qute-bitwarden -d 'dmenu -P -w 0 -p "master password"' """,
 }
 
 c.url.start_pages = ['https://searx.cacharle.xyz']
