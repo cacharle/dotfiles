@@ -69,6 +69,9 @@ config.bind('K', 'tab-next', 'normal')
 
 config.bind('<F12>', 'devtools', 'normal')
 
+config.bind('j', 'scroll-page 0  0.05', 'normal')
+config.bind('k', 'scroll-page 0 -0.05', 'normal')
+
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
 
 # c.content.proxy = 'socks://localhost:9050/'  # tor
@@ -293,4 +296,4 @@ c.colors.tabs.selected.even.fg = base05
 # Background color of selected even tabs.
 c.colors.tabs.selected.even.bg = base02
 # Background color for webpages if unset (or empty to use the theme's color).
-c.colors.webpage.bg = base00
+c.colors.webpage.bg = '#222222'
