@@ -1,7 +1,10 @@
-#!/bin sh
+#!/bin/sh
 
 redshift &                     # filter blue light
 dunst &                        # notification daemon
+# certain event cause rate to reset (https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
+# -ardelay    milliseconds
+# -arinterval milliseconds
 xset r rate 200 50             # delay before keyrepeat and keyrepeat rate
 unclutter --timeout 10 --fork  # hide mouse after 2s
 
@@ -26,5 +29,3 @@ case "$(cat /etc/hostname)" in
 esac
 
 exec xmonad
-
-# vim:ft=sh

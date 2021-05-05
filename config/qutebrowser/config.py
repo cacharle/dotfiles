@@ -42,6 +42,7 @@ c.url.searchengines = {
     'pd':      'https://pandas.pydata.org/pandas-docs/stable/search.html?q={}',
     'sk':      'https://scikit-learn.org/stable/search.html?q={}',
     'imdb':    'https://www.imdb.com/find?q={}',
+    'wiby':    'https://wiby.me/?q={}',
 }
 
 c.fonts.default_family = ['Fira Mono', 'Baekmuk', 'Symbola']
