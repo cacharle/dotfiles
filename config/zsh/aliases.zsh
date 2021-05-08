@@ -148,3 +148,5 @@ rc() {
 }
 
 vf() { f="$(fzf || exit 1)" && "$EDITOR" "$f" ; }
+
+alias zathura='zathura --fork'

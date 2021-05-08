@@ -76,7 +76,7 @@ c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark t
 
 # c.content.proxy = 'socks://localhost:9050/'  # tor
 c.content.autoplay = False
-c.content.notifications = False
+c.content.notifications.enabled = False
 # c.content.cookies.accept = 'no-3rdparty'
 
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version}"
