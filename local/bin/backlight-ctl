@@ -15,9 +15,11 @@ else
 fi
 
 case "$1" in
-    "up")   "$cmd" "$up_opt" 5 ;;
+    "up")   "$cmd" "$up_opt"   5 ;;
     "down") "$cmd" "$down_opt" 5 ;;
     *)      exit 1 ;;
 esac
 
-notify-send "backlight $("$cmd" | cut -d '.' -f 1)"
+value="$("$cmd" | cut -d '.' -f 1)"
+
+notify-send --hint=int:transient:1 --hint=int:value:"$value" "Backlight"
