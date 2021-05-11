@@ -61,4 +61,4 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 
 export MINIKUBE_IN_STYLE=false  # disable cringe minikube emojies
 
-[ "$(tty)" = '/dev/tty1' ] && { startx ; poweroff ; }
+[ "$(tty)" = '/dev/tty1' ] && { startx "$XDG_CONFIG_HOME/x11/xinitrc"; poweroff ; }
