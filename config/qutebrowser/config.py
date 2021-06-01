@@ -75,7 +75,7 @@ config.bind('k', 'scroll-page 0 -0.05', 'normal')
 
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
 
-# c.content.proxy = 'socks://localhost:9050/'  # tor
+config.bind('<Ctrl-Shift-t>', 'config-cycle -p content.proxy socks://localhost:9050/ system', mode='normal')
 c.content.autoplay = False
 c.content.notifications.enabled = False
 # c.content.cookies.accept = 'no-3rdparty'
