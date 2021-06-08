@@ -313,3 +313,5 @@ let g:gutentags_ctags_exclude = ['doc/*', 'docs/*', 'Makefile', '.mypy_cache', '
 let g:goyo_height = 90
 
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+
+let g:python_highlight_all = 1

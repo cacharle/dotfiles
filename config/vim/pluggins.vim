@@ -24,6 +24,7 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     Plug 'cespare/vim-toml'                   " toml
     Plug 'ziglang/zig.vim'                    " zig
     Plug 'nikvdp/ejs-syntax'                  " ejs
+    Plug 'vim-python/python-syntax'           " python (default highlight not great)
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
