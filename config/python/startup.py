@@ -60,5 +60,5 @@ def register_readline():
 
 sys.__interactivehook__ = register_readline
 
-sys.ps1 = "> "
-sys.ps2 = ". "
+# sys.ps1 = "> "
+# sys.ps2 = ". "

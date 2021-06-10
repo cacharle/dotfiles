@@ -13,6 +13,8 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     Plug 'junegunn/vim-easy-align'      " align
     Plug 'ludovicchabant/vim-gutentags' " generate tags in project root
     Plug 'junegunn/goyo.vim'            " generate tags in project root
+    Plug 'AndrewRadev/sideways.vim'     " Move arguments sideways
+    Plug 'FooSoft/vim-argwrap'          " Put arguments on multiple lines
 
     Plug 'skammer/vim-css-color'
 

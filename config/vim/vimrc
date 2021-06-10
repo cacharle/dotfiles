@@ -315,3 +315,8 @@ let g:goyo_height = 90
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 
 let g:python_highlight_all = 1
+
+nnoremap <leader>l :SidewaysRight<CR>
+nnoremap <leader>h :SidewaysLeft<CR>
+
+nnoremap <leader>w :ArgWrap<CR>

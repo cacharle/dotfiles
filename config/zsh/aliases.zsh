@@ -150,3 +150,5 @@ rc() {
 vf() { f="$(fzf || exit 1)" && "$EDITOR" "$f" ; }
 
 alias zathura='zathura --fork'
+
+alias xset-reset='xset r rate 200 50'
