@@ -35,6 +35,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 # cache
 export HISTFILE="$XDG_CACHE_HOME/history"
 export LESSHISTFILE='-'  # no ~/.lesshst
