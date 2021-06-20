@@ -73,6 +73,9 @@ config.bind('<F12>', 'devtools', 'normal')
 config.bind('j', 'scroll-page 0  0.05', 'normal')
 config.bind('k', 'scroll-page 0 -0.05', 'normal')
 
+config.unbind('d', 'normal')
+config.bind('dd', 'tab-close', 'normal')
+
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
 
 config.bind('<Ctrl-Shift-t>', 'config-cycle -p content.proxy socks://localhost:9050/ system', mode='normal')

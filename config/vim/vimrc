@@ -282,7 +282,7 @@ set wildignore=*/doc/*,*/tmp/*,*.o,*.so,*.a,*.swp,*.zip,*/node_modules/*,*/vendo
 " }}}
 
 " fzf.vim {{{
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :GFiles --exclude-standard --others --cached<CR>
 nnoremap <leader>p :Tags<CR>
 " }}}
 
