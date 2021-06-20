@@ -23,7 +23,6 @@ link_home_files() {
 link_home_files 'config' "$XDG_CONFIG_HOME"
 link_home_files 'local'  "$HOME/.local"
 
-ln -svf "$(pwd)/config/x11/xinitrc"  "$HOME/.xinitrc"
 ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
 
 ################################################################################
