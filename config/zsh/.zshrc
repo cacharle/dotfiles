@@ -46,10 +46,16 @@ bindkey -v '^?' backward-delete-char
 bindkey -v
 export KEYTIMEOUT=1
 
-setopt auto_cd          # cd without `cd` command
 # setopt pushd_ignore_dups
-setopt list_rows_first  # cycle through row first in menu
 # setopt extendedglob
+setopt auto_cd          # cd without `cd` command
+setopt list_rows_first  # cycle through row first in menu
+setopt share_history    # share history between shells
+setopt extended_history # command timestamp in history
+setopt hist_ignore_dups # ignore duplicate entry in history
+
+export HISTSIZE=10000
+export SAVEHIST=5000
 
 # executed when changing directory
 chpwd() {
@@ -66,8 +72,8 @@ fignore=(o hi) # ignore extensions in autocomplete
 # shellcheck source=/dev/null
 . "$XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"  # prompt syntax highlight
 
-export YSU_MESSAGE_POSITION="after"                                     # you-should-use message after command output
-. "$XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh"  # alias reminder
+export YSU_MESSAGE_POSITION="after"                                 # you-should-use message after command output
+. "$XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh" # alias reminder
 
 # set tab to 4 spaces
 tabs 4

@@ -37,10 +37,10 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 # cache
-export HISTFILE="$XDG_CACHE_HOME/history"
+export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export LESSHISTFILE='-'  # no ~/.lesshst
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME/python-eggs"
-export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 # runtime
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
