@@ -33,6 +33,7 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     " Plug 'joshdick/onedark.vim'             " onedark
     Plug 'dracula/vim', {'as': 'vim'}       " dracula
     Plug 'altercation/vim-colors-solarized'   " solarized
+    Plug 'morhetz/gruvbox'                    " gruvbox
 
     " intresting but not used
     Plug 'vim-scripts/rfc-syntax'             " rfc

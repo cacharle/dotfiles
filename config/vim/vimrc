@@ -84,6 +84,7 @@ set nofoldenable            " not folded by default
 " colorscheme "
 """""""""""""""
 
+set background=dark
 " one {{{
 " let g:onedark_terminal_italics=1
 " colorscheme onedark
@@ -95,18 +96,26 @@ set nofoldenable            " not folded by default
 " silent! colorscheme dracula
 " }}}
 " solarized {{{
-set t_Co=16
-let g:solarized_termcolors=16
-let g:solarized_visibility='low'  " visibility of invisible chars with set list
-set background=dark
-silent! colorscheme solarized
+" set t_Co=16
+" let g:solarized_termcolors=16
+" let g:solarized_visibility='low'  " visibility of invisible chars with set list
+" silent! colorscheme solarized
 " }}}
+
+let g:gruvbox_italic=1
+let g:gruvbox_bold=1
+let g:gruvbox_termcolors=256
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_light='hard'
+let g:gruvbox_invert_selection=0
+colorscheme gruvbox
+
 " lightline {{{
 let g:lightline = {}
 " let g:lightline.colorscheme = 'solarized'  " lightline theme to solarized
 " let g:lightline.colorscheme = 'jellybeans'  " lightline theme to onedark
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
