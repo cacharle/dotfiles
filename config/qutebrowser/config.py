@@ -350,11 +350,17 @@ c.colors.tabs.odd.fg = base05
 # Background color of unselected odd tabs.
 c.colors.tabs.odd.bg = base01
 
-# Foreground color of unselected even tabs.
+# Foreground color of unselected odd tabs.
 c.colors.tabs.even.fg = base05
 
-# Background color of unselected even tabs.
-c.colors.tabs.even.bg = base00
+# Background color of unselected odd tabs.
+c.colors.tabs.even.bg = base01
+
+# # Foreground color of unselected even tabs.
+# c.colors.tabs.even.fg = base05
+#
+# # Background color of unselected even tabs.
+# c.colors.tabs.even.bg = base00
 
 # Background color of pinned unselected even tabs.
 c.colors.tabs.pinned.even.bg = base0C
@@ -362,11 +368,17 @@ c.colors.tabs.pinned.even.bg = base0C
 # Foreground color of pinned unselected even tabs.
 c.colors.tabs.pinned.even.fg = base07
 
-# Background color of pinned unselected odd tabs.
-c.colors.tabs.pinned.odd.bg = base0B
+# Background color of pinned unselected even tabs.
+c.colors.tabs.pinned.odd.bg = base0C
 
-# Foreground color of pinned unselected odd tabs.
+# Foreground color of pinned unselected even tabs.
 c.colors.tabs.pinned.odd.fg = base07
+
+# # Background color of pinned unselected odd tabs.
+# c.colors.tabs.pinned.odd.bg = base0B
+#
+# # Foreground color of pinned unselected odd tabs.
+# c.colors.tabs.pinned.odd.fg = base07
 
 # Background color of pinned selected even tabs.
 c.colors.tabs.pinned.selected.even.bg = base02
@@ -381,16 +393,16 @@ c.colors.tabs.pinned.selected.odd.bg = base02
 c.colors.tabs.pinned.selected.odd.fg = base05
 
 # Foreground color of selected odd tabs.
-c.colors.tabs.selected.odd.fg = base05
+c.colors.tabs.selected.odd.fg = base02
 
 # Background color of selected odd tabs.
-c.colors.tabs.selected.odd.bg = base02
+c.colors.tabs.selected.odd.bg = base05
 
 # Foreground color of selected even tabs.
-c.colors.tabs.selected.even.fg = base05
+c.colors.tabs.selected.even.fg = base02
 
 # Background color of selected even tabs.
-c.colors.tabs.selected.even.bg = base02
+c.colors.tabs.selected.even.bg = base05
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).

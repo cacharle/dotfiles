@@ -329,3 +329,6 @@ nnoremap <leader>l :SidewaysRight<CR>
 nnoremap <leader>h :SidewaysLeft<CR>
 
 nnoremap <leader>w :ArgWrap<CR>
+
+hi link juliaFunctionCall Identifier
+hi link juliaParDelim Delimiter

@@ -80,3 +80,5 @@ tabs 4
 
 GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 export GPG_TTY
+
+export BAT_THEME='gruvbox-dark'  # gruvbox theme for bat (fancy cat)
