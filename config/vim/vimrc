@@ -39,6 +39,7 @@ scriptencoding utf-8
 set formatoptions-=t        " do not auto break line > 89 character
 filetype plugin indent on   " allow to add specific rules for certain type of file
 " set mouse=a                 " mouse scrolling (heretic)
+set shellredir=>            " don't inclue stderr when reading a command
 " }}}
 
 " browse list with tab {{{

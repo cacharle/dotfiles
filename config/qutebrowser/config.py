@@ -77,11 +77,31 @@ config.unbind('d', 'normal')
 config.bind('dd', 'tab-close', 'normal')
 
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
+c.colors.webpage.preferred_color_scheme = 'dark'
+c.colors.webpage.darkmode.policy.images = 'smart'
 
 config.bind('<Ctrl-Shift-t>', 'config-cycle -p content.proxy socks://localhost:9050/ system', mode='normal')
 c.content.autoplay = False
 c.content.notifications.enabled = False
+c.content.prefers_reduced_motion = True
+c.content.headers.do_not_track = True
 # c.content.cookies.accept = 'no-3rdparty'
+
+# adblock on youtube isn't supported: https://github.com/qutebrowser/qutebrowser/issues/6480
+c.content.blocking.enabled = True
+c.content.blocking.adblock.lists = [
+    'https://easylist.to/easylist/easylist.txt',
+    'https://easylist.to/easylist/easyprivacy.txt',
+    'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
+    'https://easylist.to/easylist/fanboy-annoyance.txt',
+    'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt'
+]
 
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version}"
 c.auto_save.session = True
