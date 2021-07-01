@@ -3,6 +3,10 @@
 mkdir -pv "$XDG_CONFIG_HOME"
 mkdir -pv "$XDG_DATA_HOME"
 mkdir -pv "$XDG_CACHE_HOME"
+# xmonad uses ~/.xmonad if those directories don't already exists
+mkdir -pv "$XMONAD_CONFIG_HOME"
+mkdir -pv "$XMONAD_DATA_HOME"
+mkdir -pv "$XMONAD_CACHE_HOME"
 
 echo '---------------------------- CONFIG FILE LINKS ---------------------------'
 
