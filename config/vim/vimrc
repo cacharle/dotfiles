@@ -321,6 +321,7 @@ let g:gutentags_ctags_exclude = ['doc/*', 'docs/*', 'Makefile', '.mypy_cache', '
 " let g:gutentags_ctags_exclude_wildignore = 1
 
 let g:goyo_height = 90
+let g:goyo_width = 100
 
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 
@@ -328,8 +329,9 @@ let g:python_highlight_all = 1
 
 nnoremap <leader>l :SidewaysRight<CR>
 nnoremap <leader>h :SidewaysLeft<CR>
-
 nnoremap <leader>w :ArgWrap<CR>
+nnoremap <leader>ss :setlocal spell!<CR>
 
 hi link juliaFunctionCall Identifier
 hi link juliaParDelim Delimiter
+

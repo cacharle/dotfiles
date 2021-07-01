@@ -16,8 +16,6 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     Plug 'AndrewRadev/sideways.vim'     " Move arguments sideways
     Plug 'FooSoft/vim-argwrap'          " Put arguments on multiple lines
 
-    Plug 'skammer/vim-css-color'
-
     " markdown preview in browser
     " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
@@ -31,19 +29,22 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
 
     " themes
     " Plug 'joshdick/onedark.vim'             " onedark
-    Plug 'dracula/vim', {'as': 'vim'}       " dracula
-    Plug 'altercation/vim-colors-solarized'   " solarized
+    " Plug 'dracula/vim', {'as': 'vim'}         " dracula
+    " Plug 'altercation/vim-colors-solarized'   " solarized
     Plug 'morhetz/gruvbox'                    " gruvbox
 
     " intresting but not used
-    Plug 'vim-scripts/rfc-syntax'             " rfc
+    " Plug 'vim-scripts/rfc-syntax'             " rfc
 
     " my plugins
-    Plug 'cacharle/c_formatter_42.vim'
-    Plug 'cacharle/doxy42.vim'
+    " Plug 'cacharle/c_formatter_42.vim'
+    " Plug 'cacharle/doxy42.vim'
 
     " s19 at home
     Plug 'cacharle/vim-42header'            " 42 header
 
     " Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
+
+    " terrible startuptime on markdown/css files https://github.com/ap/vim-css-color/issues/87
+    " Plug 'skammer/vim-css-color'
 call plug#end()

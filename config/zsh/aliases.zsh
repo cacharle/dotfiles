@@ -122,8 +122,12 @@ pacman_url() { pacman -Si "$1" | grep URL | tr -s ' ' | cut -d ' ' -f 3 ; }
 alias filter-valgrind="sed -e 's/==[0-9]*==/==/' -e 's/0x[0-9A-F]*//'"
 
 rc() {
-    filepath="$(find "$HOME/git/dotfiles" -type f -not -path '*.git/*' | fzf)" &&
-        "$EDITOR" "$filepath"
+    dir="$HOME/git/dotfiles/"
+    filepath="$(
+        find "$dir" -type f -not -path '*.git/*' |
+        sed "s:$dir::" |
+        fzf
+    )" && "$EDITOR" "$dir$filepath"
     filename="$(basename "$filepath")"
     case "$filename" in
         .zshrc|aliases.zsh)
