@@ -1,3 +1,5 @@
 set selection-clipboard clipboard
+set page-padding 5
+set recolor
 map u scroll half-up
 map d scroll half-down
