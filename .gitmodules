@@ -1,3 +1,6 @@
 [submodule "local/share/mutt/solarized"]
 	path = local/share/mutt/solarized
 	url = https://github.com/altercation/mutt-colors-solarized
+[submodule "local/share/mutt/gruvbox"]
+	path = local/share/mutt/gruvbox
+	url = https://git.sthu.org/repos/mutt-gruvbox.git

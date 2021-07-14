@@ -50,8 +50,10 @@ set header_cache     = "$XDG_CACHE_HOME/mutt/cache/headers"
 set message_cachedir = "$XDG_CACHE_HOME/mutt/cache/bodies"
 set certificate_file = "$XDG_CACHE_HOME/mutt/certificates"
 
-# solarized color scheme
-source "$XDG_DATA_HOME/mutt/solarized/mutt-colors-solarized-dark-16.muttrc"
+# color shemes
+
+# source "$XDG_DATA_HOME/mutt/solarized/mutt-colors-solarized-dark-16.muttrc"  # solarized
+source "$XDG_DATA_HOME/mutt/gruvbox/colors-gruvbox-shuber.muttrc"  # gruvbox
 
 # password
 source "gpg -d $XDG_DATA_HOME/mutt/passwd.muttrc.gpg 2> /dev/null |"
