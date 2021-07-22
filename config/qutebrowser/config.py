@@ -27,8 +27,8 @@ c.aliases = {
 
 c.url.start_pages = ['https://searx.cacharle.xyz']
 c.url.searchengines = {
-    # 'DEFAULT': 'https://searx.cacharle.xyz?q={}',
-    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'DEFAULT': 'https://searx.cacharle.xyz?q={}',
+    # 'DEFAULT': 'https://duckduckgo.com/?q={}',
     'd':       'https://duckduckgo.com/?q={}',
     'g':       'https://google.com/?q={}',
     'y':       'https://www.youtube.com/results?search_query={}',
