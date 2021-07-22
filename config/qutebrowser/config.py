@@ -22,7 +22,8 @@ interceptor.register(filter_yt)
 c.aliases = {
     'q':  'close',
     'sc': 'config-source',
-    'bw': """spawn --userscript qute-bitwarden -d 'dmenu -P -w 0 -p "master password"' """,
+    # 'bw': """spawn --userscript qute-bitwarden -d 'dmenu -P -p "master password"' """,
+    'bw': """spawn --userscript qute-bitwarden""",
 }
 
 c.url.start_pages = ['https://searx.cacharle.xyz']
@@ -89,6 +90,7 @@ c.content.headers.do_not_track = True
 
 # adblock on youtube isn't supported: https://github.com/qutebrowser/qutebrowser/issues/6480
 c.content.blocking.enabled = True
+c.content.blocking.method = 'both'
 c.content.blocking.adblock.lists = [
     'https://easylist.to/easylist/easylist.txt',
     'https://easylist.to/easylist/easyprivacy.txt',

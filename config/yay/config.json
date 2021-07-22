@@ -1,5 +1,6 @@
 {
     "sudobin": "doas",
     "sudoflags": "",
-    "sudoloop": false
+    "sudoloop": false,
+    "gpgflags": "--keyserver keyserver.ubuntu.com"
 }
