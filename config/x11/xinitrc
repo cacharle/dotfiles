@@ -1,5 +1,6 @@
 #!/bin/sh
 
+keynav daemonize               # moving the cursor around without the mouse
 redshift &                     # filter blue light
 dunst &                        # notification daemon
 # certain event cause rate to reset (https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
