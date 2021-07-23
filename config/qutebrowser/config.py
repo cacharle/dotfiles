@@ -60,8 +60,16 @@ c.editor.command = [
 
 c.messages.timeout = 4000
 
-config.bind(';v', 'hint links spawn /usr/bin/mpv --ytdl-format=best {hint-url} ;;'
-                  'message-info "opening in video player"')
+config.bind(
+    ';v',
+    """
+        hint links spawn
+            /usr/bin/mpv
+            --ytdl-format="bestvideo[height<=480][fps<=30]+bestaudio/best[height<=480][fps<=30]"
+            {hint-url} ;;
+        message-info "opening in video player"
+    """.replace('\n', ' ')
+)
 
 config.bind('<Ctrl-J>', 'completion-item-focus next', 'command')
 config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
