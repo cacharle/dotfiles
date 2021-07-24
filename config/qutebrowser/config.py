@@ -29,10 +29,11 @@ c.aliases = {
 c.url.start_pages = ['https://searx.cacharle.xyz']
 c.url.searchengines = {
     'DEFAULT': 'https://searx.cacharle.xyz?q={}',
-    # 'DEFAULT': 'https://duckduckgo.com/?q={}',
     'd':       'https://duckduckgo.com/?q={}',
     'g':       'https://google.com/?q={}',
     'y':       'https://www.youtube.com/results?search_query={}',
+    'w':       'https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1',
+    'wfr':     'https://fr.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1',
     'gh':      'https://github.com/search?q={}',
     'h':       'https://hoogle.haskell.org/?hoogle={}',
     'cpp':     'http://cplusplus.com/search.do?q={}',
