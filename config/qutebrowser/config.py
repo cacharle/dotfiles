@@ -66,6 +66,7 @@ config.bind(
     """
         hint links spawn
             /usr/bin/mpv
+            --ytdl-raw-options=yes-playlist=
             --ytdl-format="bestvideo[height<=480][fps<=30]+bestaudio/best[height<=480][fps<=30]"
             {hint-url} ;;
         message-info "opening in video player"
