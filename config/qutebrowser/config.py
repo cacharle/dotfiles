@@ -79,6 +79,9 @@ config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
 config.bind('J', 'tab-prev', 'normal')
 config.bind('K', 'tab-next', 'normal')
 
+config.bind('gJ', 'tab-move -', 'normal')
+config.bind('gK', 'tab-move +', 'normal')
+
 config.bind('<F12>', 'devtools', 'normal')
 
 config.bind('j', 'scroll-page 0  0.05', 'normal')
