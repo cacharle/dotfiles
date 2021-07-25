@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ "$USER" = 'root' ] && { crontab 'crontab/root.crontab' ; exit ; }
+
 mkdir -pv "$XDG_CONFIG_HOME"
 mkdir -pv "$XDG_DATA_HOME"
 mkdir -pv "$XDG_CACHE_HOME"
@@ -30,7 +32,7 @@ link_home_files 'local'  "$HOME/.local"
 ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
 
 ################################################################################
-# cacharle-sync install
+# sync install
 ################################################################################
 
 CACHARLE_SYNC_PATH="$HOME/cacharle-sync"
@@ -39,7 +41,7 @@ CACHARLE_SYNC_PATH="$HOME/cacharle-sync"
 
 ################################################################################
 # vim plug
-###############################################################################
+################################################################################
 
 echo '---------------------------- INSTALL VIM PLUG ----------------------------'
 PLUGFILE="$XDG_DATA_HOME/vim/autoload/plug.vim"
@@ -66,3 +68,11 @@ mkdir -p "$XDG_DATA_HOME/zsh"
 update_zsh_plugin 'https://github.com/sindresorhus/pure'
 update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting'
 update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
+
+###############################################################################
+# crontab
+###############################################################################
+
+echo '---------------------------- INSTALL CRONTAB -----------------------------'
+crontab 'crontab/user.crontab'
+echo 'INFO: Run this script as root if you want to install the root contab'

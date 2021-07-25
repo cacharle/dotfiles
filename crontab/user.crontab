@@ -1,0 +1,4 @@
+* * */1 * * . $HOME/.zprofile ; clout pull
+* * */1 * * . $HOME/.zprofile ; newsboat -x reload
+
+# vim:ft=crontab

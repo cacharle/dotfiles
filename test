@@ -21,4 +21,8 @@ vint -s config/vim/pluggins.vim                                       || ret=$?
 flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py || ret=$?
 flake8 --ignore W504 config/python/startup.py                         || ret=$?
 
+# CRONTAB
+crontab -T crontab/root.crontab                                       || ret=$?
+crontab -T crontab/user.crontab                                       || ret=$?
+
 exit $ret
