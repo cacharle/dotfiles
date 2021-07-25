@@ -1,28 +1,64 @@
 #!/bin/sh
 
-usage() {
-    echo "Usage: $0 push/pull [rsync args...]"
+assert_command_exists() {
+    command -v "$1" > /dev/null && return
+    echo "Error: command not found: '$1'"
+    [ -n "$2" ] && echo "$2"
+    exit 1
 }
 
-[ -z "$1" ] && usage && exit 1
+assert_command_exists rsync
 
-RSYNC_ARGS="$(echo "$*" | cut -d ' ' -f 2-)"
-RSYNC_CMD="rsync -avh --progress --compress $RSYNC_ARGS"
+usage_exit() {
+    echo "Usage: $(basename "$0") push/pull/push-watch/pull-watch [rsync args...]"
+    exit 2
+}
 
-REMOTE_USER=charles
-REMOTE_HOST=cacharle.xyz
+[ -z "$1" ] && usage_exit
 
-SYNC_DIR="cacharle-sync/"
-SYNC_PATH="$HOME/$SYNC_DIR"
+# Parameter expansion is undifined with $* and $@
+rsync_args=$([ -z "$2" ] || echo "$*")
+rsync_cmd="rsync -avh --progress --compress ${rsync_args#* }"
+
+remote_user=charles
+remote_host=cacharle.xyz
+remote="$remote_user@$remote_host"
+
+# '/' suffix is significant for rsync to know if it needs to copy in the directory or the directory itself
+sync_dir="clout-sync/"
+sync_path="${XDG_DATA_HOME:-$HOME/.sync}/$sync_dir"
+
+create_sync_dirs() {
+    # --mkpath only available in latest version of rsync (not in debian repositories)
+    [ ! -d "$sync_path" ] && mkdir -p "$sync_path"
+    # shellcheck disable=SC2029
+    ssh "$remote" "[ ! -d \"\$HOME/$sync_dir\" ] && mkdir -pv \"\$HOME/$sync_dir\""
+}
 
 case "$1" in
     push)
-        $RSYNC_CMD "$SYNC_PATH" "$REMOTE_USER@$REMOTE_HOST:$SYNC_DIR"
+        create_sync_dirs
+        $rsync_cmd "$sync_path" "$remote:$sync_dir"
         ;;
     pull)
-        $RSYNC_CMD "$REMOTE_USER@$REMOTE_HOST:$SYNC_DIR" "$SYNC_PATH"
+        create_sync_dirs
+        $rsync_cmd "$remote:$sync_dir" "$sync_path"
+        ;;
+    push-watch)
+        assert_command_exists inotifywait "Install inotify-tools package on ArchLinux"
+        while true
+        do
+            echo 'Waiting for syncable content'
+            inotifywait -q -r -e modify -e create "$sync_path"
+            clout push
+        done
+        ;;
+    dump-config)
+        echo "rsync command: $rsync_cmd"
+        echo "remote:        $remote"
+        echo "sync path:     $sync_path"
         ;;
     *)
-        usage && exit 1
+        usage_exit
         ;;
 esac

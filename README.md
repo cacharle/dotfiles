@@ -25,7 +25,3 @@ $ ./install
 | mpv         | https://mpv.io/                    | Simple video player             |
 | moc         | https://moc.daper.net/             | Music player                    |
 | redshift    | http://jonls.dk/redshift/          | Change screen color temperature |
-
-## School 19 Config
-
-Configuration for school 19 can be found on the [s19](https://github.com/HappyTramp/dotfiles/tree/s19) branch.
