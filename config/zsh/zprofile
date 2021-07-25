@@ -62,9 +62,12 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 
 export MINIKUBE_IN_STYLE=false  # disable cringe minikube emojies
 
-[ "$(tty)" = '/dev/tty1' ] &&
-    {
-        xmonad --recompile
-        startx "$XDG_CONFIG_HOME/x11/xinitrc"
-        poweroff
-    }
+export CLOUT_SYNC_DIR="clout-sync/"
+export CLOUT_SYNC_PATH="${XDG_DATA_HOME:-$HOME/.sync}/$CLOUT_SYNC_DIR"
+
+if [ "$(tty)" = '/dev/tty1' ]
+then
+    xmonad --recompile
+    startx "$XDG_CONFIG_HOME/x11/xinitrc"
+    poweroff
+fi

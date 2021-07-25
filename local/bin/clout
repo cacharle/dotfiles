@@ -25,8 +25,8 @@ remote_host=cacharle.xyz
 remote="$remote_user@$remote_host"
 
 # '/' suffix is significant for rsync to know if it needs to copy in the directory or the directory itself
-sync_dir="clout-sync/"
-sync_path="${XDG_DATA_HOME:-$HOME/.sync}/$sync_dir"
+sync_dir=${CLOUT_SYNC_DIR:-'clout-sync/'}
+sync_path="${CLOUT_SYNC_PATH:-"${XDG_DATA_HOME:-"$HOME/.sync"}/$sync_dir"}"
 
 create_sync_dirs() {
     # --mkpath only available in latest version of rsync (not in debian repositories)
