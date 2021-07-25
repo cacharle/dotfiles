@@ -70,9 +70,12 @@ update_zsh_plugin()
 }
 
 mkdir -p "$XDG_DATA_HOME/zsh"
-update_zsh_plugin 'https://github.com/sindresorhus/pure'
-update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting'
-update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
+update_zsh_plugin 'https://github.com/sindresorhus/pure'                  & pids="$pids $!"
+update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting'  & pids="$pids $!"
+update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use' & pids="$pids $!"
+# Parallel downloads are faster
+# shellcheck disable=SC2086
+wait $pids
 
 ###############################################################################
 # crontab
