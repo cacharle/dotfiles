@@ -335,3 +335,19 @@ nnoremap <leader>ss :setlocal spell!<CR>
 
 hi link juliaFunctionCall Identifier
 hi link juliaParDelim Delimiter
+
+nnoremap gf :vsp <cfile><CR>
+
+" from: https://vim.fandom.com/wiki/Autocomplete_with_TAB_when_typing_words
+
+function! TabOrComplete(direction)
+    if col('.') > 1 && strpart(getline('.'), col('.') - 2, 3) =~# '^\w'
+        return a:direction ==# 'next' ? "\<C-n>" : "\<C-p>"
+    else
+        return "\<TAB>"
+    endif
+endfunction
+
+inoremap <TAB> <C-r>=TabOrComplete('next')<CR>
+" st maps Shift-Tab to <ESC>[Z (and it's discouraged to change it)
+inoremap <ESC>[Z <C-r>=TabOrComplete('prev')<CR>
