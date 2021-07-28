@@ -270,9 +270,10 @@ augroup vimrc_files
     " std::cout << ... << std::endl; shortcut
     autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<hi
     autocmd Filetype vim setlocal foldmethod=marker " vim fold method to marker
-    autocmd FileType haskell set formatprg=stylish-haskell
+    autocmd FileType haskell setlocal formatprg=stylish-haskell
     autocmd FileType lisp,html,css,htmldjango setlocal shiftwidth=2
     autocmd Filetype markdown nnoremap <leader>r :execute 'silent !pandoc % -o %:r.pdf &' \| redraw! \| echom 'Converting to pdf: ' . expand('%:r') . '.pdf'<CR>
+    autocmd Filetype markdown setlocal textwidth=80
 augroup END
 " }}}
 
@@ -335,3 +336,19 @@ nnoremap <leader>ss :setlocal spell!<CR>
 
 hi link juliaFunctionCall Identifier
 hi link juliaParDelim Delimiter
+
+nnoremap gf :vsp <cfile><CR>
+
+" from: https://vim.fandom.com/wiki/Autocomplete_with_TAB_when_typing_words
+
+function! TabOrComplete(direction)
+    if col('.') > 1 && strpart(getline('.'), col('.') - 2, 3) =~# '^\w'
+        return a:direction ==# 'next' ? "\<C-n>" : "\<C-p>"
+    else
+        return "\<TAB>"
+    endif
+endfunction
+
+inoremap <TAB> <C-r>=TabOrComplete('next')<CR>
+" st maps Shift-Tab to <ESC>[Z (and it's discouraged to change it)
+inoremap <ESC>[Z <C-r>=TabOrComplete('prev')<CR>
