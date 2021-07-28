@@ -1,4 +1,7 @@
-* * */1 * * . $HOME/.zprofile ; clout pull
-* * */1 * * . $HOME/.zprofile ; newsboat -x reload
+# . $HOME/.zprofile is to make sure the XDG_* variables are available to the jobs
+
+* * */1  * * . $HOME/.zprofile ; clout pull
+* * */1  * * . $HOME/.zprofile ; newsboat -x reload
+* * */15 * * . $HOME/.zprofile ; qutebrowser --nowindow :adblock-update
 
 # vim:ft=crontab
