@@ -45,6 +45,8 @@ c.url.searchengines = {
     'sk':      'https://scikit-learn.org/stable/search.html?q={}',
     'imdb':    'https://www.imdb.com/find?q={}',
     'wiby':    'https://wiby.me/?q={}',
+    'dlfren':  'https://www.deepl.com/translator#fr/en/{}',
+    'dlenfr':  'https://www.deepl.com/translator#en/fr/{}',
 }
 
 c.fonts.default_family = ['Fira Mono', 'Baekmuk', 'Symbola']
@@ -131,6 +133,7 @@ if home_path is not None:
 c.downloads.remove_finished = 5000
 
 c.tabs.last_close = 'startpage'
+c.tabs.new_position.unrelated = 'next'
 
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
