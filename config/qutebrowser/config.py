@@ -69,7 +69,7 @@ config.bind(
         hint links spawn
             /usr/bin/mpv
             --ytdl-raw-options=yes-playlist=
-            --ytdl-format="bestvideo[height<=480][fps<=30]+bestaudio/best[height<=480][fps<=30]"
+            --ytdl-format="bestvideo[height<=?480][fps<=?30]+bestaudio/best"
             {hint-url} ;;
         message-info "opening in video player"
     """.replace('\n', ' ')
@@ -92,6 +92,8 @@ config.bind('k', 'scroll-page 0 -0.05', 'normal')
 config.unbind('d', 'normal')
 config.bind('dd', 'tab-close', 'normal')
 
+# Can't create a shortcut to toggle darkmode since it requires a restart
+# (qute://help/settings.html#colors.webpage.darkmode.enabled)
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.policy.images = 'smart'

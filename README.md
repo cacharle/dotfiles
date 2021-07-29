@@ -25,3 +25,7 @@ $ ./install
 | mpv         | https://mpv.io/                    | Simple video player             |
 | moc         | https://moc.daper.net/             | Music player                    |
 | redshift    | http://jonls.dk/redshift/          | Change screen color temperature |
+
+## Credit
+
+* mpv script youtube quality - <https://github.com/jgreco/mpv-youtube-quality>
