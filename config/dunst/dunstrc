@@ -408,7 +408,8 @@
 #    urgency = normal
 
 [stack-volumes]
-   appname = "pulseaudio-ctl"
-   set_stack_tag = "volume"
+    appname = "pulseaudio-ctl"
+    set_stack_tag = "volume"
+    geometry = "150x0-30+20"
 
 # vim: ft=cfg

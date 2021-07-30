@@ -1,70 +1,52 @@
-import os
-
-from qutebrowser.api import interceptor
+from pathlib import Path
 
 
 config.load_autoconfig(True)
 
-
-# Youtube ad blocking
-def filter_yt(info: interceptor.Request):
-    url = info.request_url
-    if (
-        url.host() == 'www.youtube.com' and
-        url.path() == '/get_video_info' and
-        '&adformat=' in url.query()
-    ):
-        info.block()
-
-
-interceptor.register(filter_yt)
-
 c.aliases = {
-    'q':  'close',
-    'sc': 'config-source',
-    # 'bw': """spawn --userscript qute-bitwarden -d 'dmenu -P -p "master password"' """,
-    'bw': """spawn --userscript qute-bitwarden""",
+    "q":  "close",
+    "sc": "config-source",
+    # "bw": """spawn --userscript qute-bitwarden -d "dmenu -P -p "master password"" """,
+    "bw": """spawn --userscript qute-bitwarden""",
 }
 
-c.url.start_pages = ['https://searx.cacharle.xyz']
+c.url.start_pages = ["https://searx.cacharle.xyz"]
 c.url.searchengines = {
-    'DEFAULT': 'https://searx.cacharle.xyz?q={}',
-    'd':       'https://duckduckgo.com/?q={}',
-    'g':       'https://google.com/?q={}',
-    'y':       'https://www.youtube.com/results?search_query={}',
-    'w':       'https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1',
-    'wfr':     'https://fr.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1',
-    'gh':      'https://github.com/search?q={}',
-    'h':       'https://hoogle.haskell.org/?hoogle={}',
-    'cpp':     'http://cplusplus.com/search.do?q={}',
-    'lar':     'https://www.larousse.fr/dictionnaires/francais/{}',
-    'pypi':    'https://pypi.org/search/?q={}',
-    'intra':   'https://profile.intra.42.fr/searches/search?query={}',
-    'aw':      'https://wiki.archlinux.org/index.php?search={}',
-    'pd':      'https://pandas.pydata.org/pandas-docs/stable/search.html?q={}',
-    'sk':      'https://scikit-learn.org/stable/search.html?q={}',
-    'imdb':    'https://www.imdb.com/find?q={}',
-    'wiby':    'https://wiby.me/?q={}',
-    'dlfren':  'https://www.deepl.com/translator#fr/en/{}',
-    'dlenfr':  'https://www.deepl.com/translator#en/fr/{}',
+    "DEFAULT": "https://searx.cacharle.xyz?q={}",
+    "d":       "https://duckduckgo.com/?q={}",
+    "g":       "https://google.com/?q={}",
+    "y":       "https://www.youtube.com/results?search_query={}",
+    "w":       "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
+    "wfr":     "https://fr.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
+    "gh":      "https://github.com/search?q={}",
+    "h":       "https://hoogle.haskell.org/?hoogle={}",
+    "cpp":     "http://cplusplus.com/search.do?q={}",
+    "lar":     "https://www.larousse.fr/dictionnaires/francais/{}",
+    "pypi":    "https://pypi.org/search/?q={}",
+    "intra":   "https://profile.intra.42.fr/searches/search?query={}",
+    "aw":      "https://wiki.archlinux.org/index.php?search={}",
+    "pd":      "https://pandas.pydata.org/pandas-docs/stable/search.html?q={}",
+    "sk":      "https://scikit-learn.org/stable/search.html?q={}",
+    "imdb":    "https://www.imdb.com/find?q={}",
+    "wiby":    "https://wiby.me/?q={}",
+    "dlfren":  "https://www.deepl.com/translator#fr/en/{}",
+    "dlenfr":  "https://www.deepl.com/translator#en/fr/{}",
 }
 
-c.fonts.default_family = ['Fira Mono', 'Baekmuk', 'Symbola']
-c.fonts.hints = 'bold 11pt default_family'
+c.fonts.default_family = ["Fira Mono", "Baekmuk", "Symbola"]
+c.fonts.hints = "bold 11pt default_family"
 
-c.hints.chars = 'asdfghjkl;'  # use key in the main row for hints
-
-# c.statusbar.show = 'in-mode'
+c.hints.chars = "asdfghjkl;"  # use key in the main row for hints
 
 c.editor.command = [
-    '/usr/local/bin/st', '-e',
-    '/usr/bin/vim', '{file}', '+{line}', '-c', 'startinsert!'
+    "/usr/local/bin/st", "-e",
+    "/usr/bin/vim", "{file}", "+{line}", "-c", "startinsert!"
 ]
 
 c.messages.timeout = 4000
 
 config.bind(
-    ';v',
+    ";v",
     """
         hint links spawn
             /usr/bin/mpv
@@ -72,71 +54,71 @@ config.bind(
             --ytdl-format="bestvideo[height<=?480][fps<=?30]+bestaudio/best"
             {hint-url} ;;
         message-info "opening in video player"
-    """.replace('\n', ' ')
+    """.replace("\n", " ")
 )
 
-config.bind('<Ctrl-J>', 'completion-item-focus next', 'command')
-config.bind('<Ctrl-K>', 'completion-item-focus prev', 'command')
+config.bind("<Ctrl-J>", "completion-item-focus next", "command")
+config.bind("<Ctrl-K>", "completion-item-focus prev", "command")
 
-config.bind('J', 'tab-prev', 'normal')
-config.bind('K', 'tab-next', 'normal')
+config.bind("J", "tab-prev", "normal")
+config.bind("K", "tab-next", "normal")
 
-config.bind('gJ', 'tab-move -', 'normal')
-config.bind('gK', 'tab-move +', 'normal')
+config.bind("gJ", "tab-move -", "normal")
+config.bind("gK", "tab-move +", "normal")
 
-config.bind('<F12>', 'devtools', 'normal')
+config.bind("<F12>", "devtools", "normal")
 
-config.bind('j', 'scroll-page 0  0.05', 'normal')
-config.bind('k', 'scroll-page 0 -0.05', 'normal')
+config.bind("j", "scroll-page 0  0.05", "normal")
+config.bind("k", "scroll-page 0 -0.05", "normal")
 
-config.unbind('d', 'normal')
-config.bind('dd', 'tab-close', 'normal')
+config.unbind("d", "normal")
+config.bind("dd", "tab-close", "normal")
 
-# Can't create a shortcut to toggle darkmode since it requires a restart
+# Can"t create a shortcut to toggle darkmode since it requires a restart
 # (qute://help/settings.html#colors.webpage.darkmode.enabled)
 c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark theme
-c.colors.webpage.preferred_color_scheme = 'dark'
-c.colors.webpage.darkmode.policy.images = 'smart'
+c.colors.webpage.preferred_color_scheme = "dark"
+c.colors.webpage.darkmode.policy.images = "smart"
 
-config.bind('<Ctrl-Shift-t>', 'config-cycle -p content.proxy socks://localhost:9050/ system', mode='normal')
+config.bind("<Ctrl-Shift-t>", "config-cycle -p content.proxy socks://localhost:9050/ system", mode="normal")
 c.content.autoplay = False
 c.content.notifications.enabled = False
 c.content.prefers_reduced_motion = True
 c.content.headers.do_not_track = True
-# c.content.cookies.accept = 'no-3rdparty'
+# c.content.cookies.accept = "no-3rdparty"
 
-# adblock on youtube isn't supported: https://github.com/qutebrowser/qutebrowser/issues/6480
+# adblock on youtube isn"t supported: https://github.com/qutebrowser/qutebrowser/issues/6480
 c.content.blocking.enabled = True
-c.content.blocking.method = 'both'
+c.content.blocking.method = "both"
 c.content.blocking.adblock.lists = [
-    'https://easylist.to/easylist/easylist.txt',
-    'https://easylist.to/easylist/easyprivacy.txt',
-    'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt',
-    'https://easylist.to/easylist/fanboy-annoyance.txt',
-    'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
-    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt',
-    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt',
-    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt',
-    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt',
-    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt',
-    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt'
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+    "https://easylist.to/easylist/fanboy-annoyance.txt",
+    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt"
 ]
 
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version}"
 c.auto_save.session = True
 c.session.lazy_restore = True
 
-home_path = os.environ.get('HOME')
-if home_path is not None:
-    download_path = os.path.join(home_path, "dl")
-    if not os.path.exists(download_path):
-        os.mkdir(download_path)
-    c.downloads.location.directory = download_path
+download_path = Path("~").expanduser() / "dl"
+if not download_path.exists():
+    download_path.mkdir()
+c.downloads.location.directory = str(download_path)
 c.downloads.remove_finished = 5000
 
-c.tabs.last_close = 'startpage'
-c.tabs.new_position.unrelated = 'next'
+c.tabs.last_close = "startpage"
+c.tabs.title.format = "{audio}{current_title}"
+c.tabs.select_on_remove = "last-used"
 
+c.scrolling.bar = "always"
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
@@ -444,6 +426,6 @@ c.colors.tabs.selected.even.fg = base02
 # Background color of selected even tabs.
 c.colors.tabs.selected.even.bg = base05
 
-# Background color for webpages if unset (or empty to use the theme's
+# Background color for webpages if unset (or empty to use the theme"s
 # color).
 c.colors.webpage.bg = base00
