@@ -118,8 +118,6 @@ c.tabs.last_close = "startpage"
 c.tabs.title.format = "{audio}{current_title}"
 c.tabs.select_on_remove = "last-used"
 
-c.scrolling.bar = "always"
-
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
 # Gruvbox dark, hard scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)

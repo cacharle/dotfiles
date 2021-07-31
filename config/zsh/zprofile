@@ -9,6 +9,7 @@ export TERMINAL='st'
 export MAIL='me@cacharle.xyz'
 export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
+export SUDO='doas'
 
 # XDG all the things
 export XDG_CONFIG_HOME="$HOME/.config"
