@@ -4,7 +4,26 @@
 # shellcheck source=/dev/null
 . config/zsh/zprofile
 
-[ "$USER" = 'root' ] && { crontab 'crontab/root.crontab' ; exit ; }
+if [ "$USER" = 'root' ]
+then
+    crontab 'crontab/root.crontab'
+
+    install_dict() {
+        url="$1"
+        archive_name="$(basename "$url")"
+        dir_name="${archive_name%%.tar.bz2}"
+        install_dir='/usr/share/stardict/dic'
+        [ ! -d "$install_dir" ]  && mkdir -pv "$install_dir"
+        [ -d "$install_dir/$dir_name" ] && return
+        echo "----------------------------- Installing dictionary: $dir_name"
+        curl "$url" | tar -xjvf - -C "$install_dir" &
+    }
+    # other dictionaries at: http://download.huzheng.org/
+    install_dict 'http://download.huzheng.org/dict.org/stardict-dictd_www.dict.org_gcide-2.4.2.tar.bz2' # english
+    install_dict 'http://download.huzheng.org/fr/stardict-xmlittre-2.4.2.tar.bz2'                       # french
+
+    exit
+fi
 
 mkdir -pv "$XDG_CONFIG_HOME"
 mkdir -pv "$XDG_DATA_HOME"
