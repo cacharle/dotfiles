@@ -38,6 +38,7 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 export RLWRAP_HOME="$XDG_DATA_HOME/rlwrap"
+export STARDICT_DATA_DIR="$XDG_DATA_HOME/stardict"  # put dictionaries in a 'dic' subdirectory
 # cache
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export LESSHISTFILE='-'  # no ~/.lesshst

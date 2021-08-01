@@ -7,23 +7,20 @@
 if [ "$USER" = 'root' ]
 then
     crontab 'crontab/root.crontab'
-
-    install_dict() {
-        url="$1"
-        archive_name="$(basename "$url")"
-        dir_name="${archive_name%%.tar.bz2}"
-        install_dir='/usr/share/stardict/dic'
-        [ ! -d "$install_dir" ]  && mkdir -pv "$install_dir"
-        [ -d "$install_dir/$dir_name" ] && return
-        echo "----------------------------- Installing dictionary: $dir_name"
-        curl "$url" | tar -xjvf - -C "$install_dir" &
-    }
-    # other dictionaries at: http://download.huzheng.org/
-    install_dict 'http://download.huzheng.org/dict.org/stardict-dictd_www.dict.org_gcide-2.4.2.tar.bz2' # english
-    install_dict 'http://download.huzheng.org/fr/stardict-xmlittre-2.4.2.tar.bz2'                       # french
-
     exit
 fi
+
+parallel_pids=''
+
+parallel_start() {
+    "$@" & parallel_pids="$parallel_pids $!"
+}
+
+parallel_wait() {
+    # shellcheck disable=SC2086
+    wait $parallel_pids
+    parallel_pids=''
+}
 
 mkdir -pv "$XDG_CONFIG_HOME"
 mkdir -pv "$XDG_DATA_HOME"
@@ -89,12 +86,10 @@ update_zsh_plugin()
 }
 
 mkdir -p "$XDG_DATA_HOME/zsh"
-update_zsh_plugin 'https://github.com/sindresorhus/pure'                  & pids="$pids $!"
-update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting'  & pids="$pids $!"
-update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use' & pids="$pids $!"
-# Parallel downloads are faster
-# shellcheck disable=SC2086
-wait $pids
+parallel_start update_zsh_plugin 'https://github.com/sindresorhus/pure'
+parallel_start update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highlighting'
+parallel_start update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
+parallel_wait
 
 ###############################################################################
 # crontab
@@ -103,3 +98,23 @@ wait $pids
 echo '---------------------------- INSTALL CRONTAB -----------------------------'
 crontab 'crontab/user.crontab'
 echo 'INFO: Run this script as root if you want to install the root contab'
+
+###############################################################################
+# dictionaties
+###############################################################################
+
+echo '---------------------------- INSTALL CRONTAB -----------------------------'
+install_dict() {
+    url="$1"
+    archive_name="$(basename "$url")"
+    dir_name="${archive_name%%.tar.bz2}"
+    install_dir="${STARDICT_DATA_DIR:-/usr/share/stardict}/dic"
+    [ ! -d "$install_dir" ]  && mkdir -pv "$install_dir"
+    [ -d "$install_dir/$dir_name" ] && return
+    echo "----------------------------- Installing dictionary: $dir_name"
+    curl "$url" | tar -xjvf - -C "$install_dir" &
+}
+# other dictionaries at: http://download.huzheng.org/
+parallel_start install_dict 'http://download.huzheng.org/dict.org/stardict-dictd_www.dict.org_gcide-2.4.2.tar.bz2'  # english
+parallel_start install_dict 'http://download.huzheng.org/fr/stardict-xmlittre-2.4.2.tar.bz2'                        # french
+parallel_wait

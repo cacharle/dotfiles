@@ -158,3 +158,10 @@ alias zathura='zathura --fork'
 alias xset-reset='xset r rate 200 50'
 alias open='xdg-open'
 alias csi='rlwrap chicken-csi'
+
+sdcv() {
+    /usr/bin/sdcv -n --utf8-output --color "$@" 2>&1 |
+        fold -s -w "$(tput cols)"
+}
+
+alias ffmpeg='ffmpeg -hide_banner'
