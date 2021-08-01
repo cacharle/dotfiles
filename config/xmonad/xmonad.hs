@@ -25,7 +25,7 @@ import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
 main = xmonad $ desktopConfig
         { normalBorderColor  = "#1c1c1c"
         , focusedBorderColor = "#8a8a8a"
-        , terminal           = "st"
+        , terminal           = "alacritty"
         , layoutHook         = layoutHook'
         , manageHook         = manageHook'
         , modMask            = mod4Mask       -- mod key to super
