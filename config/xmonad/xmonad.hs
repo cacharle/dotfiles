@@ -20,12 +20,14 @@ import           XMonad.Layout.Spacing       (Border (..), spacingRaw)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
 
+myTerminal = "st"
+
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
 main = xmonad $ desktopConfig
         { normalBorderColor  = "#1c1c1c"
         , focusedBorderColor = "#8a8a8a"
-        , terminal           = "alacritty"
+        , terminal           = myTerminal
         , layoutHook         = layoutHook'
         , manageHook         = manageHook'
         , modMask            = mod4Mask       -- mod key to super
@@ -58,8 +60,8 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("<XF86TouchpadToggle>",    spawn "touchpad-toggle")
 
         , ("M-o",                     spawn "project-open")
-        , ("M-i",                     spawn "st -e zsh -c 'source ~/.config/zsh/.zshrc && rc'")
-        , ("M-m",                     spawn "st -e mocp -C /home/cacharle/.config/moc/config")
+        , ("M-i",                     spawn $ myTerminal ++ " -e zsh -c 'source ~/.config/zsh/.zshrc && rc'")
+        , ("M-m",                     spawn $ myTerminal ++ " -e mocp -C /home/cacharle/.config/moc/config")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn "notify-send --hint=int:transient:1 --hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" \"Battery\"")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
@@ -68,7 +70,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
 
 startupHook' :: X ()
 startupHook' = do
-    spawnOnOnce "code" "st"
+    spawnOnOnce "code" myTerminal
     spawnOnOnce "web"  "qutebrowser"
 
 confirm :: String -> X () -> X ()
