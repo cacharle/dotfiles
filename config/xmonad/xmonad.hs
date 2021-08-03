@@ -15,6 +15,7 @@ import           XMonad.Util.SpawnOnce       (spawnOnOnce)
 import           XMonad.Layout.NoBorders     (noBorders)
 import           XMonad.Layout.Reflect       (reflectHoriz)
 import           XMonad.Layout.Spacing       (Border (..), spacingRaw)
+import           XMonad.Layout.Grid          (Grid(..))
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
@@ -42,6 +43,7 @@ layoutHook' = spacing' 4 $ reflectHoriz tiledVerticalBigMaster  -- main monitor 
                            ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
                            ||| noBorders Full                   -- disable borders for fullscreen layout
                            ||| Mirror tiledHorizontalEven       -- 50/50 horizontal split
+                           ||| Grid
     where tiledVerticalBigMaster =  Tall 1 (3 / 100) (3 / 5)
           tiledHorizontalEven    =  Tall 1 (3 / 100) (1 / 2)
           spacing' x             = spacingRaw True (Border x x x x) False (Border x x x x) True

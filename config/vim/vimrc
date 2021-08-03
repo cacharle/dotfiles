@@ -267,6 +267,7 @@ augroup vimrc_files
     " school c
     autocmd Filetype c setlocal noexpandtab
     autocmd Filetype c setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
+    autocmd Filetype c setlocal equalprg=clang-format
     " std::cout << ... << std::endl; shortcut
     autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<hi
     autocmd Filetype vim setlocal foldmethod=marker " vim fold method to marker
@@ -352,3 +353,5 @@ endfunction
 inoremap <TAB> <C-r>=TabOrComplete('next')<CR>
 " st maps Shift-Tab to <ESC>[Z (and it's discouraged to change it)
 inoremap <ESC>[Z <C-r>=TabOrComplete('prev')<CR>
+
+command! LaTeXtoUnicodeToggle :call LaTeXtoUnicode#Toggle()
