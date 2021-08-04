@@ -57,13 +57,10 @@ source "$XDG_DATA_HOME/mutt/gruvbox/colors-gruvbox-shuber.muttrc"  # gruvbox
 
 # password
 # command to set it up
-# cat <<EOF
+# gpg -r xxx@xxx.xxx -e - <<EOF > $XDG_DATA_HOME/mutt/passwd.muttrc.gpg
 # set imap_passwd = "xxx"
 # set smtp_passwd = "xxx"
-# EOF |
-# gpg -r xxx@xxx.xxx -e passwd.muttrc > passwd.muttrc.gpg &&
-# shred passwd.muttrc &&
-# rm passwd.muttrc
+# EOF
 source "gpg -d $XDG_DATA_HOME/mutt/passwd.muttrc.gpg 2> /dev/null |"
 
 macro pager ,v |urlscan

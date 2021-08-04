@@ -354,4 +354,6 @@ inoremap <TAB> <C-r>=TabOrComplete('next')<CR>
 " st maps Shift-Tab to <ESC>[Z (and it's discouraged to change it)
 inoremap <ESC>[Z <C-r>=TabOrComplete('prev')<CR>
 
-command! LaTeXtoUnicodeToggle :call LaTeXtoUnicode#Toggle()
+command! LaTeXtoUnicodeToggle call LaTeXtoUnicode#Toggle()
+
+command! YankFilePath  let @" = expand('%')
