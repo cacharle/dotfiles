@@ -22,8 +22,11 @@ flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py || ret=$?
 flake8 --ignore W504,CCR001 config/python/startup.py                  || ret=$?
 
 # CRONTAB
-crontab -T crontab/root.crontab                                       || ret=$?
-crontab -T crontab/user.crontab                                       || ret=$?
+if crontab -h 2>&1 | grep -q '.*-T.*'
+then
+    crontab -T crontab/root.crontab                                   || ret=$?
+    crontab -T crontab/user.crontab                                   || ret=$?
+fi
 
 # XMONAD
 xmonad --recompile                                                    || ret=$?
