@@ -1,5 +1,5 @@
 # Meant to be installed as root
 
-* * */2 * * pacman --noconfirm -Syu >> /var/log/pacman_update.log
+0 12 */2 * * pacman --noconfirm -Syu >> /var/log/pacman_update.log
 
 # vim:ft=crontab

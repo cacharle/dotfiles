@@ -1,5 +1,5 @@
 # auto-reload yes   # reload feeds at startup
-reload-threads 64
+reload-threads 32
 max-items 100
 # pager less
 
