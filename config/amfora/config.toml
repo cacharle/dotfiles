@@ -140,7 +140,7 @@ scrollbar = "auto"
 # bind_edit
 # bind_home
 # bind_bookmarks
-# bind_add_bookmark
+bind_add_bookmark = 'M'
 # bind_save
 # bind_reload
 bind_back = 'H'
