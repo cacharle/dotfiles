@@ -31,6 +31,8 @@ c.url.searchengines = {
     "wiby":    "https://wiby.me/?q={}",
     "dlfren":  "https://www.deepl.com/translator#fr/en/{}",
     "dlenfr":  "https://www.deepl.com/translator#en/fr/{}",
+    "dldeen":  "https://www.deepl.com/translator#de/en/{}",
+    "dlende":  "https://www.deepl.com/translator#en/de/{}",
 }
 
 c.fonts.default_family = ["Fira Mono", "Baekmuk", "Symbola"]
