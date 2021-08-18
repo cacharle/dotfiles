@@ -15,6 +15,7 @@ c.url.searchengines = {
     "DEFAULT": "https://searx.cacharle.xyz?q={}",
     "d":       "https://duckduckgo.com/?q={}",
     "g":       "https://google.com/?q={}",
+    "sp":      "https://www.startpage.com/sp/search?q={}",
     "y":       "https://www.youtube.com/results?search_query={}",
     "w":       "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
     "wfr":     "https://fr.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
