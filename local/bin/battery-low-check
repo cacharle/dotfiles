@@ -1,5 +1,0 @@
-#!/bin/sh
-
-capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-
-[ "$capacity" -lt 10 ] && notify-send -u critical "Battery low $capacity%"

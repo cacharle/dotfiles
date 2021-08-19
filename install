@@ -6,7 +6,7 @@
 
 if [ "$USER" = 'root' ]
 then
-    crontab 'crontab/root.crontab'
+    crontab crontab/root.crontab
     exit
 fi
 
@@ -96,7 +96,14 @@ parallel_wait
 ###############################################################################
 
 echo '---------------------------- INSTALL CRONTAB -----------------------------'
-crontab 'crontab/user.crontab'
+
+if [ "$(hostname)" = 'charleslaptopcarbon' ]
+then
+    cat crontab/user.crontab crontab/laptop.crontab | crontab -
+else
+    crontab crontab/user.crontab
+fi
+
 echo 'INFO: Run this script as root if you want to install the root contab'
 
 ###############################################################################

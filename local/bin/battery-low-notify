@@ -1,0 +1,14 @@
+#!/bin/sh
+
+battery_dir='/sys/class/power_supply/BAT0'
+
+[ ! -d "$battery_dir" ] && exit 1
+
+if [ "$(cat "$battery_dir/status")" != 'Charging' ]
+then
+    capacity="$(cat "$battery_dir/capacity")"
+    [ "$capacity" -lt 15 ] &&
+        notify-send -u critical "Battery low: $capacity%"
+fi
+
+exit 0
