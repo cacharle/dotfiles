@@ -68,13 +68,6 @@ chpwd() {
 # shellcheck disable=SC2034,SC2039,SC3030
 fignore=(o hi) # ignore extensions in autocomplete
 
-# pluggins
-# shellcheck source=/dev/null
-. "$XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"  # prompt syntax highlight
-
-export YSU_MESSAGE_POSITION="after"                                 # you-should-use message after command output
-. "$XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh" # alias reminder
-
 # set tab to 4 spaces
 tabs 4
 
@@ -82,3 +75,14 @@ GPG_TTY=$(tty)  # fixing gpg fatal error about tty
 export GPG_TTY
 
 export BAT_THEME='gruvbox-dark'  # gruvbox theme for bat (fancy cat)
+
+# pluggins
+# shellcheck source=/dev/null
+. "$XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"  # prompt syntax highlight
+
+export YSU_MESSAGE_POSITION="after"                                 # you-should-use message after command output
+. "$XDG_DATA_HOME/zsh/zsh-you-should-use/you-should-use.plugin.zsh" # alias reminder
+
+# install pkgfile package on Arch Linux
+# run `pkgfile --update`
+.  /usr/share/doc/pkgfile/command-not-found.zsh
