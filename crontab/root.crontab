@@ -1,5 +1,6 @@
 # Meant to be installed as root
 
-0 12 */2 * * pacman --noconfirm -Syu >> /var/log/pacman_update.log
+0  12 */2 * * pacman --noconfirm -Syu
+20 12 */2 * * pacman -Qdt | xargs pacman --noconfirm -Rns
 
 # vim:ft=crontab
