@@ -8,10 +8,11 @@
 # text/x-shellscript=text.desktop;
 # x-scheme-handler/magnet=torrent.desktop;
 # application/x-bittorrent=torrent.desktop;
-x-scheme-handler/mailto=mail.desktop;
+x-scheme-handler/mailto=st-mutt.desktop;
 # text/plain=text.desktop;
 application/postscript=zathura.desktop;
 application/pdf=zathura.desktop;
+application/epub+zip=zathura.desktop;
 
 image/png=sxiv.desktop;
 image/jpeg=sxiv.desktop;

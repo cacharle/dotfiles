@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Mutt in an st terminal
+Exec=/usr/local/bin/st -e /usr/bin/mutt %u

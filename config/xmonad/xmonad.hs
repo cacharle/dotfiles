@@ -65,7 +65,9 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-i",                     spawn $ myTerminal ++ " -e zsh -c 'source ~/.config/zsh/.zshrc && rc'")
         , ("M-m",                     spawn $ myTerminal ++ " -e mocp -C /home/cacharle/.config/moc/config")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
-        , ("M-S-b",                   spawn "notify-send --hint=int:transient:1 --hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" \"Battery\"")
+        , ("M-S-b",                   spawn $ "notify-send --hint=int:transient:1 " ++
+                                              "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++
+                                              "\"Battery: $(cat /sys/class/power_supply/BAT0/status)\"")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
         , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io (exitWith ExitSuccess))
         ]
