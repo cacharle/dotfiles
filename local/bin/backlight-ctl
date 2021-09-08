@@ -3,7 +3,7 @@
 [ "$#" -ne 1 ] && exit 1;
 
 
-if [ "$(hostname)" = manjaro ]
+if [ "$(cat /etc/hostname)" = manjaro ]
 then
     cmd=light
     up_opt=-A

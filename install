@@ -98,7 +98,7 @@ parallel_wait
 
 echo '---------------------------- INSTALL CRONTAB -----------------------------'
 
-if [ "$(hostname)" = 'charleslaptopcarbon' ]
+if [ "$(cat /etc/hostname)" = 'charleslaptopcarbon' ]
 then
     cat crontab/user.crontab crontab/laptop.crontab | crontab -
 else
