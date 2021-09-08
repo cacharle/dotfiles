@@ -15,11 +15,12 @@ import           XMonad.Util.SpawnOnce       (spawnOnOnce)
 import           XMonad.Layout.NoBorders     (noBorders)
 import           XMonad.Layout.Reflect       (reflectHoriz)
 import           XMonad.Layout.Spacing       (Border (..), spacingRaw)
-import           XMonad.Layout.Grid          (Grid(..))
+import           XMonad.Layout.Grid          (Grid (..))
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
+
 
 myTerminal = "st"
 

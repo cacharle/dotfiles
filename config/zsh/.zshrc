@@ -65,6 +65,13 @@ chpwd() {
     [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
+# https://wiki.archlinux.org/title/Zsh#Shortcut_to_exit_shell_on_partial_command_line
+exit_zsh() {
+    exit
+}
+zle -N exit_zsh
+bindkey '^D' exit_zsh
+
 # shellcheck disable=SC2034,SC2039,SC3030
 fignore=(o hi) # ignore extensions in autocomplete
 

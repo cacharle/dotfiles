@@ -7,6 +7,7 @@
 if [ "$USER" = 'root' ]
 then
     crontab crontab/root.crontab
+    pkgfile --update
     exit
 fi
 
