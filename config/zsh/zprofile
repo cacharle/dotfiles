@@ -70,7 +70,6 @@ export CLOUT_SYNC_PATH="${XDG_DATA_HOME:-$HOME/.sync}/$CLOUT_SYNC_DIR"
 
 if [ "$(tty)" = '/dev/tty1' ]
 then
-    xmonad --recompile
     startx "$XDG_CONFIG_HOME/x11/xinitrc"
     poweroff
 fi

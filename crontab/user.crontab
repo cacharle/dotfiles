@@ -3,8 +3,11 @@
 # DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u $USER)/bus"
 # DISPLAY=:0
 
-0 9 */1  * * . $HOME/.zprofile ; clout pull
-2 9 */1  * * . $HOME/.zprofile ; DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u $USER)/bus" DISPLAY=:0 newsboat -x reload
-4 9 */15 * * . $HOME/.zprofile ; DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u $USER)/bus" DISPLAY=:0 qutebrowser --nowindow :adblock-update
+0  9  */1  * * . $HOME/.zprofile ; clout pull
+2  9  */1  * * . $HOME/.zprofile ; DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u $USER)/bus" DISPLAY=:0 newsboat -x reload
+4  9  */15 * * . $HOME/.zprofile ; DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u $USER)/bus" DISPLAY=:0 qutebrowser --nowindow :adblock-update
+
+# after pacman -Syu
+30 12 */2  * * xmonad --recompile
 
 # vim:ft=crontab
