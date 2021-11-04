@@ -14,6 +14,7 @@ alias yay='yay --color=auto'
 # common commands
 alias less='less -N'   # enable line number
 alias v='vim'
+alias nvim='VIMINIT="" nvim'
 # alias vim='nvim'
 # alias mkdir='mkdir -p'
 alias gdb='gdb -q'     # disable long intro message
@@ -95,7 +96,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias norminette='ruby ~/git/norminette/norminette.rb'
+# alias norminette='ruby ~/git/norminette/norminette.rb'
 alias norm='norminette'
 
 # bluetooth
