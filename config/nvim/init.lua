@@ -1,9 +1,8 @@
 require('plugins')
 
 -- common
--- let mapleader = ' '         -- set leader key to space
--- let maplocalleader = '-'    -- set file local leader key to backslash
--- vint: -ProhibitSetNoCompatible
+vim.g.mapleader = ' '         -- set leader key to space
+vim.g.maplocalleader = '-'    -- set file local leader key to backslash
 vim.opt.compatible = false          -- not compatible with vi
 vim.opt.number = true                -- line number
 vim.opt.numberwidth = 1           -- line numbers gutter autowidth
@@ -16,16 +15,15 @@ vim.opt.swapfile = false       -- disable swap files
 vim.opt.scrolloff = 2 -- line padding when scrolling
 vim.opt.textwidth = 0 -- when line wrap occurs
 vim.opt.wrapmargin = 0 -- disable auto line wrapping
+vim.opt.clipboard = 'unnamedplus'  -- use system clipboard
+vim.g.c_syntax_for_h = 1     -- .h file use C filetype instead of C++
 vim.opt.encoding = "utf-8"          -- utf-8 encoding
--- vim.opt.scriptencoding = "utf-8"
--- vim.opt.formatoptions -= 't'        -- do not auto break line > 89 character
 -- filetype plugin indent on   -- allow to add specific rules for certain type of file
 -- set mouse=a                 " mouse scrolling (heretic)
 vim.opt.shellredir = ">"            -- don't inclue stderr when reading a command
 -- intuitif split opening
 vim.opt.splitbelow = true
 vim.opt.splitright = true
--- vim.opt.fillchars = "vert:│"       -- split separator
 
 -- tab
 vim.opt.expandtab = true              -- tab to space
@@ -46,10 +44,6 @@ vim.opt.laststatus=2            -- always a statusline (all window)
 vim.opt.showcmd = true                -- show current partial command in the bottom right
 vim.opt.showmode = false             -- dont show current mode (i.e --INSERT--)
 
--- -- fold
--- vim.opt.foldmethod=indent       -- create fold based on the text indent
--- vim.opt.nofoldenable            -- not folded by default
-
 -- colorscheme
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
@@ -64,6 +58,7 @@ vim.g.gruvbox_invert_selection = 0
 require('lualine').setup {
     options = {
         theme = 'gruvbox',
+        icons_enabled = false,
         section_separators = '',
         component_separators = ''
     }
@@ -87,9 +82,10 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
+require('nvim_comment').setup()
+
 require('mappings')
 
---
 -- hi link juliaFunctionCall Identifier
 -- hi link juliaParDelim Delimiter
 --

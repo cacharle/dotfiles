@@ -1,25 +1,27 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-
-    use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-
+    use 'wbthomason/packer.nvim'    -- plugin manager (can manage itself)
+    use 'terrortylor/nvim-comment'  -- comments
+    use 'junegunn/vim-easy-align'   -- align
+    use 'AndrewRadev/sideways.vim'  -- Move arguments sideways
+    use 'FooSoft/vim-argwrap'       -- Put arguments on multiple lines
+    use 'tpope/vim-eunuch'          -- basic commands on current file (Rename/Remove)
+    -- color scheme
+    use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
+    -- status line
     use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-
+    -- better syntax highlight for everything
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
-
+    -- fuzzy finder (replace fzf.vim or ctrlp.vim)
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = {'nvim-lua/plenary.nvim'}
     }
-
-    use 'terrortylor/nvim-comment'
-    require('nvim_comment').setup()
 end)

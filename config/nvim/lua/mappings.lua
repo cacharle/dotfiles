@@ -1,122 +1,30 @@
 local map = vim.api.nvim_set_keymap
 
--- split navigation
-map('n', '<C-j>', '<C-w><C-j', {})
-map('n', '<C-k>', '<C-w><C-k', {})
-map('n', '<C-l>', '<C-w><C-l', {})
-map('n', '<C-h>', '<C-w><C-h', {})
-map('n', '<leader>s=', '<C-W>=' {})
+map('', 'Y', 'y$', {})                              -- 'Y' yank to the end of the line
+map('i', 'kj', '<ESC>', {})                         -- kj to exit insert mode
+map('', 'Q', '<nop>', {})                           -- remove visual mode keybinding
+map('n', '<leader>sc', ':source $MYVIMRC<cr>', {})  -- source vimrc
+map('n', '<leader>;', 'mqA;<ESC>`q', {})            -- put semicolon at the end of line
+map('n', 'cu', 'ct_', {})                           -- common change until
 
--- common
--- -- 'Y' yank to the end of the line
--- noremap Y y$
--- -- kj to exit insert mode
-map('i', 'kj', '<ESC>', {})
--- -- remove visual mode keybinding
--- noremap Q <nop>
--- -- search with very magic
--- nnoremap / /\v
--- nnoremap ? ?\v
--- -- move line up and down
--- nnoremap _ ddkP
--- nnoremap + ddp
--- -- long move up/down
--- nnoremap ( 10k
--- nnoremap ) 10j
--- -- tag nagigation
--- nnoremap <leader>] <C-]>
--- nnoremap <leader>t <C-t>
--- -- common change until
--- nnoremap cu ct_
--- nnoremap cp ct)
--- nnoremap c, ct,
---
--- -- buffer navigation
--- nnoremap <leader>bn :bn<CR>
--- nnoremap <leader>bp :bp<CR>
--- nnoremap <leader><TAB> :b#<CR>
--- nnoremap <leader>bl :ls<CR>
---
--- nnoremap <leader>sc :source $MYVIMRC<cr>  -- source vimrc
---
--- -- c
--- -- create c function body from prototype
--- nnoremap gcf A<BS><CR>{<CR><CR>}<ESC>j
---
--- -- initialise a school header file
--- function PutHeaderBoilerPlate()
---     let l:filename = join(split(toupper(expand('%:t')), '\.'), '_')
---     -- echom l:filename
---     call append(12, '#ifndef ' . l:filename)
---     call append(13, '# define ' . l:filename)
---     call append(15, '#endif')
--- endfunction
--- nnoremap gch :Stdheader<CR>:call PutHeaderBoilerPlate()<CR>
---
--- -- put semicolon at the end of line
--- nnoremap <leader>; mqA;<ESC>`q
---
--- -- cpp
--- -- Put Coplien Form boilerplate class
--- function PutCoplienFormFunc(name)
---     let l:default_constructor = a:name . '();\n'
---     let l:copy_constructor    = a:name . '(const ' . a:name . '& other);\n'
---     let l:copy_operator       = a:name . '& operator=(const ' . a:name . '& other);\n'
---     let l:destructor          = '~' . a:name . '();\n'
---
---     execute 'normal iclass ' . a:name . '\n{\npublic:\n' . l:default_constructor . l:copy_constructor . l:copy_operator . l:destructor . '\nprivate:\n};\n'
---     execute 'normal <2{'
--- endfunction
--- -- Put Coplien Form boilerplate according to filename
--- command! PutCoplienFormFile call PutCoplienFormFunc(split(expand('%:t'), '\.')[0])
--- command! -nargs=1 PutCoplienForm call PutCoplienFormFunc(--<args>")
---
--- -- quickfix window toggle
--- nnoremap <leader>q :call QuickfixToggle()<CR>
--- nnoremap <leader>n :cnext <CR>
--- nnoremap <leader>p :cprevious <CR>
--- let g:quickfix_is_open = 0
--- function! QuickfixToggle()
---     if g:quickfix_is_open
---         cclose
---         let g:quickfix_is_open = 0
---     else
---         copen
---         let g:quickfix_is_open = 1
---     endif
--- endfunction
---
--- function! CountScopeLines()
---     normal! mq
---     execute '/^}'
---     let l:end_brace = line('.')
---     execute '?^{'
---     let l:start_brace = line('.')
---     normal! k
---     let l:scope_len = l:end_brace - l:start_brace - 1
---     let l:scope_name = substitute(getline('.'), '\t', ' ', 'g')
---     echom l:scope_len . ' lines in |' . l:scope_name . '|'
---     normal! `q
--- endfunction
--- command! CountScopeLines call CountScopeLines()
---
--- -- make
--- nnoremap <leader>m :make all <CR>
---
--- augroup vimrc
---     autocmd!
--- augroup END
---
+-- split navigation
+map('n', '<C-J>', '<C-W><C-J>', {})
+map('n', '<C-K>', '<C-W><C-K>', {})
+map('n', '<C-L>', '<C-W><C-L>', {})
+map('n', '<C-H>', '<C-W><C-H>', {})
+map('n', '<leader>s=', '<C-W>=', {})
+
+-- search with very magic
+map('n', ' /', '/\v', {})
+map('n', ' ?', '?\v', {})
+
 -- -- hook
 -- -- remove trailing white space on save
 -- autocmd vimrc BufWritePre * %s/\s\+$//e
 -- -- dirty hack to disable this feature on markdown (autocmd! wouldn't work)
 -- autocmd vimrc BufReadPre *.md autocmd! BufWritePre
---
--- -- filetype
--- -- real tab in c file for school projects
--- let g:c_syntax_for_h = 1   -- filetype=c in header files instead of filetype=cpp
---
+
+
 -- augroup vimrc_files
 --     autocmd!
 --     -- school c
@@ -128,54 +36,13 @@ map('i', 'kj', '<ESC>', {})
 --     autocmd FileType haskell set formatprg=stylish-haskell
 --     autocmd FileType lisp,html,css,htmldjango setlocal shiftwidth=2
 -- augroup END
+
+-- pluggins
 --
--- --"""""""""""
--- -- pluggins "
--- --"""""""""""
---
--- -- directory to ignore when searching in file tree
--- vim.opt.wildignore=*/doc/*,*/tmp/*,*.o,*.so,*.a,*.swp,*.zip,*/node_modules/*,*/vendor/*,.bundle/*,bin/*,.git/*,*.pyc
---
--- -- ctrlp
--- -- ctrlp ignore all stuff in the .gitignore
--- -- let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
--- -- let g:ctrlp_working_path_mode = 'rw'
--- -- let g:ctrlp_mruf_case_sensitive = 0
--- --
--- -- nnoremap <leader>p :CtrlPTag<CR>
---
--- -- fzf.vim
--- nnoremap <C-p> :GFiles --exclude-standard --others --cached<CR>
--- nnoremap <leader>p :Tags<CR>
---
--- -- quick-scope
--- -- let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
---
--- -- man-plugin
--- -- runtime! ftplugin/man.vim
--- -- let g:ft_man_open_mode = 'vert'    " open in a vertical split
--- -- let g:ft_man_no_sect_fallback = 2  " if page specified fallback to page 2 (syscall pages)
--- -- autocmd Filetype man unmap <buffer> q:  hmmmm??
---
--- -- eazy-align
--- xmap ga <Plug>(EasyAlign)
--- nmap ga <Plug>(EasyAlign)
---
--- vnoremap <leader>c y:call system(--xclip -selection clipboard", getreg("\""))<CR>
--- nnoremap <leader>v :call setreg(--\"", system("xclip -selection clipboard -o"))<CR>p
---
--- let g:c_formatter_42_format_on_save = 0
---
--- let g:gutentags_ctags_exclude = ['doc/*', 'docs/*', 'Makefile', '.mypy_cache', '.pytest_cache', '.tox', 'build/*', 'dist/*']
--- -- let g:gutentags_ctags_exclude_wildignore = 1
---
--- let g:goyo_height = 90
--- let g:goyo_width = 100
---
--- vim.opt.viminfo+=n$XDG_CACHE_HOME/vim/viminfo
---
--- let g:python_highlight_all = 1
---
+-- eazy-align
+map('x', 'ga', ':EasyAlign<CR>', {})
+map('n', 'ga', ':EasyAlign<CR>', {})
+
 -- nnoremap <leader>l :SidewaysRight<CR>
 -- nnoremap <leader>h :SidewaysLeft<CR>
 -- nnoremap <leader>w :ArgWrap<CR>
