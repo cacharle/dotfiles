@@ -3,7 +3,7 @@ local map = vim.api.nvim_set_keymap
 map('', 'Y', 'y$', {})                              -- 'Y' yank to the end of the line
 map('i', 'kj', '<ESC>', {})                         -- kj to exit insert mode
 map('', 'Q', '<nop>', {})                           -- remove visual mode keybinding
-map('n', '<leader>sc', ':source $MYVIMRC<cr>', {})  -- source vimrc
+map('n', '<leader>sc', ':source $MYVIMRC<CR>', {})  -- source vimrc
 map('n', '<leader>;', 'mqA;<ESC>`q', {})            -- put semicolon at the end of line
 map('n', 'cu', 'ct_', {})                           -- common change until
 
@@ -54,4 +54,3 @@ map('n', 'ga', ':EasyAlign<CR>', {})
 
 map('n', '<C-p>', ':Telescope git_files<CR>', {})
 map('n', '<C-h>', ':Telescope help_tags<CR>', {})
-

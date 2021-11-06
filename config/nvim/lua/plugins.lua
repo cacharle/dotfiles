@@ -7,6 +7,8 @@ return require('packer').startup(function()
     use 'AndrewRadev/sideways.vim'  -- Move arguments sideways
     use 'FooSoft/vim-argwrap'       -- Put arguments on multiple lines
     use 'tpope/vim-eunuch'          -- basic commands on current file (Rename/Remove)
+    use 'romainl/vim-cool'          -- only highlight search matches when searching
+
     -- color scheme
     use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
     -- status line
