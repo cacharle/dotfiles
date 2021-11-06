@@ -18,6 +18,10 @@ map('n', '<leader>s=', '<C-W>=', {})
 map('n', ' /', '/\v', {})
 map('n', ' ?', '?\v', {})
 
+-- ctrl-j/k to navigate commands history
+map('c', '<C-j>', '<down>', {})
+map('c', '<C-k>', '<up>', {})
+
 -- -- hook
 -- -- remove trailing white space on save
 -- autocmd vimrc BufWritePre * %s/\s\+$//e
@@ -47,3 +51,7 @@ map('n', 'ga', ':EasyAlign<CR>', {})
 -- nnoremap <leader>h :SidewaysLeft<CR>
 -- nnoremap <leader>w :ArgWrap<CR>
 -- nnoremap <leader>ss :setlocal spell!<CR>
+
+map('n', '<C-p>', ':Telescope git_files<CR>', {})
+map('n', '<C-h>', ':Telescope help_tags<CR>', {})
+

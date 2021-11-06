@@ -13,10 +13,8 @@ alias yay='yay --color=auto'
 
 # common commands
 alias less='less -N'   # enable line number
-alias v='vim'
 alias nvim='VIMINIT="" nvim'
-# alias vim='nvim'
-# alias mkdir='mkdir -p'
+alias v='nvim'
 alias gdb='gdb -q'     # disable long intro message
 alias sudo='sudo '     # enable color (the search for aliases continues)
 alias doas='doas '     # same for doas

@@ -55,6 +55,19 @@ vim.g.gruvbox_contrast_dark = 'medium'
 vim.g.gruvbox_contrast_light = 'hard'
 vim.g.gruvbox_invert_selection = 0
 
+local actions = require('telescope.actions')
+require('telescope').setup {
+    defaults = {
+        mappings = {
+            i = {
+                ['<C-j>'] = actions.move_selection_next,
+                ['<C-k>'] = actions.move_selection_previous,
+                ['<esc>'] = actions.close,
+            }
+        }
+    }
+}
+
 require('lualine').setup {
     options = {
         theme = 'gruvbox',
@@ -85,8 +98,3 @@ require('nvim-treesitter.configs').setup {
 require('nvim_comment').setup()
 
 require('mappings')
-
--- hi link juliaFunctionCall Identifier
--- hi link juliaParDelim Delimiter
---
--- autocmd Filetype markdown nnoremap <leader>r :execute 'silent !pandoc % -o %:r.pdf &' \| redraw! \| echom 'Converting to pdf: ' . expand('%:r') . '.pdf'<CR>
