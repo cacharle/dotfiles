@@ -97,4 +97,6 @@ require('nvim-treesitter.configs').setup {
 
 require('nvim_comment').setup()
 
+require('lspconfig').clangd.setup {}
+
 require('mappings')

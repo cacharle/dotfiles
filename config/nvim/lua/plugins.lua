@@ -8,6 +8,7 @@ return require('packer').startup(function()
     use 'FooSoft/vim-argwrap'       -- Put arguments on multiple lines
     use 'tpope/vim-eunuch'          -- basic commands on current file (Rename/Remove)
     use 'romainl/vim-cool'          -- only highlight search matches when searching
+    use 'neovim/nvim-lspconfig'     -- nvim lsp configuration
 
     -- color scheme
     use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}

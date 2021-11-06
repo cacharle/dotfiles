@@ -1,18 +1,18 @@
 local map = vim.api.nvim_set_keymap
 
 map('', 'Y', 'y$', {})                              -- 'Y' yank to the end of the line
-map('i', 'kj', '<ESC>', {})                         -- kj to exit insert mode
+map('i', 'kj', '<esc>', {})                         -- kj to exit insert mode
 map('', 'Q', '<nop>', {})                           -- remove visual mode keybinding
-map('n', '<leader>sc', ':source $MYVIMRC<CR>', {})  -- source vimrc
-map('n', '<leader>;', 'mqA;<ESC>`q', {})            -- put semicolon at the end of line
+map('n', '<leader>sc', '<cmd>source $MYVIMRC<cr>', {})  -- source vimrc
+map('n', '<leader>;', 'mqA;<esc>`q', {})            -- put semicolon at the end of line
 map('n', 'cu', 'ct_', {})                           -- common change until
 
 -- split navigation
-map('n', '<C-J>', '<C-W><C-J>', {})
-map('n', '<C-K>', '<C-W><C-K>', {})
-map('n', '<C-L>', '<C-W><C-L>', {})
-map('n', '<C-H>', '<C-W><C-H>', {})
-map('n', '<leader>s=', '<C-W>=', {})
+map('n', '<C-j>', '<C-w><C-j>', {})
+map('n', '<C-k>', '<C-w><C-k>', {})
+map('n', '<C-l>', '<C-w><C-l>', {})
+map('n', '<C-h>', '<C-w><C-h>', {})
+map('n', '<leader>s=', '<C-w>=', {})
 
 -- search with very magic
 map('n', ' /', '/\v', {})
@@ -44,13 +44,14 @@ map('c', '<C-k>', '<up>', {})
 -- pluggins
 --
 -- eazy-align
-map('x', 'ga', ':EasyAlign<CR>', {})
-map('n', 'ga', ':EasyAlign<CR>', {})
+map('x', 'ga', '<cmd>EasyAlign<cr>', {})
+map('n', 'ga', '<cmd>EasyAlign<cr>', {})
 
 -- nnoremap <leader>l :SidewaysRight<CR>
 -- nnoremap <leader>h :SidewaysLeft<CR>
 -- nnoremap <leader>w :ArgWrap<CR>
 -- nnoremap <leader>ss :setlocal spell!<CR>
 
-map('n', '<C-p>', ':Telescope git_files<CR>', {})
-map('n', '<C-h>', ':Telescope help_tags<CR>', {})
+map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
+map('n', '<f2>', '<cmd>Telescope help_tags<cr>', {})
+map('n', ';', '<cmd>Telescope commands<cr>', {})
