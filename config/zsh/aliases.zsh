@@ -21,7 +21,12 @@ alias doas='doas '     # same for doas
 alias info='info --vi-keys'
 
 # ls
-alias ls='ls --color=auto -Fh'
+if [ "$(uname)" = 'Linux' ]
+then
+    alias ls='ls --color=auto -Fh'
+else
+    alias ls='ls -G -Fh'
+fi
 alias ll="ls -l"
 alias la="ls -A"
 alias lla="ls -Al"

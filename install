@@ -27,9 +27,12 @@ mkdir -pv "$XDG_CONFIG_HOME"
 mkdir -pv "$XDG_DATA_HOME"
 mkdir -pv "$XDG_CACHE_HOME"
 # xmonad uses ~/.xmonad if those directories don't already exists
-mkdir -pv "$XMONAD_CONFIG_HOME"
-mkdir -pv "$XMONAD_DATA_HOME"
-mkdir -pv "$XMONAD_CACHE_HOME"
+if [ $(uname) = Linux ]
+then
+    mkdir -pv "$XMONAD_CONFIG_HOME"
+    mkdir -pv "$XMONAD_DATA_HOME"
+    mkdir -pv "$XMONAD_CACHE_HOME"
+fi
 
 echo '---------------------------- CONFIG FILE LINKS ---------------------------'
 
@@ -71,6 +74,11 @@ PLUGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 [ ! -f "$PLUGFILE" ] && curl -fLo "$PLUGFILE" --create-dirs "$PLUGURL"
 vim -c "PlugInstall" -c "qa"
 
+PACKERDIR="$XDG_DATA_HOME/nvim/site/pack/packer/start/packer.nvim"
+PACKERURL='https://github.com/wbthomason/packer.nvim'
+[ ! -d "$PACKERDIR" ] && git clone --depth 1 "$PACKERURL" "$PACKERDIR"
+vim -c "PackerInstall" -c "qa"
+
 ###############################################################################
 # zsh pluggins
 ###############################################################################
@@ -92,6 +100,12 @@ parallel_start update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highli
 parallel_start update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
 parallel_wait
 
+[ $(uname) = Darwin ] && exit
+
+###############################################################################
+# Linux specific
+###############################################################################
+
 ###############################################################################
 # crontab
 ###############################################################################
@@ -101,14 +115,14 @@ echo '---------------------------- INSTALL CRONTAB -----------------------------
 if [ "$(cat /etc/hostname)" = 'charleslaptopcarbon' ]
 then
     cat crontab/user.crontab crontab/laptop.crontab | crontab -
-else
+elif [ "$(cat /etc/hostname)" = 'cacharle-main' ]
     crontab crontab/user.crontab
 fi
 
 echo 'INFO: Run this script as root if you want to install the root contab'
 
 ###############################################################################
-# dictionaties
+# dictionaries
 ###############################################################################
 
 echo '---------------------------- INSTALL DICTIONARY --------------------------'

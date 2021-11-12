@@ -1,15 +1,25 @@
 #!/bin/zsh
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin"
+if [ "$(uname)" = 'Linux' ]
+then
+    export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin"
+    export TERM='st-256color'
+    export MAIL='me@cacharle.xyz'
+    export SUDO='doas'
+elif [ "$(uname)" = 'Darwin' ]
+then
+    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    export PATH="$PATH:$HOME/.brew/bin:$HOME/git/dotfiles/bin:$HOME/bin:/usr/local/anaconda3/bin"
+    export TERM='xterm-256color'
+    export MAIL='charles.cabergs@colruytgroup.com'
+    export SUDO='sudo'
+fi
 
 # applications
 export EDITOR='vim'
-export TERM='st-256color'
 export TERMINAL='st'
-export MAIL='me@cacharle.xyz'
 export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
-export SUDO='doas'
 
 # XDG all the things
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -68,7 +78,7 @@ export MINIKUBE_IN_STYLE=false  # disable cringe minikube emojies
 export CLOUT_SYNC_DIR="clout-sync/"
 export CLOUT_SYNC_PATH="${XDG_DATA_HOME:-$HOME/.sync}/$CLOUT_SYNC_DIR"
 
-if [ "$(tty)" = '/dev/tty1' ]
+if [ "$(uname)" = 'Linux' ] && [ "$(tty)" = '/dev/tty1' ]
 then
     startx "$XDG_CONFIG_HOME/x11/xinitrc"
     poweroff

@@ -92,4 +92,7 @@ export YSU_MESSAGE_POSITION="after"                                 # you-should
 
 # install pkgfile package on Arch Linux
 # run `pkgfile --update`
-.  /usr/share/doc/pkgfile/command-not-found.zsh
+if [ "$(uname)" = 'Linux' ]
+then
+    .  /usr/share/doc/pkgfile/command-not-found.zsh
+fi
