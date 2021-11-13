@@ -36,6 +36,9 @@ c.url.searchengines = {
     "dlende":  "https://www.deepl.com/translator#en/de/{}",
 }
 
+c.window.hide_decoration = False
+config.bind("<Command-Return>", "config-cycle window.hide_decoration true false", mode="normal")
+
 c.fonts.default_family = ["Fira Mono", "Baekmuk", "Symbola"]
 c.fonts.hints = "bold 11pt default_family"
 
