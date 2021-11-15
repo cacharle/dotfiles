@@ -62,7 +62,7 @@ chpwd() {
     content="$(find . -maxdepth 1 | wc -l)"
     ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
-    [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
+    [ "$(uname)" = 'Linux' ] && [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 }
 
 # https://wiki.archlinux.org/title/Zsh#Shortcut_to_exit_shell_on_partial_command_line
@@ -92,4 +92,7 @@ export YSU_MESSAGE_POSITION="after"                                 # you-should
 
 # install pkgfile package on Arch Linux
 # run `pkgfile --update`
-.  /usr/share/doc/pkgfile/command-not-found.zsh
+if [ "$(uname)" = 'Linux' ]
+then
+    .  /usr/share/doc/pkgfile/command-not-found.zsh
+fi
