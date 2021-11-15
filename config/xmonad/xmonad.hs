@@ -22,7 +22,7 @@ import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
 
 
-myTerminal = "st"
+myTerminal = "alacritty"
 
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig

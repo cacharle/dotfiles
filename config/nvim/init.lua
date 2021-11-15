@@ -71,7 +71,6 @@ require('telescope').setup {
 require('lualine').setup {
     options = {
         theme = 'gruvbox',
-        icons_enabled = false,
         section_separators = '',
         component_separators = ''
     }
@@ -97,6 +96,6 @@ require('nvim-treesitter.configs').setup {
 
 require('nvim_comment').setup()
 
-require('lspconfig').clangd.setup {}
+-- require('lspconfig').clangd.setup {}
 
 require('mappings')
