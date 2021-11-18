@@ -63,15 +63,16 @@ require('telescope').setup {
                 ['<C-j>'] = actions.move_selection_next,
                 ['<C-k>'] = actions.move_selection_previous,
                 ['<esc>'] = actions.close,
+                ['kj'] = actions.close,
             }
-        }
+        },
     }
 }
 
 require('lualine').setup {
     options = {
         theme = 'gruvbox',
-        icons_enabled = false,
+        icons_enabled = true,
         section_separators = '',
         component_separators = ''
     }
@@ -81,9 +82,9 @@ require('nvim-treesitter.configs').setup {
     highlight = {
         enable = true
     },
-    indent = {
-        enable = true
-    },
+    -- indent = {
+    --     enable = true
+    -- },
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -94,9 +95,22 @@ require('nvim-treesitter.configs').setup {
         }
     }
 }
+vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
+-- require 'nvim-treesitter.highlight'
+-- local hlmap = vim.treesitter.TSHighlighter.hl_map
+-- hlmap.error = nil
+
 
 require('nvim_comment').setup()
 
-require('lspconfig').clangd.setup {}
+-- local on_attach = function(_, bufnr)
+--     local opts = {noremap = true, silent = true }
+--     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+--     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+--     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+-- end
+
+-- require('lspconfig').clangd.setup {}
+-- require('lspconfig').pyright.setup { on_attach = on_attach }
 
 require('mappings')

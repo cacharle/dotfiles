@@ -54,4 +54,4 @@ map('n', 'ga', '<cmd>EasyAlign<cr>', {})
 
 map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
 map('n', '<f2>', '<cmd>Telescope help_tags<cr>', {})
-map('n', ';', '<cmd>Telescope commands<cr>', {})
+map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})

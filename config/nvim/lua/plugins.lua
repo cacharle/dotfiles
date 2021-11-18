@@ -25,6 +25,9 @@ return require('packer').startup(function()
     -- fuzzy finder (replace fzf.vim or ctrlp.vim)
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {'nvim-lua/plenary.nvim'}
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'kyazdani42/nvim-web-devicons', opt = true},
+        }
     }
 end)

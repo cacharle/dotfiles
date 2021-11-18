@@ -9,14 +9,14 @@ font:
     x: 0
     y: 0
   normal:
-    family: Fira Code
-    style: Regular
+    family: FiraCode Nerd Font Mono
+    style: Retina
   italic:
-    family: Fira Code
-    style: Italic
+    family: FiraCode Nerd Font Mono
+    style: Light
   bold:
-    family: Fira Code
-    style: Bold
+    family: FiraCode Nerd Font Mono
+    style: Medium
 
 
 key_bindings:
@@ -25,6 +25,7 @@ key_bindings:
   - { key: J, mods: Command|Shift, action: ScrollHalfPageDown }
   - { key: K, mods: Command|Shift, action: ScrollHalfPageUp }
   - { key: Return, mods: Command, action: ToggleSimpleFullScreen }
+  - { key: Q, mods: Command, chars: "" }
 
 # gruvbox_dark: https://github.com/eendroroy/alacritty-theme/blob/master/schemes.yaml
 colors:

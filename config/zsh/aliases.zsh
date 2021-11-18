@@ -3,10 +3,6 @@
 # color
 alias grep='grep --color=auto'
 alias tree='tree -C'
-alias pacman='pacman --color=auto'
-alias valgrindc='colour-valgrind'
-
-alias yay='yay --color=auto'
 
 # --sudo $(which doas) --sudoloop --sudoflags'
 
@@ -86,6 +82,13 @@ gpaf() {
     [ -z "$branch" ] && branch=$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)
     git remote | xargs -I{} git push -f {} "$branch"
 }
+
+# Linux specific aliases
+[ ! "$(uname)" = 'Linux' ] && return
+
+alias pacman='pacman --color=auto'
+alias valgrindc='colour-valgrind'
+alias yay='yay --color=auto'
 
 # lpass (lastpass-cli)
 alias lpassp='lpass show --password --clip'  # put password in clipboard

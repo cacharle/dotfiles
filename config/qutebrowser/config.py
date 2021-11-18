@@ -1,3 +1,4 @@
+import platform
 from pathlib import Path
 
 
@@ -41,6 +42,9 @@ config.bind("<Command-Return>", "config-cycle window.hide_decoration true false"
 
 c.fonts.default_family = ["Fira Mono", "Baekmuk", "Symbola"]
 c.fonts.hints = "bold 11pt default_family"
+if platform.system() == 'Darwin':
+    c.fonts.default_size = '13pt'
+    c.fonts.hints = "bold 12pt default_family"
 
 c.hints.chars = "asdfghjkl;"  # use key in the main row for hints
 
