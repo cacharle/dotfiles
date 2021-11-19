@@ -41,6 +41,10 @@ map('c', '<C-k>', '<up>', {})
 --     autocmd FileType lisp,html,css,htmldjango setlocal shiftwidth=2
 -- augroup END
 
+-- python breakpoints
+vim.cmd [[ autocmd FileType python nmap <leader>bd :g/^\s*breakpoint()$/d<cr> ]]
+vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]
+
 -- pluggins
 --
 -- eazy-align
