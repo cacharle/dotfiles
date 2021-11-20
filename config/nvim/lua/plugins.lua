@@ -35,12 +35,9 @@ return require('packer').startup(function()
         'folke/todo-comments.nvim',
         requires = 'nvim-lua/plenary.nvim',
         config = function()
-            print("plugins")
             require('todo-comments').setup {
+                signs = false
             }
         end
     }
 end)
-
--- TODO: bonjour
--- FIX: bonjour

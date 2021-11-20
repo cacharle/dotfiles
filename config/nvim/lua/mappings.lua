@@ -57,5 +57,6 @@ map('n', '<leader>h', '<cmd>SidewaysLeft<cr>', {})
 map('n', '<leader>w', '<cmd>ArgWrap<cr>', {})
 
 map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
-map('n', '<f2>', '<cmd>Telescope help_tags<cr>', {})
+map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
+map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
 map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
