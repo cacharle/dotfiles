@@ -27,7 +27,7 @@ mkdir -pv "$XDG_CONFIG_HOME"
 mkdir -pv "$XDG_DATA_HOME"
 mkdir -pv "$XDG_CACHE_HOME"
 # xmonad uses ~/.xmonad if those directories don't already exists
-if [ $(uname) = Linux ]
+if [ "$(uname)" = Linux ]
 then
     mkdir -pv "$XMONAD_CONFIG_HOME"
     mkdir -pv "$XMONAD_DATA_HOME"
@@ -40,10 +40,13 @@ link_home_files() {
     rice_dir="$1"
     dest_dir="$2"
     paths=$(mktemp)
+    platform="$(uname | tr '[:upper:]' '[:lower:]')"
+    other_platform="$([ "$platform" = 'linux' ] && echo darwin || echo linux)"
     # generate a file with the file path in this repo and the link for the real path
     # each line is in the format: TARGET LINKNAME
     find "$rice_dir" -type f |
-        sed -e 'p' -e 's:^'"$rice_dir"':'"$dest_dir"':' |
+        sed "/\.$other_platform\./ d" |
+        sed -e 'p' -e "s:^$rice_dir:$dest_dir:" -e "s/\.$platform\././" |
         awk '{ if (NR % 2 == 1) { print "'"$(pwd)"'" "/" $0 } else print }' |
         xargs -L 2 > "$paths"
     < "$paths" cut -d ' ' -f 2 | xargs -L 1 dirname | xargs -L 1 mkdir -pv
@@ -72,12 +75,13 @@ echo '---------------------------- INSTALL VIM PLUG ----------------------------
 PLUGFILE="$XDG_DATA_HOME/vim/autoload/plug.vim"
 PLUGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 [ ! -f "$PLUGFILE" ] && curl -fLo "$PLUGFILE" --create-dirs "$PLUGURL"
-vim -c "PlugInstall" -c "qa"
+vim -c 'PlugInstall' -c 'qa'
 
+echo '---------------------------- INSTALL NVIM PACKER -------------------------'
 PACKERDIR="$XDG_DATA_HOME/nvim/site/pack/packer/start/packer.nvim"
 PACKERURL='https://github.com/wbthomason/packer.nvim'
 [ ! -d "$PACKERDIR" ] && git clone --depth 1 "$PACKERURL" "$PACKERDIR"
-vim -c "PackerInstall" -c "qa"
+nvim -c 'PackerInstall' -c 'PackerUpdate' -c "qa"
 
 ###############################################################################
 # zsh pluggins
@@ -100,7 +104,7 @@ parallel_start update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highli
 parallel_start update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
 parallel_wait
 
-[ $(uname) = Darwin ] && exit
+[ "$(uname)" = Darwin ] && exit
 
 ###############################################################################
 # Linux specific
@@ -116,6 +120,7 @@ if [ "$(cat /etc/hostname)" = 'charleslaptopcarbon' ]
 then
     cat crontab/user.crontab crontab/laptop.crontab | crontab -
 elif [ "$(cat /etc/hostname)" = 'cacharle-main' ]
+then
     crontab crontab/user.crontab
 fi
 

@@ -6,6 +6,7 @@ map('', 'Q', '<nop>', {})                           -- remove visual mode keybin
 map('n', '<leader>sc', '<cmd>source $MYVIMRC<cr>', {})  -- source vimrc
 map('n', '<leader>;', 'mqA;<esc>`q', {})            -- put semicolon at the end of line
 map('n', 'cu', 'ct_', {})                           -- common change until
+map('n', '<leader>ss', '<cmd>setlocal spell!<cr>', {})  -- toggle spelling check
 
 -- split navigation
 map('n', '<C-j>', '<C-w><C-j>', {})
@@ -46,15 +47,14 @@ vim.cmd [[ autocmd FileType python nmap <leader>bd :g/^\s*breakpoint()$/d<cr> ]]
 vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]
 
 -- pluggins
---
--- eazy-align
+
 map('x', 'ga', '<cmd>EasyAlign<cr>', {})
 map('n', 'ga', '<cmd>EasyAlign<cr>', {})
 
--- nnoremap <leader>l :SidewaysRight<CR>
--- nnoremap <leader>h :SidewaysLeft<CR>
--- nnoremap <leader>w :ArgWrap<CR>
--- nnoremap <leader>ss :setlocal spell!<CR>
+map('n', '<leader>l', '<cmd>SidewaysRight<cr>', {})
+map('n', '<leader>h', '<cmd>SidewaysLeft<cr>', {})
+
+map('n', '<leader>w', '<cmd>ArgWrap<cr>', {})
 
 map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
 map('n', '<f2>', '<cmd>Telescope help_tags<cr>', {})

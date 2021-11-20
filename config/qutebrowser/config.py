@@ -437,3 +437,5 @@ c.colors.tabs.selected.even.bg = base05
 # Background color for webpages if unset (or empty to use the theme"s
 # color).
 c.colors.webpage.bg = base00
+
+# vim:TSBufDisable highlight
