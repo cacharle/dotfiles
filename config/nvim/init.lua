@@ -43,69 +43,12 @@ vim.opt.laststatus=2             -- always a statusline (all window)
 vim.opt.showcmd = true           -- show current partial command in the bottom right
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
--- colorscheme
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.cmd [[ colorscheme gruvbox ]]
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_bold = 1
-vim.g.gruvbox_termcolors = 256
-vim.g.gruvbox_contrast_dark = 'medium'
-vim.g.gruvbox_contrast_light = 'hard'
-vim.g.gruvbox_invert_selection = 0
 
-
-local actions = require('telescope.actions')
-require('telescope').setup {
-    defaults = {
-        mappings = {
-            i = {
-                ['<C-j>'] = actions.move_selection_next,
-                ['<C-k>'] = actions.move_selection_previous,
-                ['<esc>'] = actions.close,
-                ['kj'] = actions.close,
-            }
-        },
-    }
-}
-
-require('lualine').setup {
-    options = {
-        theme = 'gruvbox',
-        icons_enabled = true,
-        section_separators = '',
-        component_separators = ''
-    }
-}
-
-require('nvim-treesitter.configs').setup {
-    highlight = {
-        enable = true
-    },
-    -- indent = {
-    --     enable = true
-    -- },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
-        }
-    }
-}
-vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
 -- require 'nvim-treesitter.highlight'
 -- local hlmap = vim.treesitter.TSHighlighter.hl_map
 -- hlmap.error = nil
 
-
-require('nvim_comment').setup()
-
--- require('todo-comments').setup {
-
--- }
+-- require('nvim_comment').setup()
 
 -- local on_attach = function(_, bufnr)
 --     local opts = {noremap = true, silent = true }
