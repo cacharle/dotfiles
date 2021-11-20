@@ -9,7 +9,7 @@ font:
     x: 0
     y: 0
   normal:
-    family: Fira Code
+    family: FiraCode Nerd Font Mono
     style: Regular
   italic:
     style: Italic

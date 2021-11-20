@@ -1,5 +1,7 @@
 require('plugins')
 
+-- print('init.lua')
+
 -- common
 vim.g.mapleader = ' '              -- set leader key to space
 vim.g.maplocalleader = '-'         -- set file local leader key to backslash
@@ -102,6 +104,10 @@ vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
 
 
 require('nvim_comment').setup()
+
+require('todo-comments').setup {
+
+}
 
 -- local on_attach = function(_, bufnr)
 --     local opts = {noremap = true, silent = true }

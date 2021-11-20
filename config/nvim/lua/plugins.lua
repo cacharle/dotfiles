@@ -1,4 +1,4 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd [[ packadd packer.nvim ]]
 
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'    -- plugin manager (can manage itself)
@@ -30,4 +30,17 @@ return require('packer').startup(function()
             {'kyazdani42/nvim-web-devicons', opt = true},
         }
     }
+    -- todos,fix,etc.. highlight and list
+    use {
+        'folke/todo-comments.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            print("plugins")
+            require('todo-comments').setup {
+            }
+        end
+    }
 end)
+
+-- TODO: bonjour
+-- FIX: bonjour
