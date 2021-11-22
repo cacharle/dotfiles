@@ -58,14 +58,6 @@ link_home_files 'local'  "$HOME/.local"
 
 ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
 
-################################################################################
-# sync install
-################################################################################
-
-echo '---------------------------- SYNC FILE LINKS  ----------------------------'
-mkdir -pv "$CLOUT_SYNC_PATH"
-ln -svf "$CLOUT_SYNC_PATH/newsboat/urls" "$XDG_CONFIG_HOME/newsboat/urls"
-ln -svf "$CLOUT_SYNC_PATH/qutebrowser/bookmarks/urls" "$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
 
 ################################################################################
 # vim plug
@@ -109,6 +101,15 @@ parallel_wait
 ###############################################################################
 # Linux specific
 ###############################################################################
+
+################################################################################
+# sync install
+################################################################################
+
+echo '---------------------------- SYNC FILE LINKS  ----------------------------'
+mkdir -pv "$CLOUT_SYNC_PATH"
+ln -svf "$CLOUT_SYNC_PATH/newsboat/urls" "$XDG_CONFIG_HOME/newsboat/urls"
+ln -svf "$CLOUT_SYNC_PATH/qutebrowser/bookmarks/urls" "$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
 
 ###############################################################################
 # crontab
