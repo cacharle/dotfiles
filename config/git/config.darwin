@@ -1,0 +1,13 @@
+[user]
+	name = Charles Cabergs
+	email = charles.cabergs@colruytgroup.com
+[log]
+	decorate = full
+[pull]
+	rebase = false
+[merge]
+	tool = vimdiff
+[commit]
+	gpgsign = false
+[init]
+	defaultBranch = master

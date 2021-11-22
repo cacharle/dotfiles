@@ -45,8 +45,8 @@ link_home_files() {
     # generate a file with the file path in this repo and the link for the real path
     # each line is in the format: TARGET LINKNAME
     find "$rice_dir" -type f |
-        sed "/\.$other_platform\./ d" |
-        sed -e 'p' -e "s:^$rice_dir:$dest_dir:" -e "s/\.$platform\././" |
+        sed "/\.$other_platform/ d" |
+        sed -e 'p' -e "s:^$rice_dir:$dest_dir:" -e "s/\.$platform//" |
         awk '{ if (NR % 2 == 1) { print "'"$(pwd)"'" "/" $0 } else print }' |
         xargs -L 2 > "$paths"
     < "$paths" cut -d ' ' -f 2 | xargs -L 1 dirname | xargs -L 1 mkdir -pv
