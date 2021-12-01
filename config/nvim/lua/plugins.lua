@@ -7,18 +7,40 @@ return require('packer').startup(function()
     use 'FooSoft/vim-argwrap'       -- Put arguments on multiple lines
     use 'tpope/vim-eunuch'          -- basic commands on current file (Rename/Remove)
     use 'romainl/vim-cool'          -- only highlight search matches when searching
-    use 'neovim/nvim-lspconfig'     -- nvim lsp configuration
 
+    -- nvim lsp configuration
+    use {
+        'neovim/nvim-lspconfig',
+        config = function()
+        end
+    }
+
+    -- rust lsp (needs rust-analyser)
+    use {
+        'simrat39/rust-tools.nvim',
+        requires = {'neovim/nvim-lspconfig'},
+        ft = {'rust'},
+        config = function()
+            require('rust-tools').setup {
+                tools = {
+                    inlay_hints = {
+                        -- only_current_line = true,
+                    },
+                },
+            }
+        end
+    }
+
+    -- comment text objects
     use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
         end
     }
-
     -- color scheme
     use {
-        'ellisonleao/gruvbox.nvim', 
+        'ellisonleao/gruvbox.nvim',
         requires = {'rktjmp/lush.nvim'},
         config = function()
             vim.opt.termguicolors = true
@@ -105,4 +127,7 @@ return require('packer').startup(function()
             }
         end
     }
+
+    use { 'nvim-treesitter/playground', opt = true, cmd = { 'TSPlaygroundToggle' } }
+    use { '~/git/argwrap.nvim', opt = true }
 end)
