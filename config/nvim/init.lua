@@ -60,4 +60,11 @@ vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 -- require('lspconfig').clangd.setup {}
 -- require('lspconfig').pyright.setup { on_attach = on_attach }
 
+vim.cmd [[
+augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+augroup end
+]]
+
 require('mappings')
