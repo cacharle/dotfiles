@@ -43,9 +43,10 @@ vim.opt.laststatus=2             -- always a statusline (all window)
 vim.opt.showcmd = true           -- show current partial command in the bottom right
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
--- require 'nvim-treesitter.highlight'
--- local hlmap = vim.treesitter.TSHighlighter.hl_map
--- hlmap.error = nil
+-- remove ugly treesitter error highlight
+require 'nvim-treesitter.highlight'
+local hlmap = vim.treesitter.highlighter.hl_map
+hlmap.error = nil
 
 -- local on_attach = function(_, bufnr)
 --     local opts = {noremap = true, silent = true }
