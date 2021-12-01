@@ -40,7 +40,8 @@ c.url.searchengines = {
 c.window.hide_decoration = False
 config.bind("<Command-Return>", "config-cycle window.hide_decoration true false", mode="normal")
 
-c.fonts.default_family = ["Fira Mono", "Baekmuk", "Symbola"]
+# package noto-fonts-emoji on ArchLinux
+c.fonts.default_family = ["Fira Mono", "Baekmuk", "Noto Color Emoji", "Symbola"]
 c.fonts.hints = "bold 11pt default_family"
 if platform.system() == 'Darwin':
     c.fonts.default_size = '13pt'
@@ -439,3 +440,4 @@ c.colors.tabs.selected.even.bg = base05
 c.colors.webpage.bg = base00
 
 # vim:TSBufDisable highlight
+# vim:LspStop
