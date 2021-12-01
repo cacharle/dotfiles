@@ -12,6 +12,7 @@ return require('packer').startup(function()
     use {
         'neovim/nvim-lspconfig',
         config = function()
+            require('lspconfig').clangd.setup {}
         end
     }
 

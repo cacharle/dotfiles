@@ -43,12 +43,9 @@ vim.opt.laststatus=2             -- always a statusline (all window)
 vim.opt.showcmd = true           -- show current partial command in the bottom right
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
-
 -- require 'nvim-treesitter.highlight'
 -- local hlmap = vim.treesitter.TSHighlighter.hl_map
 -- hlmap.error = nil
-
--- require('nvim_comment').setup()
 
 -- local on_attach = function(_, bufnr)
 --     local opts = {noremap = true, silent = true }
@@ -57,7 +54,6 @@ vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 --     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 -- end
 
--- require('lspconfig').clangd.setup {}
 -- require('lspconfig').pyright.setup { on_attach = on_attach }
 
 vim.cmd [[
