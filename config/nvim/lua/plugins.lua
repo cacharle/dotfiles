@@ -11,9 +11,14 @@ return require('packer').startup(function()
     -- nvim lsp configuration
     use {
         'neovim/nvim-lspconfig',
+        ft = {'rust', 'python', 'c', 'cpp'},
         config = function()
-            require('lspconfig').clangd.setup {}
-        end
+            local lspconfig = require('lspconfig')
+            lspconfig.clangd.setup {}
+            -- need python-lsp-server and pyls-flake8
+            lspconfig.pylsp.setup {}
+        end,
+        run = 'pip3 install python-lsp-server pyls-flake8',
     }
 
     -- rust lsp (needs rust-analyser)
