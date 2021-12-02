@@ -11,14 +11,14 @@ return require('packer').startup(function()
     -- nvim lsp configuration
     use {
         'neovim/nvim-lspconfig',
-        ft = {'rust', 'python', 'c', 'cpp'},
-        config = function()
-            local lspconfig = require('lspconfig')
-            lspconfig.clangd.setup {}
-            -- need python-lsp-server and pyls-flake8
-            lspconfig.pylsp.setup {}
-        end,
-        run = 'pip3 install python-lsp-server pyls-flake8',
+        -- ft = {'rust', 'python', 'c', 'cpp'},
+        -- config = function()
+        --     local lspconfig = require('lspconfig')
+        --     lspconfig.clangd.setup {}
+        --     -- need python-lsp-server and pyls-flake8
+        --     lspconfig.pylsp.setup {}
+        --     -- lspconfig.rust_analyser.setup {}
+        -- end,
     }
 
     -- rust lsp (needs rust-analyser)
@@ -27,12 +27,10 @@ return require('packer').startup(function()
         requires = {'neovim/nvim-lspconfig'},
         ft = {'rust'},
         config = function()
-            require('rust-tools').setup {
-                tools = {
-                    inlay_hints = {
-                        -- only_current_line = true,
-                    },
-                },
+            require('rust-tools').setup {}
+            vim.diagnostic.config {
+                signs = false,
+                update_in_insert = false,
             }
         end
     }
