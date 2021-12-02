@@ -43,7 +43,7 @@ map('c', '<C-k>', '<up>', {})
 -- augroup END
 
 -- python breakpoints
-vim.cmd [[ autocmd FileType python nmap <leader>bd :g/^\s*breakpoint()$/d<cr> ]]
+vim.cmd [[ autocmd FileType python nmap <leader>bd mq:g/^\s*breakpoint()$/d<cr>`q ]]
 vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]
 
 -- pluggins

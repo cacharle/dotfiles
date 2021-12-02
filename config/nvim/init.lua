@@ -66,6 +66,7 @@ require('telescope').setup {
                 ['kj'] = actions.close,
             }
         },
+        -- preview = false,
     }
 }
 
@@ -96,8 +97,9 @@ require('nvim-treesitter.configs').setup {
     }
 }
 vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
+-- vim.cmd [[ highlight link TSError Normal ]]
 -- require 'nvim-treesitter.highlight'
--- local hlmap = vim.treesitter.TSHighlighter.hl_map
+-- local hlmap = vim.treesitter.highlighter.hl_map
 -- hlmap.error = nil
 
 

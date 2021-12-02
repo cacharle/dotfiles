@@ -43,7 +43,7 @@ call plug#begin($XDG_DATA_HOME . '/vim/plugged')
     " s19 at home
     Plug 'cacharle/vim-42header'            " 42 header
 
-    " Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
+    Plug 'ctrlpvim/ctrlp.vim'           " Ctrl-P similar to vsc
 
     " terrible startuptime on markdown/css files https://github.com/ap/vim-css-color/issues/87
     " Plug 'skammer/vim-css-color'

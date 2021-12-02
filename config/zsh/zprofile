@@ -13,6 +13,7 @@ then
     export TERM='xterm-256color'
     export MAIL='charles.cabergs@colruytgroup.com'
     export SUDO='sudo'
+    export LC_CTYPE='en_US.UTF-8'
 fi
 
 # applications
