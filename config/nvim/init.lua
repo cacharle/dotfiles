@@ -64,4 +64,7 @@ augroup packer_user_config
 augroup end
 ]]
 
+-- remove trailing white space on save
+vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
+
 require('mappings')
