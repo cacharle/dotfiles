@@ -11,7 +11,7 @@ return require('packer').startup(function()
     -- nvim lsp configuration
     use {
         'neovim/nvim-lspconfig',
-        ft = {'rust', 'python', 'c', 'cpp'},
+        ft = {'rust', 'python', 'c', 'cpp', 'lua'},
         config = function()
             local on_attach = function(client, bufnr)
                 local opts = { noremap = true, silent = true }
@@ -30,6 +30,31 @@ return require('packer').startup(function()
             lspconfig.pylsp.setup { on_attach = on_attach }
                       -- rust_analyzer
             lspconfig.rust_analyzer.setup { on_attach = on_attach }
+            -- package lua-language-server on ArchLinux
+            lspconfig.sumneko_lua.setup {
+                on_attach = on_attach ,
+                settings = {
+                    Lua = {
+                        runtime = {
+                            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                            version = 'LuaJIT',
+                            -- Setup your lua path
+                            path = vim.split(package.path, ';'),
+                        },
+                        diagnostics = {
+                            -- Get the language server to recognize the `vim` global
+                            globals = {'vim'},
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = {
+                                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+                            },
+                        },
+                    }
+                },
+            }
             vim.diagnostic.config {
                 signs = false,
                 update_in_insert = false,
