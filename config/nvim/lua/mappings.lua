@@ -7,6 +7,9 @@ map('n', '<leader>sc', '<cmd>source $MYVIMRC<cr>', {})  -- source vimrc
 map('n', '<leader>;', 'mqA;<esc>`q', {})            -- put semicolon at the end of line
 map('n', 'cu', 'ct_', {})                           -- common change until
 map('n', '<leader>ss', '<cmd>setlocal spell!<cr>', {})  -- toggle spelling check
+map('n', '<leader>]', '<C-]>', {})  -- toggle spelling check
+map('n', '<leader>t', '<C-t>', {})  -- toggle spelling check
+
 
 -- split navigation
 map('n', '<C-j>', '<C-w><C-j>', {})

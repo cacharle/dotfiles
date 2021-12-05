@@ -13,10 +13,25 @@ return require('packer').startup(function()
         'neovim/nvim-lspconfig',
         ft = {'rust', 'python', 'c', 'cpp'},
         config = function()
+            local on_attach = function(client, bufnr)
+                local opts = { noremap = true, silent = true }
+                local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+                map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+                map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+                map('n', '<leader>q', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
+                map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            end
             local lspconfig = require('lspconfig')
-            lspconfig.clangd.setup {}
+            lspconfig.clangd.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
-            lspconfig.pylsp.setup {}
+            lspconfig.pylsp.setup { on_attach = on_attach }
+            vim.diagnostic.config {
+                signs = false,
+                update_in_insert = false,
+            }
             -- lspconfig.rust_analyser.setup {}
         end,
     }
@@ -155,11 +170,11 @@ return require('packer').startup(function()
         config = function()
             local map = vim.api.nvim_set_keymap
             map('n', '<leader>m',  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
-            map('n', '<leader>mm', ':MagmaEvaluateLine<CR>', {})
-            map('x', '<leader>m',  ':<C-u>MagmaEvaluateVisual<CR>', {})
-            map('n', '<leader>mc', ':MagmaReevaluateCell<CR>', {})
-            map('n', '<leader>md', ':MagmaDelete<CR>', {})
-            map('n', '<leader>mo', ':MagmaShowOutput<CR>', {})
+            map('n', '<leader>mm', '<cmd>MagmaEvaluateLine<CR>', {})
+            map('x', '<leader>m',  '<cmd><C-u>MagmaEvaluateVisual<CR>', {})
+            map('n', '<leader>mc', '<cmd>MagmaReevaluateCell<CR>', {})
+            map('n', '<leader>md', '<cmd>MagmaDelete<CR>', {})
+            map('n', '<leader>mo', '<cmd>MagmaShowOutput<CR>', {})
         end
     }
 
