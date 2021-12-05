@@ -47,7 +47,6 @@ vim.cmd [[ autocmd FileType python nmap <leader>bd :g/^\s*breakpoint()$/d<cr> ]]
 vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]
 
 -- pluggins
-
 map('x', 'ga', '<cmd>EasyAlign<cr>', {})
 map('n', 'ga', '<cmd>EasyAlign<cr>', {})
 
@@ -55,7 +54,3 @@ map('n', '<leader>l', '<cmd>SidewaysRight<cr>', {})
 map('n', '<leader>h', '<cmd>SidewaysLeft<cr>', {})
 
 map('n', '<leader>w', '<cmd>ArgWrap<cr>', {})
-
-map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
-map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
-map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})

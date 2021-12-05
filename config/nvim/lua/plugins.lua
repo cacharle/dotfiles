@@ -11,14 +11,14 @@ return require('packer').startup(function()
     -- nvim lsp configuration
     use {
         'neovim/nvim-lspconfig',
-        -- ft = {'rust', 'python', 'c', 'cpp'},
-        -- config = function()
-        --     local lspconfig = require('lspconfig')
-        --     lspconfig.clangd.setup {}
-        --     -- need python-lsp-server and pyls-flake8
-        --     lspconfig.pylsp.setup {}
-        --     -- lspconfig.rust_analyser.setup {}
-        -- end,
+        ft = {'rust', 'python', 'c', 'cpp'},
+        config = function()
+            local lspconfig = require('lspconfig')
+            lspconfig.clangd.setup {}
+            -- need python-lsp-server and pyls-flake8
+            lspconfig.pylsp.setup {}
+            -- lspconfig.rust_analyser.setup {}
+        end,
     }
 
     -- rust lsp (needs rust-analyser)
@@ -118,6 +118,10 @@ return require('packer').startup(function()
                     },
                 }
             }
+            local map = vim.api.nvim_set_keymap
+            map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
+            map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
+            map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
         end
 
     }
@@ -129,6 +133,33 @@ return require('packer').startup(function()
             require('todo-comments').setup {
                 signs = false
             }
+        end
+    }
+
+    -- remote files and lsp
+    use {
+        'chipsenkbeil/distant.nvim',
+        config = function()
+            require('distant').setup {
+                ['*'] = require('distant.settings').chip_default()
+            }
+        end,
+        run = ':DistantInstall'
+    }
+
+    -- jupyter kernel in nvim (with images, needs ueberzug)
+    use {
+        'dccsillag/magma-nvim',
+        -- ft = { 'python' }, -- doesn't work
+        run = ':UpdateRemotePlugins',
+        config = function()
+            local map = vim.api.nvim_set_keymap
+            map('n', '<leader>m',  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
+            map('n', '<leader>mm', ':MagmaEvaluateLine<CR>', {})
+            map('x', '<leader>m',  ':<C-u>MagmaEvaluateVisual<CR>', {})
+            map('n', '<leader>mc', ':MagmaReevaluateCell<CR>', {})
+            map('n', '<leader>md', ':MagmaDelete<CR>', {})
+            map('n', '<leader>mo', ':MagmaShowOutput<CR>', {})
         end
     }
 
