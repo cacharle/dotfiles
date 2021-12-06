@@ -3,24 +3,24 @@
 if [ "$(uname)" = 'Linux' ]
 then
     export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin"
-    export TERM='st-256color'
     export MAIL='me@cacharle.xyz'
     export SUDO='doas'
 elif [ "$(uname)" = 'Darwin' ]
 then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     export PATH="$PATH:$HOME/.brew/bin:$HOME/git/dotfiles/bin:$HOME/bin:/usr/local/anaconda3/bin"
-    export TERM='xterm-256color'
     export MAIL='charles.cabergs@colruytgroup.com'
     export SUDO='sudo'
     export LC_CTYPE='en_US.UTF-8'
 fi
 
 # applications
-export EDITOR='vim'
-export TERMINAL='st'
+export EDITOR='nvim'
+export TERMINAL='alacritty'
 export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
+
+export TERM='xterm-256color'
 
 # XDG all the things
 export XDG_CONFIG_HOME="$HOME/.config"

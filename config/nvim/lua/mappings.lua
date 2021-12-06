@@ -7,6 +7,9 @@ map('n', '<leader>sc', '<cmd>source $MYVIMRC<cr>', {})  -- source vimrc
 map('n', '<leader>;', 'mqA;<esc>`q', {})            -- put semicolon at the end of line
 map('n', 'cu', 'ct_', {})                           -- common change until
 map('n', '<leader>ss', '<cmd>setlocal spell!<cr>', {})  -- toggle spelling check
+map('n', '<leader>]', '<C-]>', {})  -- toggle spelling check
+map('n', '<leader>t', '<C-t>', {})  -- toggle spelling check
+
 
 -- split navigation
 map('n', '<C-j>', '<C-w><C-j>', {})
@@ -47,7 +50,6 @@ vim.cmd [[ autocmd FileType python nmap <leader>bd mq:g/^\s*breakpoint()$/d<cr>`
 vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]
 
 -- pluggins
-
 map('x', 'ga', '<cmd>EasyAlign<cr>', {})
 map('n', 'ga', '<cmd>EasyAlign<cr>', {})
 
@@ -55,7 +57,3 @@ map('n', '<leader>l', '<cmd>SidewaysRight<cr>', {})
 map('n', '<leader>h', '<cmd>SidewaysLeft<cr>', {})
 
 map('n', '<leader>w', '<cmd>ArgWrap<cr>', {})
-
-map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
-map('n', '<f2>', '<cmd>Telescope help_tags<cr>', {})
-map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})

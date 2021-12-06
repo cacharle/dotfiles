@@ -29,6 +29,6 @@ then
 fi
 
 # XMONAD
-xmonad --recompile                                                    || ret=$?
+[ ! "$CI" = 'true' ] && { xmonad --recompile || ret=$?; }
 
 exit $ret

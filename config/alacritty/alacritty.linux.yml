@@ -2,6 +2,10 @@
 # alacritty #
 #############
 
+env:
+  TERM: xterm-256color
+  WINIT_X11_SCALE_FACTOR: '1'
+
 # font
 font:
   size: 9.0
@@ -12,8 +16,10 @@ font:
     family: Fira Code
     style: Regular
   italic:
+    family: FiraMono
     style: Italic
   bold:
+    family: Fira Code
     style: Bold
   use_thin_strokes: false
 

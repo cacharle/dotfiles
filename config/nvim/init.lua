@@ -54,65 +54,19 @@ vim.g.gruvbox_contrast_dark = 'medium'
 vim.g.gruvbox_contrast_light = 'hard'
 vim.g.gruvbox_invert_selection = 0
 
+-- remove ugly treesitter error highlight
+require 'nvim-treesitter.highlight'
+local hlmap = vim.treesitter.highlighter.hl_map
+hlmap.error = nil
 
-local actions = require('telescope.actions')
-require('telescope').setup {
-    defaults = {
-        mappings = {
-            i = {
-                ['<C-j>'] = actions.move_selection_next,
-                ['<C-k>'] = actions.move_selection_previous,
-                ['<esc>'] = actions.close,
-                ['kj'] = actions.close,
-            }
-        },
-        -- preview = false,
-    }
-}
+vim.cmd [[
+augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+augroup end
+]]
 
-require('lualine').setup {
-    options = {
-        theme = 'gruvbox',
-        icons_enabled = true,
-        section_separators = '',
-        component_separators = ''
-    }
-}
-
-require('nvim-treesitter.configs').setup {
-    highlight = {
-        enable = true
-    },
-    -- indent = {
-    --     enable = true
-    -- },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
-        }
-    }
-}
-vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
--- vim.cmd [[ highlight link TSError Normal ]]
--- require 'nvim-treesitter.highlight'
--- local hlmap = vim.treesitter.highlighter.hl_map
--- hlmap.error = nil
-
-
-require('nvim_comment').setup()
-
--- local on_attach = function(_, bufnr)
---     local opts = {noremap = true, silent = true }
---     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
---     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
---     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
--- end
-
--- require('lspconfig').clangd.setup {}
--- require('lspconfig').pyright.setup { on_attach = on_attach }
+-- remove trailing white space on save
+vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
 
 require('mappings')

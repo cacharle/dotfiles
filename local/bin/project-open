@@ -16,7 +16,7 @@ dest_path="$HOME/git/$dest"
 if cd "$dest_path" 2> /dev/null
 then
     touch "$dest_path"
-    exec st
+    exec "$TERMINAL"
 else
     while [ -z "$choice" ]
     do
@@ -28,7 +28,7 @@ else
             mkdir -p "$dest_path"
             cd "$dest_path" || exit 1
             git init
-            exec st
+            exec "$TERMINAL"
             ;;
 
         "clone")
@@ -43,7 +43,7 @@ else
                 other) ;;
             esac
             url="$prefix$(echo "$dest" | dmenu -p "Enter repository url: $prefix")"
-            st -e /bin/sh -c "git clone --recursive '$url' '$dest_path' && cd '$dest_path' && exec $SHELL" ||
+            "$TERMINAL" -e /bin/sh -c "git clone --recursive '$url' '$dest_path' && cd '$dest_path' && exec $SHELL" ||
                 notify-send -u critical "Could not clone $url in $dest_path" && exit 1
             ;;
 
