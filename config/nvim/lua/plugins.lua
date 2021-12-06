@@ -181,9 +181,21 @@ return require('packer').startup(function()
     use {
         'chipsenkbeil/distant.nvim',
         config = function()
+            -- local on_attach = function(client, bufnr)
+            --     local opts = { noremap = true, silent = true }
+            --     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+            --     map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+            --     map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            --     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+            --     map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+            --     map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+            --     map('n', '<leader>q', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
+            --     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            -- end
             require('distant').setup {
                 ['*'] = require('distant.settings').chip_default()
             }
+            -- TODO: extend with job_distant_config.lua
         end,
         run = ':DistantInstall'
     }
