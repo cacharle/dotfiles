@@ -14,8 +14,8 @@ shellcheck -s sh -e SC2155 config/zsh/zprofile                        || ret=$?
 shellcheck -s sh config/x11/xinitrc                                   || ret=$?
 
 # VINT
-vint -s config/vim/vimrc                                              || ret=$?
-vint -s config/vim/pluggins.vim                                       || ret=$?
+# vint -s config/vim/vimrc                                              || ret=$?
+# vint -s config/vim/pluggins.vim                                       || ret=$?
 
 # FLAKE8
 flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py || ret=$?

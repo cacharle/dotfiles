@@ -13,23 +13,24 @@ return require('packer').startup(function()
         'neovim/nvim-lspconfig',
         ft = {'rust', 'python', 'c', 'cpp', 'lua'},
         config = function()
-            local on_attach = function(client, bufnr)
+            local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
                 local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
                 map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
                 map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
                 map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                map('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+                map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
                 map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
                 map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-                map('n', '<leader>q', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
+                map('n', '<leader>q', '<cmd>Telescope diagnostics<CR>', opts)
                 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
             end
             local lspconfig = require('lspconfig')
             lspconfig.clangd.setup { on_attach = on_attach }
+            lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
             lspconfig.pylsp.setup { on_attach = on_attach }
-                      -- rust_analyzer
-            lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- package lua-language-server on ArchLinux
             lspconfig.sumneko_lua.setup {
                 on_attach = on_attach ,
@@ -68,7 +69,24 @@ return require('packer').startup(function()
         requires = {'neovim/nvim-lspconfig'},
         ft = {'rust'},
         config = function()
-            require('rust-tools').setup {}
+            local on_attach = function(_, bufnr)
+                local opts = { noremap = true, silent = true }
+                local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+                map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                map('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+                map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+                map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+                map('n', '<leader>q', '<cmd>Telescope diagnostics<CR>', opts)
+                map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            end
+            require('rust-tools').setup {
+                server = {
+                    on_attach = on_attach,
+                }
+            }
             vim.diagnostic.config {
                 signs = false,
                 update_in_insert = false,
