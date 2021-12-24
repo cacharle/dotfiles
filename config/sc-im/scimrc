@@ -1,0 +1,42 @@
+DEFINE_COLOR "red" 251 73 52
+DEFINE_COLOR "orange" 254 128 25
+DEFINE_COLOR "green" 184 187 38
+DEFINE_COLOR "yellow" 250 189 47
+DEFINE_COLOR "cyan" 142 192 124
+
+DEFINE_COLOR "white" 235 219 178
+DEFINE_COLOR "white2" 213 196 161
+DEFINE_COLOR "white3" 189 174 147
+DEFINE_COLOR "white4" 168 153 132
+
+DEFINE_COLOR "black" 40 40 40
+DEFINE_COLOR "black1" 60 56 54
+DEFINE_COLOR "black2" 80 73 69
+DEFINE_COLOR "black3" 102 92 84
+DEFINE_COLOR "black4" 124 111 100
+
+color "type=DEFAULT fg=white bg=black"
+color "type=HEADINGS fg=white bg=black1"
+color "type=HEADINGS_ODD fg=white bg=black2"
+color "type=MODE fg=black3 bg=black"
+
+color "type=CELL_SELECTION bold=1 fg=black bg=white2"
+color "type=CELL_SELECTION_SC fg=black bg=white"
+
+color "type=CELL_ID fg=white bg=black"
+color "type=CELL_FORMAT italic=1 fg=white4 bg=black"
+color "type=CELL_CONTENT fg=white3 bg=black"
+
+color "type=NUMB bold=1 fg=green bg=black"
+color "type=CELL_NEGATIVE bold=1 fg=cyan bg=black"
+color "type=STRG bold=0 fg=white bg=black"
+color "type=DATEF bold=1 italic=1 fg=yellow bg=black"
+color "type=EXPRESSION bold=1 fg=orange bg=black"
+
+color "type=WELCOME fg=white bg=black"
+color "type=INPUT fg=white bg=black"
+color "type=INFO_MSG italic=1 bold=1 fg=orange bg=black"
+color "type=ERROR_MSG bold=1 fg=red bg=black"
+color "type=HELP_HIGHLIGHT bold=1 fg=white bg=black1"
+
+set input_bar_bottom
