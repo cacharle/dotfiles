@@ -1,3 +1,11 @@
+set input_bar_bottom
+set half_page_scroll=1
+
+# nunmap "<C-u>"
+# nunmap "<C-d>"
+# nnoremap "<C-u>" "<C-b>"
+# nnoremap "<C-d>" "<D-f>"
+
 DEFINE_COLOR "red" 251 73 52
 DEFINE_COLOR "orange" 254 128 25
 DEFINE_COLOR "green" 184 187 38
@@ -38,5 +46,3 @@ color "type=INPUT fg=white bg=black"
 color "type=INFO_MSG italic=1 bold=1 fg=orange bg=black"
 color "type=ERROR_MSG bold=1 fg=red bg=black"
 color "type=HELP_HIGHLIGHT bold=1 fg=white bg=black1"
-
-set input_bar_bottom
