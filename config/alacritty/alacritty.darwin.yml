@@ -8,6 +8,7 @@ font:
   offset:
     x: 0
     y: 0
+  # brew install font-fira-code-nerd-font
   normal:
     family: FiraCode Nerd Font Mono
     style: Retina
