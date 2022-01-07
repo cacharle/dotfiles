@@ -1,4 +1,4 @@
-# dotfiles [![Build Status](https://api.travis-ci.com/cacharle/dotfiles.svg?branch=master)](https://travis-ci.com/cacharle/dotfiles)
+# dotfiles [![Build Status](https://api.travis-ci.com/cacharle/dotfiles.svg?branch=master)](https://app.travis-ci.com/github/cacharle/dotfiles)
 
 ## Installation
 
