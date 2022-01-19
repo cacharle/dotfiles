@@ -76,7 +76,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
 startupHook' :: X ()
 startupHook' = do
     spawnOnOnce "code" myTerminal
-    spawnOnOnce "web"  "qutebrowser"
+    -- spawnOnOnce "web"  "qutebrowser"
 
 confirm :: String -> X () -> X ()
 confirm prompt f = do
