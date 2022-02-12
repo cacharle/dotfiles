@@ -29,6 +29,9 @@ key_bindings:
   - { key: K, mods: Alt, chars: "\e[A" }
   - { key: J, mods: Alt|Shift, action: ScrollHalfPageDown }
   - { key: K, mods: Alt|Shift, action: ScrollHalfPageUp }
+  - { key: Plus, mods: Alt|Shift, action: IncreaseFontSize }
+  - { key: Minus, mods: Alt, action: DecreaseFontSize }
+  - { key: Key0, mods: Alt, action: ResetFontSize }
 
 
 # gruvbox_dark: https://github.com/eendroroy/alacritty-theme/blob/master/schemes.yaml
