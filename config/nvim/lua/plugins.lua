@@ -7,6 +7,7 @@ return require('packer').startup(function()
     use 'FooSoft/vim-argwrap'       -- Put arguments on multiple lines
     use 'tpope/vim-eunuch'          -- basic commands on current file (Rename/Remove)
     use 'romainl/vim-cool'          -- only highlight search matches when searching
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- tags managment
     use {
@@ -118,20 +119,32 @@ return require('packer').startup(function()
             require('Comment').setup()
         end
     }
-    -- color scheme
+    -- gruvbox color scheme
+    -- use {
+    --     'ellisonleao/gruvbox.nvim',
+    --     requires = {'rktjmp/lush.nvim'},
+    --     config = function()
+    --         vim.opt.termguicolors = true
+    --         vim.opt.background = "dark"
+    --         -- vim.cmd [[ colorscheme gruvbox ]]
+    --         vim.g.gruvbox_italic = 1
+    --         vim.g.gruvbox_bold = 1
+    --         vim.g.gruvbox_termcolors = 256
+    --         vim.g.gruvbox_contrast_dark = 'medium'
+    --         vim.g.gruvbox_contrast_light = 'hard'
+    --         vim.g.gruvbox_invert_selection = 0
+    --     end
+    -- }
+    -- nord color scheme
     use {
-        'ellisonleao/gruvbox.nvim',
-        requires = {'rktjmp/lush.nvim'},
+        'shaunsingh/nord.nvim',
         config = function()
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
-            vim.cmd [[ colorscheme gruvbox ]]
-            vim.g.gruvbox_italic = 1
-            vim.g.gruvbox_bold = 1
-            vim.g.gruvbox_termcolors = 256
-            vim.g.gruvbox_contrast_dark = 'medium'
-            vim.g.gruvbox_contrast_light = 'hard'
-            vim.g.gruvbox_invert_selection = 0
+            vim.cmd [[ colorscheme nord ]]
+            vim.g.nord_contrast = true
+            vim.g.nord_borders = true
+            vim.g.nord_italic = true
         end
     }
     -- status line
@@ -141,7 +154,8 @@ return require('packer').startup(function()
         config = function()
             require('lualine').setup {
                 options = {
-                    theme = 'gruvbox',
+                    -- theme = 'gruvbox',
+                    theme = 'nord',
                     icons_enabled = true,
                     section_separators = '',
                     component_separators = ''
