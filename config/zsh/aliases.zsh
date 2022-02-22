@@ -83,6 +83,10 @@ gpaf() {
     git remote | xargs -I{} git push -f {} "$branch"
 }
 
+alias ytdl='youtube-dl --output "%(title)s.%(ext)s"'
+alias ytdlp='youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
+alias ytdla='youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+
 # Linux specific aliases
 [ ! "$(uname)" = 'Linux' ] && return
 
@@ -115,10 +119,6 @@ alias cagor='RUSTFLAGS="$RUSTFLAGS -A dead_code" cargo run'
 
 # wifi
 wificonnect() { nmcli device wifi connect "$1" password "$2" ; }
-
-alias ytdl='youtube-dl --output "%(title)s.%(ext)s"'
-alias ytdlp='youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
-alias ytdla='youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
 
 alias qmvdest='qmv --format=do'
 
