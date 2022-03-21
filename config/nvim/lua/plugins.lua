@@ -9,6 +9,16 @@ return require('packer').startup(function()
     use 'romainl/vim-cool'          -- only highlight search matches when searching
     use 'lukas-reineke/indent-blankline.nvim'
 
+    -- python formatter
+    use {
+        'psf/black',
+        branch = 'stable',
+        ft = 'python',
+        config = function()
+            vim.cmd [[ autocmd BufWritePre *.py Black ]]
+        end
+    }
+
     -- tags managment
     use {
         'ludovicchabant/vim-gutentags',

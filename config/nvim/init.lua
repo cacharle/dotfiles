@@ -43,17 +43,6 @@ vim.opt.laststatus=2             -- always a statusline (all window)
 vim.opt.showcmd = true           -- show current partial command in the bottom right
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
--- colorscheme
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.cmd [[ colorscheme gruvbox ]]
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_bold = 1
-vim.g.gruvbox_termcolors = 256
-vim.g.gruvbox_contrast_dark = 'medium'
-vim.g.gruvbox_contrast_light = 'hard'
-vim.g.gruvbox_invert_selection = 0
-
 -- remove ugly treesitter error highlight
 require 'nvim-treesitter.highlight'
 local hlmap = vim.treesitter.highlighter.hl_map
