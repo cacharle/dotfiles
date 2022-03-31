@@ -59,10 +59,23 @@ export SAVEHIST=5000
 
 # executed when changing directory
 chpwd() {
+    # ls on cd if not too much files
     content="$(find . -maxdepth 1 | wc -l)"
     ([ "$content" -lt 20 ] && ls -l) ||
         echo "$(pwd) contains $content entries"
     [ "$(uname)" = 'Linux' ] && [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
+
+
+    # change conda env if name of the directory is the name of an env
+    [ ! -d "$PWD/.git" ] && return
+    name="$(basename "$PWD")"
+    [ "$name" = $CONDA_DEFAULT_ENV ] && return
+    conda env list |
+        cut -d ' ' -f 1 |
+        sed -e '/^#/d' -e '/^$/d' -e '/^base$/d' |
+        grep -q "$name" &&
+            conda activate "$name"
+
 }
 
 # https://wiki.archlinux.org/title/Zsh#Shortcut_to_exit_shell_on_partial_command_line
@@ -96,3 +109,31 @@ if [ "$(uname)" = 'Linux' ]
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
 fi
+
+# upload-config() {
+#     scp -qr "$HOME/.vim"              cce424r@ds-train:
+#     scp -q  "$HOME/.config/vim/vimrc" cce424r@ds-train:.vimrc
+#
+#     scp -qr "$HOME/.vim"              cce424r@ds-attic:
+#     scp -q  "$HOME/.config/vim/vimrc" cce424r@ds-attic:.vimrc
+# }
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/usr/local/anaconda3/etc/profile.d/mamba.sh" ]; then
+    . "/usr/local/anaconda3/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
