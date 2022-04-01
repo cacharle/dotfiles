@@ -58,4 +58,6 @@ augroup end
 -- remove trailing white space on save
 vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
 
+vim.cmd [[ autocmd BufReadPre *.sql.j2 set ft=sql ]]
+
 require('mappings')
