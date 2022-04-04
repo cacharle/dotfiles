@@ -9,6 +9,11 @@ return require('packer').startup(function()
     use 'romainl/vim-cool'          -- only highlight search matches when searching
     use 'lukas-reineke/indent-blankline.nvim'
 
+    use {
+        'cacharle/vim-jinja-languages',
+        requires = {'mitsuhiko/vim-jinja'}
+    }
+
     -- python formatter
     use {
         'psf/black',
@@ -37,60 +42,60 @@ return require('packer').startup(function()
     }
 
     -- nvim lsp configuration
-    -- use {
-    --     'neovim/nvim-lspconfig',
-    --     ft = {'rust', 'python', 'c', 'cpp', 'lua'},
-    --     config = function()
-    --         local on_attach = function(_, bufnr)
-    --             local opts = { noremap = true, silent = true }
-    --             local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    --             map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    --             map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    --             map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    --             map('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    --             map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    --             map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    --             map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    --             map('n', '<leader>q', '<cmd>Telescope diagnostics<CR>', opts)
-    --             map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    --         end
-    --         local lspconfig = require('lspconfig')
-    --         lspconfig.clangd.setup { on_attach = on_attach }
-    --         lspconfig.rust_analyzer.setup { on_attach = on_attach }
-    --         -- need python-lsp-server and pyls-flake8
-    --         lspconfig.pylsp.setup { on_attach = on_attach }
-    --         -- package lua-language-server on ArchLinux
-    --         lspconfig.sumneko_lua.setup {
-    --             on_attach = on_attach ,
-    --             settings = {
-    --                 Lua = {
-    --                     runtime = {
-    --                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-    --                         version = 'LuaJIT',
-    --                         -- Setup your lua path
-    --                         path = vim.split(package.path, ';'),
-    --                     },
-    --                     diagnostics = {
-    --                         -- Get the language server to recognize the `vim` global
-    --                         globals = {'vim'},
-    --                     },
-    --                     workspace = {
-    --                         -- Make the server aware of Neovim runtime files
-    --                         library = {
-    --                             [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-    --                             [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-    --                         },
-    --                     },
-    --                 }
-    --             },
-    --         }
-    --         vim.diagnostic.config {
-    --             signs = false,
-    --             update_in_insert = false,
-    --         }
-    --     end,
-    -- }
-    --
+    use {
+        'neovim/nvim-lspconfig',
+        ft = {'rust', 'python', 'c', 'cpp', 'lua'},
+        config = function()
+            local on_attach = function(_, bufnr)
+                local opts = { noremap = true, silent = true }
+                local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+                map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                map('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+                map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+                map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+                map('n', '<leader>q', '<cmd>Telescope diagnostics<CR>', opts)
+                map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            end
+            local lspconfig = require('lspconfig')
+            -- lspconfig.clangd.setup { on_attach = on_attach }
+            -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
+            -- need python-lsp-server and pyls-flake8
+            lspconfig.pylsp.setup { on_attach = on_attach }
+            -- package lua-language-server on ArchLinux
+            -- lspconfig.sumneko_lua.setup {
+            --     on_attach = on_attach ,
+            --     settings = {
+            --         Lua = {
+            --             runtime = {
+            --                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            --                 version = 'LuaJIT',
+            --                 -- Setup your lua path
+            --                 path = vim.split(package.path, ';'),
+            --             },
+            --             diagnostics = {
+            --                 -- Get the language server to recognize the `vim` global
+            --                 globals = {'vim'},
+            --             },
+            --             workspace = {
+            --                 -- Make the server aware of Neovim runtime files
+            --                 library = {
+            --                     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            --                     [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            --                 },
+            --             },
+            --         }
+            --     },
+            -- }
+            vim.diagnostic.config {
+                signs = false,
+                update_in_insert = false,
+            }
+        end,
+    }
+
     -- -- rust lsp (needs rust-analyser)
     -- use {
     --     'simrat39/rust-tools.nvim',
@@ -168,7 +173,8 @@ return require('packer').startup(function()
                     theme = 'nord',
                     icons_enabled = true,
                     section_separators = '',
-                    component_separators = ''
+                    component_separators = '',
+                    -- globalstatus = true, -- need 0.7
                 }
             }
         end
@@ -223,6 +229,8 @@ return require('packer').startup(function()
             map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
             map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
             map('n', '<leader>p', '<cmd>Telescope tags<cr>', {})
+            map('n', '<leader>g', '<cmd>Telescope live_grep<cr>', {})
+            map('n', '<leader>G', '<cmd>Telescope grep_string<cr>', {})
         end
 
     }
