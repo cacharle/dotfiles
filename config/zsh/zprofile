@@ -81,6 +81,9 @@ export CLOUT_SYNC_PATH="${XDG_DATA_HOME:-$HOME/.sync}/$CLOUT_SYNC_DIR"
 
 if [ "$(uname)" = 'Linux' ] && [ "$(tty)" = '/dev/tty1' ]
 then
-    startx "$XDG_CONFIG_HOME/x11/xinitrc"
+    # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
+    # setting the keyrepeat delay and interval here as the default ones
+    # since some applications reset the those if we use xset r rate 200 30 instead
+    startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
     poweroff
 fi

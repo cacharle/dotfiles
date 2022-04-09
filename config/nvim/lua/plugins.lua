@@ -181,6 +181,7 @@ return require('packer').startup(function()
             map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
             map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
             map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
+            map('n', '<leader>g', '<cmd>Telescope live_grep<cr>', {})
         end
 
     }

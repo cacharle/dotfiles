@@ -35,7 +35,7 @@ alias ta='tree -a'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
-alias ti="tree --matchdirs -I __pycache__ -I node_modules -I '*.o'"
+alias ti="tree --matchdirs -I __pycache__ -I node_modules -I '*.o' -I build"
 
 # man
 alias ma="man"

@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# certain event cause rate to reset (https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
-# -ardelay    milliseconds
-# -arinterval milliseconds
-xset r rate 200 50             # delay before keyrepeat and keyrepeat rate
-
 keynav daemonize               # moving the cursor around without the mouse
 redshift &                     # filter blue light
 dunst &                        # notification daemon

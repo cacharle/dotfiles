@@ -9,7 +9,7 @@ case $(tty) in
     /dev/tty[1-9])
         # %~ path ('~' if $HOME)
         # %B/%b start/stop bold
-        # %B/%b start/stop color
+        # %F/%f start/stop color
         # shellcheck disable=SC2039,SC3003
         NEWLINE=$'\n'
         export PROMPT="${NEWLINE}%B%F{blue}%~%f${NEWLINE}%F{red}> %f%b"

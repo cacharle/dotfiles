@@ -12,3 +12,9 @@
 	gpgsign = true
 [init]
 	defaultBranch = master
+[difftool "bat"]
+    cmd = "/usr/bin/bat --diff $REMOTE"
+[difftool]
+    prompt = false
+[diff]
+	tool = bat
