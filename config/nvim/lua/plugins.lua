@@ -17,7 +17,7 @@ return require('packer').startup(function()
     -- python formatter
     use {
         'psf/black',
-        branch = 'stable',
+        tag = 'stable',
         ft = 'python',
         config = function()
             vim.cmd [[ autocmd BufWritePre *.py Black ]]
@@ -41,6 +41,7 @@ return require('packer').startup(function()
         end
     }
 
+
     -- nvim lsp configuration
     use {
         'neovim/nvim-lspconfig',
@@ -60,10 +61,14 @@ return require('packer').startup(function()
                 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
             end
             local lspconfig = require('lspconfig')
+            local capabilities = require('cmp_nvim_lsp').update_capabilities(
+                vim.lsp.protocol.make_client_capabilities()
+            )
+
             -- lspconfig.clangd.setup { on_attach = on_attach }
             -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
-            lspconfig.pylsp.setup { on_attach = on_attach }
+            lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
             -- package lua-language-server on ArchLinux
             -- lspconfig.sumneko_lua.setup {
             --     on_attach = on_attach ,
@@ -127,6 +132,54 @@ return require('packer').startup(function()
     --     end
     -- }
 
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'onsails/lspkind.nvim',
+        },
+        config = function()
+            local lspkind = require('lspkind')
+            local cmp = require('cmp')
+            cmp.setup {
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-n>'] = cmp.mapping.select_next_item(),
+                    ['<C-p>'] = cmp.mapping.select_prev_item(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                }),
+                -- order of the sources matter (first are higher priority)
+                sources = {
+                    { name = "nvim_lsp" },
+                    { name = 'nvim_lsp_signature_help' },
+                    { name = "path" },
+                    { name = "buffer", keyword_length = 2 },
+                },
+                formatting = {
+                    format = lspkind.cmp_format({
+                        with_text = true,
+                        menu = {
+                            nvim_lsp = "[LSP]",
+                            path = "[path]",
+                            buffer = "[buf]",
+                        }
+                    })
+                },
+                window = {
+                    documentation = cmp.config.window.bordered(),
+                },
+                experimental = {
+                    ghost_text = true,
+                }
+            }
+        end
+    }
+
+
     -- comment text objects
     use {
         'numToStr/Comment.nvim',
@@ -174,7 +227,7 @@ return require('packer').startup(function()
                     icons_enabled = true,
                     section_separators = '',
                     component_separators = '',
-                    -- globalstatus = true, -- need 0.7
+                    globalstatus = true,
                 }
             }
         end
