@@ -27,7 +27,11 @@ return require('packer').startup(function()
         tag = 'stable',
         ft = 'python',
         config = function()
-            vim.cmd [[ autocmd BufWritePre *.py Black ]]
+            local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
+            vim.api.nvim_create_autocmd(
+                "BufWritePre",
+                { command = "Black", pattern = "*.py", group = augroup }
+            )
         end
     }
 
@@ -52,7 +56,7 @@ return require('packer').startup(function()
     -- nvim lsp configuration
     use {
         'neovim/nvim-lspconfig',
-        ft = {'rust', 'python', 'c', 'cpp', 'lua'},
+        ft = {'rust', 'python', 'c', 'cpp', 'lua', 'go'},
         config = function()
             local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
@@ -72,10 +76,46 @@ return require('packer').startup(function()
                 vim.lsp.protocol.make_client_capabilities()
             )
 
+            -- $ go install golang.org/x/tools/gopls
+            lspconfig.gopls.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true
+                        },
+                        staticcheck = true
+                    }
+                }
+            }
+            -- from: https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
+            function go_import_callback()
+                local wait_ms = 1000
+                local params = vim.lsp.util.make_range_params()
+                params.context = {only = {"source.organizeImports"}}
+                local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+                for _, res in pairs(result or {}) do
+                    for _, r in pairs(res.result or {}) do
+                        if r.edit then
+                            vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+                        else
+                            vim.lsp.buf.execute_command(r.command)
+                        end
+                    end
+                end
+            end
+            local augroup = vim.api.nvim_create_augroup("cacharle_gopls_group", {})
+            vim.api.nvim_create_autocmd(
+                "BufWritePre",
+                { callback = go_import_callback, pattern = "*.go", group = augroup }
+            )
+
             -- lspconfig.clangd.setup { on_attach = on_attach }
             -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
             lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+
             -- package lua-language-server on ArchLinux
             -- lspconfig.sumneko_lua.setup {
             --     on_attach = on_attach ,
@@ -234,7 +274,7 @@ return require('packer').startup(function()
                     icons_enabled = true,
                     section_separators = '',
                     component_separators = '',
-                    globalstatus = true,
+                    -- globalstatus = true,
                 }
             }
         end

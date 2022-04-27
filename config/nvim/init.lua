@@ -39,7 +39,7 @@ vim.opt.hlsearch  = true         -- match highlight
 vim.opt.incsearch = true
 
 -- status
-vim.opt.laststatus=2             -- always a statusline (all window)
+vim.opt.laststatus = 2           -- always a statusline (all window)
 vim.opt.showcmd = true           -- show current partial command in the bottom right
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
@@ -48,16 +48,28 @@ require 'nvim-treesitter.highlight'
 local hlmap = vim.treesitter.highlighter.hl_map
 hlmap.error = nil
 
-vim.cmd [[
-augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]]
+local augroup = vim.api.nvim_create_augroup("cacharle_init_group", {})
+
+-- run PackerCompile when we modify plugins.lua
+vim.api.nvim_create_autocmd(
+    "BufWritePost",
+    {
+        command = "source <afile> | PackerCompile",
+        pattern = "plugins.lua",
+        group = augroup
+    }
+)
 
 -- remove trailing white space on save
-vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
+vim.api.nvim_create_autocmd(
+    "BufWritePre",
+    { command = [[ %s/\s\+$//e ]], pattern = "*", group = augroup }
+)
 
-vim.cmd [[ autocmd BufReadPre *.sql.j2 set ft=sql ]]
+-- set filttype for *.sql.j2 files
+vim.api.nvim_create_autocmd(
+    "BufReadPre",
+    { command = "set ft=sql", pattern = "*.sql.j2", group = augroup }
+)
 
 require('mappings')
