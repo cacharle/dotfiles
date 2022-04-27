@@ -1,8 +1,8 @@
-require('plugins')
+require("plugins")
 
 -- common
-vim.g.mapleader = ' '              -- set leader key to space
-vim.g.maplocalleader = '-'         -- set file local leader key to backslash
+vim.g.mapleader = " "              -- set leader key to space
+vim.g.maplocalleader = "-"         -- set file local leader key to backslash
 vim.opt.compatible = false         -- not compatible with vi
 vim.opt.number = true              -- line number
 vim.opt.numberwidth = 1            -- line numbers gutter autowidth
@@ -15,10 +15,10 @@ vim.opt.swapfile = false           -- disable swap files
 vim.opt.scrolloff = 2              -- line padding when scrolling
 vim.opt.textwidth = 0              -- when line wrap occurs
 vim.opt.wrapmargin = 0             -- disable auto line wrapping
-vim.opt.clipboard = 'unnamedplus'  -- use system clipboard
+vim.opt.clipboard = "unnamedplus"  -- use system clipboard
 vim.g.c_syntax_for_h = 1           -- .h file use C filetype instead of C++
 vim.opt.encoding = "utf-8"         -- utf-8 encoding
-vim.opt.shellredir = ">"           -- don't inclue stderr when reading a command
+vim.opt.shellredir = ">"           -- don"t inclue stderr when reading a command
 
 -- intuitif split opening
 vim.opt.splitbelow = true
@@ -44,7 +44,7 @@ vim.opt.showcmd = true           -- show current partial command in the bottom r
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
 -- remove ugly treesitter error highlight
--- require 'nvim-treesitter.highlight'
+-- require "nvim-treesitter.highlight"
 -- local hlmap = vim.treesitter.highlighter.hl_map
 -- hlmap.error = nil
 
@@ -72,4 +72,4 @@ vim.api.nvim_create_autocmd(
     { command = "set ft=sql", pattern = "*.sql.j2", group = augroup }
 )
 
-require('mappings')
+require("mappings")

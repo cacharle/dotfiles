@@ -1,31 +1,31 @@
 vim.cmd [[ packadd packer.nvim ]]
 
-return require('packer').startup(function()
-    use 'wbthomason/packer.nvim'    -- plugin manager (can manage itself)
-    use 'junegunn/vim-easy-align'   -- align
-    use 'AndrewRadev/sideways.vim'  -- Move arguments sideways
-    use 'FooSoft/vim-argwrap'       -- Put arguments on multiple lines
-    use 'tpope/vim-eunuch'          -- basic commands on current file (Rename/Remove)
-    use 'romainl/vim-cool'          -- only highlight search matches when searching
-    use 'lukas-reineke/indent-blankline.nvim'
+return require("packer").startup(function()
+    use "wbthomason/packer.nvim"    -- plugin manager (can manage itself)
+    use "junegunn/vim-easy-align"   -- align
+    use "AndrewRadev/sideways.vim"  -- Move arguments sideways
+    use "FooSoft/vim-argwrap"       -- Put arguments on multiple lines
+    use "tpope/vim-eunuch"          -- basic commands on current file (Rename/Remove)
+    use "romainl/vim-cool"          -- only highlight search matches when searching
+    use "lukas-reineke/indent-blankline.nvim"
 
     use {
-        'jpalardy/vim-slime',
+        "jpalardy/vim-slime",
         config = function()
-            vim.g.slime_target = 'tmux'
+            vim.g.slime_target = "tmux"
         end
     }
 
     use {
-        'cacharle/vim-jinja-languages',
-        requires = {'mitsuhiko/vim-jinja'}
+        "cacharle/vim-jinja-languages",
+        requires = {"mitsuhiko/vim-jinja"}
     }
 
     -- python formatter
     use {
-        'psf/black',
-        tag = 'stable',
-        ft = 'python',
+        "psf/black",
+        tag = "stable",
+        ft = "python",
         config = function()
             local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
             vim.api.nvim_create_autocmd(
@@ -37,17 +37,17 @@ return require('packer').startup(function()
 
     -- tags managment
     use {
-        'ludovicchabant/vim-gutentags',
+        "ludovicchabant/vim-gutentags",
         config = function()
             vim.g.gutentags_ctags_exclude = {
-                'doc/*',
-                'docs/*',
-                'Makefile',
-                '.mypy_cache',
-                '.pytest_cache',
-                '.tox',
-                'build/*',
-                'dist/*'
+                "doc/*",
+                "docs/*",
+                "Makefile",
+                ".mypy_cache",
+                ".pytest_cache",
+                ".tox",
+                "build/*",
+                "dist/*"
             }
         end
     }
@@ -55,24 +55,24 @@ return require('packer').startup(function()
 
     -- nvim lsp configuration
     use {
-        'neovim/nvim-lspconfig',
-        ft = {'rust', 'python', 'c', 'cpp', 'lua', 'go'},
+        "neovim/nvim-lspconfig",
+        ft = {"rust", "python", "c", "cpp", "lua", "go"},
         config = function()
             local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
                 local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-                map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-                map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-                map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-                map('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-                map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-                map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-                map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-                map('n', '<leader>q', '<cmd>Telescope diagnostics<CR>', opts)
-                map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+                map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+                map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+                map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+                map("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+                map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+                map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+                map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+                map("n", "<leader>q", "<cmd>Telescope diagnostics<CR>", opts)
+                map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
             end
-            local lspconfig = require('lspconfig')
-            local capabilities = require('cmp_nvim_lsp').update_capabilities(
+            local lspconfig = require("lspconfig")
+            local capabilities = require("cmp_nvim_lsp").update_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
 
@@ -122,20 +122,20 @@ return require('packer').startup(function()
             --     settings = {
             --         Lua = {
             --             runtime = {
-            --                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            --                 version = 'LuaJIT',
+            --                 -- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
+            --                 version = "LuaJIT",
             --                 -- Setup your lua path
-            --                 path = vim.split(package.path, ';'),
+            --                 path = vim.split(package.path, ";"),
             --             },
             --             diagnostics = {
             --                 -- Get the language server to recognize the `vim` global
-            --                 globals = {'vim'},
+            --                 globals = {"vim"},
             --             },
             --             workspace = {
             --                 -- Make the server aware of Neovim runtime files
             --                 library = {
-            --                     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            --                     [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            --                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            --                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
             --                 },
             --             },
             --         }
@@ -150,24 +150,24 @@ return require('packer').startup(function()
 
     -- -- rust lsp (needs rust-analyser)
     -- use {
-    --     'simrat39/rust-tools.nvim',
-    --     requires = {'neovim/nvim-lspconfig'},
-    --     ft = {'rust'},
+    --     "simrat39/rust-tools.nvim",
+    --     requires = {"neovim/nvim-lspconfig"},
+    --     ft = {"rust"},
     --     config = function()
     --         local on_attach = function(_, bufnr)
     --             local opts = { noremap = true, silent = true }
     --             local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    --             map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    --             map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    --             map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    --             map('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    --             map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    --             map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    --             map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    --             map('n', '<leader>q', '<cmd>Telescope diagnostics<CR>', opts)
-    --             map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    --             map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    --             map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    --             map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    --             map("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    --             map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    --             map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    --             map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    --             map("n", "<leader>q", "<cmd>Telescope diagnostics<CR>", opts)
+    --             map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     --         end
-    --         require('rust-tools').setup {
+    --         require("rust-tools").setup {
     --             server = {
     --                 on_attach = on_attach,
     --             }
@@ -180,29 +180,29 @@ return require('packer').startup(function()
     -- }
 
     use {
-        'hrsh7th/nvim-cmp',
+        "hrsh7th/nvim-cmp",
         requires = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
-            'onsails/lspkind.nvim',
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+            "onsails/lspkind.nvim",
         },
         config = function()
-            local lspkind = require('lspkind')
-            local cmp = require('cmp')
+            local lspkind = require("lspkind")
+            local cmp = require("cmp")
             cmp.setup {
                 mapping = cmp.mapping.preset.insert({
-                    ['<C-n>'] = cmp.mapping.select_next_item(),
-                    ['<C-p>'] = cmp.mapping.select_prev_item(),
-                    ['<TAB>'] = cmp.mapping.confirm({ select = true }),
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ["<C-n>"] = cmp.mapping.select_next_item(),
+                    ["<C-p>"] = cmp.mapping.select_prev_item(),
+                    ["<TAB>"] = cmp.mapping.confirm({ select = true }),
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 }),
                 -- order of the sources matter (first are higher priority)
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = 'nvim_lsp_signature_help' },
+                    { name = "nvim_lsp_signature_help" },
                     { name = "path" },
                     { name = "buffer", keyword_length = 2 },
                 },
@@ -229,15 +229,15 @@ return require('packer').startup(function()
 
     -- comment text objects
     use {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         config = function()
-            require('Comment').setup()
+            require("Comment").setup()
         end
     }
     -- gruvbox color scheme
     -- use {
-    --     'ellisonleao/gruvbox.nvim',
-    --     requires = {'rktjmp/lush.nvim'},
+    --     "ellisonleao/gruvbox.nvim",
+    --     requires = {"rktjmp/lush.nvim"},
     --     config = function()
     --         vim.opt.termguicolors = true
     --         vim.opt.background = "dark"
@@ -245,14 +245,14 @@ return require('packer').startup(function()
     --         vim.g.gruvbox_italic = 1
     --         vim.g.gruvbox_bold = 1
     --         vim.g.gruvbox_termcolors = 256
-    --         vim.g.gruvbox_contrast_dark = 'medium'
-    --         vim.g.gruvbox_contrast_light = 'hard'
+    --         vim.g.gruvbox_contrast_dark = "medium"
+    --         vim.g.gruvbox_contrast_light = "hard"
     --         vim.g.gruvbox_invert_selection = 0
     --     end
     -- }
     -- nord color scheme
     use {
-        'shaunsingh/nord.nvim',
+        "shaunsingh/nord.nvim",
         config = function()
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
@@ -264,16 +264,16 @@ return require('packer').startup(function()
     }
     -- status line
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        "nvim-lualine/lualine.nvim",
+        requires = {"kyazdani42/nvim-web-devicons", opt = true},
         config = function()
-            require('lualine').setup {
+            require("lualine").setup {
                 options = {
-                    -- theme = 'gruvbox',
-                    theme = 'nord',
+                    -- theme = "gruvbox",
+                    theme = "nord",
                     icons_enabled = true,
-                    section_separators = '',
-                    component_separators = '',
+                    section_separators = "",
+                    component_separators = "",
                     -- globalstatus = true,
                 }
             }
@@ -281,10 +281,10 @@ return require('packer').startup(function()
     }
     -- better syntax highlight for everything
     use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
         config = function()
-            require('nvim-treesitter.configs').setup {
+            require("nvim-treesitter.configs").setup {
                 highlight = {
                     enable = true
                 },
@@ -305,44 +305,46 @@ return require('packer').startup(function()
     }
     -- fuzzy finder (replace fzf.vim or ctrlp.vim)
     use {
-        'nvim-telescope/telescope.nvim',
+        "nvim-telescope/telescope.nvim",
         requires = {
-            {'nvim-lua/plenary.nvim'},
-            {'kyazdani42/nvim-web-devicons', opt = true},
-            {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            {"nvim-lua/plenary.nvim"},
+            {"kyazdani42/nvim-web-devicons", opt = true},
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                run = "make",
+                config = function() require("telescope").load_extension("fzf") end
+            },
         },
         config = function()
-            local actions = require('telescope.actions')
-            local telescope = require('telescope')
-            telescope.setup {
+            local actions = require("telescope.actions")
+            require("telescope").setup {
                 defaults = {
                     mappings = {
                         i = {
-                            ['<C-j>'] = actions.move_selection_next,
-                            ['<C-k>'] = actions.move_selection_previous,
-                            ['<esc>'] = actions.close,
-                            ['kj'] = actions.close,
+                            ["<C-j>"] = actions.move_selection_next,
+                            ["<C-k>"] = actions.move_selection_previous,
+                            ["<esc>"] = actions.close,
+                            ["kj"] = actions.close,
                         }
                     },
                 },
             }
-            telescope.load_extension('fzf')
             local map = vim.api.nvim_set_keymap
-            map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
-            map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
-            map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
-            map('n', '<leader>p', '<cmd>Telescope tags<cr>', {})
-            map('n', '<leader>g', '<cmd>Telescope live_grep<cr>', {})
-            map('n', '<leader>G', '<cmd>Telescope grep_string<cr>', {})
+            map("n", "<C-p>", "<cmd>Telescope git_files<cr>", {})
+            map("n", "<leader>H", "<cmd>Telescope help_tags<cr>", {})
+            map("n", "<leader>;", "<cmd>Telescope commands<cr>", {})
+            map("n", "<leader>p", "<cmd>Telescope tags<cr>", {})
+            map("n", "<leader>g", "<cmd>Telescope live_grep<cr>", {})
+            map("n", "<leader>G", "<cmd>Telescope grep_string<cr>", {})
         end
 
     }
     -- todos,fix,etc.. highlight and list
     use {
-        'folke/todo-comments.nvim',
-        requires = 'nvim-lua/plenary.nvim',
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
         config = function()
-            require('todo-comments').setup {
+            require("todo-comments").setup {
                 signs = false
             }
         end
@@ -350,43 +352,43 @@ return require('packer').startup(function()
 
     -- remote files and lsp
     use {
-        'chipsenkbeil/distant.nvim',
+        "chipsenkbeil/distant.nvim",
         config = function()
             -- local on_attach = function(client, bufnr)
             --     local opts = { noremap = true, silent = true }
             --     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-            --     map('n', '<leader>[', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-            --     map('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-            --     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-            --     map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-            --     map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-            --     map('n', '<leader>q', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
-            --     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            --     map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+            --     map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+            --     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+            --     map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+            --     map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+            --     map("n", "<leader>q", "<cmd>Telescope lsp_workspace_diagnostics<CR>", opts)
+            --     map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
             -- end
-            require('distant').setup {
-                ['*'] = require('distant.settings').chip_default()
+            require("distant").setup {
+                ["*"] = require("distant.settings").chip_default()
             }
             -- TODO: extend with job_distant_config.lua
         end,
-        run = ':DistantInstall'
+        run = ":DistantInstall"
     }
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
     use {
-        'dccsillag/magma-nvim',
-        -- ft = { 'python' }, -- doesn't work
-        run = ':UpdateRemotePlugins',
+        "dccsillag/magma-nvim",
+        -- ft = { "python" }, -- doesn"t work
+        run = ":UpdateRemotePlugins",
         config = function()
             local map = vim.api.nvim_set_keymap
-            map('n', '<leader>m',  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
-            map('n', '<leader>mm', '<cmd>MagmaEvaluateLine<CR>', {})
-            map('x', '<leader>m',  '<cmd><C-u>MagmaEvaluateVisual<CR>', {})
-            map('n', '<leader>mc', '<cmd>MagmaReevaluateCell<CR>', {})
-            map('n', '<leader>md', '<cmd>MagmaDelete<CR>', {})
-            map('n', '<leader>mo', '<cmd>MagmaShowOutput<CR>', {})
+            map("n", "<leader>m",  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
+            map("n", "<leader>mm", "<cmd>MagmaEvaluateLine<CR>", {})
+            map("x", "<leader>m",  "<cmd><C-u>MagmaEvaluateVisual<CR>", {})
+            map("n", "<leader>mc", "<cmd>MagmaReevaluateCell<CR>", {})
+            map("n", "<leader>md", "<cmd>MagmaDelete<CR>", {})
+            map("n", "<leader>mo", "<cmd>MagmaShowOutput<CR>", {})
         end
     }
 
-    use { 'nvim-treesitter/playground', opt = true, cmd = { 'TSPlaygroundToggle' } }
-    -- use { '~/git/argwrap.nvim', opt = true }
+    use { "nvim-treesitter/playground", opt = true, cmd = { "TSPlaygroundToggle" } }
+    -- use { "~/git/argwrap.nvim", opt = true }
 end)
