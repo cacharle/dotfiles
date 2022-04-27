@@ -309,10 +309,12 @@ return require('packer').startup(function()
         requires = {
             {'nvim-lua/plenary.nvim'},
             {'kyazdani42/nvim-web-devicons', opt = true},
+            {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
         config = function()
             local actions = require('telescope.actions')
-            require('telescope').setup {
+            local telescope = require('telescope')
+            telescope.setup {
                 defaults = {
                     mappings = {
                         i = {
@@ -322,8 +324,9 @@ return require('packer').startup(function()
                             ['kj'] = actions.close,
                         }
                     },
-                }
+                },
             }
+            telescope.load_extension('fzf')
             local map = vim.api.nvim_set_keymap
             map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
             map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
