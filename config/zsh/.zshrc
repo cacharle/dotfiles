@@ -65,17 +65,16 @@ chpwd() {
         echo "$(pwd) contains $content entries"
     [ "$(uname)" = 'Linux' ] && [ "$(stat -c "%U" .)" = "$USER" ] && touch .  # to sort by last cd
 
-
     # change conda env if name of the directory is the name of an env
     [ ! -d "$PWD/.git" ] && return
     name="$(basename "$PWD")"
     [ "$name" = $CONDA_DEFAULT_ENV ] && return
-    conda env list |
+    [ ! -e "$HOME/conda_envs" ] && conda env list > "$HOME/conda_envs"
+    < "$HOME/conda_envs" \
         cut -d ' ' -f 1 |
         sed -e '/^#/d' -e '/^$/d' -e '/^base$/d' |
         grep -q "$name" &&
             conda activate "$name"
-
 }
 
 # https://wiki.archlinux.org/title/Zsh#Shortcut_to_exit_shell_on_partial_command_line

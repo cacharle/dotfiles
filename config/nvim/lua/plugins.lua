@@ -10,6 +10,13 @@ return require('packer').startup(function()
     use 'lukas-reineke/indent-blankline.nvim'
 
     use {
+        'jpalardy/vim-slime',
+        config = function()
+            vim.g.slime_target = 'tmux'
+        end
+    }
+
+    use {
         'cacharle/vim-jinja-languages',
         requires = {'mitsuhiko/vim-jinja'}
     }
@@ -148,7 +155,7 @@ return require('packer').startup(function()
                 mapping = cmp.mapping.preset.insert({
                     ['<C-n>'] = cmp.mapping.select_next_item(),
                     ['<C-p>'] = cmp.mapping.select_prev_item(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<TAB>'] = cmp.mapping.confirm({ select = true }),
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 }),
