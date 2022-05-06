@@ -187,17 +187,40 @@ return require("packer").startup(function()
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "onsails/lspkind.nvim",
+            "L3MON4D3/LuaSnip",
         },
         config = function()
             local lspkind = require("lspkind")
             local cmp = require("cmp")
+            local luasnip = require("luasnip")
             cmp.setup {
                 mapping = cmp.mapping.preset.insert({
                     ["<C-n>"] = cmp.mapping.select_next_item(),
                     ["<C-p>"] = cmp.mapping.select_prev_item(),
-                    ["<TAB>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
                 -- order of the sources matter (first are higher priority)
                 sources = {
@@ -221,7 +244,7 @@ return require("packer").startup(function()
                 },
                 experimental = {
                     ghost_text = true,
-                }
+                },
             }
         end
     }
