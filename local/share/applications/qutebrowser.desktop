@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Navigator
+Exec=/usr/bin/qutebrowser %u
