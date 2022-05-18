@@ -85,7 +85,7 @@ zle -N exit_zsh
 bindkey '^D' exit_zsh
 
 # shellcheck disable=SC2034,SC2039,SC3030
-fignore=(o hi) # ignore extensions in autocomplete
+fignore=(.o .hi) # ignore extensions in autocomplete
 
 # set tab to 4 spaces
 tabs 4
