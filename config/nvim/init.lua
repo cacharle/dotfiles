@@ -54,8 +54,8 @@ local augroup = vim.api.nvim_create_augroup("cacharle_init_group", {})
 vim.api.nvim_create_autocmd(
     "BufWritePost",
     {
-        command = "source <afile> | PackerCompile",
         pattern = "plugins.lua",
+        command = "source <afile> | PackerCompile",
         group = augroup
     }
 )
@@ -63,13 +63,28 @@ vim.api.nvim_create_autocmd(
 -- remove trailing white space on save
 vim.api.nvim_create_autocmd(
     "BufWritePre",
-    { command = [[ %s/\s\+$//e ]], pattern = "*", group = augroup }
+    { pattern = "*", command = [[ %s/\s\+$//e ]], group = augroup }
 )
 
 -- set filttype for *.sql.j2 files
 vim.api.nvim_create_autocmd(
     "BufReadPre",
-    { command = "set ft=sql", pattern = "*.sql.j2", group = augroup }
+    { pattern = "*.sql.j2", command = "set ft=sql", group = augroup }
+)
+
+-- -- Format go files on save
+-- vim.api.nvim_create_autocmd(
+--     "BufWritePre",
+--     { command = [[ !go fmt % ]], pattern = "*.go", group = augroup }
+-- )
+
+vim.api.nvim_create_autocmd(
+    "FileType",
+    { pattern = "haskell", command = [[ set formatprg=stylish-haskell ]], group = augroup }
+)
+vim.api.nvim_create_autocmd(
+    "FileType",
+    { pattern = "lisp,html,css,htmldjango", command = [[ setlocal shiftwidth=2 ]], group = augroup }
 )
 
 require("mappings")

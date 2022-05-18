@@ -4,10 +4,17 @@ return require("packer").startup(function()
     use "wbthomason/packer.nvim"    -- plugin manager (can manage itself)
     use "junegunn/vim-easy-align"   -- align
     use "AndrewRadev/sideways.vim"  -- Move arguments sideways
-    use "FooSoft/vim-argwrap"       -- Put arguments on multiple lines
     use "tpope/vim-eunuch"          -- basic commands on current file (Rename/Remove)
     use "romainl/vim-cool"          -- only highlight search matches when searching
     use "lukas-reineke/indent-blankline.nvim"
+
+    -- Put arguments on multiple lines
+    use {
+        "FooSoft/vim-argwrap",
+        config = function()
+            vim.g.argwrap_tail_comma = 1
+        end
+    }
 
     use {
         "jpalardy/vim-slime",
@@ -195,12 +202,12 @@ return require("packer").startup(function()
             local luasnip = require("luasnip")
             cmp.setup {
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-n>"] = cmp.mapping.select_next_item(),
-                    ["<C-p>"] = cmp.mapping.select_prev_item(),
+                    -- ["<C-n>"] = cmp.mapping.select_next_item(),
+                    -- ["<C-p>"] = cmp.mapping.select_prev_item(),
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-
-                    ["<Tab>"] = cmp.mapping(function(fallback)
+                    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                    ["<C-n>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expand_or_jumpable() then
@@ -211,8 +218,7 @@ return require("packer").startup(function()
                             fallback()
                         end
                     end, { "i", "s" }),
-
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    ["<C-p>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
                         elseif luasnip.jumpable(-1) then
@@ -224,6 +230,7 @@ return require("packer").startup(function()
                 }),
                 -- order of the sources matter (first are higher priority)
                 sources = {
+                    { name = "luasnip" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "path" },
@@ -245,6 +252,11 @@ return require("packer").startup(function()
                 experimental = {
                     ghost_text = true,
                 },
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end
+                }
             }
         end
     }
