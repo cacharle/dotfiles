@@ -69,7 +69,11 @@ vim.api.nvim_create_autocmd(
 -- set filttype for *.sql.j2 files
 vim.api.nvim_create_autocmd(
     "BufReadPre",
-    { pattern = "*.sql.j2", command = "set ft=sql", group = augroup }
+    {
+        pattern = "*.sql.j2",
+        callback = function() vim.opt.filetype = "sql" end,
+        group = augroup,
+    }
 )
 
 -- -- Format go files on save
@@ -80,11 +84,29 @@ vim.api.nvim_create_autocmd(
 
 vim.api.nvim_create_autocmd(
     "FileType",
-    { pattern = "haskell", command = [[ set formatprg=stylish-haskell ]], group = augroup }
+    {
+        pattern = "haskell",
+        callback = function() vim.opt_local.formatprg = "stylish-haskell" end,
+        group = augroup,
+    }
 )
+
 vim.api.nvim_create_autocmd(
     "FileType",
-    { pattern = "lisp,html,css,htmldjango", command = [[ setlocal shiftwidth=2 ]], group = augroup }
+    {
+        pattern = "lisp,html,css,htmldjango",
+        callback = function() vim.opt_local.shiftwidth = 2 end,
+        group = augroup,
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = "go",
+        callback = function() vim.opt_local.expandtab = false end,
+        group = augroup,
+    }
 )
 
 require("mappings")

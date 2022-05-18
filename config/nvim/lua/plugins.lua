@@ -13,6 +13,14 @@ return require("packer").startup(function()
         "FooSoft/vim-argwrap",
         config = function()
             vim.g.argwrap_tail_comma = 1
+            vim.api.nvim_create_autocmd(
+                "Filetype",
+                {
+                    pattern = "go,lua",
+                    callback = function() vim.g.argwrap_padded_braces = "{" end,
+                    group = augroup,
+                }
+            )
         end
     }
 
