@@ -127,7 +127,8 @@ return require('packer').startup(function()
                     theme = 'gruvbox',
                     icons_enabled = true,
                     section_separators = '',
-                    component_separators = ''
+                    component_separators = '',
+                    globalstatus = true,
                 }
             }
         end
