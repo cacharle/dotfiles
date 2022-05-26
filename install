@@ -96,7 +96,12 @@ parallel_start update_zsh_plugin 'https://github.com/zsh-users/zsh-syntax-highli
 parallel_start update_zsh_plugin 'https://github.com/MichaelAquilina/zsh-you-should-use'
 parallel_wait
 
-[ "$(uname)" = Darwin ] && exit
+if [ "$(uname)" = Darwin ]
+then
+    # xdg vars not defined for qutebrowser
+    ln -svfF "$XDG_CONFIG_HOME/qutebrowser" "$HOME/.qutebrowser"
+    exit
+fi
 
 ###############################################################################
 # Linux specific

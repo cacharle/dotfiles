@@ -1,5 +1,5 @@
 set disassembly-flavor intel
 set print pretty on
-set prompt \ngdb>
+set prompt \n(gdb) 
 set confirm off
 set listsize 25

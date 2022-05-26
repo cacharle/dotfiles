@@ -24,3 +24,16 @@ application/rss+xml=newsboat.desktop
 video/x-matroska=mpv.desktop
 # x-scheme-handler/lbry=lbry.desktop
 # inode/directory=file.desktop
+
+x-scheme-handler/http=qutebrowser.desktop
+x-scheme-handler/https=qutebrowser.desktop
+text/html=qutebrowser.desktop
+application/xhtml_xml=qutebrowser.desktop
+image/webp=qutebrowser.desktop
+
+[Added Associations]
+text/html=qutebrowser.desktop
+text/xml=qutebrowser.desktop
+application/xhtml_xml=qutebrowser.desktop
+image/webp=qutebrowser.desktop
+x-scheme-handler/https=qutebrowser.desktop

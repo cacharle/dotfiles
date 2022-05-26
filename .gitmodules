@@ -4,3 +4,6 @@
 [submodule "local/share/mutt/gruvbox"]
 	path = local/share/mutt/gruvbox
 	url = https://git.sthu.org/repos/mutt-gruvbox.git
+[submodule "config/tmux/plugins/tpm"]
+	path = config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

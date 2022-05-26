@@ -44,7 +44,8 @@ config.bind("<Command-Return>", "config-cycle window.hide_decoration true false"
 c.fonts.default_family = ["Fira Mono", "Baekmuk", "Noto Color Emoji", "Symbola"]
 c.fonts.hints = "bold 11pt default_family"
 if platform.system() == 'Darwin':
-    c.fonts.default_size = '13pt'
+    c.fonts.default_family = ["FiraCode Nerd Font Mono", "FiraMono"]
+    c.fonts.default_size = "13pt"
     c.fonts.hints = "bold 12pt default_family"
 
 c.hints.chars = "asdfghjkl;"  # use key in the main row for hints
@@ -438,6 +439,3 @@ c.colors.tabs.selected.even.bg = base05
 # Background color for webpages if unset (or empty to use the theme"s
 # color).
 c.colors.webpage.bg = base00
-
-# vim:TSBufDisable highlight
-# vim:LspStop
