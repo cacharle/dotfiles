@@ -36,7 +36,7 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/aspell.conf; personal $XDG_CONFIG_HOME/aspell/en.pws; repl $XDG_CONFIG_HOME/aspell/en.prepl"
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # shellcheck disable=SC2016
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
@@ -60,19 +60,19 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
 # shellcheck disable=SC2155
 # color in man (less pager)
-export LESS_TERMCAP_mb=$(printf '%b' '\e[1;32m')
-export LESS_TERMCAP_md=$(printf '%b' '\e[1;32m')
-export LESS_TERMCAP_me=$(printf '%b' '\e[0m')
-export LESS_TERMCAP_se=$(printf '%b' '\e[0m')
-export LESS_TERMCAP_so=$(printf '%b' '\e[01;33m')
-export LESS_TERMCAP_ue=$(printf '%b' '\e[0m')
-export LESS_TERMCAP_us=$(printf '%b' '\e[1;4;31m')
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_ZN=$(tput ssubm)
-export LESS_TERMCAP_ZV=$(tput rsubm)
-export LESS_TERMCAP_ZO=$(tput ssupm)
-export LESS_TERMCAP_ZW=$(tput rsupm)
+export LESS_TERMCAP_mb="$(printf '%b' '\e[1;32m')"
+export LESS_TERMCAP_md="$(printf '%b' '\e[1;32m')"
+export LESS_TERMCAP_me="$(printf '%b' '\e[0m')"
+export LESS_TERMCAP_se="$(printf '%b' '\e[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '\e[01;33m')"
+export LESS_TERMCAP_ue="$(printf '%b' '\e[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '\e[1;4;31m')"
+export LESS_TERMCAP_mr="$(tput rev)"
+export LESS_TERMCAP_mh="$(tput dim)"
+export LESS_TERMCAP_ZN="$(tput ssubm)"
+export LESS_TERMCAP_ZV="$(tput rsubm)"
+export LESS_TERMCAP_ZO="$(tput ssupm)"
+export LESS_TERMCAP_ZW="$(tput rsupm)"
 
 export MINIKUBE_IN_STYLE=false  # disable cringe minikube emojies
 
