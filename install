@@ -136,6 +136,7 @@ echo 'INFO: Run this script as root if you want to install the root contab'
 # dictionaries
 ###############################################################################
 
+# command is sdcv
 echo '---------------------------- INSTALL DICTIONARY --------------------------'
 install_dict() {
     url="$1"

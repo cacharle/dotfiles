@@ -4,7 +4,8 @@
 
 env:
   TERM: xterm-256color
-  WINIT_X11_SCALE_FACTOR: '1'
+  # https://wiki.archlinux.org/title/Alacritty#Different_font_size_on_multiple_monitors
+  WINIT_X11_SCALE_FACTOR: "1"
 
 # font
 font:
@@ -13,13 +14,13 @@ font:
     x: 0
     y: 0
   normal:
-    family: Fira Code
+    family: FiraCode
     style: Regular
   italic:
-    family: FiraMono
-    style: Italic
+    family: FiraCode
+    style: Light
   bold:
-    family: Fira Code
+    family: FiraCode
     style: Bold
   use_thin_strokes: false
 
