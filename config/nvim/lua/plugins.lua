@@ -50,28 +50,10 @@ return require("packer").startup(function()
         end
     }
 
-    -- tags managment
-    use {
-        "ludovicchabant/vim-gutentags",
-        config = function()
-            vim.g.gutentags_ctags_exclude = {
-                "doc/*",
-                "docs/*",
-                "Makefile",
-                ".mypy_cache",
-                ".pytest_cache",
-                ".tox",
-                "build/*",
-                "dist/*"
-            }
-        end
-    }
-
-
     -- nvim lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell"},
+        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml"},
         config = function()
             local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
@@ -133,6 +115,9 @@ return require("packer").startup(function()
 
             -- brew install haskell-language-server
             lspconfig.hls.setup {}
+
+            -- opam install ocaml-lsp-server
+            lspconfig.ocamllsp.setup {}
 
             -- package lua-language-server on ArchLinux
             -- lspconfig.sumneko_lua.setup {
