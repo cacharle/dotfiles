@@ -71,7 +71,7 @@ return require("packer").startup(function()
     -- nvim lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        ft = {"rust", "python", "c", "cpp", "lua", "go"},
+        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell"},
         config = function()
             local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
@@ -130,6 +130,9 @@ return require("packer").startup(function()
             -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
             lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+
+            -- brew install haskell-language-server
+            lspconfig.hls.setup {}
 
             -- package lua-language-server on ArchLinux
             -- lspconfig.sumneko_lua.setup {
