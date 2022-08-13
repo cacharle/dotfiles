@@ -26,25 +26,6 @@ map('n', ' ?', '?\v', {})
 map('c', '<C-j>', '<down>', {})
 map('c', '<C-k>', '<up>', {})
 
--- -- hook
--- -- remove trailing white space on save
--- autocmd vimrc BufWritePre * %s/\s\+$//e
--- -- dirty hack to disable this feature on markdown (autocmd! wouldn't work)
--- autocmd vimrc BufReadPre *.md autocmd! BufWritePre
-
-
--- augroup vimrc_files
---     autocmd!
---     -- school c
---     autocmd Filetype c setlocal noexpandtab
---     autocmd Filetype c setlocal comments=s:/**,m:**,e:*/,s:/*,m:**,e:*/
---     -- std::cout << ... << std::endl; shortcut
---     autocmd Filetype cpp nnoremap <leader>cout istd::cout <<  << std::endl;<ESC>2F<hi
---     autocmd Filetype vim setlocal foldmethod=marker -- vim fold method to marker
---     autocmd FileType haskell set formatprg=stylish-haskell
---     autocmd FileType lisp,html,css,htmldjango setlocal shiftwidth=2
--- augroup END
-
 -- python breakpoints
 vim.cmd [[ autocmd FileType python nmap <leader>bd mq:g/^\s*breakpoint()$/d<cr>`q ]]
 vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]

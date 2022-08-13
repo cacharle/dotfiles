@@ -9,6 +9,8 @@ elif [ "$(uname)" = 'Darwin' ]
 then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     export PATH="$PATH:$HOME/.brew/bin:$HOME/git/dotfiles/bin:$HOME/bin:/usr/local/anaconda3/bin"
+    export PATH="$PATH:$HOME/.local/share/go/bin"
+    export PATH="$PATH:$HOME/.local/bin"
     export MAIL='charles.cabergs@colruytgroup.com'
     export SUDO='sudo'
     export LC_CTYPE='en_US.UTF-8'
