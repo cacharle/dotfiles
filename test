@@ -1,34 +1,30 @@
 #!/bin/sh
 
-set -o xtrace
-
-ret=0
+set -xe
 
 # SHELLCHECK
-shellcheck install                                                    || ret=$?
-shellcheck test                                                       || ret=$?
-shellcheck local/bin/*                                                || ret=$?
-shellcheck -s sh config/zsh/.zshrc                                    || ret=$?
-shellcheck -s sh config/zsh/aliases.zsh                               || ret=$?
-shellcheck -s sh -e SC2155 config/zsh/zprofile                        || ret=$?
-shellcheck -s sh config/x11/xinitrc                                   || ret=$?
+shellcheck install
+shellcheck test
+shellcheck local/bin/*
+shellcheck -s sh config/zsh/.zshrc
+shellcheck -s sh config/zsh/aliases.zsh
+shellcheck -s sh -e SC2155 config/zsh/zprofile
+shellcheck -s sh config/x11/xinitrc
 
 # VINT
-# vint -s config/vim/vimrc                                              || ret=$?
-# vint -s config/vim/pluggins.vim                                       || ret=$?
+# vint -s config/vim/vimrc
+# vint -s config/vim/pluggins.vim
 
 # FLAKE8
-flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py || ret=$?
-flake8 --ignore W504,CCR001 config/python/startup.py                  || ret=$?
+flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py
+flake8 --ignore W504,CCR001 config/python/startup.py
 
 # CRONTAB
 if crontab -h 2>&1 | grep -q '.*-T.*'
 then
-    crontab -T crontab/root.crontab                                   || ret=$?
-    crontab -T crontab/user.crontab                                   || ret=$?
+    crontab -T crontab/root.crontab
+    crontab -T crontab/user.crontab
 fi
 
 # XMONAD
-[ ! "$CI" = 'true' ] && { xmonad --recompile || ret=$?; }
-
-exit $ret
+[ ! "$CI" = 'true' ] && xmonad --recompile

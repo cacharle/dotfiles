@@ -127,7 +127,8 @@ return require('packer').startup(function()
                     theme = 'gruvbox',
                     icons_enabled = true,
                     section_separators = '',
-                    component_separators = ''
+                    component_separators = '',
+                    globalstatus = true,
                 }
             }
         end
@@ -178,7 +179,7 @@ return require('packer').startup(function()
                 }
             }
             local map = vim.api.nvim_set_keymap
-            map('n', '<C-p>', '<cmd>Telescope git_files<cr>', {})
+            map('n', '<C-p>', '<CMD>lua require"telescope-config".project_files()<CR>', { noremap = true, silent = true })
             map('n', '<leader>H', '<cmd>Telescope help_tags<cr>', {})
             map('n', '<leader>;', '<cmd>Telescope commands<cr>', {})
             map('n', '<leader>g', '<cmd>Telescope live_grep<cr>', {})
