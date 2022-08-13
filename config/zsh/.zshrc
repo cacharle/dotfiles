@@ -108,33 +108,3 @@ if [ "$(uname)" = 'Linux' ]
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
 fi
-
-# upload-config() {
-#     scp -qr "$HOME/.vim"              cce424r@ds-train:
-#     scp -q  "$HOME/.config/vim/vimrc" cce424r@ds-train:.vimrc
-#
-#     scp -qr "$HOME/.vim"              cce424r@ds-attic:
-#     scp -q  "$HOME/.config/vim/vimrc" cce424r@ds-attic:.vimrc
-# }
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# shellcheck disable=SC2181
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/usr/local/anaconda3/etc/profile.d/mamba.sh" ]; then
-    . "/usr/local/anaconda3/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
-eval "$(opam env)"
