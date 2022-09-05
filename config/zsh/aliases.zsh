@@ -70,8 +70,9 @@ alias gss='git status --short'
 alias gco='git checkout'
 alias gsta='git stash push'
 alias gstp='git stash pop'
-alias grv="git remote -v"
-alias gra="git remote add"
+alias grv='git remote -v'
+alias gra='git remote add'
+alias gb='git branch'
 gpa() {
     branch="$1"
     [ -z "$branch" ] && branch=$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)

@@ -108,3 +108,6 @@ if [ "$(uname)" = 'Linux' ]
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
 fi
+
+export ROS_DOMAIN_ID=42
+. /opt/ros2/galactic/setup.zsh
