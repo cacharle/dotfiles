@@ -172,3 +172,7 @@ sdcv() {
 }
 
 alias ffmpeg='ffmpeg -hide_banner'
+
+sshvi() {
+    ssh -t "$1" bash -o vi -i
+}

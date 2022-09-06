@@ -10,7 +10,6 @@ map('n', '<leader>ss', '<cmd>setlocal spell!<cr>', {})  -- toggle spelling check
 map('n', '<leader>]', '<C-]>', {})  -- toggle spelling check
 map('n', '<leader>t', '<C-t>', {})  -- toggle spelling check
 
-
 -- split navigation
 map('n', '<C-j>', '<C-w><C-j>', {})
 map('n', '<C-k>', '<C-w><C-k>', {})
