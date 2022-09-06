@@ -9,7 +9,7 @@ case $(tty) in
     /dev/tty[1-9])
         # %~ path ('~' if $HOME)
         # %B/%b start/stop bold
-        # %B/%b start/stop color
+        # %F/%f start/stop color
         # shellcheck disable=SC2039,SC3003
         NEWLINE=$'\n'
         export PROMPT="${NEWLINE}%B%F{blue}%~%f${NEWLINE}%F{red}> %f%b"
@@ -109,31 +109,5 @@ then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
 fi
 
-# upload-config() {
-#     scp -qr "$HOME/.vim"              cce424r@ds-train:
-#     scp -q  "$HOME/.config/vim/vimrc" cce424r@ds-train:.vimrc
-#
-#     scp -qr "$HOME/.vim"              cce424r@ds-attic:
-#     scp -q  "$HOME/.config/vim/vimrc" cce424r@ds-attic:.vimrc
-# }
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/usr/local/anaconda3/etc/profile.d/mamba.sh" ]; then
-    . "/usr/local/anaconda3/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
-eval "$(opam env)"
+export ROS_DOMAIN_ID=42
+. /opt/ros2/galactic/setup.zsh

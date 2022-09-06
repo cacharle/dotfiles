@@ -5,6 +5,7 @@ import           System.Exit
 
 import           XMonad
 import           XMonad.Config.Desktop       (desktopConfig)
+import           XMonad.ManageHook           (composeAll, doFloat, className, (-->), (=?), (<+>))
 
 -- Utilities
 import           XMonad.Util.Dmenu           (menuArgs)
@@ -36,7 +37,7 @@ main = xmonad $ desktopConfig
         , borderWidth        = 2
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , workspaces         = ["code", "web"] ++ map show [3..9]
-        , startupHook        = startupHook'
+        -- , startupHook        = startupHook'
         } `additionalKeysP` keys'
 
 
@@ -49,7 +50,12 @@ layoutHook' = spacing' 4 $ reflectHoriz tiledVerticalBigMaster  -- main monitor 
           tiledHorizontalEven    =  Tall 1 (3 / 100) (1 / 2)
           spacing' x             = spacingRaw True (Border x x x x) False (Border x x x x) True
 
-manageHook' = insertPosition End Newer  -- insert new window at the end of the current layout
+manageHook' = composeAll
+    [ className =? "Anki"  --> doFloat
+    , className =? "Steam" --> doFloat
+    , className =? "Gimp" --> doFloat
+    ]
+    <+> insertPosition End Newer  -- insert new window at the end of the current layout
 
 keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
@@ -73,10 +79,10 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io (exitWith ExitSuccess))
         ]
 
-startupHook' :: X ()
-startupHook' = do
-    spawnOnOnce "code" myTerminal
-    spawnOnOnce "web"  "qutebrowser"
+-- startupHook' :: X ()
+-- startupHook' = do
+    -- spawnOnOnce "code" myTerminal
+    -- spawnOnOnce "web"  "qutebrowser"
 
 confirm :: String -> X () -> X ()
 confirm prompt f = do

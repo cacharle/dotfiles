@@ -257,7 +257,6 @@ return require("packer").startup(function()
         end
     }
 
-
     -- comment text objects
     use {
         "numToStr/Comment.nvim",
@@ -265,34 +264,37 @@ return require("packer").startup(function()
             require("Comment").setup()
         end
     }
+
     -- gruvbox color scheme
-    -- use {
-    --     "ellisonleao/gruvbox.nvim",
-    --     requires = {"rktjmp/lush.nvim"},
-    --     config = function()
-    --         vim.opt.termguicolors = true
-    --         vim.opt.background = "dark"
-    --         -- vim.cmd [[ colorscheme gruvbox ]]
-    --         vim.g.gruvbox_italic = 1
-    --         vim.g.gruvbox_bold = 1
-    --         vim.g.gruvbox_termcolors = 256
-    --         vim.g.gruvbox_contrast_dark = "medium"
-    --         vim.g.gruvbox_contrast_light = "hard"
-    --         vim.g.gruvbox_invert_selection = 0
-    --     end
-    -- }
-    -- nord color scheme
     use {
-        "shaunsingh/nord.nvim",
+        "ellisonleao/gruvbox.nvim",
+        requires = {"rktjmp/lush.nvim"},
         config = function()
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
-            vim.cmd [[ colorscheme nord ]]
-            vim.g.nord_contrast = true
-            vim.g.nord_borders = true
-            vim.g.nord_italic = true
+            vim.cmd [[ colorscheme gruvbox ]]
+            vim.g.gruvbox_italic = 1
+            vim.g.gruvbox_bold = 1
+            vim.g.gruvbox_termcolors = 256
+            vim.g.gruvbox_contrast_dark = "medium"
+            vim.g.gruvbox_contrast_light = "hard"
+            vim.g.gruvbox_invert_selection = 0
         end
     }
+
+    -- nord color scheme
+    -- use {
+    --     "shaunsingh/nord.nvim",
+    --     config = function()
+    --         vim.opt.termguicolors = true
+    --         vim.opt.background = "dark"
+    --         vim.cmd [[ colorscheme nord ]]
+    --         vim.g.nord_contrast = true
+    --         vim.g.nord_borders = true
+    --         vim.g.nord_italic = true
+    --     end
+    -- }
+
     -- status line
     use {
         "nvim-lualine/lualine.nvim",
@@ -300,8 +302,8 @@ return require("packer").startup(function()
         config = function()
             require("lualine").setup {
                 options = {
-                    -- theme = "gruvbox",
-                    theme = "nord",
+                    theme = "gruvbox",
+                    -- theme = "nord",
                     icons_enabled = true,
                     section_separators = '',
                     component_separators = '',
@@ -309,6 +311,7 @@ return require("packer").startup(function()
             }
         end
     }
+
     -- better syntax highlight for everything
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -333,6 +336,7 @@ return require("packer").startup(function()
             vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
         end
     }
+
     -- fuzzy finder (replace fzf.vim or ctrlp.vim)
     use {
         "nvim-telescope/telescope.nvim",
@@ -369,6 +373,7 @@ return require("packer").startup(function()
         end
 
     }
+
     -- todos,fix,etc.. highlight and list
     use {
         "folke/todo-comments.nvim",
