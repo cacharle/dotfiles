@@ -107,7 +107,9 @@ export YSU_MESSAGE_POSITION="after"                                 # you-should
 if [ "$(uname)" = 'Linux' ]
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
+    if [ -d /opt/ros2/galactic ]
+    then
+        export ROS_DOMAIN_ID=42
+        . /opt/ros2/galactic/setup.zsh
+    fi
 fi
-
-export ROS_DOMAIN_ID=42
-. /opt/ros2/galactic/setup.zsh
