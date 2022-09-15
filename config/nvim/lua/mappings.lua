@@ -37,3 +37,8 @@ map('n', '<leader>l', '<cmd>SidewaysRight<cr>', {})
 map('n', '<leader>h', '<cmd>SidewaysLeft<cr>', {})
 
 map('n', '<leader>w', '<cmd>ArgWrap<cr>', {})
+
+-- difftool
+map('n', '<leader>1', '<cmd>diffget LOCAL<cr>', {})
+map('n', '<leader>2', '<cmd>diffget BASE<cr>', {})
+map('n', '<leader>3', '<cmd>diffget REMOTE<cr>', {})

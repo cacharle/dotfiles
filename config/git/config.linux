@@ -8,6 +8,12 @@
 	rebase = false
 [merge]
 	tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    keepBackup = false
+    prompt = false
+[mergetool "vimdiff"]
+    cmd = "nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
 [commit]
 	gpgsign = true
 [init]
@@ -18,3 +24,7 @@
     prompt = false
 [diff]
 	tool = bat
+[core]
+	editor = nvim
+
+# vim:ft=gitconfig

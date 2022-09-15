@@ -109,4 +109,9 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+vim.cmd [[ highlight link DiffAdd    GruvboxGreenSign  ]]
+vim.cmd [[ highlight link DiffChange GruvboxYellowSign ]]
+vim.cmd [[ highlight link DiffDelete GruvboxRedSign    ]]
+-- vim.cmd [[ highlight DiffText   link GruvboxGreenSign ]]
+
 require("mappings")

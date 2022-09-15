@@ -13,3 +13,5 @@
 	defaultBranch = master
 [core]
 	editor = nvim
+
+# vim:ft=gitconfig

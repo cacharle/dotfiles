@@ -318,6 +318,22 @@ return require("packer").startup(function()
         run = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup {
+                ensure_installed = {
+                    "c",
+                    "python",
+                    "lua",
+                    "rust",
+                    "bash",
+                    "commonlisp",
+                    "cpp",
+                    "glsl",
+                    "haskell",
+                    "json",
+                    "markdown",
+                    "query",
+                    "vim",
+                    "yaml",
+                },
                 highlight = {
                     enable = true
                 },
@@ -381,6 +397,45 @@ return require("packer").startup(function()
         config = function()
             require("todo-comments").setup {
                 signs = false
+            }
+        end
+    }
+
+    use {
+        "lewis6991/gitsigns.nvim",
+        tag = 'release',
+        config = function()
+            require("gitsigns").setup {
+                signcolumn = false,
+                numhl = true,
+
+                on_attach = function(bufnr)
+                    local opts = { silent = true, noremap = true, expr = true }
+                    -- local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                    local function map(mode, l, r)
+                        opts.buffer = bufnr
+                        vim.keymap.set(mode, l, r, opts)
+                    end
+                    local gs = package.loaded.gitsigns
+                    map(
+                        "n",
+                        "]c",
+                        function()
+                            if vim.wo.diff then return "]c" end
+                            vim.schedule(function() gs.next_hunk() end)
+                            return "<Ignore>"
+                        end
+                    )
+                    map(
+                        "n",
+                        "[c",
+                        function()
+                            if vim.wo.diff then return "[c" end
+                            vim.schedule(function() gs.prev_hunk() end)
+                            return "<Ignore>"
+                        end
+                    )
+                end
             }
         end
     }
