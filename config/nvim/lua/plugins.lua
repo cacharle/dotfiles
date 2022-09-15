@@ -111,7 +111,20 @@ return require("packer").startup(function()
             -- lspconfig.clangd.setup { on_attach = on_attach }
             -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
-            lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+            lspconfig.pylsp.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            flake8 = {
+                                ignore = {'E501', 'E221', 'W503', 'E241'},
+                                maxLineLength = 100,
+                            },
+                        },
+                    },
+                },
+            }
 
             -- brew install haskell-language-server
             lspconfig.hls.setup {}
