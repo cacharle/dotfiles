@@ -2,6 +2,12 @@
 # alacritty #
 #############
 
+shell:
+  program: /bin/zsh
+  args:
+    - '-c'
+    - 'source ~/.config/zsh/.zshenv && zsh'
+
 # font
 font:
   size: 12
