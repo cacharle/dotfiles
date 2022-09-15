@@ -41,6 +41,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+bindkey '^r' history-incremental-search-backward
 
 # vim keybindings in prompt
 bindkey -v
@@ -104,7 +105,7 @@ export YSU_MESSAGE_POSITION="after"                                 # you-should
 
 # install pkgfile package on Arch Linux
 # run `pkgfile --update`
-if [ "$(uname)" = 'Linux' ]
+if [ "$(uname)" = 'Linux' ] && grep -q Arch /etc/lsb-release > /dev/null
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
     if [ -d /opt/ros2/galactic ]
