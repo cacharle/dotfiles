@@ -21,6 +21,7 @@ import           XMonad.Layout.Grid          (Grid (..))
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
+import           XMonad.Hooks.WindowSwallowing
 
 
 myTerminal = "alacritty"
@@ -37,6 +38,7 @@ main = xmonad $ desktopConfig
         , borderWidth        = 2
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , workspaces         = ["code", "web"] ++ map show [3..9]
+        , handleEventHook    = handleEventHook'
         -- , startupHook        = startupHook'
         } `additionalKeysP` keys'
 
@@ -95,3 +97,5 @@ restartCmd = intercalate "; " [ "if type xmonad"
                               , "else xmessage xmonad not in \\$PATH: \"$PATH\""
                               , "fi"
                               ]
+
+handleEventHook' = swallowEventHook (className =? "Alacritty" <||> className =? "Termite") (return True)
