@@ -111,7 +111,20 @@ return require("packer").startup(function()
             -- lspconfig.clangd.setup { on_attach = on_attach }
             -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
-            lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+            lspconfig.pylsp.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            flake8 = {
+                                ignore = {'E501', 'E221', 'W503', 'E241'},
+                                maxLineLength = 100,
+                            },
+                        },
+                    },
+                },
+            }
 
             -- brew install haskell-language-server
             lspconfig.hls.setup {}
@@ -373,6 +386,7 @@ return require("packer").startup(function()
                         i = {
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-u>"] = actions.delete_buffer,
                             ["<esc>"] = actions.close,
                             ["kj"] = actions.close,
                         }
@@ -387,7 +401,6 @@ return require("packer").startup(function()
             map("n", "<leader>g", "<cmd>Telescope live_grep<cr>", {})
             map("n", "<leader>G", "<cmd>Telescope grep_string<cr>", {})
         end
-
     }
 
     -- todos,fix,etc.. highlight and list
@@ -441,44 +454,44 @@ return require("packer").startup(function()
     }
 
     -- remote files and lsp
-    use {
-        "chipsenkbeil/distant.nvim",
-        config = function()
-            -- local on_attach = function(client, bufnr)
-            --     local opts = { noremap = true, silent = true }
-            --     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-            --     map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-            --     map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-            --     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-            --     map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-            --     map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-            --     map("n", "<leader>q", "<cmd>Telescope lsp_workspace_diagnostics<CR>", opts)
-            --     map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-            -- end
-            require("distant").setup {
-                ["*"] = require("distant.settings").chip_default()
-            }
-            -- TODO: extend with job_distant_config.lua
-        end,
-        run = ":DistantInstall"
-    }
+    -- use {
+    --     "chipsenkbeil/distant.nvim",
+    --     config = function()
+    --         -- local on_attach = function(client, bufnr)
+    --         --     local opts = { noremap = true, silent = true }
+    --         --     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    --         --     map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    --         --     map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    --         --     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    --         --     map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    --         --     map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    --         --     map("n", "<leader>q", "<cmd>Telescope lsp_workspace_diagnostics<CR>", opts)
+    --         --     map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    --         -- end
+    --         require("distant").setup {
+    --             ["*"] = require("distant.settings").chip_default()
+    --         }
+    --         -- TODO: extend with job_distant_config.lua
+    --     end,
+    --     run = ":DistantInstall"
+    -- }
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
-    use {
-        "dccsillag/magma-nvim",
-        -- ft = { "python" }, -- doesn"t work
-        run = ":UpdateRemotePlugins",
-        config = function()
-            local map = vim.api.nvim_set_keymap
-            map("n", "<leader>m",  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
-            map("n", "<leader>mm", "<cmd>MagmaEvaluateLine<CR>", {})
-            map("x", "<leader>m",  "<cmd><C-u>MagmaEvaluateVisual<CR>", {})
-            map("n", "<leader>mc", "<cmd>MagmaReevaluateCell<CR>", {})
-            map("n", "<leader>md", "<cmd>MagmaDelete<CR>", {})
-            map("n", "<leader>mo", "<cmd>MagmaShowOutput<CR>", {})
-        end
-    }
+    -- use {
+    --     "dccsillag/magma-nvim",
+    --     -- ft = { "python" }, -- doesn"t work
+    --     run = ":UpdateRemotePlugins",
+    --     config = function()
+    --         local map = vim.api.nvim_set_keymap
+    --         map("n", "<leader>m",  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
+    --         map("n", "<leader>mm", "<cmd>MagmaEvaluateLine<CR>", {})
+    --         map("x", "<leader>m",  "<cmd><C-u>MagmaEvaluateVisual<CR>", {})
+    --         map("n", "<leader>mc", "<cmd>MagmaReevaluateCell<CR>", {})
+    --         map("n", "<leader>md", "<cmd>MagmaDelete<CR>", {})
+    --         map("n", "<leader>mo", "<cmd>MagmaShowOutput<CR>", {})
+    --     end
+    -- }
 
-    use { "nvim-treesitter/playground", opt = true, cmd = { "TSPlaygroundToggle" } }
+    -- use { "nvim-treesitter/playground", opt = true, cmd = { "TSPlaygroundToggle" } }
     -- use { "~/git/argwrap.nvim", opt = true }
 end)
