@@ -25,6 +25,6 @@
 [diff]
 	tool = bat
 [core]
-	editor = nvim
+    editor = "VIMINIT='' nvim"
 
 # vim:ft=gitconfig

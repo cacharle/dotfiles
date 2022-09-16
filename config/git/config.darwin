@@ -12,6 +12,6 @@
 [init]
 	defaultBranch = master
 [core]
-	editor = nvim
+    editor = "VIMINIT='' nvim"
 
 # vim:ft=gitconfig
