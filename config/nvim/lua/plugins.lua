@@ -42,6 +42,7 @@ return require("packer").startup(function()
         tag = "stable",
         ft = "python",
         config = function()
+            vim.g.black_linelength = 100
             local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
             vim.api.nvim_create_autocmd(
                 "BufWritePre",
