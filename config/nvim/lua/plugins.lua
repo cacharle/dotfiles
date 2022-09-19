@@ -56,6 +56,11 @@ return require("packer").startup(function()
         "neovim/nvim-lspconfig",
         ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml"},
         config = function()
+            vim.diagnostic.config {
+                signs = false,
+                update_in_insert = false,
+            }
+
             local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
                 local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -88,7 +93,7 @@ return require("packer").startup(function()
                 }
             }
             -- from: https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
-            function go_import_callback()
+            local go_import_callback = function()
                 local wait_ms = 1000
                 local params = vim.lsp.util.make_range_params()
                 params.context = {only = {"source.organizeImports"}}
@@ -128,40 +133,38 @@ return require("packer").startup(function()
             }
 
             -- brew install haskell-language-server
-            lspconfig.hls.setup {}
+            lspconfig.hls.setup { on_attach = on_attach }
 
             -- opam install ocaml-lsp-server
-            lspconfig.ocamllsp.setup {}
+            lspconfig.ocamllsp.setup { on_attach = on_attach }
 
             -- package lua-language-server on ArchLinux
-            -- lspconfig.sumneko_lua.setup {
-            --     on_attach = on_attach ,
-            --     settings = {
-            --         Lua = {
-            --             runtime = {
-            --                 -- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
-            --                 version = "LuaJIT",
-            --                 -- Setup your lua path
-            --                 path = vim.split(package.path, ";"),
-            --             },
-            --             diagnostics = {
-            --                 -- Get the language server to recognize the `vim` global
-            --                 globals = {"vim"},
-            --             },
-            --             workspace = {
-            --                 -- Make the server aware of Neovim runtime files
-            --                 library = {
-            --                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            --                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-            --                 },
-            --             },
-            --         }
-            --     },
-            -- }
-            vim.diagnostic.config {
-                signs = false,
-                update_in_insert = false,
+            lspconfig.sumneko_lua.setup {
+                on_attach = on_attach ,
+                settings = {
+                    Lua = {
+                        runtime = {
+                            -- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
+                            version = "LuaJIT",
+                            -- Setup your lua path
+                            path = vim.split(package.path, ";"),
+                        },
+                        diagnostics = {
+                            -- Get the language server to recognize the `vim` global
+                            globals = {"vim"},
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = {
+                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                            },
+                        },
+                    }
+                },
             }
+
+            lspconfig.clangd.setup { on_attach = on_attach }
         end,
     }
 
