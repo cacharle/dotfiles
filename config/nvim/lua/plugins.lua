@@ -347,6 +347,7 @@ return require("packer").startup(function()
                     "query",
                     "vim",
                     "yaml",
+                    "meson",
                 },
                 highlight = {
                     enable = true
