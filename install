@@ -2,7 +2,7 @@
 
 # zprofile isn't installed yet on new machine
 # shellcheck source=/dev/null
-. config/zsh/zprofile
+. config/zsh/.zshenv
 
 if [ "$USER" = 'root' ]
 then
