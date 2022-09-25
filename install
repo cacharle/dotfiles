@@ -73,7 +73,7 @@ echo '---------------------------- INSTALL NVIM PACKER -------------------------
 PACKERDIR="$XDG_DATA_HOME/nvim/site/pack/packer/start/packer.nvim"
 PACKERURL='https://github.com/wbthomason/packer.nvim'
 [ ! -d "$PACKERDIR" ] && git clone --depth 1 "$PACKERURL" "$PACKERDIR"
-nvim -c 'PackerInstall' -c 'PackerUpdate' -c "qa"
+nvim -c 'PackerInstall' -c 'PackerSync' -c "qa"
 
 ###############################################################################
 # zsh pluggins
