@@ -79,3 +79,5 @@ export MINIKUBE_IN_STYLE=false  # disable cringe minikube emojies
 export CLOUT_SYNC_DIR="clout-sync/"
 export CLOUT_SYNC_PATH="${XDG_DATA_HOME:-$HOME/.sync}/$CLOUT_SYNC_DIR"
 
+export HOMEBREW_NO_AUTO_UPDATE=1  # disable brew updating stuff when I install
+

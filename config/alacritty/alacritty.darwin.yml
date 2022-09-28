@@ -34,6 +34,12 @@ key_bindings:
   - { key: Return, mods: Command, action: ToggleSimpleFullScreen }
   - { key: Q, mods: Command, chars: "" }
 
+scrolling:
+  history: 10000
+  multiplier: 3
+  faux_multiplier: 3
+  auto_scroll: false
+
 # Colors (Nord)
 # colors:
 #   primary:
