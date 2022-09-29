@@ -76,6 +76,16 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- set filttype for gitignore
+vim.api.nvim_create_autocmd(
+    "BufReadPre",
+    {
+        pattern = ".gitignore",
+        callback = function() vim.opt.filetype = "gitignore" end,
+        group = augroup,
+    }
+)
+
 -- -- Format go files on save
 -- vim.api.nvim_create_autocmd(
 --     "BufWritePre",
