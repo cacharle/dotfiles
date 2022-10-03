@@ -43,6 +43,8 @@ vim.opt.laststatus = 2           -- always a statusline (all window)
 vim.opt.showcmd = true           -- show current partial command in the bottom right
 vim.opt.showmode = false         -- dont show current mode (i.e --INSERT--)
 
+vim.opt.ch = 0                   -- make command line invisible when not typing command
+
 -- remove ugly treesitter error highlight
 -- require "nvim-treesitter.highlight"
 -- local hlmap = vim.treesitter.highlighter.hl_map
