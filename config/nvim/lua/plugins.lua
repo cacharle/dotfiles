@@ -352,6 +352,7 @@ return require("packer").startup(function()
                     "vim",
                     "yaml",
                     "meson",
+                    "go",
                 },
                 highlight = {
                     enable = true
