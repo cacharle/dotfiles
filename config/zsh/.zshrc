@@ -105,12 +105,7 @@ export YSU_MESSAGE_POSITION="after"                                 # you-should
 
 # install pkgfile package on Arch Linux
 # run `pkgfile --update`
-if [ "$(uname)" = 'Linux' ] && grep -q Arch /etc/lsb-release > /dev/null
+if [ "$(uname)" = 'Linux' ] && grep -q Arch /etc/os-release 2> /dev/null
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
-    if [ -d /opt/ros2/galactic ]
-    then
-        export ROS_DOMAIN_ID=42
-        . /opt/ros2/galactic/setup.zsh
-    fi
 fi
