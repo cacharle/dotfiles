@@ -22,7 +22,6 @@ font:
   bold:
     family: FiraCode
     style: Bold
-  use_thin_strokes: false
 
 
 key_bindings:
