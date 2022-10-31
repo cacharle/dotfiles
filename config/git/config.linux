@@ -26,5 +26,7 @@
 	tool = bat
 [core]
     editor = "VIMINIT='' nvim"
+[safe]
+    directory = *
 
 # vim:ft=gitconfig
