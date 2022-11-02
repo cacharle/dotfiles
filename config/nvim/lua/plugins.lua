@@ -353,6 +353,7 @@ return require("packer").startup(function()
                     "yaml",
                     "meson",
                     "go",
+                    "fish",
                 },
                 highlight = {
                     enable = true
