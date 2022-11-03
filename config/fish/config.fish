@@ -86,7 +86,7 @@ if status is-interactive
     alias grep 'grep --color=auto'
     alias tree 'tree -C'
     alias less 'less -N'   # enable line number
-    alias nvim 'VIMINIT="" nvim'
+    alias nvim 'VIMINIT="" /usr/bin/nvim'
     alias v 'nvim'
     alias gdb 'gdb -q'     # disable long intro message
     alias sudo 'sudo '     # enable color (the search for aliases continues)
@@ -138,14 +138,10 @@ if status is-interactive
     abbr gra 'git remote add'
     abbr gb 'git branch'
     function gpa
-        set -f branch "$argv[1]"
+        set -f branch "$argv[-1]"
+        # if branch not specified, get current branch
         [ -z "$branch" ] && set -f branch "$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)"
-        git remote | xargs -I{} git push {} "$branch"
-    end
-    function gpaf
-        set -f branch "$argv[1]"
-        [ -z "$branch" ] && set -f branch "$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)"
-        git remote | xargs -I{} git push -f {} "$branch"
+        git remote | xargs -I{} git push {} $argv[..-2] "$branch"
     end
 
     # youtube-dl
