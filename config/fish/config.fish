@@ -82,14 +82,86 @@ if status is-interactive
     function fish_greeting
     end
 
+    # common commands
+    alias grep 'grep --color=auto'
+    alias tree 'tree -C'
+    alias less 'less -N'   # enable line number
+    alias nvim 'VIMINIT="" nvim'
+    alias v 'nvim'
+    alias gdb 'gdb -q'     # disable long intro message
+    alias sudo 'sudo '     # enable color (the search for aliases continues)
+    alias doas 'doas '     # same for doas
+    alias info 'info --vi-keys'
+
     if [ "$(uname)" = 'Linux' ]
         alias ls='ls --color=auto -Fh'
     else
         alias ls='ls -G -Fh'
     end
+    abbr ll 'ls -l'
+    abbr la 'ls -A'
+    abbr lla 'ls -Al'
+    abbr lss 'ls -Ssh'
 
-    abbr ll ls -l
-    abbr lla ls -la
+    # tree
+    alias tree 'tree -FCA'
+    abbr t 'tree'
+    abbr ta 'tree -a'
+    abbr t1 'tree -L 1'
+    abbr t2 'tree -L 2'
+    abbr t3 'tree -L 3'
+    alias ti="tree --matchdirs -I __pycache__ -I node_modules -I '*.o' -I build"
+
+    # git
+    abbr ga 'git add'
+    abbr gaa 'git add --all'
+    abbr gau 'git add --update'
+    abbr gc 'git commit'
+    abbr gc! 'git commit --amend'
+    abbr gcmsg 'git commit --message'
+    abbr gd 'git diff'
+    abbr gds 'git diff --staged'
+    abbr gdt 'git diff --stat'
+    abbr gl 'git pull'
+    abbr glg 'git log --abbrev-commit --stat'
+    abbr glgg 'git log --abbrev-commit --graph'
+    abbr glgo 'git log --oneline --no-decorate'
+    abbr gp 'git push'
+    abbr gcl 'git clone --recurse-submodules'
+    abbr gst 'git status'
+    abbr gs 'git status'
+    abbr gss 'git status --short'
+    abbr gco 'git checkout'
+    abbr gsta 'git stash push'
+    abbr gstp 'git stash pop'
+    abbr grv 'git remote -v'
+    abbr gra 'git remote add'
+    abbr gb 'git branch'
+    function gpa
+        set -f branch "$argv[1]"
+        [ -z "$branch" ] && set -f branch "$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)"
+        git remote | xargs -I{} git push {} "$branch"
+    end
+    function gpaf
+        set -f branch "$argv[1]"
+        [ -z "$branch" ] && set -f branch "$(git branch | grep '^\* .*$' | cut -d ' ' -f 2)"
+        git remote | xargs -I{} git push -f {} "$branch"
+    end
+
+    # youtube-dl
+    abbr ytdl 'youtube-dl --output "%(title)s.%(ext)s"'
+    abbr ytdlp 'youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
+    abbr ytdla 'youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+
+    # wifi
+    function wificonnect
+        nmcli device wifi connect "$argv[1]" password "$argv[2]"
+    end
+
+    abbr qmvdest 'qmv --format=do'
+    abbr zathura 'zathura --fork'
+    alias open 'xdg-open'
+    alias ffmpeg 'ffmpeg -hide_banner'
 
     # THEME PURE #
     set fish_function_path /home/charles/.config/fish/functions/theme-pure/functions/ $fish_function_path
@@ -99,13 +171,10 @@ if status is-interactive
 end
 
 if status is-login
-    # . "$HOME/.config/zsh/.zshenv"
-
     if [ "$(uname)" = 'Linux' ] && [ "$(tty)" = '/dev/tty1' ]
         # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
         # setting the keyrepeat delay and interval here as the default ones
         # since some applications reset the those if we use xset r rate 200 30 instead
-        # exec startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
-        # poweroff
+        exec startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
     end
 end

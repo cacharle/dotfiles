@@ -23,10 +23,10 @@ then
 else
     alias ls='ls -G -Fh'
 fi
-alias ll="ls -l"
-alias la="ls -A"
-alias lla="ls -Al"
-alias lss="ls -Ssh"
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -Al'
+alias lss='ls -Ssh'
 
 # tree
 alias tree='tree -FCA'
@@ -106,9 +106,6 @@ alias single='xrandr --output VGA1 --off'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-# alias norminette='ruby ~/git/norminette/norminette.rb'
-alias norm='norminette'
 
 # bluetooth
 alias bt='bluetoothctl'
