@@ -76,6 +76,8 @@ set -gx MINIKUBE_IN_STYLE false  # disable cringe minikube emojies
 
 set -gx HOMEBREW_NO_AUTO_UPDATE 1  # disable brew updating stuff when I install
 
+set -gx GPG_TTY "$(tty)"
+
 
 if status is-interactive
     fish_vi_key_bindings
@@ -84,6 +86,8 @@ if status is-interactive
 
     # common commands
     alias grep 'grep --color=auto'
+    alias pacman 'pacman --color=auto'
+    alias yay 'yay --color=auto'
     alias tree 'tree -C'
     alias less 'less -N'   # enable line number
     alias nvim 'VIMINIT="" /usr/bin/nvim'
@@ -171,6 +175,7 @@ if status is-login
         # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
         # setting the keyrepeat delay and interval here as the default ones
         # since some applications reset the those if we use xset r rate 200 30 instead
-        exec startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
+        startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
+        poweroff
     end
 end
