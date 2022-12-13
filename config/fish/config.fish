@@ -77,6 +77,8 @@ set -gx MINIKUBE_IN_STYLE false  # disable cringe minikube emojies
 set -gx HOMEBREW_NO_AUTO_UPDATE 1  # disable brew updating stuff when I install
 
 set -gx GPG_TTY "$(tty)"
+# valgrind requires this to work on arch linux (from: https://bbs.archlinux.org/viewtopic.php?id=276422)
+set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 
 
 if status is-interactive
