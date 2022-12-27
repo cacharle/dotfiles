@@ -76,7 +76,7 @@ return require("packer").startup(function()
                 map("n", "<leader>p", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
             end
             local lspconfig = require("lspconfig")
-            local capabilities = require("cmp_nvim_lsp").update_capabilities(
+            local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
 
@@ -125,7 +125,7 @@ return require("packer").startup(function()
                     pylsp = {
                         plugins = {
                             flake8 = {
-                                ignore = {'E501', 'E221', 'W503', 'E241'},
+                                ignore = {"E501", "E221", "W503", "E241", "E402"},
                                 maxLineLength = 100,
                             },
                         },
