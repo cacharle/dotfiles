@@ -38,7 +38,7 @@ main = xmonad $ desktopConfig
         , borderWidth        = 2
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
         , workspaces         = ["code", "web"] ++ map show [3..9]
-        , handleEventHook    = handleEventHook'
+        -- , handleEventHook    = handleEventHook'
         -- , startupHook        = startupHook'
         } `additionalKeysP` keys'
 
@@ -78,7 +78,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
                                               "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++
                                               "\"Battery: $(cat /sys/class/power_supply/BAT0/status)\"")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
-        , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io (exitWith ExitSuccess))
+        , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io exitSuccess)
         ]
 
 -- startupHook' :: X ()
@@ -98,4 +98,4 @@ restartCmd = intercalate "; " [ "if type xmonad"
                               , "fi"
                               ]
 
-handleEventHook' = swallowEventHook (className =? "Alacritty" <||> className =? "Termite") (return True)
+-- handleEventHook' = swallowEventHook (className =? "Alacritty" <||> className =? "Termite") (return True)

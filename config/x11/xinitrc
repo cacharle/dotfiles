@@ -28,4 +28,5 @@ case "$(cat /etc/hostname)" in
         ;;
 esac
 
+# awesome
 xmonad || { xmonad --recompile; xmonad; }
