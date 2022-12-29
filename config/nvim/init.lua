@@ -23,6 +23,7 @@ vim.opt.shellredir = ">"           -- don"t inclue stderr when reading a command
 -- intuitif split opening
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.equalalways = true
 
 -- tab
 vim.opt.expandtab = true         -- tab to space
@@ -117,6 +118,15 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "go",
         callback = function() vim.opt_local.expandtab = false end,
+        group = augroup,
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "VimResized",
+    {
+        pattern = "*",
+        command = [[ wincmd = ]],
         group = augroup,
     }
 )
