@@ -151,10 +151,10 @@ if status is-interactive
         git remote | xargs -I{} git push {} $argv[..-2] "$branch"
     end
 
-    # youtube-dl
-    abbr ytdl 'youtube-dl --output "%(title)s.%(ext)s"'
-    abbr ytdlp 'youtube-dl --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
-    abbr ytdla 'youtube-dl --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+    # yt-dlp
+    abbr ytdl 'yt-dlp --output "%(title)s.%(ext)s"'
+    abbr ytdlp 'yt-dlp --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
+    abbr ytdla 'yt-dlp --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
 
     # wifi
     function wificonnect
