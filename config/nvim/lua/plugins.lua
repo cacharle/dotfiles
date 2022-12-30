@@ -2,7 +2,6 @@ vim.cmd [[ packadd packer.nvim ]]
 
 return require("packer").startup(function()
     use "wbthomason/packer.nvim"    -- plugin manager (can manage itself)
-    use "junegunn/vim-easy-align"   -- align
     use "AndrewRadev/sideways.vim"  -- Move arguments sideways
     use "tpope/vim-eunuch"          -- basic commands on current file (Rename/Remove)
     use "romainl/vim-cool"          -- only highlight search matches when searching
@@ -12,6 +11,7 @@ return require("packer").startup(function()
     use {
         "FooSoft/vim-argwrap",
         config = function()
+            local augroup = vim.api.nvim_create_augroup("cacharle_vim_argwrap_group", {})
             vim.g.argwrap_tail_comma = 1
             vim.api.nvim_create_autocmd(
                 "Filetype",
@@ -152,7 +152,7 @@ return require("packer").startup(function()
                         },
                         diagnostics = {
                             -- Get the language server to recognize the `vim` global
-                            globals = {"vim"},
+                            globals = {"vim", "use"},
                         },
                         workspace = {
                             -- Make the server aware of Neovim runtime files
@@ -222,6 +222,11 @@ return require("packer").startup(function()
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-n>"] = cmp.mapping(function(fallback)
+                        local has_words_before = function()
+                          unpack = unpack or table.unpack
+                          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                          return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+                        end
                         if cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expand_or_jumpable() then
