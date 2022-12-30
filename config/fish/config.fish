@@ -98,6 +98,7 @@ if status is-interactive
     alias sudo 'sudo '     # enable color (the search for aliases continues)
     alias doas 'doas '     # same for doas
     alias info 'info --vi-keys'
+    alias xclip 'xclip -selection clipboard'
 
     if [ "$(uname)" = 'Linux' ]
         alias ls='ls --color=auto -Fh'
