@@ -7,6 +7,7 @@ unclutter --timeout 10 --fork  # hide mouse after 2s
 clout push-watch &             # could with rsync
 xrdb "$XDG_CONFIG_HOME/x11/Xresources"
 syncthing --no-browser &
+hsetroot -add '#111' -add '#222' -gradient 180
 
 case "$(cat /etc/hostname)" in
     charles-main)
