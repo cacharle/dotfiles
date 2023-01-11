@@ -11,7 +11,10 @@ hsetroot -add '#111' -add '#222' -gradient 180
 
 case "$(cat /etc/hostname)" in
     charles-main)
-        if xrandr | grep 'HDMI-0 connected'
+        if xrandr | grep 'DisplayPort-0 connected'
+        then
+            xrandr --output DisplayPort-0 --mode 3840x1080 --rate 68
+        elif xrandr | grep 'HDMI-0 connected'
         then
             xrandr --output DVI-0  --auto                     --left-of DVI-1  \
                    --output DVI-1  --mode 1920x1080 --primary --left-of HDMI-0 \
