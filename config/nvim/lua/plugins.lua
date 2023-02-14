@@ -140,7 +140,7 @@ return require("packer").startup(function()
             lspconfig.ocamllsp.setup { on_attach = on_attach }
 
             -- package lua-language-server on ArchLinux
-            lspconfig.sumneko_lua.setup {
+            lspconfig.lua_ls.setup {
                 on_attach = on_attach ,
                 settings = {
                     Lua = {
