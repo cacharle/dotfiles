@@ -17,11 +17,18 @@ import           XMonad.Layout.NoBorders     (noBorders)
 import           XMonad.Layout.Reflect       (reflectHoriz)
 import           XMonad.Layout.Spacing       (Border (..), spacingRaw)
 import           XMonad.Layout.Grid          (Grid (..))
+import           XMonad.Layout.ThreeColumns  (ThreeCol (ThreeColMid))
+import           XMonad.Layout.CenteredIfSingle (centeredIfSingle)
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
 import           XMonad.Hooks.WindowSwallowing
+
+-- TODO: no weird screen layout
+--       put 2 window in master next to each other and the rest in a stack as usual
+import XMonad.Layout.LayoutScreens
+import XMonad.Layout.TwoPane
 
 
 myTerminal = "alacritty"
@@ -43,11 +50,13 @@ main = xmonad $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
+layoutHook' = spacing' 4 $ centeredIfSingle (1/2) (95/100) (ThreeColMid 1 (3/100) (1/2))
+                           ||| reflectHoriz tiledVerticalBigMaster -- main monitor is slighly to the left
                            ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
                            ||| noBorders Full                   -- disable borders for fullscreen layout
                            ||| Mirror tiledHorizontalEven       -- 50/50 horizontal split
                            ||| Grid
+                           -- ||| layoutScreens 2 (TwoPane 0.5 0.5)
     where tiledVerticalBigMaster =  Tall 1 (3 / 100) (3 / 5)
           tiledHorizontalEven    =  Tall 1 (3 / 100) (1 / 2)
           spacing' x             = spacingRaw True (Border x x x x) False (Border x x x x) True
@@ -64,6 +73,8 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
         , ("M--",                     spawn "pulseaudio-ctl down")
         , ("M-=",                     spawn "pulseaudio-ctl up")
+        , ("M-g",                     layoutSplitScreen 2 (TwoPane 0.5 0.5))
+        , ("M-f",                     rescreen)
 
         , ("<XF86MonBrightnessUp>",   spawn "backlight-ctl up")
         , ("<XF86MonBrightnessDown>", spawn "backlight-ctl down")
