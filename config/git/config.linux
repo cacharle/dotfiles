@@ -9,6 +9,7 @@
 [merge]
 	tool = vimdiff
     conflictstyle = diff3
+	ff = true
 [mergetool]
     keepBackup = false
     prompt = false
