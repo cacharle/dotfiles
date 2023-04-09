@@ -167,8 +167,8 @@ if status is-interactive
     alias ffmpeg 'ffmpeg -hide_banner'
 
     # THEME PURE #
-    set fish_function_path /home/charles/.config/fish/functions/theme-pure/functions/ $fish_function_path
-    source /home/charles/.config/fish/functions/theme-pure/conf.d/pure.fish
+    #set fish_function_path /home/charles/.config/fish/functions/theme-pure/functions/ $fish_function_path
+    #source /home/charles/.config/fish/functions/theme-pure/conf.d/pure.fish
 
     set pure_reverse_prompt_symbol_in_vimode true
 

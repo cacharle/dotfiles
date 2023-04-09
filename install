@@ -18,6 +18,7 @@ parallel_start() {
 }
 
 parallel_wait() {
+    echo 'Waiting for processes'
     # shellcheck disable=SC2086
     wait $parallel_pids
     parallel_pids=''
@@ -56,7 +57,7 @@ link_home_files() {
 link_home_files 'config' "$XDG_CONFIG_HOME"
 link_home_files 'local'  "$HOME/.local"
 
-ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
+# ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
 
 
 ################################################################################
@@ -102,6 +103,13 @@ then
     ln -svfF "$XDG_CONFIG_HOME/qutebrowser" "$HOME/.qutebrowser"
     exit
 fi
+
+###############################################################################
+# fish pluggins
+###############################################################################
+
+fish -c 'fisher install pure-fish/pure'
+fish -c 'fisher install PatrickF1/fzf.fish'
 
 ###############################################################################
 # Linux specific
