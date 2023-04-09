@@ -34,9 +34,10 @@ else
         "clone")
             while [ -z "$remote_choice" ]
             do
-                remote_choice=$(printf 'github.com\ncacharle.xyz\nclipboard\nother' | dmenu -p "Remote location")
+                remote_choice=$(printf 'home\ngithub.com\ncacharle.xyz\nclipboard\nother' | dmenu -p "Remote location")
             done
             case "$remote_choice" in
+                home)         prefix='git@home-nuc:'       ;;
                 github.com)   prefix='git@github.com:cacharle/'       ;;
                 cacharle.xyz) prefix='git@cacharle.xyz:/srv/git/'     ;;
                 clipboard)    dest="$(xclip -selection clipboard -o)" ;;
