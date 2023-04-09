@@ -171,6 +171,10 @@ if status is-interactive
     source /home/charles/.config/fish/functions/theme-pure/conf.d/pure.fish
 
     set pure_reverse_prompt_symbol_in_vimode true
+
+    function fish_command_not_found
+        /usr/bin/pkgfile $argv[1]
+    end
 end
 
 if status is-login
