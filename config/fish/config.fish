@@ -1,5 +1,5 @@
 if [ "$(uname)" = 'Linux' ]
-    set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin"
+    set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin:/opt/cuda/bin"
     set -gx MAIL 'me@cacharle.xyz'
     set -gx SUDO 'doas'
 else if [ "$(uname)" = 'Darwin' ]

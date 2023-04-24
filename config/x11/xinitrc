@@ -32,6 +32,8 @@ case "$(cat /etc/hostname)" in
         ;;
 esac
 
+# fix screen tearing
+nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 # awesome
 xmonad || { xmonad --recompile; xmonad; }
 
