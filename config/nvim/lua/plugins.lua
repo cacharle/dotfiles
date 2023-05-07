@@ -46,7 +46,7 @@ return require("packer").startup(function()
             local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
             vim.api.nvim_create_autocmd(
                 "BufWritePre",
-                { command = "Black", pattern = "*.py", group = augroup }
+                { command = "silent Black", pattern = "*.py", group = augroup }
             )
         end
     }
