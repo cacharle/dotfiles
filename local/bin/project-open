@@ -1,12 +1,16 @@
 #!/bin/sh
 
+command -v rofi &&
+    menu_exec='rofi -dmenu' ||
+    menu_exec='dmenu'
+
 # shellcheck disable=SC2088
 # (tile does not expand in single quote)
 dest=$(
     find ~/git -mindepth 1 -maxdepth 1 -printf '%A@\t%f\n' |
     sort -r |
     cut -f 2 |
-    dmenu -l 10 -p '~/git/'
+    $menu_exec -l 10 -p '~/git/'
 )
 
 [ -z "$dest" ] && exit 1
@@ -20,7 +24,7 @@ then
 else
     while [ -z "$choice" ]
     do
-        choice=$(printf 'create\nclone\ncancel' | dmenu -p "New repository at ~/git/$dest?")
+        choice=$(printf 'create\nclone\ncancel' | $menu_exec -p "New repository at ~/git/$dest?")
     done
 
     case "$choice" in
@@ -34,7 +38,7 @@ else
         "clone")
             while [ -z "$remote_choice" ]
             do
-                remote_choice=$(printf 'home\ngithub.com\ncacharle.xyz\nclipboard\nother' | dmenu -p "Remote location")
+                remote_choice=$(printf 'home\ngithub.com\ncacharle.xyz\nclipboard\nother' | $menu_exec -p "Remote location")
             done
             case "$remote_choice" in
                 home)         prefix='git@home-nuc:'       ;;
@@ -43,7 +47,7 @@ else
                 clipboard)    dest="$(xclip -selection clipboard -o)" ;;
                 other) ;;
             esac
-            url="$prefix$(echo "$dest" | dmenu -p "Enter repository url: $prefix")"
+            url="$prefix$(echo "$dest" | $menu_exec -p "Enter repository url: $prefix")"
             "$TERMINAL" -e /bin/sh -c "git clone --recursive '$url' '$dest_path' && cd '$dest_path' && exec $SHELL" ||
                 notify-send -u critical "Could not clone $url in $dest_path" && exit 1
             ;;

@@ -82,8 +82,9 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("<XF86TouchpadToggle>",    spawn "touchpad-toggle")
 
         , ("M-o",                     spawn "project-open")
-        , ("M-i",                     spawn $ myTerminal ++ " -e zsh -c 'source ~/.config/zsh/.zshrc && rc'")
-        , ("M-m",                     spawn $ myTerminal ++ " -e mocp -C /home/cacharle/.config/moc/config")
+        , ("M-p",                     spawn "rofi -show run")
+        , ("M-s",                     spawn "rofi -show ssh")
+        , ("M-w",                     spawn "rofi -show window")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn $ "notify-send --hint=int:transient:1 " ++
                                               "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++
@@ -99,7 +100,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
 
 confirm :: String -> X () -> X ()
 confirm prompt f = do
-    result <- menuArgs "dmenu" ["-p", prompt] ["yes", "no"]
+    result <- menuArgs "rofi" ["-dmenu", "-p", prompt] ["yes", "no"]
     when (result == "yes") f
 
 restartCmd :: String
