@@ -116,7 +116,7 @@ return require("packer").startup(function()
             )
 
             -- lspconfig.clangd.setup { on_attach = on_attach }
-            -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
+            lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
             lspconfig.pylsp.setup {
                 on_attach = on_attach,
