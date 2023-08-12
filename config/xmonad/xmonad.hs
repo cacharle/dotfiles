@@ -78,8 +78,9 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
 
         , ("<XF86MonBrightnessUp>",   spawn "backlight-ctl up")
         , ("<XF86MonBrightnessDown>", spawn "backlight-ctl down")
-        , ("<XF86ScreenSaver>",       spawn "slock")
         , ("<XF86TouchpadToggle>",    spawn "touchpad-toggle")
+        , ("<XF86ScreenSaver>",       spawn "i3lock")
+        , ("M-<Delete>",              spawn "i3lock")
 
         , ("M-o",                     spawn "project-open")
         , ("M-p",                     spawn "rofi -show run")
