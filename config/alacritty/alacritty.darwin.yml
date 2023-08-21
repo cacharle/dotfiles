@@ -3,10 +3,10 @@
 #############
 
 shell:
-  program: /bin/zsh
-  args:
-    - '-c'
-    - 'source ~/.config/zsh/.zshenv && zsh'
+  program: /usr/local/bin/fish
+  # args:
+  #   - '-c'
+  #   - 'source ~/.config/zsh/.zshenv && zsh'
 
 # font
 font:
@@ -24,6 +24,15 @@ font:
   bold:
     family: FiraCode Nerd Font Mono
     style: Medium
+  # normal:
+  #   family: IBM Plex Mono
+  #   style: Regular
+  # italic:
+  #   family: IBM Plex Mono
+  #   style: Italic
+  # bold:
+  #   family: IBM Plex Mono
+  #   style: Bold
 
 
 key_bindings:
