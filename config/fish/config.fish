@@ -148,6 +148,7 @@ if status is-interactive
     abbr grv 'git remote -v'
     abbr gra 'git remote add'
     abbr gb 'git branch'
+    abbr gt 'git tag'
     function gpa
         set -f branch "$argv[-1]"
         # if branch not specified, get current branch
