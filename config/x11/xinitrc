@@ -1,9 +1,9 @@
 #!/bin/sh
 
-keynav daemonize               # moving the cursor around without the mouse
+# keynav daemonize               # moving the cursor around without the mouse
 redshift &                     # filter blue light
 dunst &                        # notification daemon
-unclutter --timeout 10 --fork  # hide mouse after 2s
+unclutter --timeout 10 --fork  # hide mouse after 10s
 clout push-watch &             # could with rsync
 xrdb "$XDG_CONFIG_HOME/x11/Xresources"
 syncthing --no-browser > ~/.cache/syncthing.log 2>&1 &
@@ -24,41 +24,20 @@ case "$(cat /etc/hostname)" in
                    --output DVI-1  --mode 1920x1080 --primary
         fi
         ;;
-
     charles-laptop)
         xrandr | grep 'VGA1.*connected' &&
         xrandr --output LVDS1 --primary --left-of VGA1 \
                --output VGA1 --mode 1280x1024
         ;;
+    charles-fractal)
+        if xrandr | grep 'HTMI-1 connected'
+        then
+            xrandr --output DP-2 --mode 3840x1080 --primary --left-of HDMI-1 \
+                   --output HDMI-1 --mode 1920x1080
+        fi
 esac
 
 # fix screen tearing
 nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 # awesome
 xmonad || { xmonad --recompile; xmonad; }
-
-# keynav daemonize               # moving the cursor around without the mouse
-# redshift &                     # filter blue light
-# dunst &                        # notification daemon
-# unclutter --timeout 10 --fork  # hide mouse after 2s
-# clout push-watch &             # could with rsync
-# xrdb "$XDG_CONFIG_HOME/x11/Xresources"
-# syncthing --no-browser &
-# hsetroot -add '#111' -add '#222' -gradient 180
-# switch "$(cat /etc/hostname)"
-#     case 'charles-main'
-#         if xrandr | grep 'DisplayPort-0 connected'
-#             xrandr --output DisplayPort-0 --mode 3840x1080 --rate 68
-#         else if xrandr | grep 'HDMI-0 connected'
-#             xrandr --output DVI-0  --auto                     --left-of DVI-1  \
-#                    --output DVI-1  --mode 1920x1080 --primary --left-of HDMI-0 \
-#                    --output HDMI-0 --mode 1920x1080
-#         else
-#             xrandr --output DVI-0  --auto                     --left-of DVI-1  \
-#                    --output DVI-1  --mode 1920x1080 --primary
-#         end
-#     case 'charles-laptop'
-#         xrandr | grep 'VGA1.*connected' &&
-#             xrandr --output LVDS1 --primary --left-of VGA1 \
-#                    --output VGA1 --mode 1280x1024
-# end
