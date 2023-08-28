@@ -48,6 +48,7 @@ set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME"/bundle
 set -gx JULIA_DEPOT_PATH "$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 set -gx RLWRAP_HOME "$XDG_DATA_HOME/rlwrap"
 set -gx STARDICT_DATA_DIR "$XDG_DATA_HOME/stardict"  # put dictionaries in a 'dic' subdirectory
+set -gx VIRTUALFISH_HOME "$XDG_DATA_HOME/virtualfish"
 # cache
 set -gx HISTFILE "$XDG_CACHE_HOME/zsh/history"
 set -gx LESSHISTFILE '-'  # no ~/.lesshst
