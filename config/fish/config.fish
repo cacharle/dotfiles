@@ -93,7 +93,11 @@ if status is-interactive
     alias yay 'yay --color=auto'
     alias tree 'tree -C'
     alias less 'less -N'   # enable line number
-    alias nvim 'VIMINIT="" /usr/bin/nvim'
+    if [ "$(uname)" = 'Darwin' ]
+        alias nvim 'VIMINIT="" /usr/local/bin/nvim'
+    else
+        alias nvim 'VIMINIT="" /usr/bin/nvim'
+    end
     alias v 'nvim'
     alias gdb 'gdb -q'     # disable long intro message
     alias sudo 'sudo '     # enable color (the search for aliases continues)
@@ -145,6 +149,7 @@ if status is-interactive
     abbr grv 'git remote -v'
     abbr gra 'git remote add'
     abbr gb 'git branch'
+    abbr gt 'git tag'
     function gpa
         set -f branch "$argv[-1]"
         # if branch not specified, get current branch
@@ -174,7 +179,14 @@ if status is-interactive
     set pure_reverse_prompt_symbol_in_vimode true
 
     function fish_command_not_found
-        /usr/bin/pkgfile $argv[1]
+        if [ "$(uname)" = 'Linux' ]
+            /usr/bin/pkgfile $argv[1]
+        end
+    end
+
+    # from: https://virtualfish.readthedocs.io/en/latest/install.html#customizing-your-fish-prompt
+    if set -q VIRTUAL_ENV
+        echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
     end
 end
 

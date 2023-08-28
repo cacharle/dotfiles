@@ -7,6 +7,13 @@ return require("packer").startup(function()
     use "romainl/vim-cool"          -- only highlight search matches when searching
     use "lukas-reineke/indent-blankline.nvim"
 
+    -- use {
+    --     "lewis6991/satellite.nvim",
+    --     config = function ()
+    --         require('satellite').setup()
+    --     end
+    -- }
+
     -- Put arguments on multiple lines
     use {
         "FooSoft/vim-argwrap",
@@ -342,23 +349,24 @@ return require("packer").startup(function()
         config = function()
             require("nvim-treesitter.configs").setup {
                 ensure_installed = {
-                    "c",
-                    "python",
-                    "lua",
-                    "rust",
                     "bash",
+                    "c",
                     "commonlisp",
                     "cpp",
+                    "fish",
                     "glsl",
+                    "go",
                     "haskell",
                     "json",
+                    "lua",
                     "markdown",
-                    "query",
-                    "vim",
-                    "yaml",
                     "meson",
-                    "go",
-                    "fish",
+                    "python",
+                    "query",
+                    "rust",
+                    "vim",
+                    "vimdoc",
+                    "yaml",
                 },
                 highlight = {
                     enable = true
@@ -486,8 +494,18 @@ return require("packer").startup(function()
     --         }
     --         -- TODO: extend with job_distant_config.lua
     --     end,
-    --     run = ":DistantInstall"
+    --     -- run = ":DistantInstall"
     -- }
+
+    use {
+        'chipsenkbeil/distant.nvim',
+        branch = 'v0.3',
+        config = function()
+            require('distant'):setup()
+            require("telescope").load_extension("distant")
+        end,
+        -- run = ":DistantInstall"
+    }
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
     -- use {
@@ -505,6 +523,5 @@ return require("packer").startup(function()
     --     end
     -- }
 
-    -- use { "nvim-treesitter/playground", opt = true, cmd = { "TSPlaygroundToggle" } }
     -- use { "~/git/argwrap.nvim", opt = true }
 end)
