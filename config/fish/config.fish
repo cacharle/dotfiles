@@ -130,6 +130,7 @@ if status is-interactive
     abbr gau 'git add --update'
     abbr gc 'git commit'
     abbr gc! 'git commit --amend'
+    abbr gc!! 'git commit --amend --no-edit'
     abbr gcmsg 'git commit --message'
     abbr gd 'git diff'
     abbr gds 'git diff --staged'
