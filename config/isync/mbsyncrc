@@ -6,8 +6,8 @@ SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 MaildirStore cacharle-local
-Path ~/Mail/cacharle/
-Inbox ~/Mail/cacharle/INBOX
+Path ~/.mail/cacharle/
+Inbox ~/.mail/cacharle/INBOX
 Subfolders Verbatim
 
 Channel cacharle
