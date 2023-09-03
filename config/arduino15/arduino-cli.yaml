@@ -1,0 +1,6 @@
+# from: https://arduino.github.io/arduino-cli/0.34/configuration/
+directories:
+  data: "$XDG_DATA_DIR/arduino-cli/data"
+  downloads: "$XDG_DATA_DIR/arduino-cli/downloads"
+  user: "$XDG_DATA_DIR/arduino-cli/user"
+  builtin.libraries: "$XDG_DATA_DIR/arduino-cli/builtin_libraries"
