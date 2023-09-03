@@ -40,6 +40,8 @@ set -gx VIMINIT 'let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 set -gx IPYTHONDIR "$XDG_CONFIG_HOME/ipython"
 set -gx JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME/jupyter"
 set -gx SCREENRC "$XDG_CONFIG_HOME/screen/screenrc"
+set -gx ANSIBLE_HOME "$XDG_CONFIG_HOME/ansible"
+set -gx ANSIBLE_CONFIG "$XDG_CONFIG_HOME/ansible.cfg"
 # data
 set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -gx GOPATH "$XDG_DATA_HOME/go"
@@ -49,13 +51,17 @@ set -gx JULIA_DEPOT_PATH "$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 set -gx RLWRAP_HOME "$XDG_DATA_HOME/rlwrap"
 set -gx STARDICT_DATA_DIR "$XDG_DATA_HOME/stardict"  # put dictionaries in a 'dic' subdirectory
 set -gx VIRTUALFISH_HOME "$XDG_DATA_HOME/virtualfish"
+set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 # cache
 set -gx HISTFILE "$XDG_CACHE_HOME/zsh/history"
 set -gx LESSHISTFILE '-'  # no ~/.lesshst
 set -gx PYTHON_EGG_CACHE "$XDG_CACHE_HOME/python-eggs"
 set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle"
+set -gx ANSIBLE_GALAXY_CACHE_DIR "$XDG_CACHE_HOME/ansible/galaxy_cache"
 # runtime
 set -gx XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
+set -gx GHCUP_USE_XDG_DIRS 'true'
+set -gx STACK_XDG '1'
 
 # shellcheck disable SC2155
 # color in man (less pager)
@@ -104,6 +110,10 @@ if status is-interactive
     alias doas 'doas '     # same for doas
     alias info 'info --vi-keys'
     alias xclip 'xclip -selection clipboard'
+    alias mutt 'neomutt'
+    alias mbsync 'mbsync -c "$XDG_CONFIG_HOME/isync/mbsyncrc"'
+    alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
+	# alias nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
 
     if [ "$(uname)" = 'Linux' ]
         alias ls='ls --color=auto -Fh'
@@ -116,7 +126,7 @@ if status is-interactive
     abbr lss 'ls -Ssh'
 
     # tree
-    alias tree 'tree -FCA'
+    alias tree 'tree -FC'
     abbr t 'tree'
     abbr ta 'tree -a'
     abbr t1 'tree -L 1'
