@@ -110,6 +110,7 @@ fi
 
 fish -c 'fisher install pure-fish/pure'
 fish -c 'fisher install PatrickF1/fzf.fish'
+fish -c 'fisher install decors/fish-colored-man'
 
 ###############################################################################
 # Linux specific

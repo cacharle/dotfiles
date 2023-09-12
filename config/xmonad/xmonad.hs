@@ -70,8 +70,8 @@ manageHook' = composeAll
     , willFloat --> insertPosition Above Newer -- insert little pop up windows above all the rest
     , className =? "Anki"  --> doFloat
     , className =? "Steam" --> doFloat
-    , className =? "Gimp" --> doFloat
-    , className =? "OBS" --> doFloat
+    -- , className =? "Gimp" --> doFloat
+    -- , className =? "OBS" --> doFloat
     , isDialog --> doF swapUp
     ]
 
