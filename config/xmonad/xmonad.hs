@@ -5,7 +5,7 @@ import           System.Exit
 
 import           XMonad
 import           XMonad.Config.Desktop       (desktopConfig)
-import           XMonad.ManageHook           (composeAll, doFloat, className, (-->), (=?), (<+>))
+import           XMonad.ManageHook           (composeAll, willFloat, doFloat, doF, className, (-->), (=?), (<+>))
 
 -- Utilities
 import           XMonad.Util.Dmenu           (menuArgs)
@@ -24,6 +24,9 @@ import           XMonad.Layout.CenteredIfSingle (centeredIfSingle)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
 import           XMonad.Hooks.WindowSwallowing
+import           XMonad.Hooks.ManageHelpers  (isDialog)
+
+import           XMonad.StackSet             (swapUp)
 
 -- TODO: no weird screen layout
 --       put 2 window in master next to each other and the rest in a stack as usual
@@ -62,11 +65,15 @@ layoutHook' = spacing' 4 $ centeredIfSingle (1/2) (95/100) (ThreeColMid 1 (3/100
           spacing' x             = spacingRaw True (Border x x x x) False (Border x x x x) True
 
 manageHook' = composeAll
-    [ className =? "Anki"  --> doFloat
+    [ insertPosition Below Newer  -- insert new window at the end of the current layout
+    , fmap not willFloat --> insertPosition Below Newer
+    , willFloat --> insertPosition Above Newer -- insert little pop up windows above all the rest
+    , className =? "Anki"  --> doFloat
     , className =? "Steam" --> doFloat
     , className =? "Gimp" --> doFloat
+    , className =? "OBS" --> doFloat
+    , isDialog --> doF swapUp
     ]
-    <+> insertPosition End Newer  -- insert new window at the end of the current layout
 
 keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")

@@ -2,12 +2,24 @@
 # muttrc
 ###############################################################################
 
+# color shemes
+# source "$XDG_DATA_HOME/mutt/solarized/mutt-colors-solarized-dark-16.muttrc"  # solarized
+source "$XDG_DATA_HOME/mutt/gruvbox/colors-gruvbox-shuber.muttrc"  # gruvbox
+
 set from      = 'me@cacharle.xyz'  # address in new mail
 set realname  = 'Charles Cabergs'  # name in new mail
 
+# Password command to set it up
+# gpg -r xxx@xxx.xxx -e - <<EOF > $XDG_DATA_HOME/mutt/passwd.muttrc.gpg
+# set imap_passwd = "xxx"
+# set smtp_passwd = "xxx"
+# EOF
+# NOTE: this HAS to be declared BEFORE the `folder` option
+source "gpg -d $XDG_DATA_HOME/mutt/passwd.muttrc.gpg 2> /dev/null |"
+
 set smtp_url  = 'smtp://me@mail.cacharle.xyz:587'   # where to send
 set folder    = 'imaps://me@mail.cacharle.xyz:993'  # mails folder
-# set folder = "~/Mail/cacharle"
+# set folder = "~/.mail/cacharle"
 
 # view html with terminal browser in .mailcap
 auto_view text/html
@@ -20,7 +32,7 @@ set postponed = "+Drafts"
 
 mailboxes =INBOX =Sent =Send =Trash =Drafts
 
-set editor = 'vim'
+set editor = 'nvim'
 set sort = 'reverse-date'   # newest at the top
 
 set date_format = "%d/%m %I:%M"
@@ -50,18 +62,6 @@ set header_cache     = "$XDG_CACHE_HOME/mutt/cache/headers"
 set message_cachedir = "$XDG_CACHE_HOME/mutt/cache/bodies"
 set certificate_file = "$XDG_CACHE_HOME/mutt/certificates"
 
-# color shemes
-
-# source "$XDG_DATA_HOME/mutt/solarized/mutt-colors-solarized-dark-16.muttrc"  # solarized
-source "$XDG_DATA_HOME/mutt/gruvbox/colors-gruvbox-shuber.muttrc"  # gruvbox
-
-# password
-# command to set it up
-# gpg -r xxx@xxx.xxx -e - <<EOF > $XDG_DATA_HOME/mutt/passwd.muttrc.gpg
-# set imap_passwd = "xxx"
-# set smtp_passwd = "xxx"
-# EOF
-source "gpg -d $XDG_DATA_HOME/mutt/passwd.muttrc.gpg 2> /dev/null |"
 
 macro pager ,v |urlscan
 macro pager ,v |urlscan
