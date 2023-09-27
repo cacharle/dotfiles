@@ -7,11 +7,37 @@
 	rebase = false
 [merge]
 	tool = vimdiff
+    conflictstyle = diff3
 [commit]
 	gpgsign = false
 [init]
 	defaultBranch = master
 [core]
     editor = "VIMINIT='' nvim"
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only --syntax-theme gruvbox-dark
+[diff]
+    colorMoved = default
+[delta]
+    syntax-theme = gruvbox-dark
+    # side-by-side = true
+    navigate = true    # use n and N to move between diff sections
+    line-numbers = true
+
+
+# [http]
+# 	sslVerify = false
+[credential]
+	helper = store
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile =
 
 # vim:ft=gitconfig

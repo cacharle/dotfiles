@@ -143,7 +143,10 @@ if status is-interactive
     abbr t2 'tree -L 2'
     abbr t3 'tree -L 3'
 
-    command -qv bat && alias cat='bat'
+    if command -qv bat
+        alias cat='bat --theme gruvbox-dark'
+        set -gx MANPAGER "sh -c 'col -bx | bat --theme gruvbox-dark -l man -p'"
+    end
 
     # git
     abbr ga 'git add'
