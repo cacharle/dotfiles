@@ -1,3 +1,5 @@
+# vim:ft=gitconfig
+
 [user]
 	name = Charles Cabergs
 	email = me@cacharle.xyz
@@ -29,8 +31,11 @@
     editor = "VIMINIT='' nvim"
 [safe]
     directory = *
+[push]
+	autoSetupRemote = true  # git push without remote and branch specified
+[tag]
+	sort = v:refname  # Sort tag by version instead of ascii sort
 
-# vim:ft=gitconfig
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f

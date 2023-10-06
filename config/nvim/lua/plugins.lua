@@ -14,6 +14,13 @@ return require("packer").startup(function()
     --     end
     -- }
 
+    use {
+        'andymass/vim-matchup',
+        setup = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end
+    }
+
     -- Put arguments on multiple lines
     use {
         "FooSoft/vim-argwrap",
@@ -328,6 +335,22 @@ return require("packer").startup(function()
     --     end
     -- }
 
+    -- tokyonight color scheme
+    -- use {
+    --     "folke/tokyonight.nvim",
+    --     config = function()
+    --         vim.opt.termguicolors = true
+    --         vim.opt.background = "dark"
+    --         vim.cmd [[ colorscheme tokyonight-moon ]]
+    --         require("tokyonight").setup({
+    --           styles = {
+    --             comments = { italic = true },
+    --             keywords = { italic = true },
+    --           },
+    --         })
+    --     end
+    -- }
+
     -- status line
     use {
         "nvim-lualine/lualine.nvim",
@@ -335,6 +358,7 @@ return require("packer").startup(function()
         config = function()
             require("lualine").setup {
                 options = {
+                    -- theme = "tokyonight",
                     theme = "gruvbox",
                     -- theme = "nord",
                     icons_enabled = true,
@@ -374,6 +398,11 @@ return require("packer").startup(function()
                 highlight = {
                     enable = true
                 },
+                matchup = {
+                    enable = true,              -- mandatory, false will disable the whole extension
+                    -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+                    -- [options]
+                },
                 -- indent = { enable = true },
                 -- TODO: could be neat
                 -- incremental_selection = {
@@ -396,6 +425,7 @@ return require("packer").startup(function()
         requires = {
             {"nvim-lua/plenary.nvim"},
             {"kyazdani42/nvim-web-devicons"},
+            {"nvim-telescope/telescope-symbols.nvim"},
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 run = "make",

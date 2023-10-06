@@ -116,10 +116,14 @@ if status is-interactive
     alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
 	# alias nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
 
-    if [ "$(uname)" = 'Linux' ]
-        alias ls='ls --color=auto -Fh'
+    if command -qv eza
+        alias ls='eza --git --git-repos --mounts --classify --icons'
     else
-        alias ls='ls -G -Fh'
+        if [ "$(uname)" = 'Linux' ]
+            alias ls='ls --color=auto -Fh'
+        else
+            alias ls='ls -G -Fh'
+        end
     end
     abbr ll 'ls -l'
     abbr la 'ls -A'
@@ -127,13 +131,23 @@ if status is-interactive
     abbr lss 'ls -Ssh'
 
     # tree
-    alias tree 'tree -FC'
+    if command -qv eza
+        alias tree='ls -T'
+        alias ti="ls -T --git-ignore"
+    else
+        alias tree 'tree -FC'
+        alias ti="tree --matchdirs -I __pycache__ -I node_modules -I '*.o' -I build"
+    end
     abbr t 'tree'
     abbr ta 'tree -a'
     abbr t1 'tree -L 1'
     abbr t2 'tree -L 2'
     abbr t3 'tree -L 3'
-    alias ti="tree --matchdirs -I __pycache__ -I node_modules -I '*.o' -I build"
+
+    if command -qv bat
+        alias cat='bat --theme gruvbox-dark'
+        set -gx MANPAGER "sh -c 'col -bx | bat --theme gruvbox-dark -l man -p'"
+    end
 
     # git
     abbr ga 'git add'
