@@ -1,3 +1,5 @@
+# vim:ft=gitconfig
+
 [user]
 	name = Charles Cabergs
 	email = charles.cabergs@colruytgroup.com
@@ -40,4 +42,7 @@
 [gpg "ssh"]
 	allowedSignersFile =
 
-# vim:ft=gitconfig
+[push]
+	autoSetupRemote = true
+[tag]
+	sort = v:refname
