@@ -61,7 +61,7 @@ return require("packer").startup(function()
     -- nvim lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml"},
+        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig"},
         config = function()
             vim.diagnostic.config {
                 signs = false,
@@ -173,6 +173,9 @@ return require("packer").startup(function()
             }
 
             lspconfig.clangd.setup { on_attach = on_attach }
+
+            -- pacman -S zls
+            lspconfig.zls.setup{}
         end,
     }
 
@@ -497,15 +500,15 @@ return require("packer").startup(function()
     --     -- run = ":DistantInstall"
     -- }
 
-    use {
-        'chipsenkbeil/distant.nvim',
-        branch = 'v0.3',
-        config = function()
-            require('distant'):setup()
-            require("telescope").load_extension("distant")
-        end,
-        -- run = ":DistantInstall"
-    }
+    -- use {
+    --     'chipsenkbeil/distant.nvim',
+    --     branch = 'v0.3',
+    --     config = function()
+    --         require('distant'):setup()
+    --         require("telescope").load_extension("distant")
+    --     end,
+    --     -- run = ":DistantInstall"
+    -- }
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
     -- use {

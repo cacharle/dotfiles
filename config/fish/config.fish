@@ -1,16 +1,17 @@
 if [ "$(uname)" = 'Linux' ]
-    set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin:/opt/cuda/bin"
+    set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin"
     set -gx MAIL 'me@cacharle.xyz'
     set -gx SUDO 'doas'
 else if [ "$(uname)" = 'Darwin' ]
     set -gx PATH "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     set -gx PATH "$PATH:$HOME/.brew/bin:$HOME/git/dotfiles/bin:$HOME/bin"
-    set -gx PATH "$PATH:$HOME/.local/share/go/bin"
-    set -gx PATH "$PATH:$HOME/.local/bin"
     set -gx MAIL 'charles.cabergs@colruytgroup.com'
     set -gx SUDO 'sudo'
     set -gx LC_CTYPE 'en_US.UTF-8'
 end
+
+set -gx PATH "$PATH:$HOME/.local/share/go/bin"
+set -gx PATH "$PATH:$HOME/.local/bin"
 
 # applications
 set -gx EDITOR 'nvim'
