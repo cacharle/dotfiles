@@ -26,9 +26,17 @@
 [difftool]
     prompt = false
 [diff]
-	tool = bat
+    colorMoved = default
 [core]
     editor = "VIMINIT='' nvim"
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only --syntax-theme gruvbox-dark
+[delta]
+    syntax-theme = gruvbox-dark
+    # side-by-side = true
+    navigate = true    # use n and N to move between diff sections
+    line-numbers = true
 [safe]
     directory = *
 [push]
