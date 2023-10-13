@@ -11,6 +11,7 @@ else if [ "$(uname)" = 'Darwin' ]
 end
 
 set -gx PATH "$PATH:$HOME/.local/share/go/bin"
+set -gx PATH "$PATH:$HOME/.local/share/npm/bin"
 set -gx PATH "$PATH:$HOME/.local/bin"
 
 # applications
