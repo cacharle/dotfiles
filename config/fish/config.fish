@@ -28,6 +28,7 @@ set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -gx XDG_CACHE_HOME "$HOME/.cache"
 # config
+set -gx KUBECONFIG "$XDG_CONFIG_HOME/kubectl/config"
 set -gx XMONAD_CONFIG_HOME "$XDG_CONFIG_HOME/xmonad"
 set -gx XMONAD_DATA_HOME "$XDG_DATA_HOME/xmonad"
 set -gx XMONAD_CACHE_HOME "$XDG_CACHE_HOME/xmonad"
@@ -189,6 +190,9 @@ if status is-interactive
     abbr ytdl 'yt-dlp --output "%(title)s.%(ext)s"'
     abbr ytdlp 'yt-dlp --audio-format mp3 -i --output "%(playlist_index)s-%(title)s.%(ext)s"'
     abbr ytdla 'yt-dlp --audio-format mp3 -i -x -f bestaudio/best --output "%(playlist_index)s-%(title)s.%(ext)s"'
+
+    # kubectl
+    alias k 'kubectl'
 
     # wifi
     function wificonnect
