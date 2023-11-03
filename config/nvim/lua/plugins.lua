@@ -502,6 +502,22 @@ return require("packer").startup(function()
                             return "<Ignore>"
                         end
                     )
+                    map(
+                        "n",
+                        "<leader>ga",
+                        function()
+                            vim.schedule(function() gs.stage_hunk() end)
+                            return "<Ignore>"
+                        end
+                    )
+                    map(
+                        "n",
+                        "<leader>gd",
+                        function()
+                            vim.schedule(function() gs.undo_stage_hunk() end)
+                            return "<Ignore>"
+                        end
+                    )
                 end
             }
         end
