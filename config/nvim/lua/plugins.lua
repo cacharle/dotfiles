@@ -68,13 +68,12 @@ return require("packer").startup(function()
     -- nvim lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig"},
+        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml"},
         config = function()
             vim.diagnostic.config {
                 signs = false,
                 update_in_insert = false,
             }
-
             local on_attach = function(_, bufnr)
                 local opts = { noremap = true, silent = true }
                 local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -93,7 +92,6 @@ return require("packer").startup(function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
-
             -- $ go install golang.org/x/tools/gopls
             lspconfig.gopls.setup {
                 on_attach = on_attach,
@@ -128,7 +126,6 @@ return require("packer").startup(function()
                 "BufWritePre",
                 { callback = go_import_callback, pattern = "*.go", group = augroup }
             )
-
             -- lspconfig.clangd.setup { on_attach = on_attach }
             lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
@@ -146,13 +143,6 @@ return require("packer").startup(function()
                     },
                 },
             }
-
-            -- brew install haskell-language-server
-            lspconfig.hls.setup { on_attach = on_attach }
-
-            -- opam install ocaml-lsp-server
-            lspconfig.ocamllsp.setup { on_attach = on_attach }
-
             -- package lua-language-server on ArchLinux
             lspconfig.lua_ls.setup {
                 on_attach = on_attach ,
@@ -178,11 +168,23 @@ return require("packer").startup(function()
                     }
                 },
             }
-
+            -- brew install haskell-language-server
+            lspconfig.hls.setup { on_attach = on_attach }
+            -- opam install ocaml-lsp-server
+            lspconfig.ocamllsp.setup { on_attach = on_attach }
             lspconfig.clangd.setup { on_attach = on_attach }
-
             -- pacman -S zls
             lspconfig.zls.setup{}
+            -- pacman -S yaml-language-server
+            lspconfig.yamlls.setup {
+                settings = {
+                    yaml = {
+                        schemas = {
+                            ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.17.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+                        }
+                    }
+                }
+            }
         end,
     }
 
