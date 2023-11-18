@@ -116,15 +116,6 @@ fish -c 'fisher install decors/fish-colored-man'
 # Linux specific
 ###############################################################################
 
-################################################################################
-# sync install
-################################################################################
-
-echo '---------------------------- SYNC FILE LINKS  ----------------------------'
-mkdir -pv "$CLOUT_SYNC_PATH"
-ln -svf "$CLOUT_SYNC_PATH/newsboat/urls" "$XDG_CONFIG_HOME/newsboat/urls"
-ln -svf "$CLOUT_SYNC_PATH/qutebrowser/bookmarks/urls" "$XDG_CONFIG_HOME/qutebrowser/bookmarks/urls"
-
 ###############################################################################
 # crontab
 ###############################################################################

@@ -1,40 +1,48 @@
 import platform
 from pathlib import Path
+import socket
 
 
 config.load_autoconfig(True)
 
 c.aliases = {
-    "q":  "close",
+    "q": "close",
     "sc": "config-source",
     # "bw": """spawn --userscript qute-bitwarden -d "dmenu -P -p "master password"" """,
     "bw": """spawn --userscript qute-bitwarden""",
 }
 
-c.url.start_pages = ["https://searx.cacharle.xyz"]
+try:
+    socket.getaddrinfo("searx.home", 80)
+except socket.gaierror:
+    searx_url = "https://searx.cacharle.xyz"
+else:
+    searx_url = "http://searx.home"
+
+c.url.start_pages = [searx_url]
 c.url.searchengines = {
-    "DEFAULT": "https://searx.cacharle.xyz?q={}",
-    "d":       "https://duckduckgo.com/?q={}",
-    "g":       "https://google.com/?q={}",
-    "sp":      "https://www.startpage.com/sp/search?q={}",
-    "y":       "https://www.youtube.com/results?search_query={}",
-    "w":       "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
-    "wfr":     "https://fr.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
-    "gh":      "https://github.com/search?q={}",
-    "h":       "https://hoogle.haskell.org/?hoogle={}",
-    "cpp":     "http://cplusplus.com/search.do?q={}",
-    "lar":     "https://www.larousse.fr/dictionnaires/francais/{}",
-    "pypi":    "https://pypi.org/search/?q={}",
-    "intra":   "https://profile.intra.42.fr/searches/search?query={}",
-    "aw":      "https://wiki.archlinux.org/index.php?search={}",
-    "pd":      "https://pandas.pydata.org/pandas-docs/stable/search.html?q={}",
-    "sk":      "https://scikit-learn.org/stable/search.html?q={}",
-    "imdb":    "https://www.imdb.com/find?q={}",
-    "wiby":    "https://wiby.me/?q={}",
-    "dlfren":  "https://www.deepl.com/translator#fr/en/{}",
-    "dlenfr":  "https://www.deepl.com/translator#en/fr/{}",
-    "dldeen":  "https://www.deepl.com/translator#de/en/{}",
-    "dlende":  "https://www.deepl.com/translator#en/de/{}",
+    "DEFAULT": searx_url + "?q={}",
+    "d": "https://duckduckgo.com/?q={}",
+    "g": "https://google.com/?q={}",
+    "sp": "https://www.startpage.com/sp/search?q={}",
+    "y": "https://www.youtube.com/results?search_query={}",
+    "w": "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
+    "wfr": "https://fr.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1",
+    "gh": "https://github.com/search?q={}",
+    "h": "https://hoogle.haskell.org/?hoogle={}",
+    "cpp": "http://cplusplus.com/search.do?q={}",
+    "lar": "https://www.larousse.fr/dictionnaires/francais/{}",
+    "pypi": "https://pypi.org/search/?q={}",
+    "intra": "https://profile.intra.42.fr/searches/search?query={}",
+    "aw": "https://wiki.archlinux.org/index.php?search={}",
+    "pd": "https://pandas.pydata.org/pandas-docs/stable/search.html?q={}",
+    "sk": "https://scikit-learn.org/stable/search.html?q={}",
+    "imdb": "https://www.imdb.com/find?q={}",
+    "wiby": "https://wiby.me/?q={}",
+    "dlfren": "https://www.deepl.com/translator#fr/en/{}",
+    "dlenfr": "https://www.deepl.com/translator#en/fr/{}",
+    "dldeen": "https://www.deepl.com/translator#de/en/{}",
+    "dlende": "https://www.deepl.com/translator#en/de/{}",
 }
 
 c.window.hide_decoration = False
@@ -43,17 +51,14 @@ config.bind("<Command-Return>", "config-cycle window.hide_decoration true false"
 # package noto-fonts-emoji on ArchLinux
 c.fonts.default_family = ["Fira Mono", "Baekmuk", "Noto Color Emoji", "Symbola"]
 c.fonts.hints = "bold 11pt default_family"
-if platform.system() == 'Darwin':
+if platform.system() == "Darwin":
     c.fonts.default_family = ["FiraCode Nerd Font Mono", "FiraMono"]
     c.fonts.default_size = "13pt"
     c.fonts.hints = "bold 12pt default_family"
 
 c.hints.chars = "asdfghjkl;"  # use key in the main row for hints
 
-c.editor.command = [
-    "/usr/local/bin/st", "-e",
-    "/usr/bin/vim", "{file}", "+{line}", "-c", "startinsert!"
-]
+c.editor.command = "/usr/bin/alacritty -e /usr/bin/vim {file} +{line} -c startinsert!".split(" ")
 
 c.messages.timeout = 4000
 
@@ -63,10 +68,12 @@ config.bind(
         hint links spawn
             /usr/bin/mpv
             --ytdl-raw-options=yes-playlist=
-            --ytdl-format="bestvideo[height<=?480][fps<=?30]+bestaudio/best"
+            --ytdl-format="bestvideo[height<=?1440][fps<=?60]+bestaudio/best"
             {hint-url} ;;
         message-info "opening in video player"
-    """.replace("\n", " ")
+    """.replace(
+        "\n", " "
+    ),
 )
 
 config.bind("<Ctrl-J>", "completion-item-focus next", "command")
@@ -92,7 +99,9 @@ c.colors.webpage.darkmode.enabled = True  # Convert light themed sites to dark t
 c.colors.webpage.preferred_color_scheme = "dark"
 c.colors.webpage.darkmode.policy.images = "smart"
 
-config.bind("<Ctrl-Shift-t>", "config-cycle -p content.proxy socks://localhost:9050/ system", mode="normal")
+config.bind(
+    "<Ctrl-Shift-t>", "config-cycle -p content.proxy socks://localhost:9050/ system", mode="normal"
+)
 c.content.autoplay = False
 c.content.notifications.enabled = False
 c.content.prefers_reduced_motion = True
@@ -113,7 +122,7 @@ c.content.blocking.adblock.lists = [
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt",
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
-    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt"
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
 ]
 
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version}"
