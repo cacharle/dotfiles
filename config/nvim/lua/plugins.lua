@@ -68,7 +68,7 @@ return require("packer").startup(function()
     -- nvim lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml"},
+        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml", "odin"},
         config = function()
             vim.diagnostic.config {
                 signs = false,
@@ -185,6 +185,7 @@ return require("packer").startup(function()
                     }
                 }
             }
+            lspconfig.ols.setup{ on_attach = on_attach }
         end,
     }
 
@@ -388,14 +389,17 @@ return require("packer").startup(function()
                     "haskell",
                     "json",
                     "lua",
+                    "make",
                     "markdown",
                     "meson",
+                    "odin",
                     "python",
                     "query",
                     "rust",
                     "vim",
                     "vimdoc",
                     "yaml",
+                    "zig",
                 },
                 highlight = {
                     enable = true

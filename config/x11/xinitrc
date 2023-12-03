@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# keynav daemonize               # moving the cursor around without the mouse
+keynav daemonize               # moving the cursor around without the mouse
 redshift &                     # filter blue light
 dunst &                        # notification daemon
 unclutter --timeout 10 --fork  # hide mouse after 10s

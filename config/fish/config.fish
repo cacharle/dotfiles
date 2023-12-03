@@ -14,6 +14,9 @@ set -gx PATH "$PATH:$HOME/.local/share/go/bin"
 set -gx PATH "$PATH:$HOME/.local/share/cargo/bin"
 set -gx PATH "$PATH:$HOME/.local/share/npm/bin"
 set -gx PATH "$PATH:$HOME/.local/bin"
+# odin specific, remove later (http://odin-lang.org/docs/install/#for-linux-and-other-nix)
+set -gx PATH "$PATH:$HOME/git/odin"
+set -gx PATH "$PATH:$HOME/git/ols"
 
 # applications
 set -gx EDITOR 'nvim'
