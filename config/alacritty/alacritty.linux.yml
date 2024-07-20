@@ -9,7 +9,7 @@ env:
 
 # font
 font:
-  size: 9.0
+  size: 11.0
   offset:
     x: 0
     y: 0

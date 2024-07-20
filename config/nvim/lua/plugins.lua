@@ -7,6 +7,31 @@ return require("packer").startup(function()
     use "romainl/vim-cool"          -- only highlight search matches when searching
     use "lukas-reineke/indent-blankline.nvim"
 
+    use {
+        "ellisonleao/glow.nvim",
+        config = function() require("glow").setup() end
+    }
+
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        },
+        config = function()
+            require("neo-tree").setup({
+                window = {
+                    mappings = {
+                        ["<c-x>"] = "open_split",
+                        ["<c-v>"] = "open_vsplit",}
+                },
+            })
+        end,
+    }
+
     -- use {
     --     "lewis6991/satellite.nvim",
     --     config = function ()
@@ -14,12 +39,12 @@ return require("packer").startup(function()
     --     end
     -- }
 
-    use {
-        'andymass/vim-matchup',
-        setup = function()
-            vim.g.matchup_matchparen_offscreen = { method = "popup" }
-        end
-    }
+    -- use {
+    --     'andymass/vim-matchup',
+    --     setup = function()
+    --         vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    --     end
+    -- }
 
     -- Put arguments on multiple lines
     use {
@@ -126,7 +151,6 @@ return require("packer").startup(function()
                 "BufWritePre",
                 { callback = go_import_callback, pattern = "*.go", group = augroup }
             )
-            -- lspconfig.clangd.setup { on_attach = on_attach }
             lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
             lspconfig.pylsp.setup {
@@ -172,7 +196,7 @@ return require("packer").startup(function()
             lspconfig.hls.setup { on_attach = on_attach }
             -- opam install ocaml-lsp-server
             lspconfig.ocamllsp.setup { on_attach = on_attach }
-            lspconfig.clangd.setup { on_attach = on_attach }
+            lspconfig.clangd.setup { on_attach = on_attach, cmd = {"clangd", "-header-insertion=never"} }
             -- pacman -S zls
             lspconfig.zls.setup{}
             -- pacman -S yaml-language-server
@@ -190,7 +214,9 @@ return require("packer").startup(function()
                             ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
                             ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
                             ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                            ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+                            -- ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+                            ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
+
                             ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
                             ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
                         },
@@ -312,6 +338,42 @@ return require("packer").startup(function()
         end
     }
 
+    use {
+        "mfussenegger/nvim-dap",
+        requires = {
+            "rcarriga/nvim-dap-ui",
+            "nvim-telescope/telescope-dap.nvim",
+            "mfussenegger/nvim-dap-python",
+        },
+        config = function()
+            local dap = require("dap")
+            require("dap-python").setup()
+            vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
+            vim.keymap.set("n", "<F10>", ":lua require'dap'.step_over()<CR>")
+            vim.keymap.set("n", "<F11>", ":lua require'dap'.step_into()<CR>")
+            vim.keymap.set("n", "<F12>", ":lua require'dap'.step_out()<CR>")
+            vim.keymap.set("n", "<leader>b", ":lua require'dap'.toogle_breakpoint()<CR>")
+            -- vim.keymap.set("n", "<leader>B", ":lua require'dap'.toogle_breakpoint()<CR>")
+            vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl_open()<CR>")
+
+            dap.adapters.gdb = {
+                type = "executable",
+                command = "gdb",
+                args = {"-i", "dap"},
+            }
+            dap.configurations.c = {
+                {
+                    name = "Launch",
+                    type = "gdb",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    end
+                },
+            }
+        end
+    }
+
     -- comment text objects
     use {
         "numToStr/Comment.nvim",
@@ -395,6 +457,7 @@ return require("packer").startup(function()
                     "c",
                     "commonlisp",
                     "cpp",
+                    "cuda",
                     "fish",
                     "glsl",
                     "go",
@@ -488,7 +551,7 @@ return require("packer").startup(function()
 
     use {
         "lewis6991/gitsigns.nvim",
-        tag = 'release',
+        -- tag = 'release',
         config = function()
             require("gitsigns").setup {
                 signcolumn = false,

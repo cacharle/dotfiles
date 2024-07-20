@@ -18,6 +18,9 @@ set -gx PATH "$PATH:$HOME/.local/bin"
 set -gx PATH "$PATH:$HOME/git/odin"
 set -gx PATH "$PATH:$HOME/git/ols"
 
+# ESP32 rust toolchain
+. "$HOME/export-esp.sh"
+
 # applications
 set -gx EDITOR 'nvim'
 set -gx TERMINAL 'alacritty'

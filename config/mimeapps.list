@@ -8,7 +8,7 @@
 # text/x-shellscript=text.desktop;
 # x-scheme-handler/magnet=torrent.desktop;
 # application/x-bittorrent=torrent.desktop;
-x-scheme-handler/mailto=st-mutt.desktop;
+x-scheme-handler/mailto=brave-browser.desktop
 # text/plain=text.desktop;
 application/postscript=zathura.desktop;
 application/pdf=zathura.desktop;

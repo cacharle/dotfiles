@@ -109,3 +109,4 @@ if [ "$(uname)" = 'Linux' ] && grep -q Arch /etc/os-release 2> /dev/null
 then
     .  /usr/share/doc/pkgfile/command-not-found.zsh
 fi
+. "/home/charles/.local/share/cargo/env"
