@@ -1,5 +1,21 @@
 vim.cmd [[ packadd packer.nvim ]]
 
+
+local on_attach = function(_, bufnr)
+    local opts = { noremap = true, silent = true }
+    local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    map("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    map("n", "<leader>q", "<cmd>Telescope diagnostics<CR>", opts)
+    map("n", "<leader>p", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
+end
+
 return require("packer").startup(function()
     use "wbthomason/packer.nvim"    -- plugin manager (can manage itself)
     use "AndrewRadev/sideways.vim"  -- Move arguments sideways
@@ -93,26 +109,13 @@ return require("packer").startup(function()
     -- nvim lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        ft = {"rust", "python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml", "odin"},
+-- "rust",
+        ft = {"python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml", "odin"},
         config = function()
             vim.diagnostic.config {
                 signs = false,
                 update_in_insert = false,
             }
-            local on_attach = function(_, bufnr)
-                local opts = { noremap = true, silent = true }
-                local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-                map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-                map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-                map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-                map("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-                map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-                map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-                map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-                map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-                map("n", "<leader>q", "<cmd>Telescope diagnostics<CR>", opts)
-                map("n", "<leader>p", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
-            end
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
@@ -151,7 +154,7 @@ return require("packer").startup(function()
                 "BufWritePre",
                 { callback = go_import_callback, pattern = "*.go", group = augroup }
             )
-            lspconfig.rust_analyzer.setup { on_attach = on_attach }
+            -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
             lspconfig.pylsp.setup {
                 on_attach = on_attach,
@@ -227,36 +230,21 @@ return require("packer").startup(function()
         end,
     }
 
-    -- -- rust lsp (needs rust-analyser)
-    -- use {
-    --     "simrat39/rust-tools.nvim",
-    --     requires = {"neovim/nvim-lspconfig"},
-    --     ft = {"rust"},
-    --     config = function()
-    --         local on_attach = function(_, bufnr)
-    --             local opts = { noremap = true, silent = true }
-    --             local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    --             map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    --             map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    --             map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    --             map("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    --             map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    --             map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    --             map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    --             map("n", "<leader>q", "<cmd>Telescope diagnostics<CR>", opts)
-    --             map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    --         end
-    --         require("rust-tools").setup {
-    --             server = {
-    --                 on_attach = on_attach,
-    --             }
-    --         }
-    --         vim.diagnostic.config {
-    --             signs = false,
-    --             update_in_insert = false,
-    --         }
-    --     end
-    -- }
+    use {
+        "mrcjkb/rustaceanvim",
+        ft = {"rust"},
+        config = function()
+            -- to toggle inlay hints
+            -- vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            -- vim.g.rustaceanvim.server.on_attach = on_attach
+            vim.diagnostic.config {
+                signs = false,
+                update_in_insert = false,
+            }
+            -- require("rustaceanvim")
+            -- vim.g.rustaceanvim.server.on_attach = on_attach
+        end,
+    }
 
     use {
         "hrsh7th/nvim-cmp",
