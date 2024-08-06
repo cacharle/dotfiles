@@ -94,6 +94,8 @@ set -gx GPG_TTY "$(tty)"
 # valgrind requires this to work on arch linux (from: https://bbs.archlinux.org/viewtopic.php?id=276422)
 set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 
+set -gx HOST "$(cat /etc/hostname)"  # for compatibility with Xmonad.Layout.OnHost
+
 
 if status is-interactive
     fish_vi_key_bindings

@@ -19,6 +19,7 @@ import           XMonad.Layout.Spacing       (Border (..), spacingRaw)
 import           XMonad.Layout.Grid          (Grid (..))
 import           XMonad.Layout.ThreeColumns  (ThreeCol (ThreeColMid))
 import           XMonad.Layout.CenteredIfSingle (centeredIfSingle)
+import           XMonad.Layout.OnHost           (onHost)
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
@@ -33,8 +34,8 @@ import           XMonad.StackSet             (swapUp)
 import XMonad.Layout.LayoutScreens
 import XMonad.Layout.TwoPane
 
-
 myTerminal = "alacritty"
+
 
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
@@ -53,14 +54,15 @@ main = xmonad $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ centeredIfSingle (1/2) (95/100) (ThreeColMid 1 (3/100) (1/2))
-                           ||| reflectHoriz tiledVerticalBigMaster -- main monitor is slighly to the left
-                           ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
-                           ||| noBorders Full                   -- disable borders for fullscreen layout
-                           ||| Mirror tiledHorizontalEven       -- 50/50 horizontal split
-                           ||| Grid
-                           -- ||| layoutScreens 2 (TwoPane 0.5 0.5)
-    where tiledVerticalBigMaster =  Tall 1 (3 / 100) (3 / 5)
+layoutHook' = spacing' 4 $ onHost "charles-fractal" (threeColMid ||| commonLayout) commonLayout
+    where commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
+                         ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
+                         ||| noBorders Full                   -- disable borders for fullscreen layout
+                         ||| Mirror tiledHorizontalEven       -- 50/50 horizontal split
+                         ||| Grid
+                         -- ||| layoutScreens 2 (TwoPane 0.5 0.5)
+          threeColMid = centeredIfSingle (1/2) (95/100) (ThreeColMid 1 (3/100) (1/2))
+          tiledVerticalBigMaster =  Tall 1 (3 / 100) (3 / 5)
           tiledHorizontalEven    =  Tall 1 (3 / 100) (1 / 2)
           spacing' x             = spacingRaw True (Border x x x x) False (Border x x x x) True
 
