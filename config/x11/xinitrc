@@ -35,9 +35,15 @@ case "$(cat /etc/hostname)" in
             xrandr --output DP-2 --mode 3840x1080 --primary --left-of HDMI-1 \
                    --output HDMI-1 --mode 1920x1080
         fi
+        # fix screen tearing
+        nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+        ;;
+    charles-cleveron)
+        if xrandr | grep 'HTMI1 connected'
+        then
+            xrandr --output eDP1 --primary --bellow HDMI1
+        fi
 esac
 
-# fix screen tearing
-nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 # awesome
 xmonad || { xmonad --recompile; xmonad; }

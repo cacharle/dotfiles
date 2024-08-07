@@ -5,8 +5,9 @@ configuration {
     kb-row-up: "Control+k";
 }
 
-@theme "gruvbox-light"
+//@theme "gruvbox-light"
 
 window {
     width: 900px;
 }
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
