@@ -379,7 +379,11 @@ return require("packer").startup(function()
                     icons_enabled = true,
                     section_separators = '',
                     component_separators = '',
-                }
+                },
+                sections = {
+                    -- path=1 for Relative path (https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options)
+                    lualine_c = {{'filename', path = 1}},
+                },
             }
         end
     }
