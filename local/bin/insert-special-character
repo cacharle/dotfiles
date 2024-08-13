@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Copied from: https://github.com/LukeSmithxyz/voidrice/blob/628ed4dc995f3c09e33c24a01c817c18b1a268af/.local/bin/dmenuunicode#L3
+
+chosen=$(cut -d ';' -f1 ~/.local/share/insert-special-character/* | rofi -dmenu -i -l 30 | sed "s/ .*//")
+
+# Exit if none chosen.
+[ -z "$chosen" ] && exit
+
+if [ "$1" = 'copy' ]; then
+	printf "%s" "$chosen" | xclip -selection clipboard
+	notify-send "'$chosen' copied to clipboard." &
+else
+	xdotool type "$chosen"
+fi
