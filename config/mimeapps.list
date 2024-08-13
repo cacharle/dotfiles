@@ -31,6 +31,7 @@ text/html=qutebrowser.desktop
 application/xhtml_xml=qutebrowser.desktop
 image/webp=qutebrowser.desktop
 x-scheme-handler/webcal=brave-browser.desktop
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
 
 [Added Associations]
 text/html=qutebrowser.desktop

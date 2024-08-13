@@ -94,7 +94,9 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-o",                     spawn "project-open")
         , ("M-p",                     spawn "rofi -show run")
         , ("M-s",                     spawn "rofi -show ssh")
-        , ("M-i",                     spawn "rofi -show window")
+        , ("M-s-w",                   spawn "rofi -show window")
+        , ("M-i",                     spawn "insert-special-character")
+        , ("M-S-i",                   spawn "insert-special-character copy")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn $ "notify-send --hint=int:transient:1 " ++
                                               "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++
