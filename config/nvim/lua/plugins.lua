@@ -429,7 +429,11 @@ return require("packer").startup(function()
                     icons_enabled = true,
                     section_separators = '',
                     component_separators = '',
-                }
+                },
+                sections = {
+                    -- path=1 for Relative path (https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options)
+                    lualine_c = {{'filename', path = 1}},
+                },
             }
         end
     }
@@ -521,7 +525,7 @@ return require("packer").startup(function()
             map("n", "<leader>H", "<cmd>Telescope help_tags<cr>", {})
             map("n", "<leader>;", "<cmd>Telescope commands<cr>", {})
             -- map("n", "<leader>p", "<cmd>Telescope tags<cr>", {})
-            map("n", "<leader>g", "<cmd>Telescope live_grep<cr>", {})
+            map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
             map("n", "<leader>G", "<cmd>Telescope grep_string<cr>", {})
         end
     }

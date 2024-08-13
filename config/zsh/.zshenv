@@ -1,6 +1,7 @@
 if [ "$(uname)" = 'Linux' ]
 then
     export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:$HOME/.local/bin"
+    export PATH="$PATH:$HOME/.local/share/go/bin"
     export MAIL='me@cacharle.xyz'
     export SUDO='doas'
 elif [ "$(uname)" = 'Darwin' ]

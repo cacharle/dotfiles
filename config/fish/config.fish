@@ -97,6 +97,8 @@ set -gx GPG_TTY "$(tty)"
 # valgrind requires this to work on arch linux (from: https://bbs.archlinux.org/viewtopic.php?id=276422)
 set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 
+set -gx HOST "$(cat /etc/hostname)"  # for compatibility with Xmonad.Layout.OnHost
+set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/usr/local/lib"  # https://github.com/rust-lang/rust/issues/24677
 
 if status is-interactive
     fish_vi_key_bindings
@@ -234,6 +236,6 @@ if status is-login
         # setting the keyrepeat delay and interval here as the default ones
         # since some applications reset the those if we use xset r rate 200 30 instead
         startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
-        poweroff
+        #poweroff
     end
 end

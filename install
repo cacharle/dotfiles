@@ -149,6 +149,6 @@ install_dict() {
     curl "$url" | tar -xjvf - -C "$install_dir" &
 }
 # other dictionaries at: http://download.huzheng.org/
-parallel_start install_dict 'http://download.huzheng.org/dict.org/stardict-dictd_www.dict.org_gcide-2.4.2.tar.bz2'  # english
-parallel_start install_dict 'http://download.huzheng.org/fr/stardict-xmlittre-2.4.2.tar.bz2'                        # french
-parallel_wait
+#parallel_start install_dict 'http://download.huzheng.org/dict.org/stardict-dictd_www.dict.org_gcide-2.4.2.tar.bz2'  # english
+#parallel_start install_dict 'http://download.huzheng.org/fr/stardict-xmlittre-2.4.2.tar.bz2'                        # french
+#parallel_wait

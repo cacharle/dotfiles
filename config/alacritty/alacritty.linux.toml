@@ -1,0 +1,43 @@
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1"
+
+[font]
+size = 9.0
+offset = { x = 0, y = 0 }
+normal = { family = "Fira Code", style = "Regular" }
+bold   = { family = "Fira Code", style = "Bold" }
+italic = { family = "Fira Code", style = "Light" }
+
+[keyboard]
+bindings = [
+    { key = "J",     mods = "Alt",       chars = "\u001B[B" },
+    { key = "K",     mods = "Alt",       chars = "\u001B[A" },
+    { key = "J",     mods = "Alt|Shift", action = "ScrollHalfPageDown" },
+    { key = "K",     mods = "Alt|Shift", action = "ScrollHalfPageUp" },
+    { key = "Plus",  mods = "Alt|Shift", action = "IncreaseFontSize" },
+    { key = "Minus", mods = "Alt",       action = "DecreaseFontSize" },
+    { key = "Key0",  mods = "Alt",       action = "ResetFontSize" },
+]
+
+[colors.primary]
+background = "0x282828"
+foreground = "0xebdbb2"
+[colors.bright]
+black = "0x928374"
+blue = "0x83a598"
+cyan = "0x8ec07c"
+green = "0xb8bb26"
+magenta = "0xd3869b"
+red = "0xfb4934"
+white = "0xebdbb2"
+yellow = "0xfabd2f"
+[colors.normal]
+black = "0x282828"
+blue = "0x458588"
+cyan = "0x689d6a"
+green = "0x98971a"
+magenta = "0xb16286"
+red = "0xcc241d"
+white = "0xa89984"
+yellow = "0xd79921"

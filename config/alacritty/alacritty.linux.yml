@@ -14,13 +14,13 @@ font:
     x: 0
     y: 0
   normal:
-    family: FiraCode
+    family: Fira Code
     style: Regular
   italic:
-    family: FiraCode
+    family: Fira Code
     style: Light
   bold:
-    family: FiraCode
+    family: Fira Code
     style: Bold
 
 
