@@ -597,6 +597,13 @@ return require("packer").startup(function()
         end
     }
 
+    use {
+        "RaafatTurki/hex.nvim",
+        config = function()
+            require("hex").setup()
+        end
+    }
+
     -- remote files and lsp
     -- use {
     --     "chipsenkbeil/distant.nvim",
