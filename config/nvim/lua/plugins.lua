@@ -463,6 +463,7 @@ return require("packer").startup(function()
                     "python",
                     "query",
                     "rust",
+                    "toml",
                     "vim",
                     "vimdoc",
                     "yaml",
