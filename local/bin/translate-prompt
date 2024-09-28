@@ -1,0 +1,40 @@
+#!/bin/sh
+
+command -v trans > /dev/null ||
+	{ echo "translate-shell not installed" ; exit 1 ; }
+command -v rofi > /dev/null &&
+    menu_exec='rofi -dmenu' ||
+    menu_exec='dmenu'
+
+choice="$(
+$menu_exec <<EOF
+From Clipboard
+Open Editor
+EOF
+)"
+
+# TODO: alacritty --class CustomFloating when I figure out how to center floating windows
+
+text_file="$(mktemp /tmp/translate_prompt_text_XXXXXX)"
+
+case "$choice" in
+	'From Clipboard')
+		xclip -out -selection clipboard > "$text_file"
+		;;
+	'Open Editor')
+		text_file="$(mktemp /tmp/translate_prompt_text_XXXXXX)"
+		"$TERMINAL" -e "$EDITOR" "$text_file"
+		;;
+	*)
+        echo -n "$choice" > "$text_file"
+		;;
+esac
+
+brief=-brief
+if [ "$(head -c1 "$text_file")" = '#' ]
+then
+    brief=''
+    sed -i '1 s/^#//' "$text_file"
+fi
+
+"$TERMINAL" -e trans $brief -view -input "$text_file"

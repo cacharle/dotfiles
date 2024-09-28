@@ -72,6 +72,7 @@ manageHook' = composeAll
     , willFloat --> insertPosition Above Newer -- insert little pop up windows above all the rest
     , className =? "Anki"  --> doFloat
     , className =? "Steam" --> doFloat
+    , className =? "CustomFloating" --> doFloat
     -- , className =? "Gimp" --> doFloat
     -- , className =? "OBS" --> doFloat
     , isDialog --> doF swapUp
@@ -97,6 +98,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-s-w",                   spawn "rofi -show window")
         , ("M-i",                     spawn "insert-special-character")
         , ("M-S-i",                   spawn "insert-special-character copy")
+        , ("M-S-t",                   spawn "translate-prompt")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn $ "notify-send --hint=int:transient:1 " ++
                                               "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++

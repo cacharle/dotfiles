@@ -3,7 +3,7 @@ TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1"
 
 [font]
-size = 9.0
+size = 11.0
 offset = { x = 0, y = 0 }
 normal = { family = "Fira Code", style = "Regular" }
 bold   = { family = "Fira Code", style = "Bold" }
