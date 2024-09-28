@@ -19,7 +19,7 @@ set -gx PATH "$PATH:$HOME/git/odin"
 set -gx PATH "$PATH:$HOME/git/ols"
 
 # ESP32 rust toolchain
-. "$HOME/export-esp.sh"
+# . "$HOME/export-esp.sh"
 
 # applications
 set -gx EDITOR 'nvim'

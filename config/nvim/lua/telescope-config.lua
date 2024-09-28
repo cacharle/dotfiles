@@ -2,7 +2,7 @@
 local M = {}
 
 M.project_files = function()
-  local opts = { show_untracked = true }
+  local opts = { show_untracked = true, use_git_root = false }
   local ok = pcall(require"telescope.builtin".git_files, opts)
   if not ok then
       require"telescope.builtin".find_files(opts)
