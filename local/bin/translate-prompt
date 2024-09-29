@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 command -v trans > /dev/null ||
 	{ echo "translate-shell not installed" ; exit 1 ; }
 command -v rofi > /dev/null &&
@@ -26,7 +28,7 @@ case "$choice" in
 		"$TERMINAL" -e "$EDITOR" "$text_file"
 		;;
 	*)
-        echo -n "$choice" > "$text_file"
+        printf '%s' "$choice" > "$text_file"
 		;;
 esac
 
@@ -37,4 +39,9 @@ then
     sed -i '1 s/^#//' "$text_file"
 fi
 
-"$TERMINAL" -e trans $brief -view -input "$text_file"
+translation_file="$(mktemp /tmp/translate_prompt_translation_XXXXXX)"
+trans $brief -input "$text_file" -output "$translation_file"
+"$TERMINAL" -e less "$translation_file"
+
+# -view gives one line at a time?
+# "$TERMINAL" -e trans $brief -view -input "$text_file"
