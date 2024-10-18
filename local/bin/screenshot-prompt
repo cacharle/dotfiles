@@ -21,15 +21,15 @@ screenshot_dir="$HOME/screenshots"
 
 case "$choice" in
     'Crop to file')
-        scrot --select
+        scrot --select --silent
         ;;
     'Crop to clipboard')
-        scrot --select - | xclip -selection clipboard -target image/png
+        scrot --select --silent - | xclip -selection clipboard -target image/png
         ;;
     'Fullscreen to file')
-        scrot
+        scrot --silent
         ;;
     'Fullscreen to clipboard')
-        scrot - | xclip -selection clipboard -target image/png
+        scrot --silent - | xclip -selection clipboard -target image/png
         ;;
 esac
