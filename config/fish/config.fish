@@ -157,7 +157,9 @@ if status is-interactive
 
     if command -qv bat
         alias cat='bat --theme gruvbox-dark'
-        set -gx MANPAGER "sh -c 'col -bx | bat --theme gruvbox-dark -l man -p'"
+        # Doesn't work with aws .. help
+        # set -gx MANPAGER "sh -c 'col -bx | bat --theme gruvbox-dark -l man -p'"
+        set -gx MANPAGER "bat --theme gruvbox-dark -p"
     end
 
     # git
