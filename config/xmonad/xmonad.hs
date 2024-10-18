@@ -101,6 +101,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-i",                     spawn "insert-special-character")
         , ("M-S-i",                   spawn "insert-special-character copy")
         , ("M-S-t",                   spawn "translate-prompt")
+        , ("M-a",                     spawn "screenshot-prompt")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn $ "notify-send --hint=int:transient:1 " ++
                                               "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++

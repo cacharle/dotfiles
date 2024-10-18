@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+command -v scrot > /dev/null ||
+	{ echo "scrot not installed" ; exit 1 ; }
+command -v rofi > /dev/null &&
+    menu_exec='rofi -dmenu' ||
+    menu_exec='dmenu'
+
+choice="$(
+$menu_exec <<EOF
+Crop to file
+Crop to clipboard
+Fullscreen to file
+Fullscreen to clipboard
+EOF
+)"
+
+screenshot_dir="$HOME/screenshots"
+
+case "$choice" in
+    'Crop to file')
+        scrot --select
+        ;;
+    'Crop to clipboard')
+        scrot --select - | xclip -selection clipboard -target image/png
+        ;;
+    'Fullscreen to file')
+        scrot
+        ;;
+    'Fullscreen to clipboard')
+        scrot - | xclip -selection clipboard -target image/png
+        ;;
+esac
