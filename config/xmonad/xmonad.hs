@@ -5,7 +5,7 @@ import           System.Exit
 
 import           XMonad
 import           XMonad.Config.Desktop       (desktopConfig)
-import           XMonad.ManageHook           (composeAll, willFloat, doFloat, doF, className, (-->), (=?), (<+>))
+import           XMonad.ManageHook           (composeAll, willFloat, doFloat, doF, className, stringProperty, (-->), (=?), (<+>))
 
 -- Utilities
 import           XMonad.Util.Dmenu           (menuArgs)
@@ -73,6 +73,7 @@ manageHook' = composeAll
     , className =? "Anki"  --> doFloat
     , className =? "Steam" --> doFloat
     , className =? "CustomFloating" --> doFloat
+    , stringProperty "WM_NAME(UTF8_STRING)" =? "Bitwarden" --> doFloat
     -- , className =? "Gimp" --> doFloat
     -- , className =? "OBS" --> doFloat
     , isDialog --> doF swapUp
@@ -103,9 +104,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-S-t",                   spawn "translate-prompt")
         , ("M-a",                     spawn "screenshot-prompt")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
-        , ("M-S-b",                   spawn $ "notify-send --hint=int:transient:1 " ++
-                                              "--hint=int:value:\"$(cat /sys/class/power_supply/BAT0/capacity)\" " ++
-                                              "\"Battery: $(cat /sys/class/power_supply/BAT0/status)\"")
+        , ("M-S-b",                   spawn "battery-notify")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
         , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io exitSuccess)
         ]

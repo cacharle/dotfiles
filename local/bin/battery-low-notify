@@ -1,6 +1,9 @@
 #!/bin/sh
 
-battery_dir='/sys/class/power_supply/BAT0'
+bat_dir=BAT0
+[ -f "$HOME/.config/bat" ] && bat_dir="$(cat "$HOME/.config/bat")"
+
+battery_dir="/sys/class/power_supply/$bat_dir"
 
 [ ! -d "$battery_dir" ] && exit 1
 
