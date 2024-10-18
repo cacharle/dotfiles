@@ -234,15 +234,20 @@ return require("packer").startup(function()
         "mrcjkb/rustaceanvim",
         ft = {"rust"},
         config = function()
+            -- require("rustaceanvim")
             -- to toggle inlay hints
             -- vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            -- vim.g.rustaceanvim.server.on_attach = on_attach
             vim.diagnostic.config {
                 signs = false,
                 update_in_insert = false,
             }
-            -- require("rustaceanvim")
-            -- vim.g.rustaceanvim.server.on_attach = on_attach
+            vim.g.rustfmt_autosave_if_config_present = 1
+            -- vim.g.rustaceanvim.server.on_attach = function(_, bufnr)
+            --     local opts = { noremap = true, silent = true }
+            --     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+            --     map("n", "<leader>me", "<cmd>RustLsp expandMacro<CR>", opts)
+            --     map("n", "<leader>d", "<cmd>RustLsp renderDiagnostic<CR>", opts)
+            -- end
         end,
     }
 
@@ -359,14 +364,6 @@ return require("packer").startup(function()
                     end
                 },
             }
-        end
-    }
-
-    -- comment text objects
-    use {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
         end
     }
 
