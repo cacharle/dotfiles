@@ -4,4 +4,4 @@ set -e
 
 recordings_dir="$HOME/recordings"
 latest_recording="$(ls "$recordings_dir" | sort --numeric-sort | tail -n1)"
-echo "$latest_recording"
+echo "$recordings_dir/$latest_recording"

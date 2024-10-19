@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/usr/bin/bash
+
+file_path="$1"
+extension=
 
 ffmpeg -hwaccel cuda \
-    -i "$1.mp4" \
+    -i "$file_path" \
     -map 0 -c:v libx264 -crf 18 -vf format=yuv420p -c:a copy \
-    "$1-x264.mp4"
+    "${file_path%%.*}-x264.${file_path##*.}"
