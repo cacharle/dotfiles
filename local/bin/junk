@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+junk_dir="$HOME/data/junk"
+[ ! -d "$junk_dir" ] && mkdir "$junk_dir"
+
+for arg in "$@"
+do
+    dest="$junk_dir/$arg"
+    if [ -e "$dest" ]
+    then
+        echo "$dest already exists, generating a prefix"
+        identifier="$(seq 100 | xargs -I N sh -c "echo N; test -e '$dest__N' || exit 255" 2> /dev/null | tail -n1)"
+        dest="$dest"__"$identifier"
+    fi
+    mv "$arg" "$dest" &&
+        echo "$arg moved to $dest" || true
+done
