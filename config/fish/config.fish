@@ -162,6 +162,12 @@ if status is-interactive
         set -gx MANPAGER "bat --theme gruvbox-dark -p"
     end
 
+    if command -qv delta
+        function rgd --wraps delta
+            rg --json -C 2 $argv | delta
+        end
+    end
+
     # git
     abbr ga 'git add'
     abbr gaa 'git add --all'
