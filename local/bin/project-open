@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 
 command -v rofi &&
     menu_exec='rofi -dmenu' ||
@@ -10,6 +10,7 @@ dest=$(
     find ~/git -mindepth 1 -maxdepth 1 -printf '%A@\t%f\n' |
     sort -r |
     cut -f 2 |
+    cat - <(echo ../snippets) |
     $menu_exec -l 10 -p '~/git/'
 )
 
