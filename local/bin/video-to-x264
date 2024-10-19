@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ffmpeg -hwaccel cuda \
+    -i "$1.mp4" \
+    -map 0 -c:v libx264 -crf 18 -vf format=yuv420p -c:a copy \
+    "$1-x264.mp4"

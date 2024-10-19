@@ -18,16 +18,18 @@ EOF
 )"
 
 screenshot_dir="$HOME/screenshots"
+[ ! -d "$screenshot_dir" ] && mkdir "$screenshot_dir"
+file_format="$screenshot_dir/"'%Y-%m-%d_$wx$h.png'
 
 case "$choice" in
     'Crop to file')
-        scrot --select --silent
+        scrot --select --silent --file "$file_format"
         ;;
     'Crop to clipboard')
         scrot --select --silent - | xclip -selection clipboard -target image/png
         ;;
     'Fullscreen to file')
-        scrot --silent
+        scrot --silent --file "$file_format"
         ;;
     'Fullscreen to clipboard')
         scrot --silent - | xclip -selection clipboard -target image/png
