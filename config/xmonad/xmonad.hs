@@ -20,6 +20,7 @@ import           XMonad.Layout.Grid          (Grid (..))
 import           XMonad.Layout.ThreeColumns  (ThreeCol (ThreeColMid))
 import           XMonad.Layout.CenteredIfSingle (centeredIfSingle)
 import           XMonad.Layout.OnHost           (onHost)
+import           XMonad.Layout.MultiColumns     (multiCol)
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
@@ -54,8 +55,9 @@ main = xmonad $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ onHost "charles-fractal" (threeColMid ||| commonLayout) commonLayout
-    where commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
+layoutHook' = spacing' 4 $ onHost "charles-fractal" ultraWideLayout commonLayout
+    where ultraWideLayout = threeColMid ||| multiCol [1, 1, 1] 2 (-0.05) (-0.25) ||| commonLayout
+          commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
                          ||| noBorders Full                   -- disable borders for fullscreen layout
                          ||| Mirror tiledHorizontalEven       -- 50/50 horizontal split
