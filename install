@@ -108,9 +108,11 @@ fi
 # fish pluggins
 ###############################################################################
 
+echo '---------------------------- INSTALL FISH PLUGGINS -----------------------'
 fish -c 'fisher install pure-fish/pure'
 fish -c 'fisher install PatrickF1/fzf.fish'
 fish -c 'fisher install decors/fish-colored-man'
+fish -c 'fisher install ainmosni/fish-aws'
 
 ###############################################################################
 # Linux specific
