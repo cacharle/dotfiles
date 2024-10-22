@@ -10,10 +10,10 @@ command -v rofi > /dev/null &&
 
 choice="$(
 $menu_exec <<EOF
-Crop to file
 Crop to clipboard
-Fullscreen to file
+Crop to file
 Fullscreen to clipboard
+Fullscreen to file
 EOF
 )"
 
