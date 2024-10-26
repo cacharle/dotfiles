@@ -12,6 +12,8 @@ choice="$(
 $menu_exec <<EOF
 Crop to clipboard
 Crop to file
+Window to clipboard
+Window to file
 Fullscreen to clipboard
 Fullscreen to file
 EOF
@@ -19,19 +21,41 @@ EOF
 
 screenshot_dir="$HOME/screenshots"
 [ ! -d "$screenshot_dir" ] && mkdir "$screenshot_dir"
-file_format="$screenshot_dir/"'%Y-%m-%d_$wx$h.png'
+
+scrot_wrapper() {
+    file_format="$screenshot_dir/"'%Y-%m-%d_$wx$h.png'
+    if [ "$1" = '-' ]
+    then
+        file_format='-'  # Keep stdout if not saving to a file
+        shift
+    else
+        # optipng optimizes png size without loss (doesn't work if we output directly to stdout)
+        command -v optipng && optipng_arg='optipng -o4 $f'
+    fi
+    scrot --silent --quality 95 --compression 9 --file "$file_format" -e "$optipng_arg" "$@"
+}
+
+xclip_wrapper() {
+    xclip -selection clipboard -target image/png
+}
 
 case "$choice" in
-    'Crop to file')
-        scrot --select --silent --file "$file_format"
-        ;;
     'Crop to clipboard')
-        scrot --select --silent - | xclip -selection clipboard -target image/png
+        scrot_wrapper - --select | xclip_wrapper
         ;;
-    'Fullscreen to file')
-        scrot --silent --file "$file_format"
+    'Crop to file')
+        scrot_wrapper --select
+        ;;
+    'Window to clipboard')
+        scrot_wrapper - --window "$(xdo id -p PID)" | xclip_wrapper
+        ;;
+    'Window to file')
+        scrot_wrapper --window "$(xdo id -p PID)"
         ;;
     'Fullscreen to clipboard')
-        scrot --silent - | xclip -selection clipboard -target image/png
+        scrot_wrapper - | xclip_wrapper
+        ;;
+    'Fullscreen to file')
+        scrot_wrapper
         ;;
 esac
