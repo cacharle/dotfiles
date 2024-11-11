@@ -3,7 +3,13 @@
 file_path="$1"
 extension=
 
-ffmpeg -hwaccel cuda \
-    -i "$file_path" \
+
+# CUDA options: -hwaccel cuda -hwaccel_output_format cuda -c:v h264_nvenc
+# seems slower on gpu tho
+# There is also -c:v hvec_nvenc
+#
+# Options to reduce size: -b:v 5M -crf 28
+
+ffmpeg -i "$file_path" \
     -map 0 -c:v libx264 -crf 18 -vf format=yuv420p -c:a copy \
     "${file_path%%.*}-x264.${file_path##*.}"
