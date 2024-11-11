@@ -10,6 +10,7 @@ command -v rofi > /dev/null &&
 
 choice="$(
 $menu_exec <<EOF
+From Selection
 From Clipboard
 Open Editor
 EOF
@@ -20,6 +21,9 @@ EOF
 text_file="$(mktemp /tmp/translate_prompt_text_XXXXXX)"
 
 case "$choice" in
+	'From Selection')
+		xsel --output > "$text_file"
+		;;
 	'From Clipboard')
 		xclip -out -selection clipboard > "$text_file"
 		;;
