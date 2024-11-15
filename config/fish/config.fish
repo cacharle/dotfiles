@@ -45,6 +45,8 @@ set -gx PYTHONSTARTUP "$XDG_CONFIG_HOME/python/startup.py"
 set -gx ASPELL_CONF "per-conf $XDG_CONFIG_HOME/aspell/aspell.conf; personal $XDG_CONFIG_HOME/aspell/en.pws; repl $XDG_CONFIG_HOME/aspell/en.prepl"
 set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME"/bundle
 set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
+# set -gx AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+# set -gx AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 # shellcheck disable SC2016
 set -gx VIMINIT 'let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 set -gx IPYTHONDIR "$XDG_CONFIG_HOME/ipython"
@@ -72,6 +74,7 @@ set -gx ANSIBLE_GALAXY_CACHE_DIR "$XDG_CACHE_HOME/ansible/galaxy_cache"
 set -gx XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
 set -gx GHCUP_USE_XDG_DIRS 'true'
 set -gx STACK_XDG '1'
+
 
 # shellcheck disable SC2155
 # color in man (less pager)

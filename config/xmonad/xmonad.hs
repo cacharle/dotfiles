@@ -107,8 +107,12 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-a",                     spawn "screenshot-prompt")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn "battery-notify")
+        , ("M-S-s",                   spawn "toggle-screenkey")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
         , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io exitSuccess)
+
+        -- , ("M1-a",                   spawn "xdotool type à")
+        -- , ("M1-e",                   spawn "xdotool type à")
         ]
 
 -- startupHook' :: X ()
