@@ -136,4 +136,5 @@ stylish-haskell
 
 renameutils
 
+bind  # for dig
 xsel

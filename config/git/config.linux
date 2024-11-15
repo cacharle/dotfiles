@@ -2,8 +2,9 @@
 
 [user]
 	name = Charles Cabergs
-	email = me@cacharle.xyz
-	signingkey = me@cacharle.xyz
+    email = me@cacharle.xyz
+	; signingkey = me@cacharle.xyz
+	signingkey = ~/.ssh/id_ed25519.pub
 [log]
 	decorate = full
 [pull]
@@ -17,8 +18,10 @@
     prompt = false
 [mergetool "vimdiff"]
     cmd = "nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
-; [commit]
-; 	gpgsign = true
+[commit]
+	gpgsign = true
+[gpg]
+    format = ssh
 [init]
 	defaultBranch = master
 [difftool "bat"]
