@@ -9,3 +9,7 @@ desc = "Open the drag and drop utility"
 on = "!"
 run = 'shell "$SHELL" --block --confirm'
 desc = "Open shell in the current directory"
+[[manager.prepend_keymap]]
+on = ["g", "d"]
+run = 'cd ~/dl'
+desc = "Open ~/dl"
