@@ -33,3 +33,9 @@ $ ./install
 ## TODO
 
 - [ ] atuin - <https://github.com/atuinsh/atuin?tab=readme-ov-file>
+- [ ] difftastic - <https://github.com/Wilfred/difftastic?tab=readme-ov-file#can-i-use-difftastic-with-git>
+- [x] yazi - <https://github.com/sxyazi/yazi>
+    <https://yazi-rs.github.io/docs/tips>
+    - [x] image preview with ueberzug++
+    - [x] drag and drop with dragon
+    - [ ] make default file opener https://github.com/GermainZ/xdg-desktop-portal-termfilechooser

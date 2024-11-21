@@ -1,0 +1,11 @@
+# from: https://yazi-rs.github.io/docs/tips
+[[manager.prepend_keymap]]
+on = "<C-n>"
+run = '''
+    shell 'dragon-drop -x -i -T "$1"' --confirm
+'''
+desc = "Open the drag and drop utility"
+[[manager.prepend_keymap]]
+on = "!"
+run = 'shell "$SHELL" --block --confirm'
+desc = "Open shell in the current directory"

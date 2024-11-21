@@ -120,6 +120,7 @@ if status is-interactive
         alias nvim 'VIMINIT="" /usr/bin/nvim'
     end
     alias v 'nvim'
+    alias y 'yazi'
     alias gdb 'gdb -q'     # disable long intro message
     alias sudo 'sudo '     # enable color (the search for aliases continues)
     alias doas 'doas '     # same for doas
