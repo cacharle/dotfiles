@@ -2,3 +2,24 @@
 linemode = "size"
 sort_by = "modified"
 sort_reverse = true
+# mouse = [ "click", "scroll", "drag" ]
+
+[preview]
+cache_dir = "~/.cache/yazi"
+
+[opener]
+edit = [
+    { run = 'VIMINIT="" ${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+    { run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
+    { run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
+]
+
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*"
+run  = "git"
+
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*/"
+run  = "git"

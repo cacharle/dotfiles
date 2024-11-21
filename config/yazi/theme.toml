@@ -1,0 +1,6 @@
+[flavor]
+use = "gruvbox-dark"
+
+[status]
+separator_open = ""
+separator_close = ""

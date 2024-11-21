@@ -120,7 +120,6 @@ if status is-interactive
         alias nvim 'VIMINIT="" /usr/bin/nvim'
     end
     alias v 'nvim'
-    alias y 'yazi'
     alias gdb 'gdb -q'     # disable long intro message
     alias sudo 'sudo '     # enable color (the search for aliases continues)
     alias doas 'doas '     # same for doas
@@ -130,6 +129,17 @@ if status is-interactive
     alias mbsync 'mbsync -c "$XDG_CONFIG_HOME/isync/mbsyncrc"'
     alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
 	# alias nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
+
+    #alias y 'yazi'
+    # from: https://yazi-rs.github.io/docs/quick-start#shell-wrapper
+    function y
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+    end
 
     if command -qv eza
         alias ls='eza --git --git-repos --mounts --classify --icons'

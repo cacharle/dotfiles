@@ -114,6 +114,12 @@ fish -c 'fisher install PatrickF1/fzf.fish'
 fish -c 'fisher install decors/fish-colored-man'
 fish -c 'fisher install ainmosni/fish-aws'
 
+if command -v ya > /dev/null
+then
+    ya pack -a bennyyip/gruvbox-dark
+    ya pack -a yazi-rs/plugins:git
+fi
+
 ###############################################################################
 # Linux specific
 ###############################################################################
