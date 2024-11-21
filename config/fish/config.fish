@@ -10,6 +10,7 @@ else if [ "$(uname)" = 'Darwin' ]
     set -gx LC_CTYPE 'en_US.UTF-8'
 end
 
+set -gx PATH "$PATH:/opt/resolve/bin"
 set -gx PATH "$PATH:$HOME/.local/share/go/bin"
 set -gx PATH "$PATH:$HOME/.local/share/cargo/bin"
 set -gx PATH "$PATH:$HOME/.local/share/npm/bin"
