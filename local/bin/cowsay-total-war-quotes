@@ -1,0 +1,10 @@
+#!/bin/sh
+
+quotes_path="${XDG_DATA_HOME:-"$HOME/.local/share"}/total_war_quotes"
+
+< "$quotes_path" sed 's/^$/#/' |
+    tr '#' '\0' |
+    shuf --zero-terminated --head-count 1 |
+    sed '/^$/ d' |
+    tr -d '\0' |
+    cowsay -W 80 -n

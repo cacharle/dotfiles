@@ -1,0 +1,17 @@
+#!/bin/sh
+
+command -v screenkey ||
+    { echo "screenkey not installed"; exit 1; }
+
+if pgrep screenkey
+then
+    pkill screenkey
+else
+    screenkey                         \
+        --bg-color '#111111'          \
+        --font-size small             \
+        --font 'Fira Mono Bold'       \
+        --geometry "1907x110+965+857" \
+        --timeout 1.5                 \
+        --position fixed &
+fi
