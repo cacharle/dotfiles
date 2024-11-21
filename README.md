@@ -1,4 +1,4 @@
-# dotfiles [![Build Status](https://api.travis-ci.com/cacharle/dotfiles.svg?branch=master)](https://app.travis-ci.com/github/cacharle/dotfiles)
+# dotfiles
 
 ## Installation
 
@@ -29,3 +29,7 @@ $ ./install
 ## Credit
 
 * mpv script youtube quality - <https://github.com/jgreco/mpv-youtube-quality>
+
+## TODO
+
+- [ ] atuin - <https://github.com/atuinsh/atuin?tab=readme-ov-file>

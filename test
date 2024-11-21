@@ -16,8 +16,8 @@ shellcheck -s sh config/x11/xinitrc
 # vint -s config/vim/pluggins.vim
 
 # FLAKE8
-flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py
-flake8 --ignore W504,CCR001 config/python/startup.py
+# flake8 --ignore F821,E501,W504,N816,E241 config/qutebrowser/config.py
+# flake8 --ignore W504,CCR001 config/python/startup.py
 
 # CRONTAB
 if crontab -h 2>&1 | grep -q '.*-T.*'

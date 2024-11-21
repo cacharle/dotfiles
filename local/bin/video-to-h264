@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+file_path="$1"
+
+# from: https://stackoverflow.com/questions/2869281/how-to-determine-video-codec-of-a-file-with-ffmpeg
+current_codec="$(
+    ffprobe -v error -select_streams v:0 \
+    -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 \
+    "$file_path"
+)"
+[ "$current_codec" = 'h264' ] && { echo 'Video is already in h264'; exit 1; }
+
+# CUDA options: -hwaccel cuda -hwaccel_output_format cuda -c:v h264_nvenc
+# seems slower on gpu tho
+# There is also -c:v hvec_nvenc
+#
+# Options to reduce size: -b:v 5M -crf 28
+
+ffmpeg -i "$file_path" \
+    -map 0 -c:v libx264 -crf 18 -vf format=yuv420p -c:a copy \
+    "${file_path%%.*}-h264.${file_path##*.}"

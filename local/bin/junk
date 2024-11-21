@@ -11,9 +11,11 @@ do
     if [ -e "$dest" ]
     then
         echo "$dest already exists, generating a prefix"
-        identifier="$(seq 100 | xargs -I N sh -c "echo N; test -e '$dest__N' || exit 255" 2> /dev/null | tail -n1)"
+        identifier="$(seq 100 | xargs -I N sh -c "echo N; test -e '""$dest""__N' || exit 255" 2> /dev/null | tail -n1)"
         dest="$dest"__"$identifier"
     fi
-    mv "$arg" "$dest" &&
-        echo "$arg moved to $dest" || true
+    if mv "$arg" "$dest"
+    then
+        echo "$arg moved to $dest"
+    fi
 done

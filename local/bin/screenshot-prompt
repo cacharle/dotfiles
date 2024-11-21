@@ -23,6 +23,7 @@ screenshot_dir="$HOME/screenshots"
 [ ! -d "$screenshot_dir" ] && mkdir "$screenshot_dir"
 
 scrot_wrapper() {
+    # shellcheck disable=SC2016
     file_format="$screenshot_dir/"'%Y-%m-%d_$wx$h.png'
     if [ "$1" = '-' ]
     then
@@ -30,6 +31,7 @@ scrot_wrapper() {
         shift
     else
         # optipng optimizes png size without loss (doesn't work if we output directly to stdout)
+        # shellcheck disable=SC2016
         command -v optipng && optipng_arg='optipng -o4 $f'
     fi
     scrot --silent --quality 95 --compression 9 --file "$file_format" -e "$optipng_arg" "$@"
