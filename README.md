@@ -41,3 +41,6 @@ $ ./install
     - [ ] make default file opener https://github.com/GermainZ/xdg-desktop-portal-termfilechooser
     - [ ] add nvim shortcut to open yazi in current directory and in the git root
 - [ ] zoxide - <https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file>
+- [ ] monero-cli
+- [ ] bisq
+- [ ] electrum for bitcoin
