@@ -38,9 +38,12 @@ $ ./install
     <https://yazi-rs.github.io/docs/tips>
     - [x] image preview with ueberzug++
     - [x] drag and drop with dragon
-    - [ ] make default file opener https://github.com/GermainZ/xdg-desktop-portal-termfilechooser
+    - [x] make default file opener https://github.com/GermainZ/xdg-desktop-portal-termfilechooser
+        - [ ] Fix selection of multiple files (--chosen-file seems to work with multiple tho)
     - [ ] add nvim shortcut to open yazi in current directory and in the git root
 - [ ] zoxide - <https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file>
+- [ ] script to mount/unmount things (encrypted or not) - https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/mounter
+    OR setup a similar thing as most DE where there is a daemon listening for new usb and automatically mounting them
 - [ ] monero-cli
 - [ ] bisq
 - [ ] electrum for bitcoin
