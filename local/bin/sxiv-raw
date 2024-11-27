@@ -1,0 +1,21 @@
+#!/bin/sh
+
+die() {
+    echo "Error $*" > /dev/stderr
+    exit 1
+}
+
+command -v sxiv > /dev/null || die "sxiv not installed"
+command -v darktable-cli > /dev/null || die "darktable-cli not installed"
+
+image_path="$1"
+xmp_path="$1.xmp"
+
+[ ! -d /tmp/sxiv-raw ] && mkdir -v /tmp/sxiv-raw
+tmp_dir="$(mktemp --directory /tmp/sxiv-raw/XXXXXX)"
+
+darktable-cli \
+    --upscale false --hq false \
+    "$image_path" "$xmp_path" "$tmp_dir"
+sxiv "$tmp_dir"/*.jpg &
+disown

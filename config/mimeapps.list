@@ -18,6 +18,7 @@ image/png=sxiv.desktop;
 image/jpeg=sxiv.desktop;
 image/gif=sxiv.desktop;
 image/svg+xml=sxiv.desktop;
+image/tiff=sxiv-raw.desktop
 
 application/rss+xml=newsboat.desktop
 
