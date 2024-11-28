@@ -1,0 +1,8 @@
+#!/bin/sh
+
+command -v udiskie > /dev/null || { echo "udiskie not installed" ; exit 1 ; }
+command -v rofi > /dev/null &&
+    menu_exec='rofi -dmenu' ||
+    menu_exec='dmenu'
+
+udiskie-umount "$(udiskie-info --filter is_mounted --all | $menu_exec)"
