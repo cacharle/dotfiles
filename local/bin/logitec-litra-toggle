@@ -1,0 +1,15 @@
+#!/bin/sh
+
+command -v lc > /dev/null ||
+	{ echo "litra-driver not installed" ; exit 2 ; }
+
+toggle_file="${XDG_CACHE_DIR:-$HOME/.cache}/logitec-litra-toggle"
+
+if [ -f "$toggle_file" ]
+then
+    lc off
+    rm "$toggle_file"
+else
+    lc on
+    touch "$toggle_file"
+fi
