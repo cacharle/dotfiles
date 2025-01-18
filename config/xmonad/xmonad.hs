@@ -56,7 +56,7 @@ main = xmonad $ desktopConfig
 
 
 layoutHook' = spacing' 4 $ onHost "charles-fractal" ultraWideLayout commonLayout
-    where ultraWideLayout = threeColMid ||| multiCol [1, 1, 1] 2 (-0.05) (-0.25) ||| commonLayout
+    where ultraWideLayout = threeColMid ||| multiCol [1, 1] 2 (-0.05) (-0.25) ||| commonLayout
           commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
                          ||| noBorders Full                   -- disable borders for fullscreen layout
@@ -111,7 +111,8 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-S-b",                   spawn "battery-notify")
         , ("M-S-s",                   spawn "toggle-screenkey")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
-        , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io exitSuccess)
+        , ("M-S-q",                   spawn "exit-session-prompt")
+        -- , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io exitSuccess)
 
         -- , ("M1-a",                   spawn "xdotool type à")
         -- , ("M1-e",                   spawn "xdotool type à")

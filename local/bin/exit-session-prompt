@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -e
+
+command -v rofi > /dev/null &&
+    menu_exec='rofi -dmenu' ||
+    menu_exec='dmenu'
+
+choice="$(
+$menu_exec <<EOF
+Shutdown
+Suspend
+Log out
+Reboot
+Hibernate
+EOF
+)"
+
+case "$choice" in
+    'Shutdown')
+        shutdown -h now
+        ;;
+    'Suspend')
+        # `echo XHCI > /proc/acpi/wakeup` disables all the usb devices on the controller to wakeup
+        doas systemctl suspend
+        ;;
+    'Log out')
+        # FIXME: for some reason, whether I do this or exit xmonad cleanly, I need to do it twice, why?
+        pkill -u charles
+        ;;
+    'Reboot')
+        reboot
+        ;;
+    'Hibernate')
+        # NOTE: have to setup doas.conf for this to run without asking for a password
+        doas systemctl hibernate
+        ;;
+    *)
+        notify-send 'Invalid exit choice'
+        ;;
+esac
