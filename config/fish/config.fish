@@ -262,6 +262,6 @@ if [ "$(uname)" = 'Linux' ] && [ "$(tty)" = '/dev/tty2' ]
     # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
     # setting the keyrepeat delay and interval here as the default ones
     # since some applications reset the those if we use xset r rate 200 30 instead
-    startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
-    poweroff
+    exec startx "$XDG_CONFIG_HOME/x11/xinitrc" -- -ardelay 200 -arinterval 30
+    # poweroff
 end

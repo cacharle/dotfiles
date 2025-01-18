@@ -42,8 +42,12 @@ $ ./install
         - [ ] Fix selection of multiple files (--chosen-file seems to work with multiple tho)
     - [ ] add nvim shortcut to open yazi in current directory and in the git root
 - [ ] zoxide - <https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file>
-- [ ] script to mount/unmount things (encrypted or not) - https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/mounter
+- [x] script to mount/unmount things (encrypted or not) - https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/mounter
     OR setup a similar thing as most DE where there is a daemon listening for new usb and automatically mounting them
-- [ ] monero-cli
-- [ ] bisq
-- [ ] electrum for bitcoin
+- [x] monero-cli
+- [x] bisq
+- [x] electrum for bitcoin
+- [ ] Figure out how to have centered floating window in xmonad
+- [ ] Figure out how to have window swallowing (for file preview mainly)
+- [ ] Start obs and turn on the light (with  litra-driver (lc)) with keybinding
+    - [ ] Add keybindings to control the light brightness and temperature

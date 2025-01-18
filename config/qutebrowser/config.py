@@ -18,10 +18,11 @@ except socket.gaierror:
     searx_url = "https://searx.cacharle.xyz"
 else:
     searx_url = "http://searx.home"
+default_search_engine = "https://google.com"
 
-c.url.start_pages = [searx_url]
+c.url.start_pages = [default_search_engine]
 c.url.searchengines = {
-    "DEFAULT": searx_url + "?q={}",
+    "DEFAULT": default_search_engine + "?q={}",
     "d": "https://duckduckgo.com/?q={}",
     "g": "https://google.com/?q={}",
     "sp": "https://www.startpage.com/sp/search?q={}",
