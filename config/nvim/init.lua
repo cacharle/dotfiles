@@ -131,6 +131,13 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "cpp",
+    callback = function()
+        vim.bo.commentstring = "// %s"
+    end,
+})
+
 vim.cmd [[ highlight link DiffAdd    GruvboxGreenSign  ]]
 vim.cmd [[ highlight link DiffChange GruvboxYellowSign ]]
 vim.cmd [[ highlight link DiffDelete GruvboxRedSign    ]]
