@@ -340,38 +340,75 @@ return require("packer").startup(function()
     }
 
     use {
-        "mfussenegger/nvim-dap",
+        'mfussenegger/nvim-dap',
+        ft = {"c", "cpp"},
         requires = {
             "rcarriga/nvim-dap-ui",
-            "nvim-telescope/telescope-dap.nvim",
-            "mfussenegger/nvim-dap-python",
+            "nvim-neotest/nvim-nio",
+            "theHamsta/nvim-dap-virtual-text",
+            -- "nvim-telescope/telescope-dap.nvim",
+            -- "mfussenegger/nvim-dap-python",
         },
-        config = function()
+        config = function ()
             local dap = require("dap")
-            require("dap-python").setup()
-            vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
-            vim.keymap.set("n", "<F10>", ":lua require'dap'.step_over()<CR>")
-            vim.keymap.set("n", "<F11>", ":lua require'dap'.step_into()<CR>")
-            vim.keymap.set("n", "<F12>", ":lua require'dap'.step_out()<CR>")
-            vim.keymap.set("n", "<leader>b", ":lua require'dap'.toogle_breakpoint()<CR>")
-            -- vim.keymap.set("n", "<leader>B", ":lua require'dap'.toogle_breakpoint()<CR>")
-            vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl_open()<CR>")
-
+            local dapui = require("dapui")
+            dapui.setup({
+                controls = {
+                    icons = {
+                        terminate = "T",
+                    }
+                }
+            })
+            require("nvim-dap-virtual-text").setup()
+            vim.keymap.set("n", "<F4>", dap.terminate)
+            vim.keymap.set("n", "<F5>", dap.continue)
+            vim.keymap.set("n", "<F6>", dap.restart)
+            vim.keymap.set("n", "<F10>", dap.step_over)
+            vim.keymap.set("n", "<F11>", dap.step_into)
+            vim.keymap.set("n", "<F12>", dap.step_out)
+            vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+            vim.keymap.set("n", "<leader>db", dap.clear_breakpoints)
+            --TODO: set_exception_breakpoints()
+            vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
+            vim.keymap.set("n", "<leader>dr", dap.repl.open)
+            vim.keymap.set("n", "<leader>?", function() dapui.eval(nil, { enter = true }) end)
+            -- The gdb adapter doesn't fully work (only able to use 1 breakpoint)
             dap.adapters.gdb = {
                 type = "executable",
                 command = "gdb",
-                args = {"-i", "dap"},
+                args = {"--interpreter", "dap", "--eval-command", "set print pretty on"},
             }
-            dap.configurations.c = {
+            -- Install: yay -S codelldb-bin
+            dap.adapters.codelldb = {
+                type = "executable",
+                command = "codelldb",
+                -- on windows: detached = false
+            }
+            local c_cpp_config = {
                 {
                     name = "Launch",
-                    type = "gdb",
+                    type = "codelldb",
                     request = "launch",
                     program = function()
                         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end
+                    end,
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = false,
+                    setupCommands = {
+                      {
+                         text = '-enable-pretty-printing',
+                         description =  'enable pretty printing',
+                         ignoreFailures = false
+                      },
+                    },
                 },
             }
+            dap.configurations.c = c_cpp_config
+            dap.configurations.cpp = c_cpp_config
+            dap.listeners.before.attach.dapui_config = function() dapui.open() end
+            dap.listeners.before.launch.dapui_config = function() dapui.open() end
+            dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+            dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
         end
     }
 
@@ -554,7 +591,6 @@ return require("packer").startup(function()
             require("gitsigns").setup {
                 signcolumn = false,
                 numhl = true,
-
                 on_attach = function(bufnr)
                     local opts = { silent = true, noremap = true, expr = true }
                     -- local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
