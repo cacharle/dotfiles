@@ -4,7 +4,7 @@ map('', 'Y', 'y$', {})                              -- 'Y' yank to the end of th
 map('i', 'kj', '<esc>', {})                         -- kj to exit insert mode
 map('', 'Q', '<nop>', {})                           -- remove visual mode keybinding
 map('n', '<leader>sc', '<cmd>source $MYVIMRC<cr>', {})  -- source vimrc
-map('n', '<leader>;', 'mqA;<esc>`q', {})            -- put semicolon at the end of line
+-- map('n', '<leader>;', 'mqA;<esc>`q', {})            -- put semicolon at the end of line
 map('n', 'cu', 'ct_', {})                           -- common change until
 map('n', '<leader>ss', '<cmd>setlocal spell!<cr>', {})  -- toggle spelling check
 map('n', '<leader>]', '<C-]>', {})  -- toggle spelling check
@@ -32,11 +32,6 @@ vim.cmd [[ autocmd FileType python nmap <leader>ba mqobreakpoint()<esc>`q ]]
 -- pluggins
 map('x', 'ga', '<cmd>EasyAlign<cr>', {})
 map('n', 'ga', '<cmd>EasyAlign<cr>', {})
-
-map('n', '<leader>l', '<cmd>SidewaysRight<cr>', {})
-map('n', '<leader>h', '<cmd>SidewaysLeft<cr>', {})
-
-map('n', '<leader>w', '<cmd>ArgWrap<cr>', {})
 
 -- difftool
 map('n', '<leader>1', '<cmd>diffget LOCAL<cr>', {})

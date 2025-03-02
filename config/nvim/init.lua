@@ -1,8 +1,27 @@
-require("plugins")
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
 
--- common
+-- lazy wants leader to be defined before
 vim.g.mapleader = " "              -- set leader key to space
 vim.g.maplocalleader = "-"         -- set file local leader key to backslash
+
+require("lazy").setup("plugins")
+
+-- common
 vim.opt.compatible = false         -- not compatible with vi
 vim.opt.number = true              -- line number
 vim.opt.numberwidth = 1            -- line numbers gutter autowidth
@@ -54,14 +73,14 @@ vim.opt.ch = 0                   -- make command line invisible when not typing 
 local augroup = vim.api.nvim_create_augroup("cacharle_init_group", {})
 
 -- run PackerCompile when we modify plugins.lua
-vim.api.nvim_create_autocmd(
-    "BufWritePost",
-    {
-        pattern = "plugins.lua",
-        command = "source <afile> | PackerCompile",
-        group = augroup
-    }
-)
+-- vim.api.nvim_create_autocmd(
+--     "BufWritePost",
+--     {
+--         pattern = "plugins.lua",
+--         command = "source <afile> | PackerCompile",
+--         group = augroup
+--     }
+-- )
 
 -- remove trailing white space on save
 vim.api.nvim_create_autocmd(

@@ -1,6 +1,3 @@
-vim.cmd [[ packadd packer.nvim ]]
-
-
 local on_attach = function(_, bufnr)
     local opts = { noremap = true, silent = true }
     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -16,58 +13,82 @@ local on_attach = function(_, bufnr)
     map("n", "<leader>p", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
 end
 
-return require("packer").startup(function()
-    use "wbthomason/packer.nvim"    -- plugin manager (can manage itself)
-    use "AndrewRadev/sideways.vim"  -- Move arguments sideways
-    use "tpope/vim-eunuch"          -- basic commands on current file (Rename/Remove)
-    use "romainl/vim-cool"          -- only highlight search matches when searching
-    use "lukas-reineke/indent-blankline.nvim"
+return {
+    -- Move arguments sideways
+    {
+        "AndrewRadev/sideways.vim",
+        keys = { "<leader>l", "<leader>h" },
+        config = function ()
+            vim.api.nvim_set_keymap("n", "<leader>l", "<cmd>SidewaysRight<cr>", {})
+            vim.api.nvim_set_keymap("n", "<leader>h", "<cmd>SidewaysLeft<cr>", {})
+        end
+    },
 
-    use {
+    -- only highlight search matches when searching
+    {
+        "romainl/vim-cool",
+        keys = "/",
+    },
+
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
+    },
+
+    -- basic commands on current file (Rename/Remove)
+    {
+        "tpope/vim-eunuch",
+        cmd = { "Rename", "Remove", "Copy", "Mkdir", "Chmod" }
+    },
+
+    {
         "ellisonleao/glow.nvim",
+        ft = "markdown",
         config = function() require("glow").setup() end
-    }
+    },
 
-    use {
+    {
         "nvim-neo-tree/neo-tree.nvim",
+        cmd = "Neotree",
         branch = "v3.x",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
-        config = function()
-            require("neo-tree").setup({
-                window = {
-                    mappings = {
-                        ["<c-x>"] = "open_split",
-                        ["<c-v>"] = "open_vsplit",}
-                },
-            })
-        end,
-    }
+        config = {
+            window = {
+                mappings = {
+                    ["<c-x>"] = "open_split",
+                    ["<c-v>"] = "open_vsplit",}
+            },
+        },
+    },
 
-    -- use {
+    -- {
     --     "lewis6991/satellite.nvim",
     --     config = function ()
     --         require('satellite').setup()
     --     end
-    -- }
+    -- },
 
-    -- use {
+    -- {
     --     'andymass/vim-matchup',
     --     setup = function()
     --         vim.g.matchup_matchparen_offscreen = { method = "popup" }
     --     end
-    -- }
+    -- },
 
     -- Put arguments on multiple lines
-    use {
+    {
         "FooSoft/vim-argwrap",
+        keys = { "<leader>w" },
         config = function()
             local augroup = vim.api.nvim_create_augroup("cacharle_vim_argwrap_group", {})
             vim.g.argwrap_tail_comma = 1
+            vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>ArgWrap<cr>", {})
             vim.api.nvim_create_autocmd(
                 "Filetype",
                 {
@@ -85,24 +106,24 @@ return require("packer").startup(function()
                 }
             )
         end
-    }
+    },
 
-    use {
+    {
         "jpalardy/vim-slime",
-        config = function()
-            vim.g.slime_target = "tmux"
-        end
-    }
+        keys = { "<C-c><C-c>", "<C-c>v" },
+        config = function() vim.g.slime_target = "tmux" end
+    },
 
-    use {
+    {
         "cacharle/vim-jinja-languages",
-        requires = {"mitsuhiko/vim-jinja"}
-    }
+        ft = "jinja",
+        dependencies = {"mitsuhiko/vim-jinja"}
+    },
 
     -- python formatter
-    use {
+    {
         "psf/black",
-        tag = "stable",
+        -- version = "stable",
         ft = "python",
         config = function()
             vim.g.black_linelength = 100
@@ -112,18 +133,15 @@ return require("packer").startup(function()
             --     { command = "silent Black", pattern = "*.py", group = augroup }
             -- )
         end
-    }
+    },
 
     -- nvim lsp configuration
-    use {
+    {
         "neovim/nvim-lspconfig",
 -- "rust",
         ft = {"python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml", "odin"},
         config = function()
-            vim.diagnostic.config {
-                signs = false,
-                update_in_insert = false,
-            }
+            vim.diagnostic.config { signs = false, update_in_insert = false }
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
@@ -134,9 +152,7 @@ return require("packer").startup(function()
                 capabilities = capabilities,
                 settings = {
                     gopls = {
-                        analyses = {
-                            unusedparams = true
-                        },
+                        analyses = { unusedparams = true },
                         staticcheck = true
                     }
                 }
@@ -236,19 +252,16 @@ return require("packer").startup(function()
             }
             lspconfig.ols.setup{ on_attach = on_attach }
         end,
-    }
+    },
 
-    use {
+    {
         "mrcjkb/rustaceanvim",
         ft = {"rust"},
         config = function()
             -- require("rustaceanvim")
             -- to toggle inlay hints
             -- vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            vim.diagnostic.config {
-                signs = false,
-                update_in_insert = false,
-            }
+            vim.diagnostic.config { signs = false, update_in_insert = false }
             vim.g.rustfmt_autosave_if_config_present = 1
             -- vim.g.rustaceanvim.server.on_attach = function(_, bufnr)
             --     local opts = { noremap = true, silent = true }
@@ -257,11 +270,12 @@ return require("packer").startup(function()
             --     map("n", "<leader>d", "<cmd>RustLsp renderDiagnostic<CR>", opts)
             -- end
         end,
-    }
+    },
 
-    use {
+    {
         "hrsh7th/nvim-cmp",
-        requires = {
+        event = "InsertEnter",
+        dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",
@@ -324,12 +338,8 @@ return require("packer").startup(function()
                         }
                     })
                 },
-                window = {
-                    documentation = cmp.config.window.bordered(),
-                },
-                experimental = {
-                    ghost_text = true,
-                },
+                window = { documentation = cmp.config.window.bordered(), },
+                experimental = { ghost_text = true, },
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
@@ -337,12 +347,13 @@ return require("packer").startup(function()
                 }
             }
         end
-    }
+    },
 
-    use {
+    {
         'mfussenegger/nvim-dap',
-        ft = {"c", "cpp"},
-        requires = {
+        -- ft = {"c", "cpp"},
+        keys = { "<F5>", "<leader>b", "<leader>gb" },
+        dependencies = {
             "rcarriga/nvim-dap-ui",
             "nvim-neotest/nvim-nio",
             "theHamsta/nvim-dap-virtual-text",
@@ -369,7 +380,14 @@ return require("packer").startup(function()
             vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
             vim.keymap.set("n", "<leader>db", dap.clear_breakpoints)
             --TODO: set_exception_breakpoints()
-            vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
+            vim.keymap.set("n", "<leader>gb", function()
+                if dap.session() then
+                    dap.run_to_cursor()
+                else
+                    dap.set_breakpoint()
+                    dap.continue()
+                end
+            end)
             vim.keymap.set("n", "<leader>dr", dap.repl.open)
             vim.keymap.set("n", "<leader>?", function() dapui.eval(nil, { enter = true }) end)
             -- The gdb adapter doesn't fully work (only able to use 1 breakpoint)
@@ -410,12 +428,12 @@ return require("packer").startup(function()
             dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
             dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
         end
-    }
+    },
 
     -- gruvbox color scheme
-    use {
+    {
         "ellisonleao/gruvbox.nvim",
-        requires = {"rktjmp/lush.nvim"},
+        dependencies = {"rktjmp/lush.nvim"},
         config = function()
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
@@ -427,10 +445,10 @@ return require("packer").startup(function()
             vim.g.gruvbox_contrast_light = "hard"
             vim.g.gruvbox_invert_selection = 0
         end
-    }
+    },
 
     -- nord color scheme
-    -- use {
+    -- {
     --     "shaunsingh/nord.nvim",
     --     config = function()
     --         vim.opt.termguicolors = true
@@ -440,10 +458,10 @@ return require("packer").startup(function()
     --         vim.g.nord_borders = true
     --         vim.g.nord_italic = true
     --     end
-    -- }
+    -- },
 
     -- tokyonight color scheme
-    -- use {
+    -- {
     --     "folke/tokyonight.nvim",
     --     config = function()
     --         vim.opt.termguicolors = true
@@ -456,34 +474,32 @@ return require("packer").startup(function()
     --           },
     --         })
     --     end
-    -- }
+    -- },
 
     -- status line
-    use {
+    {
         "nvim-lualine/lualine.nvim",
-        requires = {"kyazdani42/nvim-web-devicons"},
-        config = function()
-            require("lualine").setup {
-                options = {
-                    -- theme = "tokyonight",
-                    theme = "gruvbox",
-                    -- theme = "nord",
-                    icons_enabled = true,
-                    section_separators = '',
-                    component_separators = '',
-                },
-                sections = {
-                    -- path=1 for Relative path (https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options)
-                    lualine_c = {{'filename', path = 1}},
-                },
-            }
-        end
-    }
+        dependencies = {"kyazdani42/nvim-web-devicons"},
+        config =  {
+            options = {
+                -- theme = "tokyonight",
+                theme = "gruvbox",
+                -- theme = "nord",
+                icons_enabled = true,
+                section_separators = '',
+                component_separators = '',
+            },
+            sections = {
+                -- path=1 for Relative path (https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options)
+                lualine_c = {{'filename', path = 1}},
+            },
+        },
+    },
 
     -- better syntax highlight for everything
-    use {
+    {
         "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
+        build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup {
                 ensure_installed = {
@@ -511,9 +527,7 @@ return require("packer").startup(function()
                     "yaml",
                     "zig",
                 },
-                highlight = {
-                    enable = true
-                },
+                highlight = { enable = true },
                 matchup = {
                     enable = true,              -- mandatory, false will disable the whole extension
                     -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
@@ -533,18 +547,27 @@ return require("packer").startup(function()
             }
             vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
         end
-    }
+    },
 
     -- fuzzy finder (replace fzf.vim or ctrlp.vim)
-    use {
+    {
         "nvim-telescope/telescope.nvim",
-        requires = {
+        keys = {
+            "<C-p",
+            "<leader>;",
+            "<leader>gg>",
+            "<leader>G",
+            "<leader>H",
+            "<leader>q",
+            "<leader>p",
+        },
+        dependencies = {
             {"nvim-lua/plenary.nvim"},
             {"kyazdani42/nvim-web-devicons"},
             {"nvim-telescope/telescope-symbols.nvim"},
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                run = "make",
+                build = "make",
                 config = function() require("telescope").load_extension("fzf") end
             },
         },
@@ -571,82 +594,74 @@ return require("packer").startup(function()
             map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
             map("n", "<leader>G", "<cmd>Telescope grep_string<cr>", {})
         end
-    }
+    },
 
     -- todos,fix,etc.. highlight and list
-    use {
+    {
         "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup {
-                signs = false
-            }
-        end
-    }
+        dependencies = "nvim-lua/plenary.nvim",
+        config = { signs = false },
+    },
 
-    use {
+    {
         "lewis6991/gitsigns.nvim",
-        -- tag = 'release',
-        config = function()
-            require("gitsigns").setup {
-                signcolumn = false,
-                numhl = true,
-                on_attach = function(bufnr)
-                    local opts = { silent = true, noremap = true, expr = true }
-                    -- local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-                    local function map(mode, l, r)
-                        opts.buffer = bufnr
-                        vim.keymap.set(mode, l, r, opts)
-                    end
-                    local gs = package.loaded.gitsigns
-                    map(
-                        "n",
-                        "]c",
-                        function()
-                            if vim.wo.diff then return "]c" end
-                            vim.schedule(function() gs.next_hunk() end)
-                            return "<Ignore>"
-                        end
-                    )
-                    map(
-                        "n",
-                        "[c",
-                        function()
-                            if vim.wo.diff then return "[c" end
-                            vim.schedule(function() gs.prev_hunk() end)
-                            return "<Ignore>"
-                        end
-                    )
-                    map(
-                        "n",
-                        "<leader>ga",
-                        function()
-                            vim.schedule(function() gs.stage_hunk() end)
-                            return "<Ignore>"
-                        end
-                    )
-                    map(
-                        "n",
-                        "<leader>gd",
-                        function()
-                            vim.schedule(function() gs.undo_stage_hunk() end)
-                            return "<Ignore>"
-                        end
-                    )
+        -- version = 'release',
+        config = {
+            signcolumn = false,
+            numhl = true,
+            on_attach = function(bufnr)
+                local opts = { silent = true, noremap = true, expr = true }
+                -- local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                local function map(mode, l, r)
+                    opts.buffer = bufnr
+                    vim.keymap.set(mode, l, r, opts)
                 end
-            }
-        end
-    }
+                local gs = package.loaded.gitsigns
+                map(
+                    "n",
+                    "]c",
+                    function()
+                        if vim.wo.diff then return "]c" end
+                        vim.schedule(function() gs.next_hunk() end)
+                        return "<Ignore>"
+                    end
+                )
+                map(
+                    "n",
+                    "[c",
+                    function()
+                        if vim.wo.diff then return "[c" end
+                        vim.schedule(function() gs.prev_hunk() end)
+                        return "<Ignore>"
+                    end
+                )
+                map(
+                    "n",
+                    "<leader>ga",
+                    function()
+                        vim.schedule(function() gs.stage_hunk() end)
+                        return "<Ignore>"
+                    end
+                )
+                map(
+                    "n",
+                    "<leader>gd",
+                    function()
+                        vim.schedule(function() gs.undo_stage_hunk() end)
+                        return "<Ignore>"
+                    end
+                )
+            end
+        }
+    },
 
-    use {
+    {
         "RaafatTurki/hex.nvim",
-        config = function()
-            require("hex").setup()
-        end
-    }
+        config = {}
+    },
 
     -- remote files and lsp
-    -- use {
+    -- {
     --     "chipsenkbeil/distant.nvim",
     --     config = function()
     --         -- local on_attach = function(client, bufnr)
@@ -665,25 +680,25 @@ return require("packer").startup(function()
     --         }
     --         -- TODO: extend with job_distant_config.lua
     --     end,
-    --     -- run = ":DistantInstall"
-    -- }
+    --     -- build = ":DistantInstall"
+    -- },
 
-    -- use {
+    -- {
     --     'chipsenkbeil/distant.nvim',
     --     branch = 'v0.3',
     --     config = function()
     --         require('distant'):setup()
     --         require("telescope").load_extension("distant")
     --     end,
-    --     -- run = ":DistantInstall"
-    -- }
+    --     -- build = ":DistantInstall"
+    -- },
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
-    -- use {
+    -- {
     --     "benlubas/molten-nvim",
     --     -- ft = { "python" }, -- doesn"t work
-    --     run = ":UpdateRemotePlugins",
-    --     requires = {
+    --     build = ":UpdateRemotePlugins",
+    --     dependencies = {
     --         "3rd/image.nvim",
     --         config = function()
     --             require("image").setup({
@@ -710,7 +725,7 @@ return require("packer").startup(function()
     --         vim.keymap.set("n", "<leader>md", "<cmd>MoltenDelete<CR>", {})
     --         vim.keymap.set("n", "<leader>mo", "<cmd>MoltenShowOutput<CR>", {})
     --     end
-    -- }
+    -- },
 
-    -- use { "~/git/argwrap.nvim", opt = true }
-end)
+    -- { "~/git/argwrap.nvim", opt = true },
+}
