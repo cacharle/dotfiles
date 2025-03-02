@@ -107,10 +107,10 @@ return require("packer").startup(function()
         config = function()
             vim.g.black_linelength = 100
             local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
-            vim.api.nvim_create_autocmd(
-                "BufWritePre",
-                { command = "silent Black", pattern = "*.py", group = augroup }
-            )
+            -- vim.api.nvim_create_autocmd(
+            --     "BufWritePre",
+            --     { command = "silent Black", pattern = "*.py", group = augroup }
+            -- )
         end
     }
 
@@ -644,17 +644,35 @@ return require("packer").startup(function()
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
     -- use {
-    --     "dccsillag/magma-nvim",
+    --     "benlubas/molten-nvim",
     --     -- ft = { "python" }, -- doesn"t work
     --     run = ":UpdateRemotePlugins",
+    --     requires = {
+    --         "3rd/image.nvim",
+    --         config = function()
+    --             require("image").setup({
+    --                 backend = "ueberzug",
+    --                 processor = "magick_cli",
+    --                 max_width = 300, -- tweak to preference
+    --                 max_height = 35, -- ^
+    --                 max_height_window_percentage = math.huge, -- this is necessary for a good experience
+    --                 max_width_window_percentage = math.huge,
+    --                 window_overlap_clear_enabled = true,
+    --                 window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+    --             })
+    --         end
+    --     },
+    --     version = "^1.0.0",
     --     config = function()
-    --         local map = vim.api.nvim_set_keymap
-    --         map("n", "<leader>m",  "nvim_exec('MagmaEvaluateOperator', v:true)", { expr = true})
-    --         map("n", "<leader>mm", "<cmd>MagmaEvaluateLine<CR>", {})
-    --         map("x", "<leader>m",  "<cmd><C-u>MagmaEvaluateVisual<CR>", {})
-    --         map("n", "<leader>mc", "<cmd>MagmaReevaluateCell<CR>", {})
-    --         map("n", "<leader>md", "<cmd>MagmaDelete<CR>", {})
-    --         map("n", "<leader>mo", "<cmd>MagmaShowOutput<CR>", {})
+    --         vim.g.molten_image_provider = "image.nvim"
+    --         vim.g.molten_output_win_max_height = 35
+    --         -- local map = vim.api.nvim_set_keymap
+    --         vim.keymap.set("n", "<leader>m",  "nvim_exec('MoltenEvaluateOperator', v:true)", { expr = true})
+    --         vim.keymap.set("n", "<leader>mm", "<cmd>MoltenEvaluateLine<CR>", {})
+    --         vim.keymap.set("v", "<leader>m",  ":<C-u>MoltenEvaluateVisual<CR>gv", {})
+    --         vim.keymap.set("n", "<leader>mc", "<cmd>MoltenReevaluateCell<CR>", {})
+    --         vim.keymap.set("n", "<leader>md", "<cmd>MoltenDelete<CR>", {})
+    --         vim.keymap.set("n", "<leader>mo", "<cmd>MoltenShowOutput<CR>", {})
     --     end
     -- }
 
