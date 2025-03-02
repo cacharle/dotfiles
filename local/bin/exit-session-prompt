@@ -22,17 +22,17 @@ case "$choice" in
         ;;
     'Suspend')
         # `echo XHCI > /proc/acpi/wakeup` disables all the usb devices on the controller to wakeup
+        # NOTE: have to setup doas.conf for this to run without asking for a password
         doas systemctl suspend
         ;;
     'Log out')
-        # FIXME: for some reason, whether I do this or exit xmonad cleanly, I need to do it twice, why?
-        pkill -u charles
+        # From: https://www.reddit.com/r/linux4noobs/comments/jkvoyo/how_to_logout_via_command_prompt/
+        loginctl terminate-user "$(whoami)"
         ;;
     'Reboot')
         reboot
         ;;
     'Hibernate')
-        # NOTE: have to setup doas.conf for this to run without asking for a password
         doas systemctl hibernate
         ;;
     *)
