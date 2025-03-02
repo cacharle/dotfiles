@@ -67,19 +67,21 @@ return {
         },
     },
 
-    -- {
-    --     "lewis6991/satellite.nvim",
-    --     config = function ()
-    --         require('satellite').setup()
-    --     end
-    -- },
+    {
+        "lewis6991/satellite.nvim",
+        enabled = false,
+        config = function ()
+            require('satellite').setup()
+        end
+    },
 
-    -- {
-    --     'andymass/vim-matchup',
-    --     setup = function()
-    --         vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    --     end
-    -- },
+    {
+        'andymass/vim-matchup',
+        enabled = false,
+        setup = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end
+    },
 
     -- Put arguments on multiple lines
     {
@@ -123,7 +125,7 @@ return {
     -- python formatter
     {
         "psf/black",
-        -- version = "stable",
+        branch = "stable",
         ft = "python",
         config = function()
             vim.g.black_linelength = 100
@@ -448,33 +450,35 @@ return {
     },
 
     -- nord color scheme
-    -- {
-    --     "shaunsingh/nord.nvim",
-    --     config = function()
-    --         vim.opt.termguicolors = true
-    --         vim.opt.background = "dark"
-    --         vim.cmd [[ colorscheme nord ]]
-    --         vim.g.nord_contrast = true
-    --         vim.g.nord_borders = true
-    --         vim.g.nord_italic = true
-    --     end
-    -- },
+    {
+        "shaunsingh/nord.nvim",
+        enabled = false,
+        config = function()
+            vim.opt.termguicolors = true
+            vim.opt.background = "dark"
+            vim.cmd [[ colorscheme nord ]]
+            vim.g.nord_contrast = true
+            vim.g.nord_borders = true
+            vim.g.nord_italic = true
+        end
+    },
 
     -- tokyonight color scheme
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     config = function()
-    --         vim.opt.termguicolors = true
-    --         vim.opt.background = "dark"
-    --         vim.cmd [[ colorscheme tokyonight-moon ]]
-    --         require("tokyonight").setup({
-    --           styles = {
-    --             comments = { italic = true },
-    --             keywords = { italic = true },
-    --           },
-    --         })
-    --     end
-    -- },
+    {
+        "folke/tokyonight.nvim",
+        enabled = false,
+        config = function()
+            vim.opt.termguicolors = true
+            vim.opt.background = "dark"
+            vim.cmd [[ colorscheme tokyonight-moon ]]
+            require("tokyonight").setup({
+              styles = {
+                comments = { italic = true },
+                keywords = { italic = true },
+              },
+            })
+        end
+    },
 
     -- status line
     {
@@ -553,7 +557,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         keys = {
-            "<C-p",
+            "<C-p>",
             "<leader>;",
             "<leader>gg>",
             "<leader>G",
@@ -661,71 +665,55 @@ return {
     },
 
     -- remote files and lsp
-    -- {
-    --     "chipsenkbeil/distant.nvim",
-    --     config = function()
-    --         -- local on_attach = function(client, bufnr)
-    --         --     local opts = { noremap = true, silent = true }
-    --         --     local map = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    --         --     map("n", "<leader>[", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    --         --     map("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    --         --     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    --         --     map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    --         --     map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    --         --     map("n", "<leader>q", "<cmd>Telescope lsp_workspace_diagnostics<CR>", opts)
-    --         --     map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    --         -- end
-    --         require("distant").setup {
-    --             ["*"] = require("distant.settings").chip_default()
-    --         }
-    --         -- TODO: extend with job_distant_config.lua
-    --     end,
-    --     -- build = ":DistantInstall"
-    -- },
-
-    -- {
-    --     'chipsenkbeil/distant.nvim',
-    --     branch = 'v0.3',
-    --     config = function()
-    --         require('distant'):setup()
-    --         require("telescope").load_extension("distant")
-    --     end,
-    --     -- build = ":DistantInstall"
-    -- },
+    {
+        'chipsenkbeil/distant.nvim',
+        enabled = false,
+        branch = 'v0.3',
+        build = ":DistantInstall",
+        config = function()
+            require('distant'):setup()
+            require("telescope").load_extension("distant")
+            require("distant").setup {
+                ["*"] = require("distant.settings").chip_default()
+            }
+            -- TODO: extend with job_distant_config.lua
+        end,
+    },
 
     -- jupyter kernel in nvim (with images, needs ueberzug)
-    -- {
-    --     "benlubas/molten-nvim",
-    --     -- ft = { "python" }, -- doesn"t work
-    --     build = ":UpdateRemotePlugins",
-    --     dependencies = {
-    --         "3rd/image.nvim",
-    --         config = function()
-    --             require("image").setup({
-    --                 backend = "ueberzug",
-    --                 processor = "magick_cli",
-    --                 max_width = 300, -- tweak to preference
-    --                 max_height = 35, -- ^
-    --                 max_height_window_percentage = math.huge, -- this is necessary for a good experience
-    --                 max_width_window_percentage = math.huge,
-    --                 window_overlap_clear_enabled = true,
-    --                 window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-    --             })
-    --         end
-    --     },
-    --     version = "^1.0.0",
-    --     config = function()
-    --         vim.g.molten_image_provider = "image.nvim"
-    --         vim.g.molten_output_win_max_height = 35
-    --         -- local map = vim.api.nvim_set_keymap
-    --         vim.keymap.set("n", "<leader>m",  "nvim_exec('MoltenEvaluateOperator', v:true)", { expr = true})
-    --         vim.keymap.set("n", "<leader>mm", "<cmd>MoltenEvaluateLine<CR>", {})
-    --         vim.keymap.set("v", "<leader>m",  ":<C-u>MoltenEvaluateVisual<CR>gv", {})
-    --         vim.keymap.set("n", "<leader>mc", "<cmd>MoltenReevaluateCell<CR>", {})
-    --         vim.keymap.set("n", "<leader>md", "<cmd>MoltenDelete<CR>", {})
-    --         vim.keymap.set("n", "<leader>mo", "<cmd>MoltenShowOutput<CR>", {})
-    --     end
-    -- },
+    {
+        "benlubas/molten-nvim",
+        enabled = false,
+        ft = { "python" }, -- doesn"t work
+        build = ":UpdateRemotePlugins",
+        dependencies = {
+            "3rd/image.nvim",
+            config = function()
+                require("image").setup({
+                    backend = "ueberzug",
+                    processor = "magick_cli",
+                    max_width = 300, -- tweak to preference
+                    max_height = 35, -- ^
+                    max_height_window_percentage = math.huge, -- this is necessary for a good experience
+                    max_width_window_percentage = math.huge,
+                    window_overlap_clear_enabled = true,
+                    window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+                })
+            end
+        },
+        version = "^1.0.0",
+        config = function()
+            vim.g.molten_image_provider = "image.nvim"
+            vim.g.molten_output_win_max_height = 35
+            -- local map = vim.api.nvim_set_keymap
+            vim.keymap.set("n", "<leader>m",  "nvim_exec('MoltenEvaluateOperator', v:true)", { expr = true})
+            vim.keymap.set("n", "<leader>mm", "<cmd>MoltenEvaluateLine<CR>", {})
+            vim.keymap.set("v", "<leader>m",  ":<C-u>MoltenEvaluateVisual<CR>gv", {})
+            vim.keymap.set("n", "<leader>mc", "<cmd>MoltenReevaluateCell<CR>", {})
+            vim.keymap.set("n", "<leader>md", "<cmd>MoltenDelete<CR>", {})
+            vim.keymap.set("n", "<leader>mo", "<cmd>MoltenShowOutput<CR>", {})
+        end
+    },
 
     -- { "~/git/argwrap.nvim", opt = true },
 }
