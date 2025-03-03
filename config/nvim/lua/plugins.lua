@@ -11,6 +11,7 @@ local on_attach = function(_, bufnr)
     map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     map("n", "<leader>q", "<cmd>Telescope diagnostics<CR>", opts)
     map("n", "<leader>p", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
+    map("n", "<leader>r", "<cmd>Telescope lsp_references<CR>", opts)
 end
 
 return {
