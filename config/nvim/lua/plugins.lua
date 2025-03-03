@@ -532,8 +532,9 @@ return {
                 component_separators = '',
             },
             sections = {
+                lualine_a = { { "mode", fmt = function (s) return s:sub(1, 1) end } },
                 -- path=1 for Relative path (https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options)
-                lualine_c = {{'filename', path = 1}},
+                lualine_c = { { "filename", path = 1 } },
             },
         },
     },
