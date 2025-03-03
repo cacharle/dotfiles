@@ -385,9 +385,10 @@ return {
 
     {
         'mfussenegger/nvim-dap',
-        -- ft = {"c", "cpp"},
         keys = { "<F5>", "<leader>b", "<leader>gb" },
         dependencies = {
+            "williamboman/mason.nvim",
+            "jay-babu/mason-nvim-dap.nvim",
             "rcarriga/nvim-dap-ui",
             "nvim-neotest/nvim-nio",
             "theHamsta/nvim-dap-virtual-text",
@@ -395,6 +396,11 @@ return {
             -- "mfussenegger/nvim-dap-python",
         },
         config = function ()
+            require("mason").setup()
+            require("mason-nvim-dap").setup {
+                ensure_installed = { "codelldb" },
+                handlers = {},
+            }
             local dap = require("dap")
             local dapui = require("dapui")
             dapui.setup({
