@@ -79,14 +79,13 @@ return {
 
     {
         "lewis6991/satellite.nvim",
-        enabled = false,
-        config = function ()
-            require('satellite').setup()
-        end
+        config = {
+            handlers = { gitsigns = { enable = false } },
+        },
     },
 
     {
-        'andymass/vim-matchup',
+        "andymass/vim-matchup",
         enabled = false,
         setup = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
