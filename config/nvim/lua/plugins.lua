@@ -138,7 +138,7 @@ return {
         ft = "python",
         config = function()
             vim.g.black_linelength = 100
-            local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
+            -- local augroup = vim.api.nvim_create_augroup("cacharle_black_group", {})
             -- vim.api.nvim_create_autocmd(
             --     "BufWritePre",
             --     { command = "silent Black", pattern = "*.py", group = augroup }
@@ -149,11 +149,30 @@ return {
     -- nvim lsp configuration
     {
         "neovim/nvim-lspconfig",
--- "rust",
         ft = {"python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml", "odin"},
-        config = function()
-            vim.diagnostic.config { signs = false, update_in_insert = false }
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
+        config = function ()
+            local mason = require("mason")
+            local mason_lspconfig = require("mason-lspconfig")
+            mason.setup()
+            mason_lspconfig.setup {
+                ensure_installed = {
+                    "gopls",
+                    "pylsp",
+                    "lua_ls",
+                    "clangd",
+                    "zls",
+                    "yamlls",
+                    "ols",
+                    -- "haskell-language-server",
+                    -- "ocamllsp",
+                },
+            }
             local lspconfig = require("lspconfig")
+            vim.diagnostic.config { signs = false, update_in_insert = false }
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
@@ -234,7 +253,12 @@ return {
             lspconfig.hls.setup { on_attach = on_attach }
             -- opam install ocaml-lsp-server
             lspconfig.ocamllsp.setup { on_attach = on_attach }
-            lspconfig.clangd.setup { on_attach = on_attach, cmd = {"clangd", "-header-insertion=never"} }
+            lspconfig.clangd.setup { on_attach = on_attach, cmd = {
+                "clangd",
+                "--header-insertion=never",
+                "--pch-storage=memory",
+                -- TODO: "--clang-tidy",
+            } }
             -- pacman -S zls
             lspconfig.zls.setup{}
             -- pacman -S yaml-language-server
@@ -254,7 +278,6 @@ return {
                             ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
                             -- ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
                             ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
-
                             ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
                             ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
                         },
