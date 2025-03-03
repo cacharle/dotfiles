@@ -580,7 +580,14 @@ return {
             {"nvim-telescope/telescope-symbols.nvim"},
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                build = "make",
+                build = function ()
+                    local sysname = vim.uv.os_uname().sysname
+                    if sysname == "Linux" then
+                        return "make"
+                    else
+                        return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+                    end
+                end,
                 config = function() require("telescope").load_extension("fzf") end
             },
         },
