@@ -14,6 +14,14 @@ local on_attach = function(_, bufnr)
     map("n", "<leader>r", "<cmd>Telescope lsp_references<CR>", opts)
 end
 
+local telescope_fzf_native_build = ""
+local sysname = vim.uv.os_uname().sysname
+if sysname == "Linux" then
+    telescope_fzf_native_build = "make"
+else
+    telescope_fzf_native_build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+end
+
 return {
     -- Move arguments sideways
     {
@@ -436,11 +444,18 @@ return {
                 command = "gdb",
                 args = {"--interpreter", "dap", "--eval-command", "set print pretty on"},
             }
-            -- Install: yay -S codelldb-bin
+            local sysname = vim.uv.os_uname().sysname
+            local codelldb_command = ""
+            if sysname == "Linux" then
+                -- Install: yay -S codelldb-bin
+                codelldb_command = "codelldb"
+            else
+                codelldb_command = "C:\\Users\\charl\\.vscode\\extensions\\vadimcn.vscode-lldb-1.11.4\\adapter\\codelldb.exe"
+            end
             dap.adapters.codelldb = {
                 type = "executable",
-                command = "codelldb",
-                -- on windows: detached = false
+                command = codelldb_command,
+                detached = false,
             }
             local c_cpp_config = {
                 {
@@ -610,14 +625,7 @@ return {
             {"nvim-telescope/telescope-symbols.nvim"},
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                build = function ()
-                    local sysname = vim.uv.os_uname().sysname
-                    if sysname == "Linux" then
-                        return "make"
-                    else
-                        return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
-                    end
-                end,
+                build = telescope_fzf_native_build,
                 config = function() require("telescope").load_extension("fzf") end
             },
         },
