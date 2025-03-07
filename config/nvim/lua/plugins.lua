@@ -36,7 +36,7 @@ return {
     -- only highlight search matches when searching
     {
         "romainl/vim-cool",
-        keys = "/",
+        keys = {"/", "*", "#", ":%"},
     },
 
     {
