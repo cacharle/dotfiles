@@ -779,5 +779,7 @@ return {
         end
     },
 
+    {'akinsho/git-conflict.nvim', config = true},
+
     -- { "~/git/argwrap.nvim", opt = true },
 }
