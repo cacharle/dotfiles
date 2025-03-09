@@ -151,7 +151,7 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "cpp,c",
+    pattern = "cpp,c,cuda",
     callback = function()
         vim.bo.commentstring = "// %s"
     end,
