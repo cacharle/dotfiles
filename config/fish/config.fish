@@ -115,6 +115,7 @@ if status is-interactive
     alias pacman 'pacman --color=auto'
     alias yay 'yay --color=auto'
     alias tree 'tree -C'
+    alias ip 'ip -color'
     alias less 'less -N'   # enable line number
     if [ "$(uname)" = 'Darwin' ]
         alias nvim 'VIMINIT="" /usr/local/bin/nvim'
