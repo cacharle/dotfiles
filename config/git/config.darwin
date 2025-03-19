@@ -15,7 +15,8 @@
 [init]
 	defaultBranch = master
 [core]
-    editor = "VIMINIT='' nvim"
+    # editor = "VIMINIT='' nvim"
+    editor = "nvim"
     pager = delta
 [interactive]
     diffFilter = delta --color-only --syntax-theme gruvbox-dark

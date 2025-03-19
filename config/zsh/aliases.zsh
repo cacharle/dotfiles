@@ -9,7 +9,7 @@ alias tree='tree -C'
 
 # common commands
 alias less='less -N'   # enable line number
-alias nvim='VIMINIT="" nvim'
+# alias nvim='VIMINIT="" nvim'
 alias v='nvim'
 alias gdb='gdb -q'     # disable long intro message
 alias sudo='sudo '     # enable color (the search for aliases continues)

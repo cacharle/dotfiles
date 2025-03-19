@@ -49,7 +49,8 @@ set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
 # set -gx AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
 # set -gx AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 # shellcheck disable SC2016
-set -gx VIMINIT 'let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+# set -gx VIMINIT 'let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+set -gx VIMINIT ''
 set -gx IPYTHONDIR "$XDG_CONFIG_HOME/ipython"
 set -gx JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME/jupyter"
 set -gx SCREENRC "$XDG_CONFIG_HOME/screen/screenrc"
@@ -120,7 +121,7 @@ if status is-interactive
     if [ "$(uname)" = 'Darwin' ]
         alias nvim 'VIMINIT="" /usr/local/bin/nvim'
     else
-        alias nvim 'VIMINIT="" /usr/bin/nvim'
+        # alias nvim 'VIMINIT="" /usr/bin/nvim'
     end
     alias v 'nvim'
     alias gdb 'gdb -q'     # disable long intro message
