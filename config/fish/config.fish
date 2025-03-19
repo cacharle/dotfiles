@@ -133,6 +133,7 @@ if status is-interactive
     alias mbsync 'mbsync -c "$XDG_CONFIG_HOME/isync/mbsyncrc"'
     alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
 	# alias nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
+    alias whoer='curl http://dynamicdns.park-your-domain.com/getip'
 
     #alias y 'yazi'
     # from: https://yazi-rs.github.io/docs/quick-start#shell-wrapper
