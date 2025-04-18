@@ -85,7 +85,16 @@ local augroup = vim.api.nvim_create_augroup("cacharle_init_group", {})
 -- remove trailing white space on save
 vim.api.nvim_create_autocmd(
     "BufWritePre",
-    { pattern = "*", command = [[ %s/\s\+$//e ]], group = augroup }
+    {
+        pattern = "*",
+        callback = function()
+            -- Create a mark to avoid jumping to a line that got it's spaces removed
+            vim.cmd("normal! mA")
+            vim.cmd([[ %s/\s\+$//e ]])
+            vim.cmd("normal! `A")
+        end,
+        group = augroup
+    }
 )
 
 -- set filttype for *.sql.j2 files
