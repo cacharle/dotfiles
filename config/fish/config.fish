@@ -147,7 +147,7 @@ if status is-interactive
     end
 
     if command -qv eza
-        alias ls='eza --git --git-repos --mounts --classify --icons'
+        alias ls='eza --git --git-repos --mounts --classify --icons --no-quotes'
     else
         if [ "$(uname)" = 'Linux' ]
             alias ls='ls --color=auto -Fh'
