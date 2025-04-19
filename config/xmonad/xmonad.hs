@@ -21,12 +21,14 @@ import           XMonad.Layout.ThreeColumns  (ThreeCol (ThreeColMid))
 import           XMonad.Layout.CenteredIfSingle (centeredIfSingle)
 import           XMonad.Layout.OnHost           (onHost)
 import           XMonad.Layout.MultiColumns     (multiCol)
+import           XMonad.Layout.Gaps             (gaps, Direction2D(U))
 
 -- Hooks
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
 import           XMonad.Hooks.WindowSwallowing
 import           XMonad.Hooks.ManageHelpers  (isDialog)
+import           XMonad.Hooks.ManageDocks    (manageDocks, avoidStruts, docks)
 
 import           XMonad.StackSet             (swapUp)
 
@@ -40,12 +42,12 @@ myTerminal = "alacritty"
 
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
-main = xmonad $ desktopConfig
+main = xmonad $ docks $ desktopConfig
         { normalBorderColor  = "#1c1c1c"
         , focusedBorderColor = "#8a8a8a"
         , terminal           = myTerminal
         , layoutHook         = layoutHook'
-        , manageHook         = manageHook'
+        , manageHook         = manageDocks <+> manageHook'
         , modMask            = mod4Mask       -- mod key to super
         , borderWidth        = 2
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
@@ -55,7 +57,7 @@ main = xmonad $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ onHost "charles-fractal" ultraWideLayout commonLayout
+layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-fractal" ultraWideLayout commonLayout
     where ultraWideLayout = threeColMid ||| multiCol [1, 1] 2 (-0.05) (-0.25) ||| commonLayout
           commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
@@ -109,6 +111,7 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
         , ("M-S-l",                   spawn "logitec-litra-toggle")
         , ("M-S-d",                   spawn "notify-send -i x-office-calendar \"$(date +\"%H:%M %A %d/%m/%Y %B\")\"")
         , ("M-S-b",                   spawn "battery-notify")
+        , ("M-S-m",                   spawn "xmobar-toggle")
         , ("M-S-s",                   spawn "toggle-screenkey")
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
         , ("M-S-q",                   spawn "exit-session-prompt")

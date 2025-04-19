@@ -1,0 +1,12 @@
+#!/bin/sh
+
+pid="$(pgrep -u $(whoami) '^xmobar$')"
+
+echo "hello $pid"
+if [ -z "$pid" ]
+then
+    xmobar &
+    disown
+else
+    kill "$pid"
+fi

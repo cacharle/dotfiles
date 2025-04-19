@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# TODO: can't figure out how to make avoidStruts work with this for now
+
+# - Get a list of all the windows with their dimentions
+# - Filter out the non-visible windows
+# - Sort by x position and pick the lowest one
+# - Return it's width
+leftmost_window_width="$(
+    xwininfo -root -tree |
+    grep -Eo '[0-9]+x[0-9]+\+[0-9]+\+[0-9]+' |
+    grep -Ev '^1x1\+0\+0' |
+    grep -Ev '^10x10\+10\+10' |
+    grep -Ev '^200x200\+0\+0' |
+    awk -F 'x|+' '{ print $3, $1, $2 }' |
+    sort -n |
+    head -n1 |
+    cut -d' ' -f2
+)"
+
+pkill xmobar
+xmobar --position "Static { xpos = 6, ypos = 0, width = $leftmost_window_width, height = 20 }"

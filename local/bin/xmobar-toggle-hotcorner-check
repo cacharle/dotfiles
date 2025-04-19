@@ -1,0 +1,13 @@
+#!/bin/sh
+
+while true
+do
+    # X and Y env variables are defined
+    eval $(xdotool getmouselocation --shell)
+    if [ "$X" -lt 5 ] && [ "$Y" -lt 5 ]
+    then
+        xmobar-toggle
+        sleep 2 # leave a bit more time to leave the hot corner
+    fi
+    sleep 0.1
+done

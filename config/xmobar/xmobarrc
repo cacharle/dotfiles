@@ -1,11 +1,11 @@
 Config {
-
    -- appearance
      font =         "Bitstream Vera Sans Mono Bold 9"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     Top
-   , border =       BottomB
+   -- , position =     Static { xpos = 0, ypos = 0, width = 640, height = 20 }
+   -- , border =       BottomB
    , borderColor =  "#646464"
 
    -- layout
@@ -17,7 +17,7 @@ Config {
    , lowerOnStart =     True    -- send to bottom of window stack on start
    , hideOnStart =      False   -- start with window unmapped (hidden)
    , allDesktops =      True    -- show on all desktops
-   , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+   , overrideRedirect = False    -- set the Override Redirect flag (Xlib)
    , pickBroadest =     False   -- choose widest display (multi-monitor)
    , persistent =       True    -- enable/disable hiding (True = disabled)
 
@@ -104,3 +104,4 @@ Config {
                              ]
         ]
    }
+-- vim:ft=haskell
