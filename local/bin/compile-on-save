@@ -1,0 +1,25 @@
+#!/bin/sh
+
+command -v inotifywait > /dev/null || { echo 'Could not found inotifywait'; exit 1; }
+
+path="$1"
+shift
+compile_command="$@"
+
+exec_file_name="$(basename "$0")"
+
+compile_and_run() {
+    clear
+    echo "$exec_file_name $path $compile_command"
+    echo '---------------------------------------'
+    $compile_command "$path" && ./a.out
+}
+
+compile_and_run
+
+while true
+do
+    # TODO: --recursive might be useful
+    inotifywait --quiet --event modify --exclude 'a.out' "$path"
+    compile_and_run
+done
