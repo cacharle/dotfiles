@@ -658,8 +658,14 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
-        config = { signs = false },
+        config = {
+            signs = false,
+            -- Add a space after the ':' since I use the quickfix library at work which has the FIX:: namespace
+            highlight = { pattern = [[.*<(KEYWORDS)\s*: ]] },
+            search = { pattern = [[\b(KEYWORDS): ]] },
+        },
     },
+
 
     {
         "lewis6991/gitsigns.nvim",
