@@ -76,7 +76,7 @@ return {
             "MunifTanjim/nui.nvim",
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
-        config = {
+        opts = {
             window = {
                 mappings = {
                     ["<c-x>"] = "open_split",
@@ -88,7 +88,7 @@ return {
     {
         "lewis6991/satellite.nvim",
         enabled = false,
-        config = {
+        opts = {
             handlers = { gitsigns = { enable = false } },
         },
     },
@@ -539,7 +539,7 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {"kyazdani42/nvim-web-devicons"},
-        config =  {
+        opts =  {
             options = {
                 -- theme = "tokyonight",
                 theme = "gruvbox",
@@ -660,7 +660,7 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
-        config = {
+        opts = {
             signs = false,
             -- Add a space after the ':' since I use the quickfix library at work which has the FIX:: namespace
             highlight = { pattern = [[.*<(KEYWORDS)\s*: ]] },
@@ -672,7 +672,7 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         -- version = 'release',
-        config = {
+        opts = {
             signcolumn = false,
             numhl = true,
             on_attach = function(bufnr)
@@ -723,7 +723,7 @@ return {
 
     {
         "RaafatTurki/hex.nvim",
-        config = {}
+        opts = {}
     },
 
     {
