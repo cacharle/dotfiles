@@ -261,6 +261,7 @@ return {
             lspconfig.hls.setup { on_attach = on_attach }
             -- opam install ocaml-lsp-server
             lspconfig.ocamllsp.setup { on_attach = on_attach }
+            -- NOTE: to add compile arguments for standalone mode, create a .clangd file
             lspconfig.clangd.setup { on_attach = on_attach, cmd = {
                 "clangd",
                 "--header-insertion=never",
