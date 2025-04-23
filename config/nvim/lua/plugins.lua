@@ -87,6 +87,7 @@ return {
 
     {
         "lewis6991/satellite.nvim",
+        enabled = false,
         config = {
             handlers = { gitsigns = { enable = false } },
         },
