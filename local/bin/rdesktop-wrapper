@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rdesktop -P -z -u "${2:-administrator} -p - -r clipboard:PRIMARYCLIPBOARD "$1"
