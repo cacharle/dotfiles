@@ -37,7 +37,8 @@ import           XMonad.StackSet             (swapUp)
 import XMonad.Layout.LayoutScreens
 import XMonad.Layout.TwoPane
 
-myTerminal = "alacritty"
+-- myTerminal = "alacritty"
+myTerminal = "wezterm"
 
 
 -- xmonad :: XConfig -> IO ()

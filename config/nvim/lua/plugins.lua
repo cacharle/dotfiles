@@ -576,6 +576,7 @@ return {
                     "lua",
                     "make",
                     "markdown",
+                    "mermaid",
                     "meson",
                     "odin",
                     "python",
@@ -788,6 +789,26 @@ return {
     },
 
     {'akinsho/git-conflict.nvim', config = true},
+
+    -- {
+    --     'cameron-wags/rainbow_csv.nvim',
+    --     config = true,
+    --     ft = {
+    --         'csv',
+    --         'tsv',
+    --         'csv_semicolon',
+    --         'csv_whitespace',
+    --         'csv_pipe',
+    --         'rfc_csv',
+    --         'rfc_semicolon'
+    --     },
+    --     cmd = {
+    --         'RainbowDelim',
+    --         'RainbowDelimSimple',
+    --         'RainbowDelimQuoted',
+    --         'RainbowMultiDelim'
+    --     }
+    -- }
 
     -- { "~/git/argwrap.nvim", opt = true },
 }

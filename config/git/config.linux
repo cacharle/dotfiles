@@ -53,3 +53,9 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[maintenance]
+	repo = /home/charles/git/aggregator

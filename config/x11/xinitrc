@@ -10,7 +10,7 @@ udiskie &                                       # automount usb devices
 xrdb "$XDG_CONFIG_HOME/x11/Xresources"
 hsetroot -add '#111' -add '#222' -gradient 180  # gradient background
 syncthing --no-browser > ~/.cache/syncthing.log 2>&1 &
-xmobar-toggle-hotcorner-check &
+# xmobar-toggle-hotcorner-check &
 
 case "$(cat /etc/hostname)" in
     charles-main)

@@ -24,7 +24,8 @@ set -gx PATH "$PATH:$HOME/git/ols"
 
 # applications
 set -gx EDITOR 'nvim'
-set -gx TERMINAL 'alacritty'
+# set -gx TERMINAL 'alacritty'
+set -gx TERMINAL 'wezterm'
 set -gx BROWSER 'qutebrowser'
 set -gx BROWSERCLI 'w3m'
 
