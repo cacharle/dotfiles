@@ -494,13 +494,11 @@ return {
         config = function()
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
+            require("gruvbox").setup({
+                italic = { strings = false },
+                invert_selection = false,
+            })
             vim.cmd [[ colorscheme gruvbox ]]
-            vim.g.gruvbox_italic = 1
-            vim.g.gruvbox_bold = 1
-            vim.g.gruvbox_termcolors = 256
-            vim.g.gruvbox_contrast_dark = "medium"
-            vim.g.gruvbox_contrast_light = "hard"
-            vim.g.gruvbox_invert_selection = 0
         end
     },
 
