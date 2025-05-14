@@ -1,3 +1,6 @@
 #!/bin/sh
 
-rdesktop -P -z -u "${2:-administrator} -p - -r clipboard:PRIMARYCLIPBOARD "$1"
+# user="administrator"
+# [ ! -z "$2" ] && user="$2"
+
+rdesktop -P -z -u "${2:-administrator}" -p - -r clipboard:PRIMARYCLIPBOARD "$1"

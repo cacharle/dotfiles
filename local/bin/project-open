@@ -18,10 +18,20 @@ dest=$(
 
 dest_path="$HOME/git/$dest"
 
+exec_terminal_at_dest() {
+    if [ "$TERMINAL" = 'wezterm' ]
+    then
+        exec wezterm start --cwd "$dest_path"
+    else
+        cd "$dest_path"
+        exec "$TERMINAL"
+    fi
+}
+
 if cd "$dest_path" 2> /dev/null
 then
     touch "$dest_path"
-    exec "$TERMINAL"
+    exec_terminal_at_dest
 else
     while [ -z "$choice" ]
     do
@@ -33,7 +43,7 @@ else
             mkdir -p "$dest_path"
             cd "$dest_path" || exit 1
             git init
-            exec "$TERMINAL"
+            exec_terminal_at_dest
             ;;
 
         "clone")
@@ -49,8 +59,9 @@ else
                 other) ;;
             esac
             url="$prefix$(echo "$dest" | $menu_exec -p "Enter repository url: $prefix")"
-            "$TERMINAL" -e /bin/sh -c "git clone --recursive '$url' '$dest_path' && cd '$dest_path' && exec $SHELL" ||
-                notify-send -u critical "Could not clone $url in $dest_path" && exit 1
+            git clone --recursive "$url" "$dest_path" ||
+                notify-send -u critical "Could not clone $url in $dest_path"
+            exec_terminal_at_dest
             ;;
 
         "cancel") exit ;;
