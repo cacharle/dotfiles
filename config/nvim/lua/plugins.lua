@@ -113,7 +113,10 @@ return {
                 "Filetype",
                 {
                     pattern = "c,cpp",
-                    callback = function() vim.g.argwrap_tail_comma = 0 end,
+                    callback = function()
+                        vim.g.argwrap_tail_comma = 0
+                        vim.g.argwrap_wrap_closing_brace = 0
+                    end,
                     group = augroup,
                 }
             )
@@ -176,6 +179,7 @@ return {
                     "zls",
                     "yamlls",
                     "ols",
+                    "cmake-language-server",
                     -- "haskell-language-server",
                     -- "ocamllsp",
                 },
@@ -267,6 +271,7 @@ return {
                 "clangd",
                 "--header-insertion=never",
                 "--pch-storage=memory",
+                "--malloc-trim",
                 -- TODO: "--clang-tidy",
             } }
             -- pacman -S zls
@@ -295,6 +300,7 @@ return {
                 }
             }
             lspconfig.ols.setup{ on_attach = on_attach }
+            vim.lsp.enable("cmake")
         end,
     },
 
@@ -388,7 +394,12 @@ return {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
                     end
-                }
+                },
+                performance = {
+                    debounce = 100,
+                    throttle = 100,
+                    fetching_timeout = 250,
+                },
             }
         end
     },
@@ -563,6 +574,7 @@ return {
                 ensure_installed = {
                     "bash",
                     "c",
+                    "cmake",
                     "commonlisp",
                     "cpp",
                     "cuda",
