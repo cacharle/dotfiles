@@ -51,3 +51,4 @@ $ ./install
 - [ ] Figure out how to have window swallowing (for file preview mainly)
 - [ ] Start obs and turn on the light (with  litra-driver (lc)) with keybinding
     - [ ] Add keybindings to control the light brightness and temperature
+- [ ] Run whisper for speach as keyboard input with shortcut

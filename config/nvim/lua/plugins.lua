@@ -123,6 +123,14 @@ return {
             vim.api.nvim_create_autocmd(
                 "Filetype",
                 {
+                    pattern = "json",
+                    callback = function() vim.g.argwrap_tail_comma = 0 end,
+                    group = augroup,
+                }
+            )
+            vim.api.nvim_create_autocmd(
+                "Filetype",
+                {
                     pattern = "go,lua",
                     callback = function() vim.g.argwrap_padded_braces = "{" end,
                     group = augroup,
