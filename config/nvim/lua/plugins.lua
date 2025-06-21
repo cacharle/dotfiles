@@ -191,6 +191,7 @@ return {
                     -- "haskell-language-server",
                     -- "ocamllsp",
                 },
+                automatic_enable = false,
             }
             local lspconfig = require("lspconfig")
             vim.diagnostic.config { signs = false, update_in_insert = false }
