@@ -8,6 +8,7 @@ config.color_scheme = "GruvboxDark"
 config.enable_tab_bar = false
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.window_close_confirmation = "NeverPrompt"
+config.warn_about_missing_glyphs = false
 
 config.keys = {
     { key = "K", mods = "ALT", action = act.ScrollByLine(-10) },
