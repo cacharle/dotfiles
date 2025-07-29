@@ -31,7 +31,6 @@ nmap
 opendoas
 openssh
 pkgfile
-pulseaudio
 qutebrowser
 redshift
 ripgrep
@@ -150,3 +149,9 @@ udisks2
 udiskie
 
 wezterm
+
+pipewire
+pipewire-audio
+pipewire-alsa
+pipewire-pulse
+wireplumber

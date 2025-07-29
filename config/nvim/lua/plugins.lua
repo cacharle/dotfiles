@@ -276,13 +276,14 @@ return {
             -- opam install ocaml-lsp-server
             lspconfig.ocamllsp.setup { on_attach = on_attach }
             -- NOTE: to add compile arguments for standalone mode, create a .clangd file
-            lspconfig.clangd.setup { on_attach = on_attach, cmd = {
-                "clangd",
-                "--header-insertion=never",
-                "--pch-storage=memory",
-                "--malloc-trim",
+            lspconfig.clangd.setup {
+                on_attach = on_attach,
                 -- TODO: "--clang-tidy",
-            } }
+                cmd = { "clangd", "--header-insertion=never", "--pch-storage=memory", "--malloc-trim" },
+                -- capabilities = vim.tbl_deep_extend(
+                --     "force", vim.lsp.protocol.make_client_capabilities(),
+                --         { textDocument = { completion = { completionItem = { snippetSupport = false, } } } }
+            }
             -- pacman -S zls
             lspconfig.zls.setup{}
             -- pacman -S yaml-language-server

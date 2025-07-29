@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Simulating pulseaudio-ctl for pipewire
+
+case "$1" in
+    "up")          wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+  ;;
+    "down")        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-  ;;
+    "mute-toggle") wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+esac
+
+volume="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+if echo $volume | grep "MUTED"
+then
+    notify-send "Muted"
+else
+    volume="$(echo $volume | grep -oE '[0-9]+\.[0-9]+')"
+    volume="$(echo | awk "{ print $volume * 100 }")"
+    notify-send -h "int:value:$volume" -h string:synchronous:progress "Volume"
+fi
+

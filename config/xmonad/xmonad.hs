@@ -84,12 +84,20 @@ manageHook' = composeAll
     , isDialog --> doF swapUp
     ]
 
-keys' = [ ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
-        , ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
-        , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
-        , ("<XF86AudioMicMute>",      spawn "pulseaudio-ctl mute-input")
-        , ("M--",                     spawn "pulseaudio-ctl down")
-        , ("M-=",                     spawn "pulseaudio-ctl up")
+keys' = [ ("<XF86AudioLowerVolume>",  spawn "pipewire-ctl down")
+        , ("<XF86AudioRaiseVolume>",  spawn "pipewire-ctl up")
+        , ("<XF86AudioMute>",         spawn "pipewire-ctl mute-toggle")
+        , ("<XF86AudioMicMute>",      spawn "pipewire-ctl mute-toggle") -- TODO: here mic
+        , ("M--",                     spawn "pipewire-ctl down")
+        , ("M-=",                     spawn "pipewire-ctl up")
+
+        -- pulseaudio:
+        --         , ("<XF86AudioLowerVolume>",  spawn "pulseaudio-ctl down")
+        --         , ("<XF86AudioRaiseVolume>",  spawn "pulseaudio-ctl up")
+        --         , ("<XF86AudioMute>",         spawn "pulseaudio-ctl mute")
+        --         , ("<XF86AudioMicMute>",      spawn "pulseaudio-ctl mute-input")
+        --         , ("M--",                     spawn "pulseaudio-ctl down")
+        --         , ("M-=",                     spawn "pulseaudio-ctl up")
         -- , ("M-g",                     layoutSplitScreen 2 (TwoPane 0.5 0.5))
         -- , ("M-f",                     rescreen)
 
