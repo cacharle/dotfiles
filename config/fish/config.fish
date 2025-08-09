@@ -260,6 +260,8 @@ if status is-interactive
         echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
     end
 
+    eval $(ssh-agent -c) > /dev/null
+
     command -q cowsay-total-war-quotes && cowsay-total-war-quotes
 end
 
