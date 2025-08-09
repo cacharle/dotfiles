@@ -117,6 +117,16 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- set filetype for c++ std headers
+vim.api.nvim_create_autocmd(
+    "BufReadPre",
+    {
+        pattern = "/usr/include/*,C:/Program Files/Microsoft Visual Studio/*/include/*",
+        callback = function() vim.opt.filetype = "cpp" end,
+        group = augroup,
+    }
+)
+
 -- -- Format go files on save
 -- vim.api.nvim_create_autocmd(
 --     "BufWritePre",
