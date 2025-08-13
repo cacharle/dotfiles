@@ -16,6 +16,9 @@ config.keys = {
     { key = "J", mods = "ALT", action = act.ScrollByLine(10) },
     { key = "k", mods = "ALT", action = act.SendString("\x1B[A") },
     { key = "j", mods = "ALT", action = act.SendString("\x1B[B") },
+    -- Some bindings that get triggered when I forgot about capslock in vim
+    { key = "u", mods = "CTRL|SHIFT", action = "DisableDefaultAssignment" },
+    { key = "n", mods = "CTRL|SHIFT", action = "DisableDefaultAssignment" },
 }
 
 return config
