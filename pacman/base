@@ -23,7 +23,7 @@ linux
 linux-firmware
 meson
 mlocate
-neofetch
+fastfetch
 neovim
 net-tools
 networkmanager
@@ -107,8 +107,6 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xterm
-yay
-yay-debug
 zathura
 zathura-pdf-mupdf
 zram-generator

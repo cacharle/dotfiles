@@ -242,6 +242,7 @@ if status is-interactive
     abbr zathura 'zathura --fork'
     alias open 'xdg-open'
     alias ffmpeg 'ffmpeg -hide_banner'
+    alias neofetch 'fastfetch'
 
     # THEME PURE #
     #set fish_function_path /home/charles/.config/fish/functions/theme-pure/functions/ $fish_function_path
