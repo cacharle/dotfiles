@@ -263,7 +263,7 @@ if status is-interactive
 
     eval $(ssh-agent -c) > /dev/null
 
-    command -q cowsay-total-war-quotes && cowsay-total-war-quotes
+    command -q cowsay-total-war-quotes && COLUMNS=$COLUMNS cowsay-total-war-quotes
 end
 
 # (with a display manager, it's not the login shell anymore)
