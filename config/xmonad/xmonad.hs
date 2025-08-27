@@ -52,6 +52,7 @@ main = xmonad $ docks $ desktopConfig
         , modMask            = mod4Mask       -- mod key to super
         , borderWidth        = 2
         , focusFollowsMouse  = False          -- don't change window based on mouse position (need to click)
+        , clickJustFocuses  = True
         , workspaces         = ["code", "web"] ++ map show [3..9]
         -- , handleEventHook    = handleEventHook'
         -- , startupHook        = startupHook'
