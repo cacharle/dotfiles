@@ -1,0 +1,63 @@
+.shell pwsh
+
+# Reload whkd configuration
+win + q                 : komorebic reload-configuration; taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
+
+win + shift + return   : Start-Process wezterm -WindowStyle hidden
+
+win + shift + c         : komorebic close
+# win + m                 : komorebic minimize
+
+# Focus windows
+win + j                 : komorebic cycle-focus next
+win + k                 : komorebic cycle-focus previous
+win + h                 : komorebic focus left
+win + l                 : komorebic focus right
+
+# Move windows
+win + shift + j         : komorebic cycle-move next
+win + shift + k         : komorebic cycle-move previous
+
+# Resize
+win + shift + h         : komorebic resize vertical increase
+win + shift + l         : komorebic resize vertical decrease
+
+# Manipulate windows
+win + t                 : komorebic toggle-float
+win + shift + f         : komorebic toggle-monocle
+
+# Window manager options
+win + shift + r         : komorebic retile
+win + p                 : komorebic toggle-pause
+
+# Layouts
+win + x                 : komorebic flip-layout horizontal
+win + y                 : komorebic flip-layout vertical
+
+# Workspaces
+win + 1                 : komorebic focus-workspace 0
+win + 2                 : komorebic focus-workspace 1
+win + 3                 : komorebic focus-workspace 2
+win + 4                 : komorebic focus-workspace 3
+win + 5                 : komorebic focus-workspace 4
+win + 6                 : komorebic focus-workspace 5
+win + 7                 : komorebic focus-workspace 6
+win + 8                 : komorebic focus-workspace 7
+
+# Move windows across workspaces
+win + shift + 1         : komorebic send-to-workspace 0
+win + shift + 2         : komorebic send-to-workspace 1
+win + shift + 3         : komorebic send-to-workspace 2
+win + shift + 4         : komorebic send-to-workspace 3
+win + shift + 5         : komorebic send-to-workspace 4
+win + shift + 6         : komorebic send-to-workspace 5
+win + shift + 7         : komorebic send-to-workspace 6
+win + shift + 8         : komorebic send-to-workspace 7
+
+win + w         : komorebic focus-monitor 0
+win + e         : komorebic focus-monitor 1
+win + r         : komorebic focus-monitor 2
+
+win + shift + w         : komorebic send-to-monitor 0
+win + shift + e         : komorebic send-to-monitor 1
+win + shift + r         : komorebic send-to-monitor 2
