@@ -5,4 +5,4 @@ command -v rofi > /dev/null &&
     menu_exec='rofi -dmenu' ||
     menu_exec='dmenu'
 
-udiskie-umount "$(udiskie-info --filter is_mounted --all | $menu_exec)"
+udiskie-umount "$(udiskie-info --filter is_mounted --all | $menu_exec -p 'Disk')"

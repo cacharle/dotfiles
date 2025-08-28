@@ -9,7 +9,7 @@ command -v rofi > /dev/null &&
     menu_exec='dmenu'
 
 choice="$(
-$menu_exec <<EOF
+$menu_exec -p 'Action' <<EOF
 Crop to clipboard
 Crop to file
 Window to clipboard

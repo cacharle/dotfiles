@@ -7,7 +7,7 @@ command -v rofi > /dev/null &&
     menu_exec='dmenu'
 
 choice="$(
-$menu_exec <<EOF
+$menu_exec -p 'Action' <<EOF
 Shutdown
 Suspend
 Log out
