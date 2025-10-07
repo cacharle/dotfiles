@@ -1,10 +1,19 @@
 #!/bin/sh
 
-bat_dir=BAT0
-[ -f "$HOME/.config/bat" ] && bat_dir="$(cat "$HOME/.config/bat")"
+bat_dirs='BAT*'
+[ -f "$HOME/.config/bat" ] && bat_dirs="$(cat "$HOME/.config/bat")"
 
-battery_dir="/sys/class/power_supply/$bat_dir"
+capacity="$(
+    cat /sys/class/power_supply/$bat_dirs/capacity |
+    awk 'BEGIN { sum = 0 }
+         { sum += $0 }
+         END { print sum / NR }'
+)"
+status="$(
+    cat /sys/class/power_supply/$bat_dirs/status |
+    head -n1
+)"
 
 notify-send --hint=int:transient:1 \
-    --hint=int:value:"$(cat "$battery_dir/capacity")" \
-    "Battery: $(cat "$battery_dir/status")"
+    --hint=int:value:"$capacity" \
+    "Battery: $status"
