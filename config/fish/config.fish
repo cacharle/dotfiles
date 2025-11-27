@@ -57,6 +57,7 @@ set -gx JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME/jupyter"
 set -gx SCREENRC "$XDG_CONFIG_HOME/screen/screenrc"
 set -gx ANSIBLE_HOME "$XDG_CONFIG_HOME/ansible"
 set -gx ANSIBLE_CONFIG "$XDG_CONFIG_HOME/ansible.cfg"
+set -gx ANSIBLE_NOCOWS "1"  # Remove the "funny" cowsay
 # data
 set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -gx GOPATH "$XDG_DATA_HOME/go"

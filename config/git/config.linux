@@ -60,3 +60,5 @@
 	sort = -committerdate
 [maintenance]
 	repo = /home/charles/git/aggregator
+[lfs]
+	locksverify = false
