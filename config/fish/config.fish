@@ -82,7 +82,7 @@ set -gx ANSIBLE_GALAXY_CACHE_DIR "$XDG_CACHE_HOME/ansible/galaxy_cache"
 set -gx XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
 set -gx GHCUP_USE_XDG_DIRS 'true'
 set -gx STACK_XDG '1'
-
+# set -gx ERL_AFLAGS "-kernel shell_history enabled -kernel shell_history_file '$XDG_CACHE_HOME/.erlang_history'"
 
 # shellcheck disable SC2155
 # color in man (less pager)

@@ -169,7 +169,20 @@ return {
     -- nvim lsp configuration
     {
         "neovim/nvim-lspconfig",
-        ft = {"python", "c", "cpp", "lua", "go", "haskell", "ocaml", "zig", "yaml", "odin"},
+        ft = {
+            "c",
+            "cmake",
+            "cpp",
+            -- "go",
+            -- "haskell",
+            "json",
+            "lua",
+            -- "ocaml",
+            -- "odin",
+            "python",
+            "yaml",
+            -- "zig",
+        },
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -180,15 +193,19 @@ return {
             mason.setup()
             mason_lspconfig.setup {
                 ensure_installed = {
-                    "gopls",
+                    -- "gopls",
                     "pylsp",
                     "lua_ls",
                     "clangd",
-                    "zls",
+                    -- "zls",
                     "yamlls",
-                    "ols",
-                    "cmake-language-server",
-                    -- "haskell-language-server",
+                    -- "ols",
+                    "cmake",
+                    -- "ansiblels",
+                    -- "exlixirls",
+                    -- "erlangls",
+                    "jsonls",
+                    -- "hls",
                     -- "ocamllsp",
                 },
                 automatic_enable = false,
@@ -311,6 +328,8 @@ return {
             }
             lspconfig.ols.setup{ on_attach = on_attach }
             vim.lsp.enable("cmake")
+            vim.lsp.enable("yamlls")
+            vim.lsp.enable("jsonls")
         end,
     },
 
@@ -341,12 +360,12 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "onsails/lspkind.nvim",
-            "L3MON4D3/LuaSnip",
+            -- "L3MON4D3/LuaSnip",
         },
         config = function()
             local lspkind = require("lspkind")
             local cmp = require("cmp")
-            local luasnip = require("luasnip")
+            -- local luasnip = require("luasnip")
             cmp.setup {
                 mapping = cmp.mapping.preset.insert({
                     -- ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -362,8 +381,8 @@ return {
                         end
                         if cmp.visible() then
                             cmp.select_next_item()
-                        elseif luasnip.expand_or_jumpable() then
-                            luasnip.expand_or_jump()
+                        -- elseif luasnip.expand_or_jumpable() then
+                        --     luasnip.expand_or_jump()
                         elseif has_words_before() then
                             cmp.complete()
                         else
@@ -373,8 +392,8 @@ return {
                     ["<C-p>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
-                            luasnip.jump(-1)
+                        -- elseif luasnip.jumpable(-1) then
+                        --     luasnip.jump(-1)
                         else
                             fallback()
                         end
@@ -382,7 +401,7 @@ return {
                 }),
                 -- order of the sources matter (first are higher priority)
                 sources = {
-                    { name = "luasnip" },
+                    -- { name = "luasnip" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "path" },
