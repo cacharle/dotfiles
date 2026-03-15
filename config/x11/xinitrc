@@ -3,6 +3,8 @@
 # keynav daemonize               # moving the cursor around without the mouse
 # clout push-watch &             # could with rsync
 
+set -xv
+
 [ ! "$(cat /etc/hostname)" = 'charles-thinkpad' ] &&
     redshift &                                  # filter blue light
 dunst &                                         # notification daemon
@@ -47,4 +49,5 @@ case "$(cat /etc/hostname)" in
 esac
 
 # awesome
+# gnome-session
 xmonad || { xmonad --recompile; xmonad; }

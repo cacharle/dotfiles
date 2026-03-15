@@ -216,7 +216,7 @@ return {
                 vim.lsp.protocol.make_client_capabilities()
             )
             -- $ go install golang.org/x/tools/gopls
-            lspconfig.gopls.setup {
+            vim.lsp.config("gopls", {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
@@ -225,7 +225,7 @@ return {
                         staticcheck = true
                     }
                 }
-            }
+            })
             -- from: https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
             local go_import_callback = function()
                 local wait_ms = 1000
@@ -249,7 +249,7 @@ return {
             )
             -- lspconfig.rust_analyzer.setup { on_attach = on_attach }
             -- need python-lsp-server and pyls-flake8
-            lspconfig.pylsp.setup {
+            vim.lsp.config("pylsp", {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
@@ -262,9 +262,9 @@ return {
                         },
                     },
                 },
-            }
+            })
             -- package lua-language-server on ArchLinux
-            lspconfig.lua_ls.setup {
+            vim.lsp.config("lua_ls", {
                 on_attach = on_attach ,
                 settings = {
                     Lua = {
@@ -287,24 +287,24 @@ return {
                         },
                     }
                 },
-            }
+            })
             -- brew install haskell-language-server
-            lspconfig.hls.setup { on_attach = on_attach }
+            vim.lsp.config("hls", { on_attach = on_attach })
             -- opam install ocaml-lsp-server
-            lspconfig.ocamllsp.setup { on_attach = on_attach }
+            vim.lsp.config("ocamllsp", { on_attach = on_attach })
             -- NOTE: to add compile arguments for standalone mode, create a .clangd file
-            lspconfig.clangd.setup {
+            vim.lsp.config("clangd", {
                 on_attach = on_attach,
                 -- TODO: "--clang-tidy",
                 cmd = { "clangd", "--header-insertion=never", "--pch-storage=memory", "--malloc-trim" },
                 -- capabilities = vim.tbl_deep_extend(
                 --     "force", vim.lsp.protocol.make_client_capabilities(),
                 --         { textDocument = { completion = { completionItem = { snippetSupport = false, } } } }
-            }
+            })
             -- pacman -S zls
-            lspconfig.zls.setup{}
+            vim.lsp.config("zls", {})
             -- pacman -S yaml-language-server
-            lspconfig.yamlls.setup {
+            vim.lsp.config("yamlls", {
                 settings = {
                     yaml = {
                         -- schemas = {
@@ -325,8 +325,16 @@ return {
                         },
                     }
                 }
-            }
-            lspconfig.ols.setup{ on_attach = on_attach }
+            })
+            vim.lsp.config("ols", { on_attach = on_attach })
+            vim.lsp.enable("gopls")
+            vim.lsp.enable("pylsp")
+            vim.lsp.enable("lua_ls")
+            vim.lsp.enable("hls")
+            vim.lsp.enable("ocamllsp")
+            vim.lsp.enable("clangd")
+            vim.lsp.enable("zls")
+            vim.lsp.enable("yamlls")
             vim.lsp.enable("cmake")
             vim.lsp.enable("yamlls")
             vim.lsp.enable("jsonls")

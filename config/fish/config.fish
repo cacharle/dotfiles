@@ -18,6 +18,7 @@ set -gx PATH "$PATH:$HOME/.local/bin"
 # odin specific, remove later (http://odin-lang.org/docs/install/#for-linux-and-other-nix)
 set -gx PATH "$PATH:$HOME/git/odin"
 set -gx PATH "$PATH:$HOME/git/ols"
+set -gx PATH "$PATH:/opt/intelFPGA/25.1/quartus/bin/"
 
 # ESP32 rust toolchain
 # . "$HOME/export-esp.sh"
@@ -270,7 +271,7 @@ end
 # (with a display manager, it's not the login shell anymore)
 # if status is-login
 
-if [ "$(uname)" = 'Linux' ] && [ "$(tty)" = '/dev/tty2' ]
+if [ "$(uname)" = 'Linux' ] && [ "$(tty)" = '/dev/tty1' ]
     # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
     # setting the keyrepeat delay and interval here as the default ones
     # since some applications reset the those if we use xset r rate 200 30 instead

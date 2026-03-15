@@ -60,7 +60,7 @@ main = xmonad $ docks $ desktopConfig
 
 
 layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-fractal" ultraWideLayout commonLayout
-    where ultraWideLayout = threeColMid ||| multiCol [1, 1] 2 (-0.05) (-0.25) ||| commonLayout
+    where ultraWideLayout = threeColMid ||| multiCol [1, 1, 1] 2 (-0.05) (-0.25) ||| commonLayout
           commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
                          ||| noBorders Full                   -- disable borders for fullscreen layout
