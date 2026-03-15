@@ -427,11 +427,11 @@ return {
                 },
                 window = { documentation = cmp.config.window.bordered(), },
                 experimental = { ghost_text = true, },
-                snippet = {
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end
-                },
+                -- snippet = {
+                --     expand = function(args)
+                --         luasnip.lsp_expand(args.body)
+                --     end
+                -- },
                 performance = {
                     debounce = 100,
                     throttle = 100,
