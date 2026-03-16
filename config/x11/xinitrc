@@ -44,7 +44,7 @@ case "$(cat /etc/hostname)" in
         nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
         ;;
     charles-thinkpad)
-        xmobar-toggle-hotcorner-check &
+        # xmobar-toggle-hotcorner-check &
         ;;
 esac
 
