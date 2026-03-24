@@ -1,5 +1,6 @@
 set disassembly-flavor intel
 set print pretty on
-set prompt \n(gdb) 
+set prompt \n(gdb)
 set confirm off
 set listsize 25
+set debuginfod enabled on
