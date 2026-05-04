@@ -296,7 +296,7 @@ return {
             vim.lsp.config("clangd", {
                 on_attach = on_attach,
                 -- TODO: "--clang-tidy",
-                cmd = { "clangd", "--header-insertion=never", "--pch-storage=disk", "--clang-tidy=false", "--malloc-trim" },
+                cmd = { "clangd", "--header-insertion=never", "--pch-storage=disk", "--clang-tidy=false", "--malloc-trim", "-j=2", "--background-index-priority=background" },
                 -- capabilities = vim.tbl_deep_extend(
                 --     "force", vim.lsp.protocol.make_client_capabilities(),
                 --         { textDocument = { completion = { completionItem = { snippetSupport = false, } } } }
