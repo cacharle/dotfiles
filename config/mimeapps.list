@@ -39,6 +39,8 @@ application/xhtml_xml=brave-browser.desktop
 image/webp=brave-browser.desktop
 x-scheme-handler/webcal=brave-browser.desktop
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+x-scheme-handler/slack=slack.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Added Associations]
 ; text/html=qutebrowser.desktop

@@ -11,6 +11,7 @@ import           XMonad.ManageHook           (composeAll, willFloat, doFloat, do
 import           XMonad.Util.Dmenu           (menuArgs)
 import           XMonad.Util.EZConfig        (additionalKeys, additionalKeysP)
 import           XMonad.Util.SpawnOnce       (spawnOnOnce)
+import qualified XMonad.StackSet             as W
 
 -- Layouts
 import           XMonad.Layout.NoBorders     (noBorders)
@@ -30,7 +31,7 @@ import           XMonad.Hooks.WindowSwallowing
 import           XMonad.Hooks.ManageHelpers  (isDialog)
 import           XMonad.Hooks.ManageDocks    (manageDocks, avoidStruts, docks)
 
-import           XMonad.StackSet             (swapUp)
+import           XMonad.StackSet             (swapUp, swapDown, focusUp, focusDown)
 
 -- TODO: no weird screen layout
 --       put 2 window in master next to each other and the rest in a stack as usual
@@ -59,7 +60,7 @@ main = xmonad $ docks $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-fractal" ultraWideLayout commonLayout
+layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-north" ultraWideLayout commonLayout
     where ultraWideLayout = threeColMid ||| multiCol [1, 1, 1] 2 (-0.05) (-0.25) ||| commonLayout
           commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
@@ -123,6 +124,11 @@ keys' = [ ("<XF86AudioLowerVolume>",  spawn "pipewire-ctl down")
         , ("M-S-b",                   spawn "battery-notify")
         , ("M-S-m",                   spawn "xmobar-toggle")
         , ("M-S-s",                   spawn "toggle-screenkey")
+        , ("M-j",                     focusByLayout focusUp focusDown)
+        , ("M-k",                     focusByLayout focusDown focusUp)
+        , ("M-S-j",                   focusByLayout swapUp swapDown)
+        , ("M-S-k",                   focusByLayout swapDown swapUp)
+
         , ("M-q",                     spawn "notify-send 'Restarting xmonad'" >> spawn restartCmd)
         , ("M-S-q",                   spawn "exit-session-prompt")
         -- , ("M-S-q",                   confirm "Are you sure you want to shutdown?" $ io exitSuccess)
@@ -140,6 +146,12 @@ confirm :: String -> X () -> X ()
 confirm prompt f = do
     result <- menuArgs "rofi" ["-dmenu", "-p", prompt] ["yes", "no"]
     when (result == "yes") f
+
+-- multiCol places the master on the right (negative weights), so j/k feel reversed there
+focusByLayout :: (WindowSet -> WindowSet) -> (WindowSet -> WindowSet) -> X ()
+focusByLayout multiColAction otherAction = do
+    desc <- gets (description . W.layout . W.workspace . W.current . windowset)
+    windows (if "MultiCol" `isInfixOf` desc then multiColAction else otherAction)
 
 restartCmd :: String
 restartCmd = intercalate "; " [ "if type xmonad"
