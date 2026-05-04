@@ -296,7 +296,7 @@ return {
             vim.lsp.config("clangd", {
                 on_attach = on_attach,
                 -- TODO: "--clang-tidy",
-                cmd = { "clangd", "--header-insertion=never", "--pch-storage=memory", "--malloc-trim" },
+                cmd = { "clangd", "--header-insertion=never", "--pch-storage=disk", "--clang-tidy=false", "--malloc-trim" },
                 -- capabilities = vim.tbl_deep_extend(
                 --     "force", vim.lsp.protocol.make_client_capabilities(),
                 --         { textDocument = { completion = { completionItem = { snippetSupport = false, } } } }
@@ -605,6 +605,7 @@ return {
     -- better syntax highlight for everything
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master",
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup {
