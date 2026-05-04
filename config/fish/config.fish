@@ -112,6 +112,8 @@ set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 set -gx HOST "$(cat /etc/hostname)"  # for compatibility with Xmonad.Layout.OnHost
 set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/usr/local/lib"  # https://github.com/rust-lang/rust/issues/24677
 
+test -f ~/.env.fish; and source ~/.env.fish
+
 if status is-interactive
     fish_vi_key_bindings
     function fish_greeting
