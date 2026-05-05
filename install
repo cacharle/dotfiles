@@ -57,9 +57,6 @@ link_home_files() {
 link_home_files 'config' "$XDG_CONFIG_HOME"
 link_home_files 'local'  "$HOME/.local"
 
-# ln -svf "$(pwd)/config/zsh/zprofile" "$HOME/.zprofile"
-
-
 ################################################################################
 # vim plug
 ################################################################################
@@ -70,11 +67,8 @@ PLUGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 [ ! -f "$PLUGFILE" ] && curl -fLo "$PLUGFILE" --create-dirs "$PLUGURL"
 vim -c 'PlugInstall' -c 'qa'
 
-echo '---------------------------- INSTALL NVIM PACKER -------------------------'
-PACKERDIR="$XDG_DATA_HOME/nvim/site/pack/packer/start/packer.nvim"
-PACKERURL='https://github.com/wbthomason/packer.nvim'
-[ ! -d "$PACKERDIR" ] && git clone --depth 1 "$PACKERURL" "$PACKERDIR"
-nvim -c 'PackerInstall' -c 'PackerSync' -c "qa"
+echo '---------------------------- INSTALL NVIM PLUGINS -------------------------'
+nvim -c 'Lazy sync' -c "qa"
 
 ###############################################################################
 # zsh pluggins
@@ -116,8 +110,8 @@ fish -c 'fisher install ainmosni/fish-aws'
 
 if command -v ya > /dev/null
 then
-    ya pack -a bennyyip/gruvbox-dark
-    ya pack -a yazi-rs/plugins:git
+    ya pkg add bennyyip/gruvbox-dark
+    ya pkg add yazi-rs/plugins:git
 fi
 
 ###############################################################################
@@ -139,24 +133,3 @@ then
 fi
 
 echo 'INFO: Run this script as root if you want to install the root contab'
-
-###############################################################################
-# dictionaries
-###############################################################################
-
-# command is sdcv
-echo '---------------------------- INSTALL DICTIONARY --------------------------'
-install_dict() {
-    url="$1"
-    archive_name="$(basename "$url")"
-    dir_name="${archive_name%%.tar.bz2}"
-    install_dir="${STARDICT_DATA_DIR:-/usr/share/stardict}/dic"
-    [ ! -d "$install_dir" ]  && mkdir -pv "$install_dir"
-    [ -d "$install_dir/$dir_name" ] && return
-    echo "----------------------------- Installing dictionary: $dir_name"
-    curl "$url" | tar -xjvf - -C "$install_dir" &
-}
-# other dictionaries at: http://download.huzheng.org/
-#parallel_start install_dict 'http://download.huzheng.org/dict.org/stardict-dictd_www.dict.org_gcide-2.4.2.tar.bz2'  # english
-#parallel_start install_dict 'http://download.huzheng.org/fr/stardict-xmlittre-2.4.2.tar.bz2'                        # french
-#parallel_wait
