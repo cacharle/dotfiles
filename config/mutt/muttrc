@@ -6,7 +6,7 @@
 # source "$XDG_DATA_HOME/mutt/solarized/mutt-colors-solarized-dark-16.muttrc"  # solarized
 source "$XDG_DATA_HOME/mutt/gruvbox/colors-gruvbox-shuber.muttrc"  # gruvbox
 
-set from      = 'me@cacharle.xyz'  # address in new mail
+set from      = 'charles@cacharle.com'  # address in new mail
 set realname  = 'Charles Cabergs'  # name in new mail
 
 # Password command to set it up
@@ -17,8 +17,8 @@ set realname  = 'Charles Cabergs'  # name in new mail
 # NOTE: this HAS to be declared BEFORE the `folder` option
 source "gpg -d $XDG_DATA_HOME/mutt/passwd.muttrc.gpg 2> /dev/null |"
 
-set smtp_url  = 'smtp://me@mail.cacharle.xyz:587'   # where to send
-set folder    = 'imaps://me@mail.cacharle.xyz:993'  # mails folder
+set smtp_url  = 'smtp://charles@mail.cacharle.com:587'   # where to send
+set folder    = 'imaps://charles@mail.cacharle.com:993'  # mails folder
 # set folder = "~/.mail/cacharle"
 
 # view html with terminal browser in .mailcap
