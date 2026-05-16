@@ -605,57 +605,41 @@ return {
     -- better syntax highlight for everything
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = "master",
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter.configs").setup {
-                ensure_installed = {
-                    "bash",
-                    "c",
-                    "cmake",
-                    "commonlisp",
-                    "cpp",
-                    "cuda",
-                    "fish",
-                    "glsl",
-                    "go",
-                    "haskell",
-                    "json",
-                    "lua",
-                    "make",
-                    "markdown",
-                    "markdown_inline",
-                    "mermaid",
-                    "meson",
-                    "odin",
-                    "python",
-                    "query",
-                    "rust",
-                    "toml",
-                    "vim",
-                    "vimdoc",
-                    "yaml",
-                    "zig",
-                },
-                highlight = { enable = true },
-                matchup = {
-                    enable = true,              -- mandatory, false will disable the whole extension
-                    -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-                    -- [options]
-                },
-                -- indent = { enable = true },
-                -- TODO: could be neat
-                -- incremental_selection = {
-                --     enable = true,
-                --     keymaps = {
-                --         init_selection = "gnn",
-                --         node_incremental = "grn",
-                --         scope_incremental = "grc",
-                --         node_decremental = "grm",
-                --     }
-                -- }
-            }
-            vim.cmd [[ highlight link pythonTSKeywordOperator Keyword ]]
+            require("nvim-treesitter").install({
+                "bash",
+                "c",
+                "cmake",
+                "commonlisp",
+                "cpp",
+                "cuda",
+                "fish",
+                "glsl",
+                "go",
+                "haskell",
+                "json",
+                "lua",
+                "make",
+                "markdown",
+                "markdown_inline",
+                "mermaid",
+                "meson",
+                "odin",
+                "python",
+                "query",
+                "rust",
+                "toml",
+                "vim",
+                "vimdoc",
+                "yaml",
+                "zig",
+            })
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function() pcall(vim.treesitter.start) end,
+            })
         end
     },
 
