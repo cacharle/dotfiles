@@ -17,14 +17,14 @@
     # will be ignored.
     follow = keyboard
 
-    # Width in pixels. 0 = expand to longest message displayed.
-    width = 0
-    # Height in pixels. 0 = expand to fit content.
-    height = 0
+    # Width in pixels.
+    width = 200
+    # Height in pixels.
+    height = (0, 50)
     # Which corner notifications appear from.
     origin = top-right
     # X/Y offset from the origin in pixels.
-    offset = 30x20
+    offset = (30, 20)
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -185,7 +185,7 @@
     class = Dunst
 
     # Log level: critical, warning, message, info, debug
-    log_level = message
+    # log_level = message
 
     # Define the corner radius of the notification window
     # in pixel size. If the radius is 0, you have no rounded
