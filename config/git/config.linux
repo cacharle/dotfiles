@@ -2,8 +2,8 @@
 
 [user]
 	name = Charles Cabergs
-    email = me@cacharle.xyz
-	; signingkey = me@cacharle.xyz
+    email = charles@cacharle.com
+	; signingkey = charles@cacharle.com
 	signingkey = ~/.ssh/id_ed25519.pub
 [log]
 	decorate = full

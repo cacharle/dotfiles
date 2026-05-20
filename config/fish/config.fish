@@ -1,12 +1,11 @@
 if [ "$(uname)" = 'Linux' ]
     set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/bin/vendor_perl"
-    set -gx MAIL 'me@cacharle.xyz'
+    set -gx MAIL 'charles@cacharle.com'
     set -gx SUDO 'doas'
     set -gx PYTHON_BASIC_REPL 1
 else if [ "$(uname)" = 'Darwin' ]
     set -gx PATH "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     set -gx PATH "$PATH:$HOME/.brew/bin:$HOME/git/dotfiles/bin:$HOME/bin"
-    set -gx MAIL 'charles.cabergs@colruytgroup.com'
     set -gx SUDO 'sudo'
     set -gx LC_CTYPE 'en_US.UTF-8'
 end
