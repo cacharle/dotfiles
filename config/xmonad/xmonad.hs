@@ -30,6 +30,7 @@ import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
 import           XMonad.Hooks.WindowSwallowing
 import           XMonad.Hooks.ManageHelpers  (isDialog)
 import           XMonad.Hooks.ManageDocks    (manageDocks, avoidStruts, docks)
+import           XMonad.Hooks.EwmhDesktops   (setEwmhActivateHook)
 
 import           XMonad.StackSet             (swapUp, swapDown, focusUp, focusDown)
 
@@ -44,7 +45,7 @@ myTerminal = "wezterm"
 
 -- xmonad :: XConfig -> IO ()
 -- https://hackage.haskell.org/package/xmonad-0.15/docs/XMonad-Core.html#t:XConfig
-main = xmonad $ docks $ desktopConfig
+main = xmonad $ docks $ setEwmhActivateHook mempty $ desktopConfig
         { normalBorderColor  = "#1c1c1c"
         , focusedBorderColor = "#8a8a8a"
         , terminal           = myTerminal
@@ -60,7 +61,7 @@ main = xmonad $ docks $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-north" ultraWideLayout commonLayout
+layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-fractal" ultraWideLayout commonLayout
     where ultraWideLayout = threeColMid ||| multiCol [1, 1, 1] 2 (-0.05) (-0.25) ||| commonLayout
           commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
@@ -83,7 +84,8 @@ manageHook' = composeAll
     , stringProperty "WM_NAME(UTF8_STRING)" =? "Bitwarden" --> doFloat
     -- , className =? "Gimp" --> doFloat
     -- , className =? "OBS" --> doFloat
-    , isDialog --> doF swapUp
+    , (isDialog <&&> fmap not (className =? "Vivado")) --> doF swapUp
+    , className =? "Vivado" --> insertPosition Above Older
     ]
 
 keys' = [ ("<XF86AudioLowerVolume>",  spawn "pipewire-ctl down")
