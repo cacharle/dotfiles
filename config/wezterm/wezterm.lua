@@ -2,6 +2,10 @@ local wezterm = require "wezterm"
 local config = wezterm.config_builder()
 local act = wezterm.action
 
+-- Use WezTerm's own terminfo so Neovim doesn't treat us as xterm and use
+-- buggy left/right-margin scrolling that smears across vertical splits.
+config.term = "wezterm"
+
 config.font_size = 11
 config.font = wezterm.font "Fira Code"
 config.color_scheme = "GruvboxDark"

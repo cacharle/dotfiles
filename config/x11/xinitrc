@@ -12,7 +12,7 @@ unclutter --timeout 10 --fork                   # hide mouse after 10s
 udiskie &                                       # automount usb devices
 xrdb "$XDG_CONFIG_HOME/x11/Xresources"
 hsetroot -add '#111' -add '#222' -gradient 180  # gradient background
-syncthing --no-browser > ~/.cache/syncthing.log 2>&1 &
+# syncthing --no-browser > ~/.cache/syncthing.log 2>&1 &
 
 case "$(cat /etc/hostname)" in
     charles-main)
