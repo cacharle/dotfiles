@@ -20,7 +20,7 @@ import           XMonad.Layout.Spacing       (Border (..), spacingRaw)
 import           XMonad.Layout.Grid          (Grid (..))
 import           XMonad.Layout.ThreeColumns  (ThreeCol (ThreeColMid))
 import           XMonad.Layout.CenteredIfSingle (centeredIfSingle)
-import           XMonad.Layout.OnHost           (onHost)
+import           XMonad.Layout.OnHost           (onHosts)
 import           XMonad.Layout.MultiColumns     (multiCol)
 import           XMonad.Layout.Gaps             (gaps, Direction2D(U))
 
@@ -61,7 +61,7 @@ main = xmonad $ docks $ setEwmhActivateHook mempty $ desktopConfig
         } `additionalKeysP` keys'
 
 
-layoutHook' = spacing' 4 $ avoidStruts $ onHost "charles-fractal" ultraWideLayout commonLayout
+layoutHook' = spacing' 4 $ avoidStruts $ onHosts ["charles-fractal", "charles-north"] ultraWideLayout commonLayout
     where ultraWideLayout = threeColMid ||| multiCol [1, 1, 1] 2 (-0.05) (-0.25) ||| commonLayout
           commonLayout = reflectHoriz tiledVerticalBigMaster  -- main monitor is slighly to the left
                          ||| tiledVerticalBigMaster           -- bigger master for code and smaller slave for compiling
